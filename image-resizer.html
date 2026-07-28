@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bulk Image Resizer</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px}
+.container{max-width:600px;width:100%;background:#1e293b;border-radius:16px;padding:30px;box-shadow:0 25px 50px rgba(0,0,0,.4)}
+h1{font-size:1.5rem;margin-bottom:8px;color:#f8fafc}
+.sub{color:#94a3b8;margin-bottom:24px;font-size:.9rem}
+.drop-zone{border:2px dashed #475569;border-radius:12px;padding:40px 20px;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:20px}
+.drop-zone:hover,.drop-zone.dragover{border-color:#6366f1;background:rgba(99,102,241,.1)}
+.drop-zone p{color:#94a3b8}
+.settings{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.settings label{flex:1;min-width:120px}
+.settings span{display:block;font-size:.8rem;color:#94a3b8;margin-bottom:4px}
+.settings input{width:100%;padding:10px;border-radius:8px;border:1px solid #475569;background:#0f172a;color:#e2e8f0;font-size:1rem}
+.btn{width:100%;padding:14px;border:none;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-primary{background:#6366f1;color:#fff}
+.btn-primary:hover{background:#4f46e5}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed}
+.preview{margin-top:20px}
+.preview-item{display:flex;align-items:center;gap:12px;padding:10px;background:#0f172a;border-radius:8px;margin-bottom:8px}
+.preview-item img{width:48px;height:48px;object-fit:cover;border-radius:4px}
+.preview-item .info{flex:1;font-size:.85rem}
+.stats{margin-top:16px;padding:12px;background:rgba(99,102,241,.15);border-radius:8px;font-size:.9rem;text-align:center;display:none}
+.stats.show{display:block}
+.quality-select{display:flex;gap:8px;margin-bottom:16px}
+.quality-select button{padding:8px 16px;border-radius:8px;border:1px solid #475569;background:#0f172a;color:#94a3b8;cursor:pointer;font-size:.85rem}
+.quality-select button.active{background:#6366f1;color:#fff;border-color:#6366f1}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>📸 Bulk Image Resizer</h1>
+<p class="sub">Resize multiple images at once. All processing happens locally in your browser — no uploads.</p>
+<div class="drop-zone" id="dropZone"><p>🖼️ Drop images here or click to select</p><input type="file" id="fileInput" accept="image/*" multiple hidden></div>
+<div class="settings">
+<label><span>Max Width (px)</span><input type="number" id="width" value="800" min="1"></label>
+<label><span>Max Height (px)</span><input type="number" id="height" value="600" min="1"></label>
+</div>
+<div class="quality-select" id="qualitySelect">
+<button class="active" data-q="0.9">High</button>
+<button data-q="0.7">Medium</button>
+<button data-q="0.5">Low</button>
+</div>
+<button class="btn btn-primary" id="btnResize" disabled>Resize Images</button>
+<div class="preview" id="preview"></div>
+<div class="stats" id="stats"></div>
+</div>
+<script>
+let files=[],quality=0.9;
+const dz=document.getElementById('dropZone'),fi=document.getElementById('fileInput'),
+  preview=document.getElementById('preview'),btn=document.getElementById('btnResize'),
+  stats=document.getElementById('stats');
+dz.addEventListener('click',()=>fi.click());
+dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('dragover')});
+dz.addEventListener('dragleave',()=>dz.classList.remove('dragover'));
+dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('dragover');handleFiles(e.dataTransfer.files)});
+fi.addEventListener('change',()=>handleFiles(fi.files));
+document.getElementById('qualitySelect').addEventListener('click',e=>{
+  if(e.target.tagName==='BUTTON'){
+    document.querySelectorAll('#qualitySelect button').forEach(b=>b.classList.remove('active'));
+    e.target.classList.add('active');quality=parseFloat(e.target.dataset.q);
+  }
+});
+function handleFiles(f){files=[...f].filter(f=>f.type.startsWith('image/'));renderPreview()}
+function renderPreview(){
+  preview.innerHTML='';if(!files.length){btn.disabled=true;return}
+  btn.disabled=false;
+  files.forEach((f,i)=>{
+    const div=document.createElement('div');div.className='preview-item';
+    const img=document.createElement('img');img.src=URL.createObjectURL(f);
+    const info=document.createElement('div');info.className='info';
+    info.innerHTML=`<strong>${f.name}</strong><br>${(f.size/1024).toFixed(1)} KB`;
+    div.appendChild(img);div.appendChild(info);preview.appendChild(div);
+  });
+}
+btn.addEventListener('click',async()=>{
+  const w=parseInt(document.getElementById('width').value)||800;
+  const h=parseInt(document.getElementById('height').value)||600;
+  let totalBefore=0,totalAfter=0,count=0;
+  stats.classList.remove('show');btn.disabled=true;btn.textContent='Processing...';
+  for(const file of files){
+    const img=await createImageBitmap(file);
+    const c=document.createElement('canvas');let nw=img.width,nh=img.height;
+    if(nw>w){nh=nh*(w/nw);nw=w}if(nh>h){nw=nw*(h/nh);nh=h}
+    c.width=nw;c.height=nh;const ctx=c.getContext('2d');ctx.drawImage(img,0,0,nw,nh);
+    const blob=await new Promise(r=>c.toBlob(r,'image/jpeg',quality));
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    a.download=file.name.replace(/\.\w+$/,'')+'_resized.jpg';a.click();
+    totalBefore+=file.size;totalAfter+=blob.size;count++;
+  }
+  totalBefore/=1024;totalAfter/=1024;
+  stats.innerHTML=`✅ Resized ${count} image${count>1?'s':''}<br>Before: ${totalBefore.toFixed(1)} KB → After: ${totalAfter.toFixed(1)} KB (${((1-totalAfter/totalBefore)*100).toFixed(0)}% saved)`;
+  stats.classList.add('show');btn.textContent='Resize Images';btn.disabled=false;
+});
+</script>
+</body>
+</html>
