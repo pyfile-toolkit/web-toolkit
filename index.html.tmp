@@ -1,0 +1,8 @@
+
+<div style="text-align:center;margin:40px 0;padding:24px;background:#1e293b;border-radius:12px">
+  <h3 style="color:#f8fafc;margin-bottom:8px">☕ Support this project</h3>
+  <p style="color:#94a3b8;margin-bottom:16px">If these free tools helped you, buy me a coffee!</p>
+  <a href="https://ko-fi.com/pyfiletoolkit" target="_blank" style="display:inline-block;padding:10px 24px;background:#ff5e5b;color:#fff;border-radius:8px;text-decoration:none;font-weight:600">☕ Ko-fi</a>
+  &nbsp;
+  <a href="https://github.com/sponsors/pyfile-toolkit" target="_blank" style="display:inline-block;padding:10px 24px;background:#db61a2;color:#fff;border-radius:8px;text-decoration:none;font-weight:600">❤️ GitHub Sponsors</a>
+</div>
