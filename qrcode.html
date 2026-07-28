@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Code Generator — Free Online Tool</title>
+<meta name="description" content="Generate QR codes instantly in your browser. Free, no upload, 100% local processing.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px}
+.card{background:#1e293b;border-radius:16px;padding:32px;max-width:500px;width:100%;text-align:center}
+h1{color:#f8fafc;margin-bottom:8px}
+p{color:#94a3b8;margin-bottom:20px;font-size:.9rem}
+textarea{width:100%;padding:12px;border-radius:8px;background:#334155;color:#e2e8f0;border:1px solid #475569;resize:vertical;font-size:1rem;min-height:60px}
+button{margin-top:12px;padding:12px 32px;background:#6366f1;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:1rem}
+button:hover{background:#4f46e5}
+canvas{margin-top:20px;display:none}
+#qrcode{display:none;margin-top:20px;max-width:256px}
+.back{margin-top:20px;color:#64748b;font-size:.85rem}
+.back a{color:#818cf8}
+.donate{margin-top:16px;padding:12px;background:#1e1e3a;border-radius:8px;font-size:.75rem;color:#94a3b8}
+.donate strong{color:#818cf8}
+.ads{margin-top:16px;padding:12px;background:#1e1e3a;border-radius:8px}
+.ads a{color:#818cf8;font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>QR Code Generator</h1>
+<p>Enter text or URL — QR appears instantly. Free, no tracking.</p>
+<textarea id="input" placeholder="https://example.com or any text..."></textarea>
+<button onclick="generate()">Generate QR Code</button>
+<img id="qrcode" alt="QR Code">
+<div class="ads">
+  <a href="https://pyfile-toolkit.github.io/web-toolkit/">← Back to Toolkit</a> | 
+  <a href="https://pyfiletoolkit.gumroad.com/">Get Premium Tools</a>
+</div>
+<div class="donate">
+  Like this tool? Send XMR: <strong>87Bmg... </strong>(add yours!) or via <a href="https://boosty.to/pyfile-toolkit">Boosty</a>
+</div>
+</div>
+<script>
+function generate() {
+  const text = document.getElementById('input').value.trim();
+  if (!text) return;
+  const img = document.getElementById('qrcode');
+  img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=' + encodeURIComponent(text);
+  img.style.display = 'block';
+}
+document.getElementById('input').addEventListener('keydown', e => { if (e.key === 'Enter') generate(); });
+</script>
+</body>
+</html>
