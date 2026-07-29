@@ -1,128 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-RDDV2FW9HY');
-  </script>
-
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Markdown Previewer</title>
+<meta name="description" content="Live markdown preview as you type. Export to HTML or MD. Free, instant, 100% browser-based.">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-RDDV2FW9HY");</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column}
-header{background:#1e293b;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #334155}
-header h1{font-size:1.1rem;color:#f8fafc}
-header button{background:#334155;color:#e2e8f0;border:none;padding:8px 14px;border-radius:8px;cursor:pointer;font-size:.8rem;margin-left:8px}
-header button:hover{background:#475569}
-header button.active{background:#6366f1}
-.main{display:flex;flex:1;overflow:hidden}
-.pane{flex:1;overflow-y:auto;padding:20px}
-.pane-left{border-right:1px solid #334155}
-textarea{width:100%;height:100%;min-height:calc(100vh - 80px);background:transparent;border:none;color:#e2e8f0;font-family:'JetBrains Mono','Fira Code',monospace;font-size:.9rem;line-height:1.6;resize:none;outline:none}
-.preview{line-height:1.7;word-wrap:break-word}
-.preview h1{font-size:2rem;margin:.8em 0 .4em;border-bottom:2px solid #334155;padding-bottom:.2em}
-.preview h2{font-size:1.5rem;margin:.7em 0 .3em;border-bottom:1px solid #33415580;padding-bottom:.15em}
-.preview h3{font-size:1.2rem;margin:.6em 0 .2em}
-.preview p{margin:.6em 0}
-.preview code{background:#1e293b;padding:2px 6px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:.85rem}
-.preview pre{background:#1e293b;padding:16px;border-radius:10px;overflow-x:auto;margin:.8em 0}
-.preview pre code{background:none;padding:0}
-.preview blockquote{border-left:3px solid #6366f1;padding-left:16px;color:#94a3b8;margin:.8em 0}
-.preview ul,.preview ol{padding-left:24px;margin:.6em 0}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;padding:20px}
+.card{max-width:900px;margin:0 auto;background:#1e293b;border-radius:16px;padding:32px}
+h1{text-align:center;color:#f8fafc;margin-bottom:4px}
+.sub{text-align:center;color:#94a3b8;margin-bottom:20px;font-size:.9rem}
+.panels{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.panel h3{color:#f8fafc;margin-bottom:8px;font-size:.9rem}
+textarea{width:100%;padding:12px;border-radius:8px;background:#334155;color:#e2e8f0;border:1px solid #475569;font-family:monospace;font-size:.85rem;resize:vertical;min-height:300px}
+.preview{background:#1e1e3a;border:1px solid #334155;border-radius:8px;padding:16px;min-height:300px;overflow-y:auto}
+.preview h1{color:#f8fafc;font-size:1.4rem;margin:16px 0 8px;text-align:left}
+.preview h2{color:#f8fafc;font-size:1.2rem;margin:12px 0 6px}
+.preview p{color:#cbd5e1;margin:8px 0}
+.preview code{background:#334155;padding:2px 6px;border-radius:4px;font-size:.85rem}
+.preview pre{background:#0f172a;padding:12px;border-radius:8px;overflow-x:auto}
 .preview a{color:#818cf8}
-.preview table{border-collapse:collapse;width:100%;margin:.8em 0}
-.preview th,.preview td{border:1px solid #334155;padding:8px 12px;text-align:left}
-.preview th{background:#1e293b}
-.preview img{max-width:100%;border-radius:8px}
-.preview hr{border:none;border-top:1px solid #334155;margin:1.5em 0}
-.toolbar{display:flex;gap:4px;flex-wrap:wrap}
-.export-dropdown{position:relative;display:inline-block}
-.export-menu{display:none;position:absolute;top:100%;right:0;background:#1e293b;border:1px solid #334155;border-radius:8px;overflow:hidden;z-index:10;min-width:140px}
-.export-menu.show{display:block}
-.export-menu button{display:block;width:100%;text-align:left;margin:0;border-radius:0}
-@media(max-width:768px){.pane-left{display:none}.pane-left.active{display:block;position:fixed;top:53px;left:0;right:0;bottom:0;z-index:5;background:#0f172a}}
-.mobile-toggle{display:none}
-@media(max-width:768px){.mobile-toggle{display:inline-block}}
+.kofi{text-align:center;margin:16px 0 8px;padding:10px;background:#1e1e3a;border-radius:8px}
+.kofi a{color:#ff5e5b;font-weight:600;text-decoration:none}
+.btns{display:flex;gap:8px;justify-content:center;margin:12px 0;flex-wrap:wrap}
+button{padding:8px 16px;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.85rem}
+.btn-exp{background:#22c55e;color:#fff}
+.btn-copy{background:#64748b;color:#fff}
+.ads{margin-top:16px;padding:12px;background:#1e1e3a;border-radius:8px;text-align:center;font-size:.85rem}
+.ads a{color:#818cf8}
 </style>
 </head>
 <body>
-<header>
+<div class="card">
 <h1>📝 Markdown Previewer</h1>
-<div class="toolbar">
-<button class="mobile-toggle" onclick="togglePane()">✏️ Editor</button>
-<button onclick="insertTemplate('readme')">README</button>
-<button onclick="insertTemplate('blog')">Blog</button>
-<button id="btnExport" onclick="toggleExport()">📥 Export ▼</button>
-<div class="export-dropdown"><div class="export-menu" id="exportMenu">
-<button onclick="exportFile('md')">Markdown (.md)</button>
-<button onclick="exportFile('html')">HTML</button>
-<button onclick="copyHTML()">Copy as HTML</button>
-</div></div>
+<p class="sub">Type markdown on the left — see rendered HTML on the right</p>
+<div class="panels">
+<div class="panel">
+<h3>Markdown</h3>
+<textarea id="input" placeholder="# Hello World&#10;&#10;This is **bold** and *italic*&#10;&#10;- List item 1&#10;- List item 2&#10;&#10;[Link](https://example.com)&#10;&#10;`inline code`"># Hello World
+
+This is **bold** and *italic*
+
+- List item 1
+- List item 2
+
+[Link](https://example.com)
+
+`inline code`</textarea>
 </div>
-</header>
-<div class="main">
-<div class="pane pane-left" id="editorPane">
-<textarea id="editor" placeholder="# Start typing Markdown here..."></textarea>
-</div>
-<div class="pane pane-right">
+<div class="panel">
+<h3>Preview</h3>
 <div class="preview" id="preview"></div>
 </div>
 </div>
+<div class="btns">
+<button class="btn-exp" onclick="exportHTML()">📥 Export HTML</button>
+<button class="btn-copy" onclick="copyPreview()">📋 Copy HTML</button>
+</div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this tool on Ko-fi</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+</div>
 <script>
-const editor=document.getElementById('editor'),preview=document.getElementById('preview');
-
-function parseMd(t){let h='';
-t=t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-const blocks=t.split(/\n\n+/);
-for(let b of blocks){
-  if(/^#{1,6}\s/.test(b)){const l=b.match(/^(#+)\s(.+)/);h+=`<h${l[1].length}>${inline(l[2])}</h${l[1].length}>`}
-  else if(/^```(\w*)\n([\s\S]*?)```$/.test(b)){const m=b.match(/^```(\w*)\n([\s\S]*?)```$/);h+=`<pre><code>${m[2]}</code></pre>`}
-  else if(/^\|.*\|$/.test(b.split('\n')[0])){h+=parseTable(b)}
-  else if(/^>\s/.test(b)){h+=`<blockquote>${inline(b.replace(/^>\s?/gm,''))}</blockquote>`}
-  else if(/^[\*\-\+]\s/.test(b)){h+=parseList(b,'ul')}
-  else if(/^\d+\.\s/.test(b)){h+=parseList(b,'ol')}
-  else if(/^---/.test(b)){h+='<hr>'}
-  else{h+=`<p>${inline(b)}</p>`}
+const inp=document.getElementById('input'),prev=document.getElementById('preview');
+function render(){
+  let md=inp.value;
+  // Headers
+  md=md.replace(/^### (.+)$/gm,'<h3>$1</h3>');
+  md=md.replace(/^## (.+)$/gm,'<h2>$1</h2>');
+  md=md.replace(/^# (.+)$/gm,'<h1>$1</h1>');
+  // Bold, italic
+  md=md.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  md=md.replace(/\*(.+?)\*/g,'<em>$1</em>');
+  // Links
+  md=md.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2">$1</a>');
+  // Inline code
+  md=md.replace(/`([^`]+)`/g,'<code>$1</code>');
+  // Lists
+  md=md.replace(/^- (.+)$/gm,'<li>$1</li>');
+  md=md.replace(/(<li>.*<\/li>\n?)+/g,'<ul>$&</ul>');
+  // Paragraphs
+  md=md.replace(/^(?!<[hul/])(.+)$/gm,'<p>$1</p>');
+  prev.innerHTML=md;
 }
-return h}
-function inline(t){return t.replace(/!\[([^\]]*)\]\(([^\)]+)\)/g,'<img src="$2" alt="$1">').replace(/\[([^\]]+)\]\(([^\)]+)\)/g,'<a href="$2">$1</a>').replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>').replace(/`([^`]+)`/g,'<code>$1</code>').replace(/~~(.+?)~~/g,'<del>$1</del>').replace(/\n/g,'<br>')}
-function parseTable(t){const rows=t.split('\n').filter(r=>r.includes('|')&&!/^[\|\-\s:]+$/.test(r));
-  let h='<table>';const hdr=rows[0].split('|').filter(c=>c.trim());h+='<thead><tr>'+hdr.map(c=>`<th>${inline(c.trim())}</th>`).join('')+'</tr></thead><tbody>';
-  for(let i=1;i<rows.length;i++){const cells=rows[i].split('|').filter(c=>c.trim());h+='<tr>'+cells.map(c=>`<td>${inline(c.trim())}</td>`).join('')+'</tr>'}
-  return h+'</tbody></table>'}
-function parseList(t,tag){const items=t.split('\n').filter(l=>/^[\*\-\+\d+\.]\s/.test(l));return`<${tag}>`+items.map(l=>`<li>${inline(l.replace(/^[\*\-\+\d+\.]\s/,''))}</li>`).join('')+`</${tag}>`}
+inp.addEventListener('input',render);
+render();
 
-editor.addEventListener('input',()=>{preview.innerHTML=parseMd(editor.value)});
-
-const templates={
-readme:`# Project Name\n\n## Description\nA brief description of your project.\n\n## Features\n- Feature 1\n- Feature 2\n- Feature 3\n\n## Installation\n\`\`\`bash\nnpm install\n\`\`\`\n\n## Usage\n\`\`\`javascript\nimport { something } from 'project';\n\`\`\`\n\n## License\nMIT`,
-blog:`# Blog Post Title\n\n**Published:** {{date}}\n\n## Introduction\n\nStart with a hook that grabs attention.\n\n## Main Point 1\n\nYour first key insight goes here. Use **bold** for emphasis.\n\n> A relevant quote or callout\n\n## Main Point 2\n\n- Supporting detail\n- Another point\n\n## Conclusion\n\nWrap it up with actionable takeaways.\n\n---\n*Thanks for reading!*`
-};
-function insertTemplate(name){editor.value=templates[name];preview.innerHTML=parseMd(editor.value)}
-function toggleExport(){document.getElementById('exportMenu').classList.toggle('show')}
-function exportFile(type){
-  const md=editor.value;
-  if(type==='md'){const b=new Blob([md],{type:'text/markdown'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='document.md';a.click()}
-  else{const b=new Blob(['<!DOCTYPE html><html><head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-RDDV2FW9HY');
-  </script>
-<meta charset="UTF-8"><style>body{font-family:system-ui;max-width:800px;margin:40px auto;padding:0 20px;line-height:1.7}'+document.querySelector('style').textContent+'</style></head><body>'+preview.innerHTML+'</body></html>'],{type:'text/html'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='document.html';a.click()}
+function exportHTML(){
+  const blob=new Blob(['<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Preview</title></head><body>'+prev.innerHTML+'</body></html>'],{type:'text/html'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='preview.html';a.click();
 }
-function copyHTML(){navigator.clipboard.writeText(preview.innerHTML);alert('HTML copied!')}
-function togglePane(){document.getElementById('editorPane').classList.toggle('active')}
-editor.value='# Welcome to Markdown Previewer\n\nType **Markdown** on the left and see a live preview on the right.\n\n## Features\n\n- **Live preview** as you type\n- Export to HTML or Markdown\n- README & Blog templates\n- Code syntax blocks\n- Tables, images, and more\n\n```python\nprint("Hello, world!")\n```\n\n> A simple, elegant Markdown editor.\n\n| Feature | Status |\n|---------|--------|\n| Preview | ✅ |\n| Export | ✅ |\n| Templates | ✅ |';
-preview.innerHTML=parseMd(editor.value);
+function copyPreview(){navigator.clipboard.writeText(prev.innerHTML)}
 </script>
 </body>
 </html>
