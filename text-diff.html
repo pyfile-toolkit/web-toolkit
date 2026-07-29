@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text Diff Checker — Compare Text Online Free</title>
+<meta name="description" content="Compare two texts and find differences instantly. Free online diff tool, no upload, 100% browser-based.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;padding:20px}
+.card{max-width:900px;margin:0 auto;background:#1e293b;border-radius:16px;padding:32px}
+h1{text-align:center;color:#f8fafc;margin-bottom:4px}
+.sub{text-align:center;color:#94a3b8;margin-bottom:24px;font-size:.9rem}
+.panels{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.panel h3{color:#f8fafc;margin-bottom:8px;font-size:.9rem}
+textarea{width:100%;padding:12px;border-radius:8px;background:#334155;color:#e2e8f0;border:1px solid #475569;font-family:monospace;font-size:.85rem;resize:vertical;min-height:150px}
+.btns{text-align:center;margin-bottom:16px}
+button{padding:10px 28px;background:#6366f1;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:1rem}
+button:hover{background:#4f46e5}
+.result{background:#0f172a;border-radius:8px;padding:16px;min-height:100px;font-family:monospace;font-size:.85rem;white-space:pre-wrap;line-height:1.6}
+.add{background:rgba(34,197,94,.2);color:#22c55e}
+.rem{background:rgba(239,68,68,.2);color:#ef4444}
+.stats{text-align:center;color:#94a3b8;margin:8px 0;font-size:.85rem}
+.ads{margin-top:16px;padding:12px;background:#1e1e3a;border-radius:8px;text-align:center;font-size:.85rem}
+.ads a{color:#818cf8}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>Text Diff Checker</h1>
+<p class="sub">Paste two texts — see what changed, added, removed</p>
+<div class="panels">
+<div class="panel">
+<h3>Original Text</h3>
+<textarea id="text1" placeholder="Paste original text here..."></textarea>
+</div>
+<div class="panel">
+<h3>Modified Text</h3>
+<textarea id="text2" placeholder="Paste modified text here..."></textarea>
+</div>
+</div>
+<div class="btns"><button onclick="diff()">🔍 Compare</button></div>
+<div class="stats" id="stats"></div>
+<div class="result" id="result">Differences will appear here...</div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> | 
+<a href="https://pyfile-toolkit.github.io/web-toolkit/json-formatter.html">JSON</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/base64.html">Base64</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+</div>
+<script>
+function diff(){
+  const t1=document.getElementById('text1').value, t2=document.getElementById('text2').value;
+  if(!t1&&!t2)return;
+  const lines1=t1.split('\n'), lines2=t2.split('\n');
+  let html='', added=0, removed=0;
+  const max=Math.max(lines1.length,lines2.length);
+  for(let i=0;i<max;i++){
+    const l1=lines1[i]||'', l2=lines2[i]||'';
+    if(l1===l2) html+=escape(l1)+'\n';
+    else{
+      if(l1) {html+='<span class=rem>- '+escape(l1)+'</span>\n';removed++}
+      if(l2) {html+='<span class=add>+ '+escape(l2)+'</span>\n';added++}
+    }
+  }
+  document.getElementById('result').innerHTML=html||'No differences';
+  document.getElementById('stats').textContent=`${added} added · ${removed} removed · ${max} lines total`;
+}
+function escape(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+</script>
+</body>
+</html>
