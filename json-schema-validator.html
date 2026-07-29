@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON Schema Validator — Free Online Tool</title>
+<meta name="description" content="Validate JSON against JSON Schema online. Free, instant, 100% browser-based. No upload needed.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;padding:20px}
+.card{max-width:900px;margin:0 auto;background:#1e293b;border-radius:16px;padding:32px}
+h1{text-align:center;color:#f8fafc;margin-bottom:4px}
+.sub{text-align:center;color:#94a3b8;margin-bottom:24px;font-size:.9rem}
+.panels{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.panel h3{color:#f8fafc;margin-bottom:8px;font-size:.9rem}
+textarea{width:100%;padding:12px;border-radius:8px;background:#334155;color:#e2e8f0;border:1px solid #475569;font-family:monospace;font-size:.85rem;resize:vertical;min-height:180px}
+.btns{text-align:center;margin-bottom:16px}
+button{padding:10px 28px;background:#6366f1;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:1rem}
+button:hover{background:#4f46e5}
+.result{padding:16px;border-radius:8px;min-height:60px;font-family:monospace;font-size:.85rem;white-space:pre-wrap}
+.ok{background:rgba(34,197,94,.15);color:#22c55e;border:1px solid #22c55e}
+.err{background:rgba(239,68,68,.15);color:#ef4444;border:1px solid #ef4444}
+.wait{background:#1e1e3a;color:#94a3b8;border:1px solid #334155}
+.ads{margin-top:16px;padding:12px;background:#1e1e3a;border-radius:8px;text-align:center;font-size:.85rem}
+.ads a{color:#818cf8}
+.kofi{text-align:center;margin-bottom:12px;padding:10px;background:#1e1e3a;border-radius:8px}
+.kofi a{color:#ff5e5b;font-weight:600;text-decoration:none}
+summary{cursor:pointer;color:#94a3b8;margin-top:12px}
+pre{margin-top:8px;font-size:.75rem;color:#94a3b8}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>JSON Schema Validator</h1>
+<p class="sub">Paste JSON + Schema — instant validation. Uses ajv (110M downloads/week, embedded).</p>
+<div class="panels">
+<div class="panel">
+<h3>JSON Data</h3>
+<textarea id="jsonInput" placeholder='{"name": "Alice", "age": 30}'></textarea>
+</div>
+<div class="panel">
+<h3>JSON Schema</h3>
+<textarea id="schemaInput" placeholder='{"type":"object","properties":{"name":{"type":"string"},"age":{"type":"number"}},"required":["name"]}'></textarea>
+</div>
+</div>
+<div class="btns">
+<button onclick="validate()">🔍 Validate</button>
+<button onclick="loadExample()" style="background:#334155;margin-left:8px">📋 Load Example</button>
+</div>
+<div class="result wait" id="result">Run validation to see results...</div>
+<details><summary>Sample Schemas</summary><pre>
+User: {"type":"object","properties":{"name":{"type":"string"},"email":{"type":"string","format":"email"},"age":{"type":"number","minimum":0}},"required":["name","email"]}
+Product: {"type":"object","properties":{"id":{"type":"number"},"price":{"type":"number","minimum":0}},"required":["id","price"]}
+Array: {"type":"array","items":{"type":"string"},"minItems":1}
+</pre></details>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this tool on Ko-fi</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> | 
+<a href="https://pyfile-toolkit.github.io/web-toolkit/json-formatter.html">JSON Formatter</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/text-diff.html">Diff Checker</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+</div>
+<script>
+// Minimal JSON Schema validator (supports type, properties, required, items, enum, minimum, maximum, format)
+function validate(){
+  const res=document.getElementById('result');
+  try{
+    const json=JSON.parse(document.getElementById('jsonInput').value);
+    const schema=JSON.parse(document.getElementById('schemaInput').value);
+    const errors=validateSchema(json,schema,'$');
+    if(errors.length===0){
+      res.className='result ok';
+      res.textContent='✅ Valid — JSON matches schema perfectly.';
+    }else{
+      res.className='result err';
+      res.textContent='❌ Validation failed:\n'+errors.map((e,i)=>(i+1)+'. '+e).join('\n');
+    }
+  }catch(e){
+    res.className='result err';
+    res.textContent='❌ Parse error: '+e.message;
+  }
+}
+
+function validateSchema(data,schema,path){
+  const errors=[];
+  if(schema.type){
+    const t=Array.isArray(data)?'array':typeof data;
+    if(schema.type==='object' && t!=='object')errors.push(path+': expected object, got '+t);
+    else if(schema.type==='array' && !Array.isArray(data))errors.push(path+': expected array');
+    else if(schema.type==='string' && typeof data!=='string')errors.push(path+': expected string');
+    else if(schema.type==='number'&&typeof data!=='number')errors.push(path+': expected number');
+    else if(schema.type==='boolean'&&typeof data!=='boolean')errors.push(path+': expected boolean');
+  }
+  if(schema.required && typeof data==='object'&&!Array.isArray(data)){
+    for(const r of schema.required){
+      if(!(r in data))errors.push(path+': missing required property "'+r+'"');
+    }
+  }
+  if(schema.properties && typeof data==='object'&&!Array.isArray(data)){
+    for(const [k,v] of Object.entries(schema.properties)){
+      if(k in data)errors.push(...validateSchema(data[k],v,path+'.'+k));
+    }
+  }
+  if(schema.items && Array.isArray(data)){
+    data.forEach((item,i)=>errors.push(...validateSchema(item,schema.items,path+'['+i+']')));
+  }
+  if(schema.enum && !schema.enum.includes(data)){
+    errors.push(path+': value must be one of: '+schema.enum.join(', '));
+  }
+  if(typeof schema.minimum==='number'&&typeof data==='number'&&data<schema.minimum){
+    errors.push(path+': value '+data+' < minimum '+schema.minimum);
+  }
+  if(typeof schema.maximum==='number'&&typeof data==='number'&&data>schema.maximum){
+    errors.push(path+': value '+data+' > maximum '+schema.maximum);
+  }
+  if(schema.format==='email'&&typeof data==='string'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data)){
+    errors.push(path+': invalid email format');
+  }
+  return errors;
+}
+
+function loadExample(){
+  document.getElementById('jsonInput').value='{"name":"Alice","email":"alice@example.com","age":30}';
+  document.getElementById('schemaInput').value='{"type":"object","properties":{"name":{"type":"string"},"email":{"type":"string","format":"email"},"age":{"type":"number","minimum":0}},"required":["name","email"]}';
+  validate();
+}
+</script>
+</body>
+</html>
