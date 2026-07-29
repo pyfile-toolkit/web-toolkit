@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URL Encoder/Decoder — Free Online Tool</title>
+<meta name="description" content="Encode and decode URL strings online. Handle special characters, query params, and percent-encoding instantly.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px}
+.card{background:#1e293b;border-radius:16px;padding:32px;max-width:550px;width:100%}
+h1{color:#f8fafc;text-align:center;margin-bottom:4px}
+.sub{color:#94a3b8;text-align:center;margin-bottom:20px;font-size:.9rem}
+textarea{width:100%;padding:12px;border-radius:8px;background:#334155;color:#e2e8f0;border:1px solid #475569;font-family:monospace;font-size:.9rem;resize:vertical;min-height:100px;margin-bottom:12px}
+.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+button{padding:10px 24px;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.95rem}
+.btn-enc{background:#6366f1;color:#fff}
+.btn-dec{background:#22c55e;color:#fff}
+.btn-copy{background:#64748b;color:#fff}
+.result{margin-top:16px}
+.result label{color:#94a3b8;font-size:.85rem}
+.ads{margin-top:20px;padding:12px;background:#1e1e3a;border-radius:8px;text-align:center;font-size:.85rem}
+.ads a{color:#818cf8}
+.kofi{text-align:center;margin-bottom:12px;padding:10px;background:#1e1e3a;border-radius:8px}
+.kofi a{color:#ff5e5b;font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>URL Encoder / Decoder</h1>
+<p class="sub">Encode URLs for safe transmission or decode percent-encoded strings</p>
+<textarea id="input" placeholder="Paste URL or text here..."></textarea>
+<div class="btns">
+<button class="btn-enc" onclick="encode()">🔒 Encode</button>
+<button class="btn-dec" onclick="decode()">🔓 Decode</button>
+<button class="btn-enc" onclick="encodeURI()" style="background:#f59e0b">🔗 Encode (keep / : @)</button>
+<button class="btn-copy" onclick="copy()">📋 Copy</button>
+</div>
+<div class="result">
+<label>Result:</label>
+<textarea id="output" readonly style="min-height:100px"></textarea>
+</div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this tool on Ko-fi</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> | 
+<a href="https://pyfile-toolkit.github.io/web-toolkit/json-formatter.html">JSON</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/base64.html">Base64</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+</div>
+<script>
+const inp=document.getElementById('input'),out=document.getElementById('output');
+function encode(){try{out.value=encodeURIComponent(inp.value)}catch(e){out.value='Error'}}
+function decode(){try{out.value=decodeURIComponent(inp.value)}catch(e){out.value='Error: malformed URI'}}
+function encodeURI(){try{out.value=encodeURI(inp.value)}catch(e){out.value='Error'}}
+function copy(){out.select();navigator.clipboard.writeText(out.value)}
+</script>
+</body>
+</html>
