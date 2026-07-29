@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON Formatter & Validator — Free Online Tool</title>
+<meta name="description" content="Format, validate and beautify JSON online. Free, no upload, 100% browser-based.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px}
+.card{background:#1e293b;border-radius:16px;padding:32px;max-width:600px;width:100%}
+h1{color:#f8fafc;text-align:center;margin-bottom:4px}
+.sub{color:#94a3b8;text-align:center;margin-bottom:20px;font-size:.9rem}
+textarea{width:100%;padding:12px;border-radius:8px;background:#334155;color:#e2e8f0;border:1px solid #475569;font-family:monospace;font-size:.9rem;resize:vertical;min-height:120px;margin-bottom:12px}
+.btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+button{padding:8px 20px;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.9rem}
+.btn-fmt{background:#6366f1;color:#fff}
+.btn-min{background:#f59e0b;color:#fff}
+.btn-valid{background:#22c55e;color:#fff}
+.btn-copy{background:#64748b;color:#fff}
+.stats{text-align:center;margin:8px 0;font-size:.8rem;color:#94a3b8}
+.ads{margin-top:16px;padding:12px;background:#1e1e3a;border-radius:8px;text-align:center;font-size:.85rem}
+.ads a{color:#818cf8}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>JSON Formatter & Validator</h1>
+<p class="sub">Paste messy JSON → get pretty, valid output instantly</p>
+<textarea id="input" placeholder='{"name":"test","data":[1,2,3]}'></textarea>
+<div class="btns">
+<button class="btn-fmt" onclick="format()">✨ Format</button>
+<button class="btn-min" onclick="minify()">📦 Minify</button>
+<button class="btn-valid" onclick="validate()">✅ Validate</button>
+<button class="btn-copy" onclick="copyResult()">📋 Copy</button>
+</div>
+<div class="stats" id="stats"></div>
+<textarea id="output" readonly style="min-height:120px"></textarea>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> | 
+<a href="https://pyfile-toolkit.github.io/web-toolkit/base64.html">Base64</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/qrcode.html">QR Code</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium Tools</a>
+</div>
+</div>
+<script>
+const inp=document.getElementById('input'),out=document.getElementById('output'),st=document.getElementById('stats');
+function format(){try{const o=JSON.parse(inp.value);out.value=JSON.stringify(o,null,2);st.textContent='✓ Valid JSON · '+out.value.length+' chars'}catch(e){st.textContent='❌ '+e.message}}
+function minify(){try{const o=JSON.parse(inp.value);out.value=JSON.stringify(o);st.textContent='✓ Minified · '+out.value.length+' chars'}catch(e){st.textContent='❌ '+e.message}}
+function validate(){try{JSON.parse(inp.value);out.value=inp.value;st.textContent='✅ Valid JSON'}catch(e){out.value='';st.textContent='❌ Invalid: '+e.message}}
+function copyResult(){if(!out.value)return;navigator.clipboard.writeText(out.value);st.textContent='📋 Copied!'}
+format();
+</script>
+</body>
+</html>
