@@ -38,11 +38,6 @@ canvas{margin-top:20px;display:none}
 <textarea id="input" placeholder="https://example.com or any text..."></textarea>
 <button onclick="generate()">Generate QR Code</button>
 <img id="qrcode" alt="QR Code">
-<div class="kofi" style="text-align:center;margin-bottom:12px;padding:10px;background:#1e1e3a;border-radius:8px"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank" style="color:#ff5e5b;font-weight:600;text-decoration:none">☕ Support this tool on Ko-fi</a></div>
-<div class="ads">
-  <a href="https://pyfile-toolkit.github.io/web-toolkit/">← Back to Toolkit</a> | 
-  <a href="https://pyfiletoolkit.gumroad.com/">Get Premium Tools</a>
-</div>
 <div class="donate">
   Like this tool? Send XMR: <strong>87Bmg... </strong>(add yours!) or via <a href="https://boosty.to/pyfile-toolkit">Boosty</a>
 </div>
@@ -57,5 +52,3 @@ function generate() {
 }
 document.getElementById('input').addEventListener('keydown', e => { if (e.key === 'Enter') generate(); });
 </script>
-</body>
-</html>

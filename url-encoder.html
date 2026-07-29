@@ -28,8 +28,6 @@ button{padding:10px 24px;border:none;border-radius:8px;font-weight:600;cursor:po
 .result label{color:#94a3b8;font-size:.85rem}
 .ads{margin-top:20px;padding:12px;background:#1e1e3a;border-radius:8px;text-align:center;font-size:.85rem}
 .ads a{color:#818cf8}
-.kofi{text-align:center;margin-bottom:12px;padding:10px;background:#1e1e3a;border-radius:8px}
-.kofi a{color:#ff5e5b;font-weight:600;text-decoration:none}
 </style>
 </head>
 <body>
@@ -47,13 +45,6 @@ button{padding:10px 24px;border:none;border-radius:8px;font-weight:600;cursor:po
 <label>Result:</label>
 <textarea id="output" readonly style="min-height:100px"></textarea>
 </div>
-<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this tool on Ko-fi</a></div>
-<div class="ads">
-<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> | 
-<a href="https://pyfile-toolkit.github.io/web-toolkit/json-formatter.html">JSON</a> |
-<a href="https://pyfile-toolkit.github.io/web-toolkit/base64.html">Base64</a> |
-<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
-</div>
 </div>
 <script>
 const inp=document.getElementById('input'),out=document.getElementById('output');
@@ -62,5 +53,3 @@ function decode(){try{out.value=decodeURIComponent(inp.value)}catch(e){out.value
 function encodeURI(){try{out.value=encodeURI(inp.value)}catch(e){out.value='Error'}}
 function copy(){out.select();navigator.clipboard.writeText(out.value)}
 </script>
-</body>
-</html>

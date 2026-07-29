@@ -27,8 +27,6 @@ button{padding:8px 20px;border:none;border-radius:8px;font-weight:600;cursor:poi
 .stats{text-align:center;color:#94a3b8;margin:8px 0;font-size:.85rem}
 .ads{margin-top:16px;padding:12px;background:#1e1e3a;border-radius:8px;text-align:center;font-size:.85rem}
 .ads a{color:#818cf8}
-.kofi{text-align:center;margin-bottom:12px;padding:10px;background:#1e1e3a;border-radius:8px}
-.kofi a{color:#ff5e5b;font-weight:600;text-decoration:none}
 </style>
 </head>
 <body>
@@ -47,12 +45,6 @@ function greet(name) {
 </div>
 <div class="stats" id="stats"></div>
 <textarea id="output" readonly style="min-height:180px"></textarea>
-<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit">☕ Support on Ko-fi</a></div>
-<div class="ads">
-<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
-<a href="https://pyfile-toolkit.github.io/web-toolkit/css-minifier.html">CSS Minifier</a> |
-<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
-</div>
 </div>
 <script>
 const inp=document.getElementById('input'),out=document.getElementById('output'),st=document.getElementById('stats');
@@ -79,5 +71,3 @@ function beautify(){
 }
 function copy(){out.select();navigator.clipboard.writeText(out.value);st.textContent='📋 Copied!'}
 </script>
-</body>
-</html>

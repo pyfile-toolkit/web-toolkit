@@ -22,8 +22,6 @@ textarea{width:100%;padding:12px;border-radius:8px;background:#334155;color:#e2e
 .preview code{background:#334155;padding:2px 6px;border-radius:4px;font-size:.85rem}
 .preview pre{background:#0f172a;padding:12px;border-radius:8px;overflow-x:auto}
 .preview a{color:#818cf8}
-.kofi{text-align:center;margin:16px 0 8px;padding:10px;background:#1e1e3a;border-radius:8px}
-.kofi a{color:#ff5e5b;font-weight:600;text-decoration:none}
 .btns{display:flex;gap:8px;justify-content:center;margin:12px 0;flex-wrap:wrap}
 button{padding:8px 16px;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.85rem}
 .btn-exp{background:#22c55e;color:#fff}
@@ -59,11 +57,6 @@ This is **bold** and *italic*
 <button class="btn-exp" onclick="exportHTML()">📥 Export HTML</button>
 <button class="btn-copy" onclick="copyPreview()">📋 Copy HTML</button>
 </div>
-<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this tool on Ko-fi</a></div>
-<div class="ads">
-<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
-<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
-</div>
 </div>
 <script>
 const inp=document.getElementById('input'),prev=document.getElementById('preview');
@@ -91,10 +84,6 @@ inp.addEventListener('input',render);
 render();
 
 function exportHTML(){
-  const blob=new Blob(['<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Preview</title></head><body>'+prev.innerHTML+'</body></html>'],{type:'text/html'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='preview.html';a.click();
-}
-function copyPreview(){navigator.clipboard.writeText(prev.innerHTML)}
-</script>
+<div class="support" style="text-align:center;margin:24px auto;padding:16px;background:#1e293b;border-radius:8px;max-width:600px"><span style="color:#94a3b8;font-size:13px">💝 <a href="/" style="color:#f15f2c">Support this project</a> — Boosty · ЮMoney · Gumroad · BTC</span></div>
 </body>
 </html>

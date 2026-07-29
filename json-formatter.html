@@ -43,13 +43,6 @@ button{padding:8px 20px;border:none;border-radius:8px;font-weight:600;cursor:poi
 </div>
 <div class="stats" id="stats"></div>
 <textarea id="output" readonly style="min-height:120px"></textarea>
-<div class="kofi" style="text-align:center;margin-bottom:12px;padding:10px;background:#1e1e3a;border-radius:8px"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank" style="color:#ff5e5b;font-weight:600;text-decoration:none">☕ Support this tool on Ko-fi</a></div>
-<div class="ads">
-<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> | 
-<a href="https://pyfile-toolkit.github.io/web-toolkit/base64.html">Base64</a> |
-<a href="https://pyfile-toolkit.github.io/web-toolkit/qrcode.html">QR Code</a> |
-<a href="https://pyfiletoolkit.gumroad.com/">Premium Tools</a>
-</div>
 </div>
 <script>
 const inp=document.getElementById('input'),out=document.getElementById('output'),st=document.getElementById('stats');
@@ -59,5 +52,6 @@ function validate(){try{JSON.parse(inp.value);out.value=inp.value;st.textContent
 function copyResult(){if(!out.value)return;navigator.clipboard.writeText(out.value);st.textContent='📋 Copied!'}
 format();
 </script>
+<div class="support" style="text-align:center;margin:24px auto;padding:16px;background:#1e293b;border-radius:8px;max-width:600px"><span style="color:#94a3b8;font-size:13px">💝 <a href="/" style="color:#f15f2c">Support this project</a> — Boosty · ЮMoney · Gumroad · BTC</span></div>
 </body>
 </html>
