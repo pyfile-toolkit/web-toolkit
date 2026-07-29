@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Minifier — Compress CSS Online Free</title>
+<meta name="description" content="Minify CSS code online — remove whitespace, comments, and optimize. Free, instant, 100% browser-based.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;padding:20px}
+.card{max-width:700px;margin:0 auto;background:#1e293b;border-radius:16px;padding:32px}
+h1{text-align:center;color:#f8fafc;margin-bottom:4px}
+.sub{text-align:center;color:#94a3b8;margin-bottom:20px;font-size:.9rem}
+textarea{width:100%;padding:12px;border-radius:8px;background:#334155;color:#e2e8f0;border:1px solid #475569;font-family:monospace;font-size:.85rem;resize:vertical;min-height:180px;margin-bottom:12px}
+.btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+button{padding:8px 20px;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.9rem}
+.btn-min{background:#6366f1;color:#fff}
+.btn-beauty{background:#f59e0b;color:#fff}
+.btn-copy{background:#64748b;color:#fff}
+.stats{text-align:center;color:#94a3b8;margin:8px 0;font-size:.85rem}
+.ads{margin-top:16px;padding:12px;background:#1e1e3a;border-radius:8px;text-align:center;font-size:.85rem}
+.ads a{color:#818cf8}
+.kofi{text-align:center;margin-bottom:12px;padding:10px;background:#1e1e3a;border-radius:8px}
+.kofi a{color:#ff5e5b;font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>CSS Minifier</h1>
+<p class="sub">Paste CSS — get compressed, production-ready output</p>
+<textarea id="input" placeholder="/* Paste your CSS here */
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+h1 {
+  color: #333;
+}"></textarea>
+<div class="btns">
+<button class="btn-min" onclick="minify()">📦 Minify</button>
+<button class="btn-beauty" onclick="beautify()">✨ Beautify</button>
+<button class="btn-copy" onclick="copy()">📋 Copy</button>
+</div>
+<div class="stats" id="stats"></div>
+<textarea id="output" readonly style="min-height:180px"></textarea>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit">☕ Support on Ko-fi</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+</div>
+<script>
+const inp=document.getElementById('input'),out=document.getElementById('output'),st=document.getElementById('stats');
+function minify(){
+  let css=inp.value
+    .replace(/\/\*[\s\S]*?\*\//g,'')  // comments
+    .replace(/\s+/g,' ')               // collapse whitespace
+    .replace(/;\s*/g,';')              // no space after ;
+    .replace(/\s*\{\s*/g,'{')          // no space around {
+    .replace(/\s*\}\s*/g,'}')          // no space around }
+    .replace(/\s*:\s*/g,':')           // no space around :
+    .replace(/\s*,\s*/g,',')           // no space after ,
+    .replace(/;\}/g,'}')               // remove last ;
+    .trim();
+  out.value=css;
+  const savings=inp.value.length-css.length;
+  st.textContent='Compressed: '+css.length+' chars · Saved '+savings+' chars ('+Math.round(savings/inp.value.length*100)+'%)';
+}
+function beautify(){
+  let css=inp.value
+    .replace(/\s*\{\s*/g,' {\n  ')
+    .replace(/\s*;\s*/g,';\n  ')
+    .replace(/\s*\}\s*/g,'\n}\n')
+    .replace(/\/\*[\s\S]*?\*\//g,m=>'\n'+m+'\n');
+  out.value=css.trim();
+  st.textContent='Beautified: '+out.value.length+' chars';
+}
+function copy(){out.select();navigator.clipboard.writeText(out.value);st.textContent='📋 Copied!'}
+</script>
+</body>
+</html>
