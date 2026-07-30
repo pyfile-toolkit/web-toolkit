@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PyFile Toolkit API — Developer Utilities</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f172a;color:#e2e8f0;font-family:-apple-system,sans-serif;line-height:1.6}
+.hero{text-align:center;padding:60px 20px 40px;background:linear-gradient(135deg,#1e293b,#0f172a);border-bottom:1px solid #334155}
+.hero h1{font-size:36px;color:#f8fafc;margin-bottom:12px}
+.hero p{color:#94a3b8;font-size:18px;max-width:600px;margin:0 auto}
+.badge{display:inline-block;padding:4px 12px;background:#1e3a5f;color:#3b82f6;border-radius:20px;font-size:13px;margin-bottom:16px}
+.container{max-width:900px;margin:0 auto;padding:30px 20px}
+.endpoints{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin:30px 0}
+.ep{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:20px}
+.ep h3{color:#f1f5f9;margin-bottom:6px}
+.ep .method{display:inline-block;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;margin-bottom:8px}
+.get{background:#10b981;color:#000}
+.ep .path{font-family:monospace;color:#3b82f6;font-size:13px;display:block;margin:8px 0}
+.ep p{color:#94a3b8;font-size:13px}
+.pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:30px 0}
+.plan{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:24px;text-align:center}
+.plan.featured{border-color:#3b82f6;box-shadow:0 0 20px rgba(59,130,246,.15)}
+.plan h3{font-size:20px;margin-bottom:4px}
+.plan .price{font-size:36px;font-weight:700;color:#10b981;margin:12px 0}
+.plan .price span{font-size:16px;color:#94a3b8}
+.plan ul{list-style:none;text-align:left;margin:16px 0;color:#94a3b8;font-size:14px}
+.plan ul li{padding:4px 0}
+.plan ul li::before{content:"✓ ";color:#10b981}
+.btn{display:inline-block;padding:10px 24px;background:#3b82f6;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px}
+.btn.ghost{background:transparent;border:1px solid #475569}
+.btn:hover{opacity:.9}
+.payment{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:24px;text-align:center;margin:30px 0}
+.payment h3{margin-bottom:8px}
+.payment p{color:#94a3b8;margin-bottom:12px;font-size:14px}
+.crypto-addr{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px;font-family:monospace;font-size:13px;word-break:break-all;color:#f59e0b}
+.footer{text-align:center;padding:20px;color:#475569;font-size:13px;border-top:1px solid #1e293b}
+.footer a{color:#64748b}
+code{background:#0f172a;padding:2px 6px;border-radius:4px;font-size:12px;color:#e2e8f0}
+</style>
+</head>
+<body>
+<div class="hero">
+<div class="badge">🚀 API v1.0</div>
+<h1>PyFile Toolkit API</h1>
+<p>5 utility endpoints for your apps. Pay once, use forever. No rate limits.</p>
+</div>
+
+<div class="container">
+<h2 style="margin-bottom:8px">API Endpoints</h2>
+<p style="color:#94a3b8;margin-bottom:20px">All endpoints return JSON. Base URL: <code>https://api.pyfile.dev</code></p>
+<div class="endpoints">
+<div class="ep"><span class="method get">GET</span><h3>Password Generator</h3><span class="path">/password?length=16&symbols=true</span><p>Cryptographically secure passwords with custom rules</p></div>
+<div class="ep"><span class="method get">GET</span><h3>UUID Generator</h3><span class="path">/uuid?count=5</span><p>RFC 4122 UUID v4, up to 100 per request</p></div>
+<div class="ep"><span class="method get">GET</span><h3>QR Code</h3><span class="path">/qr?data=URL&size=256</span><p>PNG QR codes, any data, configurable size</p></div>
+<div class="ep"><span class="method get">GET</span><h3>Hash Generator</h3><span class="path">/hash?text=hello&algo=sha256</span><p>MD5, SHA-1, SHA-256, SHA-512</p></div>
+<div class="ep"><span class="method get">GET</span><h3>Word Counter</h3><span class="path">/wordcount?text=hello+world</span><p>Words, chars, lines, reading time</p></div>
+</div>
+
+<h2 style="margin-bottom:8px">Pricing</h2>
+<p style="color:#94a3b8;margin-bottom:20px">One-time payment. No subscriptions, no recurring fees.</p>
+<div class="pricing">
+<div class="plan">
+<h3>Starter</h3>
+<div class="price">$9<span>/once</span></div>
+<ul><li>All 5 endpoints</li><li>1,000 requests/day</li><li>Email support</li></ul>
+<a href="#pay" class="btn ghost">Get API Key</a>
+</div>
+<div class="plan featured">
+<h3>Pro ⭐</h3>
+<div class="price">$29<span>/once</span></div>
+<ul><li>All 5 endpoints</li><li>10,000 requests/day</li><li>Priority support</li><li>Custom endpoints on request</li></ul>
+<a href="#pay" class="btn">Get API Key</a>
+</div>
+<div class="plan">
+<h3>Unlimited</h3>
+<div class="price">$99<span>/once</span></div>
+<ul><li>All 5 endpoints</li><li>Unlimited requests</li><li>Source code included</li><li>Self-host option</li></ul>
+<a href="#pay" class="btn ghost">Get API Key</a>
+</div>
+</div>
+
+<div class="payment" id="pay">
+<h3>💳 Pay with Crypto</h3>
+<p>Send payment to the address below. Include your email in the transaction memo. API key will be sent automatically.</p>
+<p><strong>Bitcoin (BTC):</strong></p>
+<div class="crypto-addr">1CaYRsXjEWN2JvpBuku75dK9rUgiFvXkb5</div>
+<p style="margin-top:12px;font-size:12px;color:#64748b">After payment, email pyfile-toolkit@mail.ru with your TXID to receive your API key instantly.</p>
+</div>
+</div>
+
+<div class="footer">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">Free Browser Tools</a> · 
+<a href="https://pyfiletoolkit.gumroad.com">Gumroad Products</a> · 
+<a href="https://pyfiletoolkit.itch.io">itch.io Games</a>
+</div>
+</body>
+</html>
