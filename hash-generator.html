@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Hash Generator</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}body{background:#0f172a;color:#e2e8f0;font-family:-apple-system,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center}.header{width:100%;background:#1e293b;padding:14px 24px;border-bottom:1px solid #334155;display:flex;justify-content:space-between;align-items:center}.header h1{font-size:17px}.header a{color:#3b82f6;text-decoration:none;font-size:13px}.container{flex:1;padding:30px 20px;max-width:600px;width:100%}h2{font-size:22px;margin-bottom:6px}.sub{color:#94a3b8;margin-bottom:20px;font-size:14px}textarea{width:100%;padding:12px;border-radius:8px;border:1px solid #334155;background:#1e293b;color:#e2e8f0;font-size:14px;margin-bottom:12px;min-height:80px}select{padding:10px;border-radius:8px;border:1px solid #334155;background:#1e293b;color:#e2e8f0;font-size:14px;margin-right:10px}.btn{width:100%;padding:12px;background:#8b5cf6;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:15px;font-weight:600;margin:10px 0}.output{background:#0f172a;border:2px solid #334155;border-radius:10px;padding:20px;font-family:monospace;font-size:16px;word-break:break-all;color:#8b5cf6;cursor:pointer}.footer{width:100%;text-align:center;padding:12px;color:#475569;font-size:12px;border-top:1px solid #1e293b;margin-top:auto}.footer a{color:#64748b}</style></head><body>
+<div class="header"><h1>#️⃣ Hash Generator</h1><a href="https://pyfile-toolkit.github.io/web-toolkit/">← Tools</a></div>
+<div class="container"><h2>Generate Hash</h2><p class="sub">Compute MD5, SHA-1, SHA-256, and SHA-512 hashes</p>
+<textarea id="input" placeholder="Enter text to hash...">Hello, world!</textarea>
+<div style="display:flex;gap:10px;margin-bottom:12px">
+<select id="algo"><option value="SHA-256">SHA-256</option><option value="MD5">MD5</option><option value="SHA-1">SHA-1</option><option value="SHA-512">SHA-512</option></select>
+<button class="btn" onclick="hash()" style="margin:0;width:auto">Compute Hash</button></div>
+<div class="output" id="out" onclick="copy()">Click Compute</div></div>
+<div class="footer"><a href="https://pyfiletoolkit.gumroad.com">PRO: bulk hash + file hashing</a></div>
+<script>
+async function hash(){const t=document.getElementById('input').value;const a=document.getElementById('algo').value;const d=new TextEncoder().encode(t);const b=await crypto.subtle.digest(a,d);const h=Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');document.getElementById('out').textContent=h}
+function copy(){const t=document.getElementById('out').textContent;navigator.clipboard.writeText(t)}
+hash()
+</script></body></html>
