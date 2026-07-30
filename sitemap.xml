@@ -12,4 +12,5 @@
 <url><loc>https://pyfile-toolkit.github.io/web-toolkit/image-resizer.html</loc><priority>0.7</priority></url>
 <url><loc>https://pyfile-toolkit.github.io/web-toolkit/markdown-preview.html</loc><priority>0.7</priority></url>
 <url><loc>https://pyfile-toolkit.github.io/web-toolkit/color-palette.html</loc><priority>0.7</priority></url>
+  <url><loc>https://pyfile-toolkit.github.io/web-toolkit/api-tester.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>
