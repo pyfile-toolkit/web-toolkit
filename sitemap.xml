@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://pyfile-toolkit.github.io/web-toolkit/</loc><priority>1.0</priority></url>
-<url><loc>https://pyfile-toolkit.github.io/web-toolkit/json-formatter.html</loc><priority>0.9</priority></url>
-<url><loc>https://pyfile-toolkit.github.io/web-toolkit/json-schema-validator.html</loc><priority>0.9</priority></url>
-<url><loc>https://pyfile-toolkit.github.io/web-toolkit/base64.html</loc><priority>0.8</priority></url>
-<url><loc>https://pyfile-toolkit.github.io/web-toolkit/url-encoder.html</loc><priority>0.8</priority></url>
-<url><loc>https://pyfile-toolkit.github.io/web-toolkit/uuid-generator.html</loc><priority>0.8</priority></url>
-<url><loc>https://pyfile-toolkit.github.io/web-toolkit/text-diff.html</loc><priority>0.8</priority></url>
-<url><loc>https://pyfile-toolkit.github.io/web-toolkit/qrcode.html</loc><priority>0.8</priority></url>
-<url><loc>https://pyfile-toolkit.github.io/web-toolkit/html-encoder.html</loc><priority>0.7</priority></url>
-<url><loc>https://pyfile-toolkit.github.io/web-toolkit/image-resizer.html</loc><priority>0.7</priority></url>
-<url><loc>https://pyfile-toolkit.github.io/web-toolkit/markdown-preview.html</loc><priority>0.7</priority></url>
-<url><loc>https://pyfile-toolkit.github.io/web-toolkit/color-palette.html</loc><priority>0.7</priority></url>
+<url><loc>https://pyfile-toolkit.github.io/web-toolkit/</loc><lastmod>2026-07-31</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+<url><loc>https://pyfile-toolkit.github.io/web-toolkit/json-formatter.html</loc><lastmod>2026-07-31</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://pyfile-toolkit.github.io/web-toolkit/json-schema-validator.html</loc><lastmod>2026-07-31</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://pyfile-toolkit.github.io/web-toolkit/image-resizer.html</loc><lastmod>2026-07-31</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://pyfile-toolkit.github.io/web-toolkit/markdown-preview.html</loc><lastmod>2026-07-31</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://pyfile-toolkit.github.io/web-toolkit/csv-to-json.html</loc><lastmod>2026-07-31</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://pyfile-toolkit.github.io/web-toolkit/css-minifier.html</loc><lastmod>2026-07-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://pyfile-toolkit.github.io/web-toolkit/js-minifier.html</loc><lastmod>2026-07-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://pyfile-toolkit.github.io/web-toolkit/base64.html</loc><lastmod>2026-07-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://pyfile-toolkit.github.io/web-toolkit/url-encoder.html</loc><lastmod>2026-07-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://pyfile-toolkit.github.io/web-toolkit/uuid-generator.html</loc><lastmod>2026-07-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://pyfile-toolkit.github.io/web-toolkit/text-diff.html</loc><lastmod>2026-07-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://pyfile-toolkit.github.io/web-toolkit/qrcode.html</loc><lastmod>2026-07-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://pyfile-toolkit.github.io/web-toolkit/html-encoder.html</loc><lastmod>2026-07-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://pyfile-toolkit.github.io/web-toolkit/color-palette.html</loc><lastmod>2026-07-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://pyfile-toolkit.github.io/web-toolkit/prompts/</loc><lastmod>2026-07-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

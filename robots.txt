@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Sitemap: https://pyfile-toolkit.github.io/web-toolkit/sitemap.xml
+
+# Allow crawlers full access — all tools are client-side
+User-agent: Googlebot
+Allow: /
