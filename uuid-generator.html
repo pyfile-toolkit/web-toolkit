@@ -58,5 +58,8 @@ function copy(){const t=document.getElementById('uuid').textContent;if(t!=='Clic
 function bulk(){const s=document.getElementById('bulkSection');s.style.display='block';const a=Array.from({length:10},()=>crypto.randomUUID());document.getElementById('bulkOut').value=a.join('\n')}
 gen();
 </script>
+
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
 </body>
 </html>

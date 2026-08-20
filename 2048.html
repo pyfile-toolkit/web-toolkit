@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2048 Game — Play Free Online</title>
+<meta name="description" content="Play the classic 2048 puzzle game free online. Merge tiles to reach 2048. No download, no login, works in your browser with keyboard and touch.">
+<link rel="canonical" href="https://pyfile-toolkit.github.io/web-toolkit/2048.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "2048 Game Online",
+  "operatingSystem": "ANY",
+  "applicationCategory": "GameApplication",
+  "description": "Free online 2048 puzzle game. Slide tiles and merge numbers to reach 2048. Keyboard and touch controls, no login.",
+  "url": "https://pyfile-toolkit.github.io/web-toolkit/2048.html",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;display:flex;justify-content:center;min-height:100vh;padding:20px}
+.wrap{max-width:500px;width:100%;text-align:center}
+h1{color:#f8fafc;font-size:2rem;margin:10px 0 4px}
+.sub{color:#94a3b8;margin-bottom:16px}
+.score-bar{display:flex;justify-content:center;gap:16px;margin-bottom:16px}
+.score{background:#1e293b;padding:8px 18px;border-radius:10px}
+.score .lbl{font-size:.7rem;color:#94a3b8;text-transform:uppercase;letter-spacing:1px}
+.score .val{font-size:1.3rem;font-weight:700;color:#f8fafc}
+.board{background:#1e293b;border-radius:14px;padding:10px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;touch-action:none;user-select:none}
+.tile{width:100%;aspect-ratio:1;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:700;color:#f8fafc;transition:transform .1s;background:#334155}
+.t2{background:#4ade80;color:#052e16}.t4{background:#facc15;color:#422006}.t8{background:#fb923c;color:#431407}
+.t16{background:#fb7185;color:#4c0519}.t32{background:#f43f5e;color:#fff}.t64{background:#e11d48;color:#fff}
+.t128{background:#a78bfa;color:#2e1065}.t256{background:#8b5cf6;color:#fff}.t512{background:#6366f1;color:#fff}
+.t1024{background:#3b82f6;color:#fff}.t2048{background:#22d3ee;color:#083344}
+.btn{padding:10px 24px;border:none;border-radius:10px;background:#6366f1;color:#fff;font-weight:700;cursor:pointer;font-size:1rem}
+.msg{min-height:24px;color:#22c55e;font-weight:600;margin-bottom:8px}
+.controls{color:#94a3b8;font-size:.8rem;margin-bottom:16px}
+.controls kbd{background:#334155;padding:2px 8px;border-radius:6px;border:1px solid #475569}
+.donate{margin-top:20px}
+.footer{margin-top:20px}
+.footer a{color:#818cf8;text-decoration:none;margin:0 6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>2048</h1>
+<p class="sub">Merge the tiles. Reach 2048!</p>
+<div class="score-bar">
+  <div class="score"><div class="lbl">Score</div><div class="val" id="score">0</div></div>
+  <div class="score"><div class="lbl">Best</div><div class="val" id="best">0</div></div>
+</div>
+<div class="msg" id="msg"></div>
+<div class="board" id="board"></div>
+<div class="controls">
+  <span>⌨️ <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd></span>&nbsp;·&nbsp;
+  <span>📱 swipe</span>
+</div>
+<button class="btn" onclick="reset()">New Game</button>
+
+<div id="crypto-donate"></div>
+<div class="footer">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/youtube-tag-generator.html">YouTube Tags</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+</div>
+
+<script>
+let grid=[],score=0,best=0,over=false,won=false;
+const board=document.getElementById('board');
+function blank(){return Array(4).fill().map(()=>Array(4).fill(0))}
+function emptyCells(){const c=[];for(let r=0;r<4;r++)for(let i=0;i<4;i++)if(!grid[r][i])c.push([r,i]);return c}
+function addTile(){const c=emptyCells();if(!c.length)return;const [r,i]=c[Math.floor(Math.random()*c.length)];grid[r][i]=Math.random()<.9?2:4}
+function render(){
+  const tiles=[];for(let r=0;r<4;r++)for(let i=0;i<4;i++){
+    const v=grid[r][i],cls=v?'t'+v:'';tiles.push(`<div class="tile ${cls}">${v||''}</div>`);
+  }
+  board.innerHTML=tiles.join('');
+  document.getElementById('score').textContent=score;
+  document.getElementById('best').textContent=best;
+}
+function compress(row){const a=row.filter(x=>x);for(let i=0;i<a.length-1;i++){if(a[i]===a[i+1]){a[i]*=2;score+=a[i];if(a[i]===2048)won=true;a.splice(i+1,1);}}while(a.length<4)a.push(0);return a}
+function move(dir){
+  const before=JSON.stringify(grid);
+  for(let i=0;i<4;i++){
+    let col=[];
+    for(let r=0;r<4;r++)col.push(dir==='up'?grid[r][i]:(dir==='down'?grid[3-r][i]:(dir==='left'?grid[i][r]:grid[i][3-r])));
+    col=compress(col);
+    for(let r=0;r<4;r++){
+      const v=dir==='up'?col[r]:(dir==='down'?col[3-r]:(dir==='left'?col[r]:col[3-r]));
+      if(dir==='up'||dir==='down')grid[r][i]=v;else grid[i][r]=v;
+    }
+  }
+  if(JSON.stringify(grid)!==before){addTile();render();checkOver();}
+}
+function checkOver(){
+  if(wincheck()){document.getElementById('msg').textContent=won?'🎉 You won! Keep going...':'Game Over';}
+  if(!emptyCells().length){for(let r=0;r<4;r++)for(let i=0;i<4;i++){if(i<3&&grid[r][i]===grid[r][i+1])return;if(r<3&&grid[r][i]===grid[r+1][i])return;}document.getElementById('msg').textContent='Game Over';}
+}
+function wincheck(){const lk=JSON.parse(localStorage.getItem('best2048')||'0');if(score>lk){best=score;localStorage.setItem('best2048',score)}return lk}
+function reset(){grid=blank();score=0;over=false;won=false;document.getElementById('msg').textContent='';addTile();addTile();render()}
+document.addEventListener('keydown',e=>{const k=e.key;if(k==='ArrowUp')move('up');else if(k==='ArrowDown')move('down');else if(k==='ArrowLeft')move('left');else if(k==='ArrowRight')move('right');else return;e.preventDefault()});
+let tx=null,ty=null;
+board.addEventListener('touchstart',e=>{const t=e.touches[0];tx=t.clientX;ty=t.clientY;e.preventDefault()},{passive:false});
+board.addEventListener('touchend',e=>{if(tx===null)return;const t=e.changedTouches[0],dx=t.clientX-tx,dy=t.clientY-ty;const adx=Math.abs(dx),ady=Math.abs(dy);if(Math.max(adx,ady)<20){return}if(adx>ady){move(dx>0?'right':'left')}else{move(dy>0?'down':'up')}tx=ty=null;e.preventDefault()},{passive:false});
+best=parseInt(localStorage.getItem('best2048')||'0');reset();
+</script>
+<script src="donate.js"></script>
+</body>
+</html>

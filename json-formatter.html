@@ -60,5 +60,8 @@ function validate(){try{JSON.parse(inp.value);out.value=inp.value;st.textContent
 function copyResult(){if(!out.value)return;navigator.clipboard.writeText(out.value);st.textContent='📋 Copied!'}
 format();
 </script>
+
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
 </body>
 </html>

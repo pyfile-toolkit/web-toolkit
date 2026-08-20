@@ -93,10 +93,16 @@ inp.addEventListener('input',render);
 render();
 
 function exportHTML(){
-  const blob=new Blob(['<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Preview</title></head><body>'+prev.innerHTML+'</body></html>'],{type:'text/html'});
+  const blob=new Blob(['<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Preview</title></head><body>'+prev.innerHTML+'
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+</body></html>'],{type:'text/html'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='preview.html';a.click();
 }
 function copyPreview(){navigator.clipboard.writeText(prev.innerHTML)}
 </script>
+
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
 </body>
 </html>

@@ -58,5 +58,8 @@ const inp=document.getElementById('input'),out=document.getElementById('output')
 function encode(){try{out.value=btoa(inp.value)}catch(e){out.value='Error: invalid characters for Base64'}}
 function decode(){try{out.value=atob(inp.value)}catch(e){out.value='Error: not valid Base64'}}
 </script>
+
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
 </body>
 </html>
