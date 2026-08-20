@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>The Shift — Reflex Game (No Login)</title>
+<meta name="description" content="The Shift is a fast reflex game where the rule keeps changing. Tap the target, dodge the rest. One mistake ends your run. Free, no login, works on any device.">
+<link rel="canonical" href="https://pyfile-toolkit.github.io/web-toolkit/the-shift.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"The Shift Reflex Game","operatingSystem":"ANY","applicationCategory":"GameApplication","description":"A fast reflex game where the rule changes: tap the target, dodge the rest. Free, no login.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;justify-content:center;overflow:hidden}
+#game{max-width:430px;width:100%;height:100dvh;display:flex;flex-direction:column;align-items:center;position:relative;padding-top:env(safe-area-inset-top)}
+.hud{width:100%;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;font-weight:700}
+.hud .stat{font-size:.8rem;color:#94a3b8}.hud .val{font-size:1.4rem;color:#f8fafc}
+.rule{font-size:1.1rem;font-weight:800;color:#a5b4fc;text-align:center;padding:2px 12px;min-height:26px}
+.rule .tar{color:#22d3ee}
+.board{flex:1;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:16px;align-content:start}
+.item{padding:22% 0;display:flex;align-items:center;justify-content:center;border-radius:22px;cursor:pointer;transition:transform .06s;position:relative;font-weight:800}
+.item:active{transform:scale(.93)}
+.item .shape{font-size:2.6rem;line-height:1}
+.item .word{font-size:1.6rem;position:absolute;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.5)}
+.target{outline:3px solid rgba(34,211,238,.65)}
+.start,.end{position:absolute;inset:0;background:rgba(11,15,26,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:30px;text-align:center;z-index:5}
+h1{font-size:2.2rem;letter-spacing:-.5px}
+h1 b{color:#22d3ee}
+.btn{padding:14px 34px;border:none;border-radius:14px;background:#6366f1;color:#fff;font-weight:800;font-size:1.1rem;cursor:pointer}
+.btn:active{transform:scale(.95)}
+.tn{font-size:.85rem;color:#94a3b8;max-width:300px}
+.title{font-size:1.6rem;font-weight:800;margin-bottom:4px}
+.big{font-size:2.8rem;font-weight:900;color:#22d3ee}
+.card{background:#131a2e;border:1px solid #22304a;border-radius:14px;padding:16px 20px;width:100%;max-width:280px;text-align:left;font-size:.9rem}
+.card .row{display:flex;justify-content:space-between;padding:4px 0;color:#cbd5e1}
+.card .row b{color:#f8fafc}
+.overlay{position:absolute;inset:0;pointer-events:none;z-index:6}
+.kofi{margin-top:14px;font-size:.85rem}.kofi a{color:#ff5e5b;text-decoration:none}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:8px}
+.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+</style>
+</head>
+<body>
+<div id="game">
+<div class="hud">
+  <div class="stat">SCORE<div class="val" id="score">0</div></div>
+  <div class="stat">LEVEL<div class="val" id="level">1</div></div>
+  <div class="stat">COMBO<div class="val" id="combo">×0</div></div>
+</div>
+<div class="rule" id="rule">Tap <span class="tar" id="ruletar">—</span></div>
+<div class="board" id="board" style="opacity:0"></div>
+
+<div class="start" id="start">
+  <h1>The <b>Shift</b></h1>
+  <p class="tn">A reflex rule changes the moment you relax.<br>Tap the target · dodge everything else.<br>One mistake ends the run.</p>
+  <button class="btn" onclick="startGame()">▶ Play</button>
+  <p class="tn">⌨️ tap / click · 📱 swipe-free</p>
+  <div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support</a></div>
+</div>
+
+<div class="end" id="end" style="display:none">
+  <div class="title">Run Over</div>
+  <div class="big" id="finalScore">0</div>
+  <div class="card" id="scoreCard"></div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+    <button class="btn" onclick="startGame()">↻ Retry</button>
+    <button class="btn" style="background:#1e293b" onclick="copyResult()">📋 Copy</button>
+    <button class="btn" style="background:#1e293b" onclick="shareResult()">🔗 Share</button>
+  </div>
+  <p class="tn">beat your best · the rule never stays</p>
+</div>
+<canvas class="overlay" id="fx" width="0" height="0"></canvas>
+</div>
+<div class="foot"><a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> · <a href="https://pyfile-toolkit.github.io/web-toolkit/youtube-tag-generator.html">YouTube Tags</a> · <a href="https://pyfile-toolkit.github.io/web-toolkit/brandseed.html">Brandseed</a></div>
+
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+// ---- ЯДРО (встроено) ----
+function pickRule(n,rs){const kinds=['color','shape','word'];const kind=kinds[n%3];const pool={color:rs.colors,shape:rs.shapes,word:rs.words};const targets=pool[kind];const stride=10;const idx=Math.floor(n/stride)%targets.length;return {kind,target:targets[idx]};}
+function makeExplicit(atrs,rule){const isT=(rule.kind==='color'&&atrs.color===rule.target)||(rule.kind==='shape'&&atrs.shape===rule.target)||(rule.kind==='word'&&atrs.word===rule.target);return Object.assign({},atrs,{isTarget:isT});}
+const RS={colors:['red','blue','green','orange'],shapes:['circle','square','triangle','diamond'],words:['go','stop','run','stay']};
+
+// ---- Состояние ----
+let state={round:0,score:0,combo:0,over:false,rule:pickRule(0,RS),best:parseInt(localStorage.getItem('shift_best')||'0')};
+const $=id=>document.getElementById(id);
+
+function shapeHTML(it){
+  let s='';
+  if(it.shape==='circle') s='<span class="shape" style="color:white">●</span>';
+  else if(it.shape==='square') s='<span class="shape" style="color:white">■</span>';
+  else if(it.shape==='triangle') s='<span class="shape" style="color:white">▲</span>';
+  else s='<span class="shape" style="color:white">◆</span>';
+  const w='<span class="word">'+it.word+'</span>';
+  const c={red:'#ef4444',blue:'#3b82f6',green:'#22c55e',orange:'#f97316'}[it.color];
+  return {s,w,c};
+}
+function renderHint(){
+  const t=state.rule.target;
+  const label={color:(t[0].toUpperCase()+t.slice(1)),shape:(t[0].toUpperCase()+t.slice(1)),word:t}[state.rule.kind];
+  $('ruletar').textContent=label;
+}
+function paintItem(el,it){
+  const h=shapeHTML(it);
+  el.innerHTML=h.s+h.w;
+  el.style.background=h.c;
+  el.dataset.ok=it.isTarget?'1':'0';
+}
+function spawn(){
+  // 4 предмета: ровно 1 цель, 3 не-целей
+  const targets=[['red','circle','go'],['blue','square','stop'],['green','triangle','run'],['orange','diamond','stay']];
+  // выбираем 1 который совпадает с rule.target в категории
+  let matchIdx=-1;
+  for(let i=0;i<4;i++){const it=makeExplicit({color:targets[i][0],shape:targets[i][1],word:targets[i][2]},state.rule);if(it.isTarget){matchIdx=i;break;}}
+  shuffle(targets);
+  const board=$('board');board.innerHTML='';
+  targets.forEach((t,i2)=>{
+    const it=makeExplicit({color:t[0],shape:t[1],word:t[2]},state.rule);
+    const div=document.createElement('div');div.className='item'+(it.isTarget?' target':'');
+    paintItem(div,it);
+    div.onclick=()=>onTap(div,it);
+    board.appendChild(div);
+  });
+  if(++state.round>1) { speedUp(); }
+  $('level').textContent=state.round;
+}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}}
+let interval=null,speed=1400;
+function speedUp(){speed=Math.max(450,speed*0.9);clearInterval(interval);interval=setInterval(missTimeout,speed);}
+function missTimeout(){if(state.over)return;state.combo=0;$('combo').textContent='×0';spawn();}
+function onTap(el,it){
+  if(state.over)return;
+  if(it.isTarget){
+    state.combo++;const gain=12+Math.min(state.combo,5)*2;state.score+=gain;
+    $('score').textContent=state.score;$('combo').textContent='×'+state.combo;
+    burst(el,'+'+gain);
+    spawn();
+  } else {
+    endRun();
+  }
+}
+function endRun(){
+  state.over=true;clearInterval(interval);
+  if(state.score>state.best){state.best=state.score;localStorage.setItem('shift_best',state.best);}
+  const crd=$('scoreCard');
+  crd.innerHTML='<div class="row"><span>Score</span><b>'+state.score+'</b></div><div class="row"><span>Level</span><b>'+state.round+'</b></div><div class="row"><span>Best combo</span><b>×'+state.combo+'</b></div><div class="row"><span>Personal best</span><b>'+state.best+'</b></div>';
+  $('finalScore').textContent=state.score;$('end').style.display='flex';$('start').style.display='none';$('board').style.opacity='0';
+}
+function startGame(){
+  state={round:0,score:0,combo:0,over:false,rule:pickRule(0,RS),best:parseInt(localStorage.getItem('shift_best')||'0')};
+  $('score').textContent='0';$('combo').textContent='×0';$('level').textContent='1';
+  $('start').style.display='none';$('end').style.display='none';$('board').style.opacity='1';
+  speed=1400;clearInterval(interval);renderHint();spawn();interval=setInterval(missTimeout,speed);
+}
+// ---- FX ----
+function burst(el,text){
+  const cx=document.getElementById('fx');const r=cx.getBoundingClientRect();
+  cx.width=r.width||320;cx.height=r.height||600;
+  const ctx=cx.getContext('2d');const rect=el.getBoundingClientRect();
+  const X=rect.left+cx.getBoundingClientRect().left; // упрощённо
+  ctx.clearRect(0,0,cx.width,cx.height);
+  ctx.font='bold 22px system-ui';ctx.fillStyle='#4ade80';ctx.textAlign='center';
+  ctx.fillText(text,rect.centerX||150,rect.top-10+cx.getBoundingClientRect().top);
+  setTimeout(()=>ctx.clearRect(0,0,cx.width,cx.height),500);
+}
+// ---- Result ----
+function resultText(){
+  return 'The Shift — Score: '+state.score+' · Level: '+state.round+' · Best: '+state.best+'\nCan you beat it? https://pyfile-toolkit.github.io/web-toolkit/the-shift.html';
+}
+function copyResult(){if(navigator.clipboard)navigator.clipboard.writeText(resultText());const b=[...document.querySelectorAll('#end button')].find(x=>x.textContent.includes('Copy'));(b&&(b.textContent='✅',setTimeout(()=>b.textContent='📋 Copy',1200)))}
+function shareResult(){if(navigator.share){Promise.resolve(navigator.share({title:'The Shift',text:resultText()})).catch(()=>copyResult())}else copyResult()}
+
+// инициализация: первый рендер подсказки
+renderHint();
+</script>
+</body>
+</html>
