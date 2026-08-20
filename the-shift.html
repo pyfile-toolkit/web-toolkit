@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
 <script>
@@ -19,7 +20,7 @@
 </script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
-body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;margin:0;display:flex;flex-direction:column;;overflow-x:hidden;padding:0 0 30px}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;margin:0;display:flex;flex-direction:column;align-items:center;overflow-x:hidden;padding:0 0 30px}
 #game{max-width:430px;width:100%;display:flex;flex-direction:column;align-items:center}
 .board{position:relative}
 @media(max-height:640px) and (max-width:480px){ .item{padding:14% 0} .item .shape{font-size:2rem} .hud{flex-wrap:wrap;gap:4px;padding:8px 12px} }
@@ -29,10 +30,10 @@ body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-heigh
 .rule{font-size:1.1rem;font-weight:800;color:#a5b4fc;text-align:center;padding:2px 12px;min-height:26px}
 .rule .tar{color:#22d3ee}
 .board{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:16px;align-content:start}
-.item{padding:22% 0;display:flex;align-items:center;justify-content:center;border-radius:22px;cursor:pointer;transition:transform .06s;position:relative;font-weight:800}
+.item{padding:22% 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border-radius:22px;cursor:pointer;transition:transform .06s;position:relative;font-weight:800}
 .item:active{transform:scale(.93)}
 .item .shape{font-size:2.6rem;line-height:1}
-.item .word{font-size:1.6rem;position:absolute;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.5)}
+.item .word{font-size:1.05rem;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.5)}
 .target{outline:3px solid rgba(34,211,238,.65)}
 .start,.end{background:rgba(11,15,26,.97);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:26px 18px;text-align:center;min-height:60vh}
 h1{font-size:2.2rem;letter-spacing:-.5px}
