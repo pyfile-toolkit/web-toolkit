@@ -159,7 +159,7 @@ let currentName='',currentPal=[],currTag='',currLogo='';
 function generate(){
   let seed=document.getElementById('seed').value.trim();
   if(!seed) seed=pickWord();
-  const name=coin(null,seed);
+  const name=coin(seed);
   currentPal=palette(seed); currTag=tagline(seed); currLogo=logo(name);
   currentName=name;
   document.getElementById('bname').textContent=name;
@@ -184,8 +184,15 @@ function seedFromUrl(){try{const p=new URLSearchParams(location.search);const s=
 function shareBrand(){
   const seed=document.getElementById('seed').value.trim()||currentName;
   const url=location.origin+location.pathname+'?seed='+encodeURIComponent(seed);
-  if(navigator.share){navigator.share({title:'Brandseed: '+currentName,text:currentName+' — '+currTag,url}).catch(()=>{})}
-  else{navigator.clipboard.writeText(url);const b=[...document.querySelectorAll('button')].find(x=>x.textContent.includes('Share'));if(b){b.textContent='🔗 Copied link!';setTimeout(()=>{b.textContent='🔗 Share'},1500)}}
+  if(navigator.share&&typeof navigator.share==='function'){
+    Promise.resolve(navigator.share({title:'Brandseed: '+currentName,text:currentName+' — '+currTag,url}))
+      .catch(()=>{copyShareLink(url)});
+  } else { copyShareLink(url); }
+}
+function copyShareLink(url){
+  if(navigator.clipboard) navigator.clipboard.writeText(url);
+  const b=[...document.querySelectorAll('button')].find(x=>x.textContent.includes('Share'));
+  if(b){b.textContent='🔗 Copied link!';setTimeout(()=>{b.textContent='🔗 Share'},1500)}
 }
 window.addEventListener('load',()=>{const us=seedFromUrl();if(us){document.getElementById('seed').value=us;generate()}else if(!localStorage.getItem('brandseed_ran')){generate();localStorage.setItem('brandseed_ran','1')}});
 </script>
