@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Character Counter — Count Letters, Characters & Text Online</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Character Counter",
+  "operatingSystem": "ANY",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Count characters, letters, words, sentences, spaces and line breaks online for free. Private, instant, client-side.",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<meta name="description" content="Free character counter: count letters, characters with and without spaces, words, sentences and lines. Private, instant and 100% browser-based.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:20px}
+.card{background:#1e293b;border-radius:16px;padding:28px;max-width:720px;width:100%}
+h1{color:#f8fafc;margin-bottom:4px;font-size:1.4rem}
+.sub{color:#94a3b8;margin-bottom:20px;font-size:.9rem}
+textarea{width:100%;min-height:220px;padding:14px;border-radius:10px;background:#0f172a;color:#e2e8f0;border:1px solid #475569;font-size:1rem;line-height:1.5;resize:vertical}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-top:16px}
+.stat{background:#334155;border-radius:10px;padding:12px;text-align:center}
+.stat .n{font-size:1.4rem;font-weight:700;color:#34d399}
+.stat .l{font-size:.72rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+.btns{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+button{padding:9px 22px;background:#10b981;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.9rem}
+button:hover{filter:brightness(1.1)}
+.btn-ghost{background:#64748b}
+.kofi{text-align:center;margin:16px 0 6px;padding:10px;background:#1e1e3a;border-radius:8px}
+.kofi a{color:#ff5e5b;font-weight:600;text-decoration:none}
+.ads{margin-top:10px;font-size:.85rem;text-align:center}
+.ads a{color:#818cf8;margin:0 6px}
+.content{margin-top:30px;max-width:720px;padding:0 6px}
+.content h2{color:#f8fafc;font-size:1.2rem;margin:24px 0 10px}
+.content p{color:#cbd5e1;line-height:1.65;margin-bottom:12px;font-size:.95rem}
+.content strong{color:#e2e8f0}
+@media(max-width:520px){body{padding:12px}.card{padding:18px}.stat .n{font-size:1.15rem}.content h2{font-size:1.05rem}}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>Character Counter</h1>
+<p class="sub">Live character & letter count. Private — nothing leaves your browser.</p>
+<textarea id="txt" placeholder="Type or paste your text here..."></textarea>
+<div class="stats">
+  <div class="stat"><div class="n" id="chars">0</div><div class="l">Characters</div></div>
+  <div class="stat"><div class="n" id="letters">0</div><div class="l">Letters</div></div>
+  <div class="stat"><div class="n" id="noSp">0</div><div class="l">No Spaces</div></div>
+  <div class="stat"><div class="n" id="words">0</div><div class="l">Words</div></div>
+  <div class="stat"><div class="n" id="sent">0</div><div class="l">Sentences</div></div>
+  <div class="stat"><div class="n" id="lines">0</div><div class="l">Lines</div></div>
+</div>
+<div class="btns">
+  <button onclick="clearText()">🗑 Clear</button>
+  <button class="btn-ghost" onclick="copyText()">📋 Copy</button>
+</div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this tool on Ko-fi</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/word-counter.html">Word Counter</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/json-formatter.html">JSON Formatter</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+</div>
+
+<div class="content">
+<h2>Character Counter — Count Letters & Characters Online</h2>
+<p>This free character counter counts characters, letters, characters-without-spaces, words, sentences and lines in real time as you type. Because it runs entirely in your browser, your text stays private and there is no server, upload, or account required.</p>
+<h2>How to Use the Character Counter</h2>
+<p>Type or paste your text into the box and every count updates instantly below. The Copy button copies your text, and Clear resets the counter. Use the characters-without-spaces count when a platform counts spaces differently — for example, many tweet length tools and social platforms do.</p>
+<h2>Why Counting Characters Matters</h2>
+<p>Many platforms enforce strict limits: tweets (280), job titles, meta descriptions (150–160), SMS (160), and SMS/placeholder fields. A character counter helps you stay under the cap, fine-tune headlines and meta tags for SEO, and keep social captions punchy and readable.</p>
+<h2>Character Counter FAQ</h2>
+<p><strong>What is the difference between characters and letters?</strong> Letters counts only A–Z alphabetic characters; characters counts everything, including spaces, digits and punctuation. <strong>Does it count spaces?</strong> Yes in total characters, and the without-spaces row shows the count excluding them. <strong>Is my text saved?</strong> No — everything is processed locally in your browser.</p>
+</div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+const txt = document.getElementById('txt');
+function update(){
+  const v = txt.value;
+  document.getElementById('chars').textContent = v.length;
+  document.getElementById('letters').textContent = (v.match(/[a-zA-Z]/g)||[]).length;
+  document.getElementById('noSp').textContent = v.replace(/\s+/g,'').length;
+  document.getElementById('words').textContent = v.trim() ? v.trim().split(/\s+/).length : 0;
+  document.getElementById('sent').textContent = (v.match(/[.!?]+(?=\s|$)/g)||[]).length;
+  document.getElementById('lines').textContent = v ? v.split('\n').length : 0;
+}
+function clearText(){txt.value='';update();}
+function copyText(){navigator.clipboard.writeText(txt.value);}
+txt.addEventListener('input',update);
+update();
+</script>
+</body>
+</html>
