@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Counter — Free Online Character & Word Count Tool</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Word Counter",
+  "operatingSystem": "ANY",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Count words, characters, sentences and paragraphs online for free. Instant, private, no server needed.",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<meta name="description" content="Free online word counter: count words, characters, sentences and paragraphs instantly. Private — your text never leaves your browser.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:20px}
+.card{background:#1e293b;border-radius:16px;padding:28px;max-width:720px;width:100%}
+h1{color:#f8fafc;margin-bottom:4px;font-size:1.4rem}
+.sub{color:#94a3b8;margin-bottom:20px;font-size:.9rem}
+textarea{width:100%;min-height:240px;padding:14px;border-radius:10px;background:#0f172a;color:#e2e8f0;border:1px solid #475569;font-size:1rem;line-height:1.5;resize:vertical}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-top:16px}
+.stat{background:#334155;border-radius:10px;padding:12px;text-align:center}
+.stat .n{font-size:1.5rem;font-weight:700;color:#818cf8}
+.stat .l{font-size:.75rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+.btns{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+button{padding:9px 22px;background:#6366f1;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.9rem}
+button:hover{background:#4f46e5}
+.btn-ghost{background:#64748b}
+.kofi{text-align:center;margin:16px 0 6px;padding:10px;background:#1e1e3a;border-radius:8px}
+.kofi a{color:#ff5e5b;font-weight:600;text-decoration:none}
+.ads{margin-top:10px;font-size:.85rem;text-align:center}
+.ads a{color:#818cf8;margin:0 6px}
+.content{margin-top:30px;max-width:720px;padding:0 6px}
+.content h2{color:#f8fafc;font-size:1.2rem;margin:24px 0 10px}
+.content p{color:#cbd5e1;line-height:1.65;margin-bottom:12px;font-size:.95rem}
+.content strong{color:#e2e8f0}
+@media(max-width:520px){body{padding:12px}.card{padding:18px}.stat .n{font-size:1.2rem}.content h2{font-size:1.05rem}}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>Word Counter</h1>
+<p class="sub">Type or paste your text — counts update live. Nothing is uploaded.</p>
+<textarea id="txt" placeholder="Start typing or paste your text here..."></textarea>
+<div class="stats">
+  <div class="stat"><div class="n" id="words">0</div><div class="l">Words</div></div>
+  <div class="stat"><div class="n" id="chars">0</div><div class="l">Characters</div></div>
+  <div class="stat"><div class="n" id="charsNoSp">0</div><div class="l">No Spaces</div></div>
+  <div class="stat"><div class="n" id="sent">0</div><div class="l">Sentences</div></div>
+  <div class="stat"><div class="n" id="par">0</div><div class="l">Paragraphs</div></div>
+</div>
+<div class="btns">
+  <button onclick="clearText()">🗑 Clear</button>
+  <button class="btn-ghost" onclick="copyText()">📋 Copy</button>
+</div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this tool on Ko-fi</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/json-formatter.html">JSON Formatter</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/youtube-tag-generator.html">YouTube Tags</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+</div>
+
+<div class="content">
+<h2>Word Counter — Count Words Online for Free</h2>
+<p>This free online word counter counts words, characters (with and without spaces), sentences, and paragraphs instantly as you type. It is 100% client-side: your text is processed entirely in your browser and is never sent to any server, so your writing stays private and work is never interrupted by network delays.</p>
+<h2>How to Use the Word Counter</h2>
+<p>Simply type or paste your text into the box. The word count, character count, and sentence count update in real time below the editor. Use the Copy button to grab your text, or Clear to start fresh. Because everything runs locally, it works offline and can handle very long documents without slowing down.</p>
+<h2>Why Word Count Matters</h2>
+<p>Word and character counts matter for essays with strict length limits, SEO blog posts optimized for search engines, tweets and social captions with hard character caps, and job applications or cover letters. Knowing your exact counts helps you stay within guidelines, hit headline-length sweet spots, and keep content concise and readable.</p>
+<h2>Word Counter FAQ</h2>
+<p><strong>Does this count characters too?</strong> Yes — characters, characters without spaces, sentences, and paragraphs are all counted alongside words. <strong>Is my text stored anywhere?</strong> No. Everything is processed locally in your browser, and nothing is uploaded or saved. <strong>Can I use it for SEO?</strong> Absolutely — track title length, meta description length, and word count to optimize your content.</p>
+</div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+const txt = document.getElementById('txt');
+function update(){
+  const v = txt.value;
+  const words = v.trim() ? v.trim().split(/\s+/).length : 0;
+  const chars = v.length;
+  const charNoSp = v.replace(/\s+/g,'').length;
+  const sent = (v.match(/[.!?]+(?=\s|$)/g)||[]).length;
+  const par = v.trim() ? v.trim().split(/\n\s*\n/).filter(p=>p.trim()).length : 0;
+  document.getElementById('words').textContent=words;
+  document.getElementById('chars').textContent=chars;
+  document.getElementById('charsNoSp').textContent=charNoSp;
+  document.getElementById('sent').textContent=sent;
+  document.getElementById('par').textContent=par;
+}
+function clearText(){txt.value='';update();}
+function copyText(){navigator.clipboard.writeText(txt.value);}
+txt.addEventListener('input',update);
+update();
+</script>
+</body>
+</html>
