@@ -25,7 +25,7 @@
 <meta name="description" content="Encode and decode URL strings online. Handle special characters, query params, and percent-encoding instantly.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;display:flex;;;min-height:100vh;padding:20px}
 .card{background:#1e293b;border-radius:16px;padding:32px;max-width:550px;width:100%}
 h1{color:#f8fafc;text-align:center;margin-bottom:4px}
 .sub{color:#94a3b8;text-align:center;margin-bottom:20px;font-size:.9rem}
@@ -45,7 +45,23 @@ button{padding:10px 24px;border:none;border-radius:8px;font-weight:600;cursor:po
 .content{margin-top:28px;max-width:720px;margin-left:auto;margin-right:auto;padding:0 6px}
 .content h2{color:#f8fafc;font-size:1.25rem;margin:24px 0 10px}
 .content p{color:#cbd5e1;line-height:1.6;margin-bottom:12px;font-size:.95rem}
-.content strong{color:#e2e8f0}</style>
+.content strong{color:#e2e8f0}
+@media(max-width:520px){
+  .container{padding:20px 14px}
+  .tool-card{padding:16px}
+  body{padding:12px!important}
+  .card{padding:18px!important;max-width:100%!important}
+  .content h2{font-size:1.05rem}
+  .item{padding:16% 0}
+  .item .shape{font-size:2.2rem}
+}
+@media(max-width:380px){
+  .item{padding:13% 0}
+  .item .shape{font-size:1.9rem}
+  .hud{flex-wrap:wrap;gap:4px}
+}
+
+</style>
 </head>
 <body>
 <div class="card">

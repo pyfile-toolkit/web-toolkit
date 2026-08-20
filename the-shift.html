@@ -19,19 +19,22 @@
 </script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
-body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;justify-content:center;overflow:hidden}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;margin:0;display:flex;flex-direction:column;;overflow-x:hidden;padding:0 0 30px}
+#game{max-width:430px;width:100%;display:flex;flex-direction:column;align-items:center}
+.board{position:relative}
+@media(max-height:640px) and (max-width:480px){ .item{padding:14% 0} .item .shape{font-size:2rem} .hud{flex-wrap:wrap;gap:4px;padding:8px 12px} }
 #game{max-width:430px;width:100%;height:100dvh;display:flex;flex-direction:column;align-items:center;position:relative;padding-top:env(safe-area-inset-top)}
 .hud{width:100%;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;font-weight:700}
 .hud .stat{font-size:.8rem;color:#94a3b8}.hud .val{font-size:1.4rem;color:#f8fafc}
 .rule{font-size:1.1rem;font-weight:800;color:#a5b4fc;text-align:center;padding:2px 12px;min-height:26px}
 .rule .tar{color:#22d3ee}
-.board{flex:1;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:16px;align-content:start}
+.board{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:16px;align-content:start}
 .item{padding:22% 0;display:flex;align-items:center;justify-content:center;border-radius:22px;cursor:pointer;transition:transform .06s;position:relative;font-weight:800}
 .item:active{transform:scale(.93)}
 .item .shape{font-size:2.6rem;line-height:1}
 .item .word{font-size:1.6rem;position:absolute;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.5)}
 .target{outline:3px solid rgba(34,211,238,.65)}
-.start,.end{position:absolute;inset:0;background:rgba(11,15,26,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:30px;text-align:center;z-index:5}
+.start,.end{background:rgba(11,15,26,.97);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:26px 18px;text-align:center;min-height:60vh}
 h1{font-size:2.2rem;letter-spacing:-.5px}
 h1 b{color:#22d3ee}
 .btn{padding:14px 34px;border:none;border-radius:14px;background:#6366f1;color:#fff;font-weight:800;font-size:1.1rem;cursor:pointer}
@@ -46,6 +49,22 @@ h1 b{color:#22d3ee}
 .kofi{margin-top:14px;font-size:.85rem}.kofi a{color:#ff5e5b;text-decoration:none}
 .foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:8px}
 .foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+
+@media(max-width:520px){
+  .container{padding:20px 14px}
+  .tool-card{padding:16px}
+  body{padding:12px!important}
+  .card{padding:18px!important;max-width:100%!important}
+  .content h2{font-size:1.05rem}
+  .item{padding:16% 0}
+  .item .shape{font-size:2.2rem}
+}
+@media(max-width:380px){
+  .item{padding:13% 0}
+  .item .shape{font-size:1.9rem}
+  .hud{flex-wrap:wrap;gap:4px}
+}
+
 </style>
 </head>
 <body>
