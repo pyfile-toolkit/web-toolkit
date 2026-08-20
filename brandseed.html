@@ -86,6 +86,7 @@ button{padding:12px 26px;border:none;border-radius:10px;cursor:pointer;font-weig
 </div>
 <div class="actions">
   <button class="btn-secondary" onclick="copyAll()">📋 Copy Kit</button>
+  <button class="btn-secondary" onclick="shareBrand()">🔗 Share</button>
   <button class="btn-primary" onclick="generate()">🔄 New Variation</button>
 </div>
 </div>
@@ -178,7 +179,15 @@ function copyAll(){
   const b=[...document.querySelectorAll('button')].find(x=>x.textContent.includes('Copy Kit'));
   if(b){b.textContent='✅ Copied!';setTimeout(()=>{b.textContent='📋 Copy Kit'},1500)}
 }
-window.addEventListener('load',()=>{if(!localStorage.getItem('brandseed_ran')){generate();localStorage.setItem('brandseed_ran','1')}});
+function seedFromUrl(){try{const p=new URLSearchParams(location.search);const s=p.get('seed');if(s)return decodeURIComponent(s)}catch(e){}return null}
+
+function shareBrand(){
+  const seed=document.getElementById('seed').value.trim()||currentName;
+  const url=location.origin+location.pathname+'?seed='+encodeURIComponent(seed);
+  if(navigator.share){navigator.share({title:'Brandseed: '+currentName,text:currentName+' — '+currTag,url}).catch(()=>{})}
+  else{navigator.clipboard.writeText(url);const b=[...document.querySelectorAll('button')].find(x=>x.textContent.includes('Share'));if(b){b.textContent='🔗 Copied link!';setTimeout(()=>{b.textContent='🔗 Share'},1500)}}
+}
+window.addEventListener('load',()=>{const us=seedFromUrl();if(us){document.getElementById('seed').value=us;generate()}else if(!localStorage.getItem('brandseed_ran')){generate();localStorage.setItem('brandseed_ran','1')}});
 </script>
 </body>
 </html>
