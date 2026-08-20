@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Tag Generator — Free Tool (No Login)</title>
+<meta name="description" content="Generate optimized YouTube tags instantly. Pick a niche, type keywords, and get copy-paste ready tags. Free, no login, works in your browser. Boost your video discoverability.">
+<link rel="canonical" href="https://pyfile-toolkit.github.io/web-toolkit/youtube-tag-generator.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "YouTube Tag Generator",
+  "operatingSystem": "ANY",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Free online YouTube tag generator. Create optimized tags for your videos in seconds — no login, no signup, runs in your browser.",
+  "url": "https://pyfile-toolkit.github.io/web-toolkit/youtube-tag-generator.html",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does a YouTube tag generator work?",
+      "acceptedAnswer": {"@type": "Answer", "text": "It takes your topic keywords and expands them into a full set of relevant tags you can paste into YouTube's tag field. It combines your seed keywords with common high-volume variations to improve discoverability."}
+    },
+    {
+      "@type": "Question",
+      "name": "Are YouTube tags important for ranking?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Tags help YouTube understand your video's topic alongside your title and description. They are one of several ranking signals and matter most for search and suggested videos."}
+    },
+    {
+      "@type": "Question",
+      "name": "Is this YouTube tag generator free without login?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Yes. The tool runs entirely in your browser. No account, no signup, no uploads — your keywords never leave your device."}
+    }
+  ]
+}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;display:flex;justify-content:center;min-height:100vh;padding:20px}
+.wrap{max-width:720px;width:100%}
+.card{background:#1e293b;border-radius:16px;padding:32px;margin-top:20px}
+h1{color:#f8fafc;text-align:center;font-size:1.8rem;margin-bottom:6px}
+.sub{color:#94a3b8;text-align:center;margin-bottom:20px;font-size:.95rem}
+label{display:block;color:#cbd5e1;margin:14px 0 6px;font-weight:600;font-size:.9rem}
+input,textarea{width:100%;padding:12px;border-radius:8px;background:#334155;color:#e2e8f0;border:1px solid #475569;font-size:.95rem}
+textarea{font-family:monospace;font-size:.85rem;min-height:140px;resize:vertical}
+.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+button{padding:10px 22px;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.9rem}
+.btn-gen{background:#e11d48;color:#fff}
+.btn-copy{background:#64748b;color:#fff}
+.btn-clr{background:#475569;color:#fff}
+.output{margin-top:18px}
+.stats{text-align:center;margin-top:10px;font-size:.85rem;color:#94a3b8}
+.content{margin-top:28px;color:#cbd5e1;font-size:.95rem;line-height:1.6}
+.content h2{color:#f8fafc;font-size:1.3rem;margin:22px 0 10px}
+.content p{margin-bottom:12px}
+.content ul{margin:0 0 14px 20px}
+.footer{margin-top:24px;padding:14px;background:#1e1e3a;border-radius:8px;text-align:center;font-size:.85rem}
+.footer a{color:#818cf8;text-decoration:none;margin:0 6px}
+.kofi{margin-top:14px;text-align:center;padding:10px;background:#1e1e3a;border-radius:8px}
+.kofi a{color:#ff5e5b;font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="card">
+<h1>🎬 YouTube Tag Generator</h1>
+<p class="sub">Free · No login · Runs in your browser</p>
+
+<label for="niche">Video topic / niche (e.g. "gaming", "cooking", "workout")</label>
+<input id="niche" type="text" placeholder="e.g. gaming">
+
+<label for="keywords">Seed keywords (comma separated)</label>
+<textarea id="keywords" placeholder="minecraft, let's play, survival, building tips"></textarea>
+
+<div class="btns">
+<button class="btn-gen" onclick="generate()">⚡ Generate Tags</button>
+<button class="btn-copy" onclick="copyTags()">📋 Copy</button>
+<button class="btn-clr" onclick="clearAll()">🗑 Clear</button>
+</div>
+
+<div class="output">
+<label for="result">Your optimized tags (comma separated)</label>
+<textarea id="result" readonly placeholder="Your tags will appear here..."></textarea>
+</div>
+<div class="stats" id="stats"></div>
+</div>
+
+<div class="content">
+<h2>What is a YouTube Tag Generator?</h2>
+<p>A YouTube tag generator helps creators build a full set of relevant tags for their videos. Instead of coming up with tags one by one, you type a topic and a few seed keywords, and the tool expands them into a copy-paste-ready list — including long-tail phrases that are easier to rank for.</p>
+<h2>Why use YouTube tags?</h2>
+<p>Tags give YouTube extra context about your video's content. Combined with a strong title and description, they help your video show up in search results and suggested videos. Tags matter most for new channels competing in crowded niches.</p>
+<h2>How to use this tool</h2>
+<ul>
+<li>Enter your video's main topic in the first field.</li>
+<li>Add a few seed keywords separated by commas.</li>
+<li>Click "Generate Tags" and copy the result into YouTube Studio → Video → Tags.</li>
+</ul>
+<h2>Pro tips</h2>
+<ul>
+<li>Include your exact title words as tags.</li>
+<li>Add 2-3 word phrases, not just single words.</li>
+<li>Re-check tags for trending topics in your niche.</li>
+</ul>
+</div>
+
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this tool on Ko-fi</a></div>
+<div class="footer">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/json-formatter.html">JSON Formatter</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/qrcode.html">QR Code</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium Tools</a>
+</div>
+</div>
+
+<script>
+const niche=document.getElementById('niche'),kw=document.getElementById('keywords'),res=document.getElementById('result'),stats=document.getElementById('stats');
+const BOOST = ['2025','how to','tutorial','for beginners','free','best','guide','online','video','tips','top'];
+function genTags(n,k){
+  const set=new Set();
+  boost(n,set);
+  const kws=k.split(',').map(s=>s.trim()).filter(Boolean);
+  kws.forEach(w=>{boost(w,set); set.add(w)});
+  if(kws.length>0 && n) { kws.slice(0,3).forEach(w=>(set.add(n+' '+w), set.add(w+' '+n))); }
+  if(n) set.add(n+' '+BOOST.slice(0,4).join(' '));
+  return [...set];
+}
+function boost(x,set){ if(!x) return; set.add(x); BOOST.forEach(b=>set.add(b+' '+x)); }
+function generate(){
+  const list=genTags(niche.value.trim(), kw.value);
+  res.value=list.join(', ');
+  stats.textContent='✓ '+list.length+' tags generated · copy & paste into YouTube Studio';
+}
+function copyTags(){ if(!res.value) return; navigator.clipboard.writeText(res.value); stats.textContent='📋 Copied '+res.value.length+' chars!'; }
+function clearAll(){ niche.value=''; kw.value=''; res.value=''; stats.textContent=''; }
+</script>
+</body>
+</html>
