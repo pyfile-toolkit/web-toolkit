@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brandseed — Random Brand Name & Identity Generator</title>
+<meta name="description" content="Brandseed turns any word into a complete brand identity: a coined brand name, matching color palette, generated logo, and tagline. Free, no login, runs in your browser.">
+<link rel="canonical" href="https://pyfile-toolkit.github.io/web-toolkit/brandseed.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Brandseed Brand Name Generator",
+  "operatingSystem": "ANY",
+  "applicationCategory": "DesignApplication",
+  "description": "Generate a complete brand identity from any seed word: brand name, color palette, logo and tagline. Free, browser-based, no login.",
+  "url": "https://pyfile-toolkit.github.io/web-toolkit/brandseed.html",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;padding:20px}
+.wrap{max-width:760px;margin:0 auto}
+header{text-align:center;margin-bottom:20px}
+h1{font-size:2.2rem;font-weight:800;letter-spacing:-.5px}
+h1 .seed-grad{background:linear-gradient(90deg,#818cf8,#22d3ee,#f472b6);-webkit-background-clip:text;background-clip:text;color:transparent}
+p.sub{color:#94a3b8;margin-top:6px;font-size:.95rem}
+.input-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+input[type=text]{padding:12px 18px;border-radius:10px;background:#1e293b;border:1px solid #334155;color:#e2e8f0;font-size:1rem;min-width:260px;text-align:center}
+button{padding:12px 26px;border:none;border-radius:10px;cursor:pointer;font-weight:700;font-size:1rem}
+.btn-primary{background:#6366f1;color:#fff}
+.btn-secondary{background:#1e293b;color:#cbd5e1;border:1px solid #334155}
+.card{background:#131a2e;border:1px solid #22304a;border-radius:16px;padding:22px;margin-bottom:16px}
+.card h2{font-size:1.1rem;color:#a5b4fc;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px;font-size:.8rem}
+.brand-name{font-size:2.6rem;font-weight:800;letter-spacing:-1px;text-align:center;padding:8px 0}
+.tagline{text-align:center;color:#94a3b8;font-size:1.1rem;font-style:italic}
+.palette{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.swatch{height:70px;border-radius:10px;display:flex;align-items:flex-end;padding:8px;font-size:.7rem;font-weight:600;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.logo-box{display:flex;justify-content:center;padding:14px 0}
+.logo-box svg{width:140px;height:140px}
+.actions{text-align:center;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.content{margin-top:10px;color:#cbd5e1;line-height:1.6;font-size:.95rem}
+.content h3{color:#f8fafc;font-size:1.2rem;margin:20px 0 8px}
+.content p{margin-bottom:12px}
+.footer{margin-top:24px;text-align:center;padding:14px;background:#131a2e;border-radius:12px}
+.footer a{color:#818cf8;text-decoration:none;margin:0 6px}
+.kofi{text-align:center;margin-top:16px;padding:10px;background:#131a2e;border-radius:8px}
+.kofi a{color:#ff5e5b;font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1><span class="seed-grad">Brandseed</span></h1>
+  <p class="sub">Seed a word → get a full brand: name, colors, logo & tagline</p>
+</header>
+
+<div class="input-row">
+  <input type="text" id="seed" placeholder="e.g. north, glow, orbit, moss">
+  <button class="btn-primary" onclick="generate()">🌱 Grow Brand</button>
+  <button class="btn-secondary" onclick="randSeed()">🎲 Random</button>
+</div>
+
+<div id="brand">
+<div class="card">
+  <h2>Brand Name</h2>
+  <div class="brand-name" id="bname">—</div>
+  <div class="tagline" id="btag">—</div>
+</div>
+<div class="card" style="display:none" id="logocard">
+  <h2>Generated Logo</h2>
+  <div class="logo-box" id="blogo"></div>
+</div>
+<div class="card" style="display:none" id="palcard">
+  <h2>Color Palette</h2>
+  <div class="palette" id="bpal"></div>
+</div>
+<div class="actions">
+  <button class="btn-secondary" onclick="copyAll()">📋 Copy Kit</button>
+  <button class="btn-primary" onclick="generate()">🔄 New Variation</button>
+</div>
+</div>
+
+<div class="content">
+<h3>What is Brandseed?</h3>
+<p><strong>Brandseed</strong> is a brand-name generator that grows a complete, cohesive identity from a single seed word. Drop in a concept (or hit random) and watch it synthesize a coined brand name, a matching color palette, a geometric logo, and a tagline — all derived from the same seed, so everything feels like it belongs together.</p>
+<h3>How the brand generator works</h3>
+<p>Your seed word becomes a random seed that drives four connected systems: a syllable combiner for the name, a hue matcher for the palette, a geometric pattern builder for the logo, and a phrase maker for the tagline. Because they share one seed, regenerating keeps the same family — useful for exploring variations of one idea.</p>
+<h3>Why use a name generator</h3>
+<p>Naming a startup, project, or product is one of the hardest parts of branding. A random name generator removes writer's block and surfaces combinations you'd never think of manually — especially coined, invented words that are more likely to have an available domain.</p>
+<h3>Brand name generator FAQ</h3>
+<p><strong>Is my seed uploaded?</strong> No — everything is generated locally in your browser. <strong>Can I get a real logo file?</strong> Copy the SVG from the brand kit. <strong>Are the names trademark-safe?</strong> Always run a trademark search before committing; the generator only explores ideas.</p>
+</div>
+
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this tool on Ko-fi</a></div>
+<div class="footer">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/youtube-tag-generator.html">YouTube Tags</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/json-formatter.html">JSON</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+</div>
+
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+// мультиплексор 32+JS
+function mulberry(seed){let a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function hash(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+const PRE=['aur','bel','cal','del','ein','fir','gel','ho','in','jun','kel','lu','my','nov','ol','qu','ro','sa','th','un','vel','ver','we'];
+const MID=['a','e','i','o','u','ae','ei'];
+const POST=['ra','sa','lo','me','na','xis','on','um','ic','ar','yx','ko','di','ari'];
+const ADJ=['bright','bold','clear','deep','free','grand','lunar','north','solar','swift','vivid','wide'];
+const NOUN=['orizon','licity','avity','host','light','mark','waves','minds','labs','ship','line','flow'];
+function pick(r,a){return a[Math.floor(r()*a.length)]}
+function coin(name){
+  const r1=mulberry(hash(name)+1),r2=mulberry(hash(name)+2),r3=mulberry(hash(name)+3);
+  const a=((pick(r1,PRE))+(pick(r2,MID))+(pick(r3,POST)));
+  return a.charAt(0).toUpperCase()+a.slice(1);
+}
+function palette(name){
+  const r=mulberry(hash(name)+4);
+  const h=Math.floor(r()*360);
+  const c2=(h+60)%360,c3=(h+180)%360,c4=(h+240)%360;
+  return [hsl(h,70,55),hsl(c2,60,50),hsl(c3,55,62),hsl(c4,65,45)];
+}
+function hsl(h,s,l){return `hsl(${h},${s}%,${l}%)`}
+function tagline(name){
+  const r=mulberry(hash(name)+5);
+  const a=pick(r,ADJ),n=pick(r,NOUN);
+  const forms=['where '+a+' meets the '+n,'made for the '+a+' '+n,'the '+n+' of '+a+' ideas','beyond the '+n+', toward '+a+' horizons'];
+  return forms[Math.floor(r()*forms.length)];
+}
+function logo(name){
+  const r=mulberry(hash(name)+6);
+  const base=hsl(Math.floor(r()*360),70,55);
+  const sec=hsl((Math.floor(r()*360)+120)%360,70,50);
+  const shape=Math.floor(r()*3);
+  let inner='';
+  if(shape===0) inner=`<circle cx="70" cy="70" r="34" fill="${sec}" opacity=".85"><animate attributeName="r" values="34;38;34" dur="4s" repeatCount="indefinite"/></circle>`;
+  else if(shape===1) inner=`<rect x="48" y="48" width="44" height="44" rx="10" fill="${sec}" opacity=".85" transform="rotate(45 70 70)"><animateTransform attributeName="transform" type="rotate" values="45 70 70;60 70 70;45 70 70" dur="5s" repeatCount="indefinite"/></rect>`;
+  else inner=`<path d="M70 40 L92 92 L48 92 Z" fill="${sec}" opacity=".85"><animate attributeName="opacity" values=".85;.6;.85" dur="3s" repeatCount="indefinite"/></path>`;
+  return `<svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Generated logo for ${name}">
+    <rect width="140" height="140" rx="28" fill="${base}"/>${inner}
+    <text x="70" y="124" text-anchor="middle" font-family="system-ui" font-size="11" font-weight="700" fill="#fff" opacity=".9">${name}</text>
+  </svg>`;
+}
+let currentName='',currentPal=[],currTag='',currLogo='';
+function generate(){
+  let seed=document.getElementById('seed').value.trim();
+  if(!seed) seed=pickWord();
+  const name=coin(null,seed);
+  currentPal=palette(seed); currTag=tagline(seed); currLogo=logo(name);
+  currentName=name;
+  document.getElementById('bname').textContent=name;
+  document.getElementById('btag').textContent=currTag;
+  const pal=document.getElementById('bpal');
+  pal.innerHTML=currentPal.map(c=>`<div class="swatch" style="background:${c}">${c}</div>`).join('');
+  document.getElementById('blogo').innerHTML=currLogo;
+  const lc=document.getElementById('logocard'),pc=document.getElementById('palcard');
+  lc.style.display='block';pc.style.display='block';
+}
+function pickWord(){const r=mulberry(Math.floor(Math.random()*1e9));return pick(r,['north','glow','orbit','moss','tide','ember','lantern','drift'])}
+function randSeed(){document.getElementById('seed').value=pickWord();generate()}
+function copyAll(){
+  const txt=`Brand: ${currentName}\nTagline: ${currTag}\nPalette: ${currentPal.join(' | ')}\n\nLogo SVG:\n${currLogo}`;
+  if(navigator.clipboard) navigator.clipboard.writeText(txt);
+  else{const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();}
+  const b=[...document.querySelectorAll('button')].find(x=>x.textContent.includes('Copy Kit'));
+  if(b){b.textContent='✅ Copied!';setTimeout(()=>{b.textContent='📋 Copy Kit'},1500)}
+}
+window.addEventListener('load',()=>{if(!localStorage.getItem('brandseed_ran')){generate();localStorage.setItem('brandseed_ran','1')}});
+</script>
+</body>
+</html>
