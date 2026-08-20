@@ -41,7 +41,11 @@ button{padding:10px 24px;border:none;border-radius:8px;font-weight:600;cursor:po
 .ads a{color:#818cf8}
 .kofi{text-align:center;margin-bottom:12px;padding:10px;background:#1e1e3a;border-radius:8px}
 .kofi a{color:#ff5e5b;font-weight:600;text-decoration:none}
-</style>
+
+.content{margin-top:28px;max-width:720px;margin-left:auto;margin-right:auto;padding:0 6px}
+.content h2{color:#f8fafc;font-size:1.25rem;margin:24px 0 10px}
+.content p{color:#cbd5e1;line-height:1.6;margin-bottom:12px;font-size:.95rem}
+.content strong{color:#e2e8f0}</style>
 </head>
 <body>
 <div class="card">
@@ -77,6 +81,7 @@ function decode(){
 function copy(){out.select();navigator.clipboard.writeText(out.value)}
 </script>
 
+<div class="content"><h2>What is HTML Encoding?</h2><p>HTML encoding converts special characters (&lt;, &gt;, &amp; and quotes) into entities so they display as text instead of being parsed as code. This is essential for escaping user input safely.</p><h2>How to encode HTML entities</h2><p>Paste HTML or text and click encode to convert special characters to entities, avoiding XSS and rendering issues. Everything runs locally in your browser.</p><h2>Why encode HTML</h2><p>Escaping user-generated content prevents cross-site scripting (XSS) attacks and broken layouts. It is a core security practice for web developers.</p><h2>HTML encoding FAQ</h2><p><strong>What is &amp;#60;?</strong> It is the entity for the less-than symbol. <strong>Is encoding reversible?</strong> Yes, decode converts entities back. <strong>Is my content uploaded?</strong> No, local only.</p></div>
 <div id="crypto-donate"></div>
 <script src="donate.js"></script>
 </body>

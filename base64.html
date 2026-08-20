@@ -40,7 +40,11 @@ button{padding:10px 28px;border:none;border-radius:8px;font-weight:600;cursor:po
 .result label{color:#94a3b8;font-size:.85rem}
 .ads{margin-top:20px;padding:12px;background:#1e1e3a;border-radius:8px;text-align:center;font-size:.85rem}
 .ads a{color:#818cf8}
-</style>
+
+.content{margin-top:28px;max-width:720px;margin-left:auto;margin-right:auto;padding:0 6px}
+.content h2{color:#f8fafc;font-size:1.25rem;margin:24px 0 10px}
+.content p{color:#cbd5e1;line-height:1.6;margin-bottom:12px;font-size:.95rem}
+.content strong{color:#e2e8f0}</style>
 </head>
 <body>
 <div class="card">
@@ -70,6 +74,7 @@ function encode(){try{out.value=btoa(inp.value)}catch(e){out.value='Error: inval
 function decode(){try{out.value=atob(inp.value)}catch(e){out.value='Error: not valid Base64'}}
 </script>
 
+<div class="content"><h2>What is Base64?</h2><p>Base64 is an encoding scheme that converts binary data into ASCII text using 64 characters. It is used to safely transmit binary data (images, files, audio) through text-based protocols like email and JSON APIs.</p><h2>How to use the Base64 encoder/decoder</h2><p>Type or paste text and click <strong>Encode</strong> to convert it to Base64, or paste Base64 and click <strong>Decode</strong> to get the original text. Everything happens locally in your browser — no data is uploaded.</p><h2>Common Base64 uses</h2><p>Base64 is common for embedding images in HTML/CSS, encoding authentication tokens in HTTP headers, and transferring binary attachments. Understanding encode/decode is essential for many developers and sysadmins.</p><h2>Base64 FAQ</h2><p><strong>Is Base64 encryption?</strong> No, it is encoding, not encryption — it can be reversed instantly. <strong>Does Base64 reduce size?</strong> It increases size by about 33%. <strong>Is my data safe?</strong> Yes, everything runs locally.</p></div>
 <div id="crypto-donate"></div>
 <script src="donate.js"></script>
 </body>

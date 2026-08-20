@@ -40,7 +40,11 @@ button{padding:8px 20px;border:none;border-radius:8px;font-weight:600;cursor:poi
 .ads a{color:#818cf8}
 .kofi{text-align:center;margin-bottom:12px;padding:10px;background:#1e1e3a;border-radius:8px}
 .kofi a{color:#ff5e5b;font-weight:600;text-decoration:none}
-</style>
+
+.content{margin-top:28px;max-width:720px;margin-left:auto;margin-right:auto;padding:0 6px}
+.content h2{color:#f8fafc;font-size:1.25rem;margin:24px 0 10px}
+.content p{color:#cbd5e1;line-height:1.6;margin-bottom:12px;font-size:.95rem}
+.content strong{color:#e2e8f0}</style>
 </head>
 <body>
 <div class="card">
@@ -93,6 +97,7 @@ function beautify(){
 function copy(){out.select();navigator.clipboard.writeText(out.value);st.textContent='📋 Copied!'}
 </script>
 
+<div class="content"><h2>What is a JavaScript Minifier?</h2><p>A JavaScript minifier (or minifier) compresses your JS code by removing whitespace, comments, and renaming local variables to shorter names. This shrinks file size and speeds up page load.</p><h2>How to minify JavaScript</h2><p>Paste your code and click minify. The tool compresses it instantly in your browser. Minification is a best practice for production deployment alongside bundling.</p><h2>Why minify JavaScript</h2><p>Smaller JS files transfer and execute faster, improving user experience and search rankings. Most production sites minify all their scripts.</p><h2>JS minifier FAQ</h2><p><strong>Does minification change behavior?</strong> No, if the code is valid. <strong>Should I keep a source map?</strong> It helps debugging. <strong>Is my code uploaded?</strong> No, everything runs locally.</p></div>
 <div id="crypto-donate"></div>
 <script src="donate.js"></script>
 </body>

@@ -39,7 +39,11 @@ button:hover{background:#4f46e5}
 .bulk textarea{width:100%;padding:12px;border-radius:8px;background:#334155;color:#e2e8f0;border:1px solid #475569;font-family:monospace;font-size:.85rem;min-height:120px;margin-top:8px}
 .ads{margin-top:20px;padding:12px;background:#1e1e3a;border-radius:8px;font-size:.85rem}
 .ads a{color:#818cf8}
-</style>
+
+.content{margin-top:28px;max-width:720px;margin-left:auto;margin-right:auto;padding:0 6px}
+.content h2{color:#f8fafc;font-size:1.25rem;margin:24px 0 10px}
+.content p{color:#cbd5e1;line-height:1.6;margin-bottom:12px;font-size:.95rem}
+.content strong{color:#e2e8f0}</style>
 </head>
 <body>
 <div class="card">
@@ -70,6 +74,7 @@ function bulk(){const s=document.getElementById('bulkSection');s.style.display='
 gen();
 </script>
 
+<div class="content"><h2>What is a UUID?</h2><p>A UUID (Universally Unique Identifier) is a 128-bit number used to uniquely identify information in computer systems. Version 4 UUIDs are randomly generated, making collisions astronomically unlikely.</p><h2>How to use the UUID generator</h2><p>Click generate and the tool creates a new UUID v4 instantly. A UUID looks like this: 123e4567-e89b-12d3-a456-426614174000. Copy it for use in databases, APIs, and distributed systems.</p><h2>Why use UUIDs?</h2><p>UUIDs are ideal for primary keys, file names, session identifiers, and tracking — because they are unique without a central coordinator. This is why distributed applications rely on them.</p><h2>UUID FAQ</h2><p><strong>Are UUIDs really unique?</strong> Version 4 has 122 random bits — effectively unique. <strong>Can I use them as database keys?</strong> Yes, widely supported. <strong>Is there a limit?</strong> Practically no limit.</p></div>
 <div id="crypto-donate"></div>
 <script src="donate.js"></script>
 </body>

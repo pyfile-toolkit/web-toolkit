@@ -39,7 +39,11 @@ button{padding:8px 20px;border:none;border-radius:8px;font-weight:600;cursor:poi
 .stats{text-align:center;margin:8px 0;font-size:.8rem;color:#94a3b8}
 .ads{margin-top:16px;padding:12px;background:#1e1e3a;border-radius:8px;text-align:center;font-size:.85rem}
 .ads a{color:#818cf8}
-</style>
+
+.content{margin-top:28px;max-width:720px;margin-left:auto;margin-right:auto;padding:0 6px}
+.content h2{color:#f8fafc;font-size:1.25rem;margin:24px 0 10px}
+.content p{color:#cbd5e1;line-height:1.6;margin-bottom:12px;font-size:.95rem}
+.content strong{color:#e2e8f0}</style>
 </head>
 <body>
 <div class="card">
@@ -72,6 +76,7 @@ function copyResult(){if(!out.value)return;navigator.clipboard.writeText(out.val
 format();
 </script>
 
+<div class="content"><h2>What is a JSON Formatter?</h2><p>A JSON formatter (also called a JSON prettifier or beautifier) takes raw, minified JSON and reformats it with proper indentation so humans can read it easily. Validating your JSON catches syntax errors in config files, API responses, and data exports before they break your application.</p><h2>How to use this JSON validator</h2><p>Paste your JSON into the input box and click <strong>Format</strong> to beautify it, <strong>Minify</strong> to compress it, or <strong>Validate</strong> to check for errors. The tool runs 100% in your browser — your data never leaves your device.</p><h2>Common JSON use cases</h2><p>Developers use JSON formatting when working with REST APIs, database exports, machine-learning training data, and configuration files. A validated, formatted JSON makes debugging and collaboration much faster.</p><h2>JSON formatting FAQ</h2><p><strong>Why is my JSON not formatting?</strong> Usually a trailing comma or an extra quote. The validator will point to the exact line. <strong>Is my data uploaded?</strong> No — everything runs locally in your browser.</p></div>
 <div id="crypto-donate"></div>
 <script src="donate.js"></script>
 </body>

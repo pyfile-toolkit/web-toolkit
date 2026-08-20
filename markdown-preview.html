@@ -41,7 +41,11 @@ button{padding:8px 16px;border:none;border-radius:8px;font-weight:600;cursor:poi
 .btn-copy{background:#64748b;color:#fff}
 .ads{margin-top:16px;padding:12px;background:#1e1e3a;border-radius:8px;text-align:center;font-size:.85rem}
 .ads a{color:#818cf8}
-</style>
+
+.content{margin-top:28px;max-width:720px;margin-left:auto;margin-right:auto;padding:0 6px}
+.content h2{color:#f8fafc;font-size:1.25rem;margin:24px 0 10px}
+.content p{color:#cbd5e1;line-height:1.6;margin-bottom:12px;font-size:.95rem}
+.content strong{color:#e2e8f0}</style>
 </head>
 <body>
 <div class="card">
@@ -105,6 +109,7 @@ render();
 
 function exportHTML(){
   const blob=new Blob(['<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Preview</title></head><body>'+prev.innerHTML+'
+<div class="content"><h2>What is Markdown?</h2><p>Markdown is a lightweight markup language that formats text using simple symbols — #, *, and >. It is widely used for README files, docs, forums, and notes because it is readable both raw and rendered.</p><h2>How to use the Markdown previewer</h2><p>Type Markdown on the left; the formatted preview updates live on the right. Export to HTML or MD when done. Writing in Markdown keeps your content structured and portable.</p><h2>Why use Markdown</h2><p>Markdown is fast, version-control friendly, and converts easily to HTML, PDF, and more. It is the standard for developer documentation.</p><h2>Markdown FAQ</h2><p><strong>Is Markdown hard to learn?</strong> No, most syntax is intuitive. <strong>Can I use it in apps?</strong> Yes, widely supported. <strong>Is my text uploaded?</strong> No, local only.</p></div>
 <div id="crypto-donate"></div>
 <script src="donate.js"></script>
 </body></html>'],{type:'text/html'});
@@ -113,6 +118,7 @@ function exportHTML(){
 function copyPreview(){navigator.clipboard.writeText(prev.innerHTML)}
 </script>
 
+<div class="content"><h2>What is Markdown?</h2><p>Markdown is a lightweight markup language that formats text using simple symbols — #, *, and >. It is widely used for README files, docs, forums, and notes because it is readable both raw and rendered.</p><h2>How to use the Markdown previewer</h2><p>Type Markdown on the left; the formatted preview updates live on the right. Export to HTML or MD when done. Writing in Markdown keeps your content structured and portable.</p><h2>Why use Markdown</h2><p>Markdown is fast, version-control friendly, and converts easily to HTML, PDF, and more. It is the standard for developer documentation.</p><h2>Markdown FAQ</h2><p><strong>Is Markdown hard to learn?</strong> No, most syntax is intuitive. <strong>Can I use it in apps?</strong> Yes, widely supported. <strong>Is my text uploaded?</strong> No, local only.</p></div>
 <div id="crypto-donate"></div>
 <script src="donate.js"></script>
 </body>

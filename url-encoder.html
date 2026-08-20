@@ -41,7 +41,11 @@ button{padding:10px 24px;border:none;border-radius:8px;font-weight:600;cursor:po
 .ads a{color:#818cf8}
 .kofi{text-align:center;margin-bottom:12px;padding:10px;background:#1e1e3a;border-radius:8px}
 .kofi a{color:#ff5e5b;font-weight:600;text-decoration:none}
-</style>
+
+.content{margin-top:28px;max-width:720px;margin-left:auto;margin-right:auto;padding:0 6px}
+.content h2{color:#f8fafc;font-size:1.25rem;margin:24px 0 10px}
+.content p{color:#cbd5e1;line-height:1.6;margin-bottom:12px;font-size:.95rem}
+.content strong{color:#e2e8f0}</style>
 </head>
 <body>
 <div class="card">
@@ -76,6 +80,7 @@ function encodeURI(){try{out.value=encodeURI(inp.value)}catch(e){out.value='Erro
 function copy(){out.select();navigator.clipboard.writeText(out.value)}
 </script>
 
+<div class="content"><h2>What is a URL Encoder?</h2><p>URL encoding (percent-encoding) converts special characters into a safe format for URLs, so spaces, ampersands, and symbols don't break your links or query parameters.</p><h2>How to encode/decode a URL</h2><p>Paste your URL and click encode to make it safe for a link, or decode to read a percent-encoded URL. It runs locally in your browser — nothing is uploaded.</p><h2>Why URL encoding matters</h2><p>Properly encoded URLs prevent broken links, missing parameters, and security issues. Every web developer needs a reliable URL encoder/decoder.</p><h2>URL encoding FAQ</h2><p><strong>What does %20 mean?</strong> It is a space in URL encoding. <strong>Is encoding automatic?</strong> Browsers encode automatically, but manual encoding helps with APIs and links. <strong>Is my data safe?</strong> Yes, local only.</p></div>
 <div id="crypto-donate"></div>
 <script src="donate.js"></script>
 </body>

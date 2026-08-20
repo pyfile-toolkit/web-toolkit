@@ -40,7 +40,11 @@ button{padding:8px 20px;border:none;border-radius:8px;font-weight:600;cursor:poi
 .ads a{color:#818cf8}
 .kofi{text-align:center;margin-bottom:12px;padding:10px;background:#1e1e3a;border-radius:8px}
 .kofi a{color:#ff5e5b;font-weight:600;text-decoration:none}
-</style>
+
+.content{margin-top:28px;max-width:720px;margin-left:auto;margin-right:auto;padding:0 6px}
+.content h2{color:#f8fafc;font-size:1.25rem;margin:24px 0 10px}
+.content p{color:#cbd5e1;line-height:1.6;margin-bottom:12px;font-size:.95rem}
+.content strong{color:#e2e8f0}</style>
 </head>
 <body>
 <div class="card">
@@ -99,6 +103,7 @@ function beautify(){
 function copy(){out.select();navigator.clipboard.writeText(out.value);st.textContent='📋 Copied!'}
 </script>
 
+<div class="content"><h2>What is a CSS Minifier?</h2><p>A CSS minifier removes unnecessary characters from your stylesheet — whitespace, comments, and redundant syntax — without changing how it renders. Smaller CSS files load faster, which improves page speed and Core Web Vitals.</p><h2>How to minify CSS</h2><p>Paste your CSS and click minify. The tool strips comments and whitespace instantly, all in your browser. Minifying is a standard step in web performance optimization alongside JavaScript compression.</p><h2>Why minify matters</h2><p>Minified CSS reduces download size and parse time, which matters for mobile users and slow connections. Combined with gzip, minification is one of the easiest performance wins.</p><h2>CSS minifier FAQ</h2><p><strong>Will minifying break my site?</strong> No, if your CSS is valid. <strong>Is it reversible?</strong> You can keep the original as a comment. <strong>Does it run locally?</strong> Yes, nothing is uploaded.</p></div>
 <div id="crypto-donate"></div>
 <script src="donate.js"></script>
 </body>
