@@ -87,7 +87,7 @@ button{padding:12px 26px;border:none;border-radius:10px;cursor:pointer;font-weig
 <div class="actions">
   <button class="btn-secondary" onclick="copyAll()">📋 Copy Kit</button>
   <button class="btn-secondary" onclick="shareBrand()">🔗 Share</button>
-  <button class="btn-primary" onclick="generate()">🔄 New Variation</button>
+  <button class="btn-primary" onclick="newVariation()">🔄 New Variation</button>
 </div>
 </div>
 
@@ -117,9 +117,9 @@ button{padding:12px 26px;border:none;border-radius:10px;cursor:pointer;font-weig
 // мультиплексор 32+JS
 function mulberry(seed){let a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 function hash(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
-const PRE=['aur','bel','cal','del','ein','fir','gel','ho','in','jun','kel','lu','my','nov','ol','qu','ro','sa','th','un','vel','ver','we'];
-const MID=['a','e','i','o','u','ae','ei'];
-const POST=['ra','sa','lo','me','na','xis','on','um','ic','ar','yx','ko','di','ari'];
+const PRE=['aur','bel','cal','del','ein','fir','gel','ho','in','jun','kel','lu','my','nov','ol','qu','ro','sa','th','un','vel','ver','we','alp','bro','cy','dra','es','fal','gra','hy','ir','jol','kar','lum','mor','neva','or','pyr','rel','syl','tor','ul','va','win','xa','yel','zor','avi','ben','cri','dur','ere','fam','gor','hem','ivo','jor','kre','lea','mir','nuo','ombr','peo','rim','sor','tray','uma','vy','wren','xan'];
+const MID=['a','e','i','o','u','ae','ei','ou','io','ea','ui','ao','oa','ee','oo'];
+const POST=['ra','sa','lo','me','na','xis','on','um','ic','ar','yx','ko','di','ari','den','tus','vek','son','lyn','del','mor','tin','ops','ore','ith','ane','idi','eno','ora','ume','ika','all','os','yn','eb','ir'];
 const ADJ=['bright','bold','clear','deep','free','grand','lunar','north','solar','swift','vivid','wide'];
 const NOUN=['orizon','licity','avity','host','light','mark','waves','minds','labs','ship','line','flow'];
 function pick(r,a){return a[Math.floor(r()*a.length)]}
@@ -130,9 +130,23 @@ function coin(name){
 }
 function palette(name){
   const r=mulberry(hash(name)+4);
-  const h=Math.floor(r()*360);
-  const c2=(h+60)%360,c3=(h+180)%360,c4=(h+240)%360;
-  return [hsl(h,70,55),hsl(c2,60,50),hsl(c3,55,62),hsl(c4,65,45)];
+  // Осознанные палитры: [primary, secondary, accent, background]
+  // Гармоничные схемы вместо случайных hue-сдвигов, каждая роль осмысленна
+  const schemes=[
+    [0,12,28,48],   // analogous
+    [0,38,205,255], // complementary
+    [0,180,240,260],// triadic
+    [0,25,120,60]   // split-complementary
+  ];
+  const scheme=schemes[Math.floor(r()*schemes.length)];
+  const base=Math.floor(r()*340);
+  const rot=(h)=>Math.round((base+h)%360);
+  return {
+    primary:hsl(rot(scheme[0]),72,58),
+    secondary:hsl(rot(scheme[1]),58,50),
+    accent:hsl(rot(scheme[2]),66,48),
+    background:hsl(rot(scheme[3]),55,60)
+  };
 }
 function hsl(h,s,l){return `hsl(${h},${s}%,${l}%)`}
 function tagline(name){
@@ -156,24 +170,44 @@ function logo(name){
   </svg>`;
 }
 let currentName='',currentPal=[],currTag='',currLogo='';
-function generate(){
-  let seed=document.getElementById('seed').value.trim();
-  if(!seed) seed=pickWord();
+function build(seed){
   const name=coin(seed);
   currentPal=palette(seed); currTag=tagline(seed); currLogo=logo(name);
   currentName=name;
   document.getElementById('bname').textContent=name;
   document.getElementById('btag').textContent=currTag;
   const pal=document.getElementById('bpal');
-  pal.innerHTML=currentPal.map(c=>`<div class="swatch" style="background:${c}">${c}</div>`).join('');
+  const roles={primary:'Primary',secondary:'Secondary',accent:'Accent',background:'Background'};
+  pal.innerHTML=Object.keys(currentPal).map(k=>`<div class="swatch" style="background:${currentPal[k]}"><span>${roles[k]}</span><br>${currentPal[k]}</div>`).join('');
   document.getElementById('blogo').innerHTML=currLogo;
   const lc=document.getElementById('logocard'),pc=document.getElementById('palcard');
   lc.style.display='block';pc.style.display='block';
 }
-function pickWord(){const r=mulberry(Math.floor(Math.random()*1e9));return pick(r,['north','glow','orbit','moss','tide','ember','lantern','drift'])}
-function randSeed(){document.getElementById('seed').value=pickWord();generate()}
+// "Grow Brand" и кнопка вариации - детерминированный результат по введённому seed
+function generate(){
+  let seed=document.getElementById('seed').value.trim();
+  if(!seed) seed=pickWord();
+  document.getElementById('seed').value=seed;
+  build(seed);
+}
+// "New Variation" - НОВЫЙ случайный seed каждый раз, СУЩЕСТВЕННО отличается
+function newVariation(){
+  let seed=randomVariationSeed();
+  document.getElementById('seed').value=seed;
+  build(seed);
+}
+// "Random" - случайное слово из тематического пула
+function randSeed(){document.getElementById('seed').value=pickWord();build(document.getElementById('seed').value)}
+function randomVariationSeed(){
+  const r=mulberry(Math.floor(Math.random()*4294967296));
+  // создаём комбинацию из слогов, чтобы каждый раз было по-разному
+  const prefixes=PRE.concat(['bro','sty','zeph','quan','vend','wisp','tinn','akra','bell','crisp','dune','fable','glint','hale','jov','kine','lumen','mire','nord','pike','quill','rock','sable','tide','ursa','vira','wren','xylo','yonder','zephyr']);
+  const middles=['ar','or','el','il','un','as','ev','os','ani','ora','in'];
+  const a=pick(r,prefixes)+pick(r,middles)+pick(r,r()<0.5?['','ium','ica','ara']:['lo','no','to']);
+  return a;
+}
 function copyAll(){
-  const txt=`Brand: ${currentName}\nTagline: ${currTag}\nPalette: ${currentPal.join(' | ')}\n\nLogo SVG:\n${currLogo}`;
+  const palTxt=currentPal?Object.values(currentPal).join(' | '):'';const txt=`Brand: ${currentName}\nTagline: ${currTag}\nPalette: ${palTxt}\n\nLogo SVG:\n${currLogo}`;
   if(navigator.clipboard) navigator.clipboard.writeText(txt);
   else{const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();}
   const b=[...document.querySelectorAll('button')].find(x=>x.textContent.includes('Copy Kit'));
@@ -194,7 +228,7 @@ function copyShareLink(url){
   const b=[...document.querySelectorAll('button')].find(x=>x.textContent.includes('Share'));
   if(b){b.textContent='🔗 Copied link!';setTimeout(()=>{b.textContent='🔗 Share'},1500)}
 }
-window.addEventListener('load',()=>{const us=seedFromUrl();if(us){document.getElementById('seed').value=us;generate()}else if(!localStorage.getItem('brandseed_ran')){generate();localStorage.setItem('brandseed_ran','1')}});
+window.addEventListener('load',()=>{const us=seedFromUrl();if(us){document.getElementById('seed').value=us;generate()}else if(!localStorage.getItem('brandseed_ran')){newVariation();localStorage.setItem('brandseed_ran','1')}});
 </script>
 </body>
 </html>
