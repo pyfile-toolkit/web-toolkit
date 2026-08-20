@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Converter — Convert Text to UPPERCASE, lowercase, Title Case</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Case Converter",
+  "operatingSystem": "ANY",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Convert text to UPPERCASE, lowercase, Title Case, Sentence case, aLtErNaTiNg and more. Instant, free, private.",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<meta name="description" content="Free online case converter: UPPERCASE, lowercase, Title Case, Sentence case, alternating case, and inverted case in one click. Private — text never leaves your browser.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:20px}
+.card{background:#1e293b;border-radius:16px;padding:28px;max-width:720px;width:100%}
+h1{color:#f8fafc;margin-bottom:4px;font-size:1.4rem}
+.sub{color:#94a3b8;margin-bottom:20px;font-size:.9rem}
+textarea{width:100%;min-height:160px;padding:14px;border-radius:10px;background:#0f172a;color:#e2e8f0;border:1px solid #475569;font-size:1rem;line-height:1.5;resize:vertical}
+.outbox{width:100%;min-height:160px;padding:14px;border-radius:10px;background:#0f172a;color:#e2e8f0;border:1px solid #818cf8;font-size:1rem;line-height:1.5;margin-top:12px;white-space:pre-wrap;word-break:break-word}
+.cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:16px}
+.case{background:#334155;border-radius:10px;padding:12px;text-align:center;cursor:pointer;border:none;color:#e2e8f0;font-size:.95rem;transition:background .15s}
+.case:hover{background:#4f46e5}
+.case .n{font-weight:700;color:#818cf8;display:block;margin-bottom:2px}
+.btns{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+button{padding:9px 22px;background:#6366f1;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.9rem}
+button:hover{background:#4f46e5}
+.btn-ghost{background:#64748b}
+.kofi{text-align:center;margin:16px 0 6px;padding:10px;background:#1e1e3a;border-radius:8px}
+.kofi a{color:#ff5e5b;font-weight:600;text-decoration:none}
+.ads{margin-top:10px;font-size:.85rem;text-align:center}
+.ads a{color:#818cf8;margin:0 6px}
+.content{margin-top:30px;max-width:720px;padding:0 6px}
+.content h2{color:#f8fafc;font-size:1.15rem;margin:22px 0 10px}
+.content p{color:#cbd5e1;line-height:1.65;margin-bottom:12px;font-size:.95rem}
+.content strong{color:#e2e8f0}
+@media(max-width:520px){body{padding:12px}.card{padding:18px}.content h2{font-size:1.05rem}}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>Case Converter</h1>
+<p class="sub">Paste your text, then pick a case. Everything runs locally — nothing is uploaded.</p>
+<textarea id="inp" placeholder="Type or paste text to convert..."></textarea>
+<div class="outbox" id="out" placeholder="Converted text appears here..."></div>
+<div class="cases" id="cases"></div>
+<div class="btns">
+  <button class="btn-ghost" onclick="copyOut()">📋 Copy Result</button>
+  <button class="btn-ghost" onclick="clearAll()">🗑 Clear</button>
+</div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this tool on Ko-fi</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/word-counter.html">Word Counter</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/character-counter.html">Character Counter</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/json-formatter.html">JSON Formatter</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+</div>
+
+<div class="content">
+<h2>Case Converter — Transform Text Case in One Click</h2>
+<p>This free case converter turns any text into <strong>UPPERCASE</strong>, <strong>lowercase</strong>, <strong>Title Case</strong>, <strong>Sentence case</strong>, alternating case, or inverted case instantly. It works 100% in your browser, so your text is never sent to a server and your clipboard content stays private.</p>
+<h2>Available Text Cases</h2>
+<p><strong>UPPERCASE</strong> — all letters capital, ideal for headings and acronyms. <strong>lowercase</strong> — all letters small, for slugs and clean URLs. <strong>Title Case</strong> — every word capitalized with a smart list of small words (a, an, the, and, of…) left lowercase. <strong>Sentence case</strong> — only the first word and proper nouns capitalized, the natural style for articles. <strong>aLtErNaTiNg</strong> — alternating upper and lower, popular for social media emphasis. <strong>InVeRsE</strong> — flips the case of every letter in your text.</p>
+<h2>Why Use a Case Converter</h2>
+<p>Consistent casing improves readability, keeps brand and UI copy uniform, and simplifies everyday tasks: converting an ALL-CAPS email to a polite sentence case, fixing title case for headlines and blog post titles, or generating lowercase slugs from mixed text. Because the tool runs locally, it handles long documents instantly without any delay.</p>
+<h2>Case Converter FAQ</h2>
+<p><strong>Is my text stored or sent anywhere?</strong> No — all conversion happens in your browser, and nothing is ever uploaded or saved. <strong>Does Title Case handle small words?</strong> Yes, it keeps short words like a, an, the, and, or, of, to, for, on, at, in lowercase unless they start the title. <strong>Can I copy the result?</strong> Use the Copy Result button to put the converted text on your clipboard.</p>
+</div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+const inp = document.getElementById('inp');
+const out = document.getElementById('out');
+
+function toTitle(s){
+  const small = new Set(['a','an','the','and','or','but','nor','for','so','yet','of','to','in','on','at','by','with','from','up','down','off','over','under','as','is','are','was','were']);
+  return s.replace(/\w[\w']*/g, (w, idx, str)=>{
+    const prev = str.slice(0, idx).trimEnd();
+    const isFirst = prev === '' || /[:.!?]/.test(prev.slice(-1));
+    const low = w.toLowerCase();
+    if(!isFirst && small.has(low)) return low;
+    return w.charAt(0).toUpperCase() + low.slice(1);
+  });
+}
+function toSentence(s){
+  return s.replace(/(^\s*|\.\s+|\!\s+|\?\s+|\n\s*|:\s*)(\w)/g, (m,a,b)=>a+b.toUpperCase());
+}
+function toAlt(s){
+  let i=0;
+  return s.replace(/[a-z]/gi, c=>{
+    const r=(i++)%2===0 ? c.toUpperCase() : c.toLowerCase();
+    return r;
+  });
+}
+function toInvert(s){
+  return s.replace(/[a-z]/gi, c=> c===c.toUpperCase() ? c.toLowerCase() : c.toUpperCase());
+}
+
+const cases = [
+  {name:'UPPERCASE', n:'ABC', fn:s=>s.toUpperCase()},
+  {name:'lowercase', n:'abc', fn:s=>s.toLowerCase()},
+  {name:'Title Case', n:'Abc', fn:toTitle},
+  {name:'Sentence case', n:'Abc abc', fn:toSentence},
+  {name:'aLtErNaTiNg', n:'AbC', fn:toAlt},
+  {name:'InVeRsE', n:'AbC', fn:toInvert}
+];
+const wrap = document.getElementById('cases');
+cases.forEach((c,i)=>{
+  const b = document.createElement('button');
+  b.className = 'case';
+  b.innerHTML = '<span class="n">'+c.name+'</span>'+c.fn('sample text');
+  b.onclick = ()=>{ out.textContent = c.fn(inp.value); };
+  wrap.appendChild(b);
+});
+function copyOut(){navigator.clipboard.writeText(out.textContent);}
+function clearAll(){inp.value='';out.textContent='';inp.focus();}
+</script>
+</body>
+</html>
