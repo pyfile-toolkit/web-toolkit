@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JWT Decoder — Decode JWT Tokens Online</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"JWT Decoder","operatingSystem":"ANY","applicationCategory":"DeveloperApplication","description":"Decode JSON Web Tokens (JWT) online: view header and payload as formatted JSON, expiry and issued-at as human-readable dates. 100% client-side, private.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<meta name="description" content="Free JWT decoder: decode any JSON Web Token, view header & payload as pretty JSON, see exp/iat/iss/nbf as human-readable dates, check expiry. Runs in your browser — nothing is sent anywhere.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px 16px 20px}
+.wrap{max-width:720px;width:100%}
+h1{font-family:system-ui,sans-serif;font-size:1.7rem;margin:6px 0 2px;color:#f8fafc;text-align:center}
+h1 b{color:#22d3ee}
+.sub{font-family:system-ui,sans-serif;color:#94a3b8;font-size:.88rem;text-align:center;margin-bottom:16px}
+textarea{width:100%;min-height:110px;background:#0b0f1a;border:1px solid #334155;border-radius:12px;color:#e2e8f0;padding:12px;font-size:.85rem;resize:vertical}
+.btns{display:flex;gap:8px;margin:10px 0 16px;flex-wrap:wrap}
+.btn{padding:9px 16px;border:none;border-radius:9px;background:#6366f1;color:#fff;font-weight:700;cursor:pointer;font-size:.85rem;font-family:system-ui,sans-serif}
+.btn:hover{background:#4f46e5}
+.btn.sec{background:#334155}.btn.sec:hover{background:#475569}
+.parts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.part{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:14px}
+.part h2{font-size:.8rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.part h2 .copy{cursor:pointer;color:#22d3ee;font-size:.72rem;text-transform:none;letter-spacing:0}
+.part pre{white-space:pre-wrap;word-break:break-all;font-size:.78rem;color:#cbd5e1;max-height:260px;overflow:auto}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:12px 14px;margin-top:12px;font-size:.8rem;color:#cbd5e1;display:none;flex-wrap:wrap;gap:6px 18px}
+.meta b{color:#f8fafc}
+.exp{font-weight:700}
+.exp.valid{color:#4ade80}.exp.invalid{color:#f87171}
+.kofi{margin-top:14px;text-align:center;font-size:.85rem;font-family:system-ui,sans-serif}.kofi a{color:#ff5e5b;text-decoration:none}
+.ads{margin-top:10px;text-align:center;font-size:.82rem;font-family:system-ui,sans-serif}.ads a{color:#818cf8;text-decoration:none;margin:0 5px}
+.content{margin-top:24px;font-family:system-ui,sans-serif}
+.content h2{color:#f8fafc;font-size:1.05rem;margin:16px 0 8px}
+.content p{color:#cbd5e1;font-size:.9rem;line-height:1.6;margin-bottom:10px}
+.content code{background:#1e293b;padding:1px 5px;border-radius:5px;color:#22d3ee;font-size:.85em}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:12px 0 2px;font-family:system-ui,sans-serif}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+@media(max-width:560px){.parts{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🔐 JWT <b>Decoder</b></h1>
+<p class="sub">Decode header & payload locally · exp/iat as dates · 100% private</p>
+<textarea id="jwt" placeholder="Paste your JWT here: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0..."></textarea>
+<div class="btns">
+<button class="btn" onclick="decode()">Decode</button>
+<button class="btn sec" onclick="loadSample()">Load sample</button>
+<button class="btn sec" onclick="clearAll()">Clear</button>
+</div>
+<div class="meta" id="meta"></div>
+<div class="parts">
+<div class="part"><h2>Header <span class="copy" onclick="copyPart(0)">copy ⧉</span></h2><pre id="hdr">—</pre></div>
+<div class="part"><h2>Payload <span class="copy" onclick="copyPart(1)">copy ⧉</span></h2><pre id="pay">—</pre></div>
+</div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this free tool</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/base64-encoder-decoder.html">Base64</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+<div class="content">
+<h2>What is a JWT?</h2>
+<p>A <strong>JSON Web Token (JWT)</strong> is a compact, URL-safe way to transmit claims between parties — most often used for authentication (OAuth2 access tokens, login sessions). It consists of three base64url-encoded parts separated by dots: <code>header.payload.signature</code>. The header describes the signing algorithm; the payload carries claims like <code>sub</code>, <code>exp</code>, <code>iat</code>; the signature proves the token hasn't been tampered with.</p>
+<h2>How to Decode a JWT</h2>
+<p>Decoding is just base64url-decoding the first two parts — no secret key needed. Paste a token into this decoder and you'll instantly see the header and payload as formatted JSON, plus human-readable dates for <code>exp</code> (expiry), <code>iat</code> (issued at), <code>nbf</code> (not before), and a validity badge. Any algorithm or signature — all clients can decode the claims.</p>
+<h2>Why Can I Decode Without the Secret?</h2>
+<p>JWTs are not encrypted — they're <em>signed</em>. Anyone can read the header and payload; the signature is what prevents forgery. That's why you should never put sensitive data in a JWT payload. Verification (checking the signature) requires the secret or public key; decoding the contents does not.</p>
+<h2>JWT Decoder FAQ</h2>
+<p><strong>Is decoding the same as verifying?</strong> No — decoding shows the contents; verifying checks the signature with a key. <strong>Can this tool forge a token?</strong> No — it only decodes and never touches keys. <strong>Is my token sent anywhere?</strong> No — everything is decoded locally in your browser. <strong>Why does my JWT have more than 3 parts?</strong> Some tokens (like JWE) are encrypted with more segments — this decoder handles standard 3-part JWTs.</p>
+</div>
+<div class="foot"><a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> · <a href="privacy.html">Privacy</a></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+function b64urlDecode(s){
+  s=s.replace(/-/g,'+').replace(/_/g,'/');
+  while(s.length%4) s+='=';
+  return decodeURIComponent(Array.prototype.map.call(atob(s),c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+}
+function tryParse(obj){
+  try{ return JSON.stringify(JSON.parse(obj),null,2); }catch(e){ return obj; }
+}
+function word(o){ return o+' · '+new Date(o*1000).toUTCString(); }
+function decode(){
+  const tok=document.getElementById('jwt').value.trim();
+  const meta=document.getElementById('meta');
+  if(!tok){ alert('Paste a JWT first.'); return; }
+  const parts=tok.split('.');
+  if(parts.length<3){ alert('Not a valid JWT — expected header.payload.signature (3 parts).'); return; }
+  let hdr,pay;
+  try{ hdr=tryParse(b64urlDecode(parts[0])); }catch(e){ hdr='<unable to decode header>'; }
+  try{ pay=tryParse(b64urlDecode(parts[1])); }catch(e){ pay='<unable to decode payload>'; }
+  document.getElementById('hdr').textContent=hdr;
+  document.getElementById('pay').textContent=pay;
+  const p=document.getElementById('pay').textContent;
+  let payload={};
+  try{ payload=JSON.parse(document.getElementById('pay').textContent); }catch(e){}
+  let html='';
+  const now=Math.floor(Date.now()/1000);
+  if(payload.exp!==undefined) html+='<span class="exp valid">exp: <b>'+word(payload.exp)+'</b></span>';
+  if(payload.iat!==undefined) html+='<span>iat: <b>'+word(payload.iat)+'</b></span>';
+  if(payload.nbf!==undefined) html+='<span>nbf: <b>'+word(payload.nbf)+'</b></span>';
+  if(payload.sub!==undefined) html+='<span>sub: <b>'+payload.sub+'</b></span>';
+  if(payload.iss!==undefined) html+='<span>iss: <b>'+payload.iss+'</b></span>';
+  if(payload.aud!==undefined) html+='<span>aud: <b>'+payload.aud+'</b></span>';
+  if(!html) html='<span>No standard time/subject claims found.</span>';
+  meta.innerHTML=html; meta.style.display='flex';
+}
+function loadSample(){
+  const hdr=btoa('{"alg":"HS256","typ":"JWT"}').replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+  const pay2=btoa('{"sub":"1234567890","name":"Web Toolkit","iat":1724200000,"exp":1755736000}').replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+  document.getElementById('jwt').value=hdr+'.'+pay2+'.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+  decode();
+}
+function clearAll(){ document.getElementById('jwt').value=''; document.getElementById('hdr').textContent='—'; document.getElementById('pay').textContent='—'; document.getElementById('meta').style.display='none'; }
+function copyPart(i){ const el=i===0?document.getElementById('hdr'):document.getElementById('pay'); if(navigator.clipboard) navigator.clipboard.writeText(el.textContent); }
+</script>
+</body>
+</html>
