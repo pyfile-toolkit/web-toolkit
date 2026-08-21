@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Color Contrast Checker — WCAG AA/AAA Accessibility Tool</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Color Contrast Checker","operatingSystem":"ANY","applicationCategory":"DesignApplication","description":"Free WCAG color contrast checker: compute the contrast ratio between two colors and see AA/AAA pass/fail for normal and large text. Live preview, 100% in your browser.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<meta name="description" content="Free WCAG contrast checker: test text/background color pairs for accessibility. Live contrast ratio (like 4.5:1), AA & AAA badges for normal and large text. Instant, private, in your browser.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px 16px 20px}
+.wrap{max-width:620px;width:100%}
+h1{font-size:1.7rem;margin:6px 0 2px;color:#f8fafc;text-align:center}
+h1 b{color:#22d3ee}
+.sub{color:#94a3b8;font-size:.88rem;text-align:center;margin-bottom:14px}
+.pickers{display:flex;gap:14px;justify-content:center;margin-bottom:16px;flex-wrap:wrap}
+.pick{background:#1e293b;border:1px solid #334155;border-radius:14px;padding:12px 16px;text-align:center;min-width:150px}
+.pick .l{font-size:.72rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.pick input[type=color]{width:70px;height:44px;border:none;border-radius:8px;background:transparent;cursor:pointer}
+.pick input[type=text]{width:96px;margin-top:8px;padding:7px;border-radius:8px;border:1px solid #334155;background:#0b0f1a;color:#f8fafc;font-size:.9rem;text-align:center;text-transform:uppercase}
+.ratioBox{background:#1e293b;border:1px solid #334155;border-radius:16px;padding:20px;text-align:center;margin-bottom:16px}
+.ratioBox .v{font-size:2.4rem;font-weight:900;color:#f8fafc}
+.ratioBox .p{color:#94a3b8;font-size:.85rem;margin-top:2px}
+.badges{display:flex;gap:10px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+.badge{border-radius:12px;padding:10px 16px;min-width:130px;background:#0b0f1a;border:1px solid #334155}
+.badge .t{font-size:.68rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em}
+.badge .s{font-weight:800;font-size:1.15rem;margin-top:2px}
+.badge.pass .s{color:#4ade80}.badge.fail .s{color:#f87171}
+.preview{background:#1e293b;border-radius:14px;padding:18px;margin-bottom:16px;text-align:center}
+.preview .s1{font-size:1.5rem;font-weight:800;margin-bottom:6px}
+.preview .s2{font-size:.85rem;opacity:.9}
+.tip{background:#0b0f1a;border:1px solid #334155;border-radius:12px;padding:12px;font-size:.8rem;color:#94a3b8;display:none;margin-bottom:16px;line-height:1.5}
+.kofi{margin-top:14px;text-align:center;font-size:.85rem}.kofi a{color:#ff5e5b;text-decoration:none}
+.ads{margin-top:10px;text-align:center;font-size:.82rem}.ads a{color:#818cf8;text-decoration:none;margin:0 5px}
+.content{margin-top:24px}
+.content h2{color:#f8fafc;font-size:1.05rem;margin:16px 0 8px}
+.content p{color:#cbd5e1;font-size:.9rem;line-height:1.6;margin-bottom:10px}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:12px 0 2px}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>👁️ Color Contrast <b>Checker</b></h1>
+<p class="sub">WCAG AA/AAA for normal & large text — live ratio</p>
+<div class="pickers">
+<div class="pick"><div class="l">Text color</div><input type="color" id="fgc" value="#e2e8f0"><br><input type="text" id="fgt" value="E2E8F0" maxlength="6"></div>
+<div class="pick"><div class="l">Background</div><input type="color" id="bgc" value="#0b0f1a"><br><input type="text" id="bgt" value="0B0F1A" maxlength="6"></div>
+</div>
+<div class="ratioBox">
+<div class="v" id="ratio">—</div>
+<div class="p">contrast ratio (WCAG formula)</div>
+<div class="badges">
+<div class="badge" id="bAA"><div class="t">AA normal text</div><div class="s">—</div></div>
+<div class="badge" id="bAAA"><div class="t">AAA normal text</div><div class="s">—</div></div>
+<div class="badge" id="bAAL"><div class="t">AA large text</div><div class="s">—</div></div>
+</div>
+</div>
+<div class="preview" id="pv"><div class="s1">Sample text preview</div><div class="s2">This text should be easy to read.</div></div>
+<div class="tip" id="tip"></div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this free tool</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/color-converter.html">Color Converter</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+<div class="content">
+<h2>Free WCAG Color Contrast Checker</h2>
+<p>Pick a text color and a background color and instantly get the <strong>contrast ratio</strong> computed with the official WCAG 2.x formula. The tool shows whether the pair passes <strong>AA</strong> (4.5:1 normal text, 3:1 large text) and <strong>AAA</strong> (7:1 normal, 4.5:1 large) — the Web Content Accessibility Guidelines used in accessibility audits and by law in many regions.</p>
+<h2>What is a good contrast ratio?</h2>
+<p>Contrast ratio ranges from <strong>1:1</strong> (same color) to <strong>21:1</strong> (black on white). For body text, WCAG AA requires at least 4.5:1; large text (18px+ or 14px+ bold) needs 3:1. Aim for AA as a baseline — it covers roughly 1 in 8 color pairs on average, so low-contrast "design greys" fail quickly.</p>
+<h2>Contrast Checker FAQ</h2>
+<p><strong>How is the ratio calculated?</strong> Using relative luminance per the WCAG formula, then (L1+0.05)/(L2+0.05). <strong>What's the difference between AA and AAA?</strong> AAA is stricter (7:1) and recommended for long reading text. <strong>Do I need to worry about large text?</strong> Large text gets a more lenient threshold because bigger glyphs are easier to read. <strong>Is my data sent anywhere?</strong> No — all calculations run in your browser.</p>
+</div>
+<div class="foot"><a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> · <a href="privacy.html">Privacy</a></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+function hexToRgb(h){
+  h=h.replace('#',''); if(h.length===3) h=h.split('').map(c=>c+c).join('');
+  if(!/^[0-9a-fA-F]{6}$/.test(h)) return null;
+  const n=parseInt(h,16); return [(n>>16)&255,(n>>8)&255,n&255];
+}
+function channelLum(c){ c/=255; return c<=0.03928? c/12.92 : Math.pow((c+0.055)/1.055,2.4); }
+function luminance(rgb){ return 0.2126*channelLum(rgb[0])+0.7152*channelLum(rgb[1])+0.0722*channelLum(rgb[2]); }
+function contrast(hexA,hexB){
+  const a=hexToRgb(hexA), b=hexToRgb(hexB); if(!a||!b) return null;
+  const la=luminance(a), lb=luminance(b);
+  return (Math.max(la,lb)+0.05)/(Math.min(la,lb)+0.05);
+}
+function round2(x){ return Math.round(x*100)/100; }
+function update(){
+  const fg=document.getElementById('fgt').value.trim()||'ffffff';
+  const bg=document.getElementById('bgt').value.trim()||'000000';
+  const fgRgb=hexToRgb(fg), bgRgb=hexToRgb(bg);
+  if(!fgRgb||!bgRgb){ document.getElementById('ratio').textContent='invalid'; return; }
+  const r=contrast('#'+fg,'#'+bg);
+  document.getElementById('ratio').textContent=round2(r).toFixed(2)+':1';
+  const set=(id,pass)=>{ const el=document.getElementById(id); el.className='badge '+(pass?'pass':'fail'); el.querySelector('.s').textContent=pass?'PASS':'FAIL'; };
+  set('bAA', r>=4.5); set('bAAA', r>=7); set('bAAL', r>=3);
+  const pv=document.getElementById('pv');
+  pv.style.background='#'+bg; pv.style.color='#'+fg;
+  const tip=document.getElementById('tip');
+  if(r>=4.5){ tip.style.display='none'; }
+  else { tip.style.display='block';
+    const need=Math.ceil((4.5*(Math.min(luminance(fgRgb),luminance(bgRgb))+0.05))-0.05);
+    tip.innerHTML='💡 Tip: darken the text or lighten the background to reach <b>4.5:1</b> (AA). The text color needs a relative luminance of about <b>'+need.toFixed(3)+'</b> (or higher/lower depending on which side is darker).';
+  }
+}
+['fgc','bgc'].forEach(id=>document.getElementById(id).addEventListener('input',e=>{
+  const isFg=id==='fgc';
+  const t=document.getElementById(isFg?'fgt':'bgt'); t.value=e.target.value.replace('#','').toUpperCase(); update();
+}));
+['fgt','bgt'].forEach(id=>document.getElementById(id).addEventListener('input',function(){
+  const v=this.value.replace(/[^0-9a-fA-F]/g,'').slice(0,6);
+  this.value=v;
+  const isFg=id==='fgt';
+  document.getElementById(isFg?'fgc':'bgc').value='#'+v.padEnd(6,'0');
+  update();
+}));
+update();
+</script>
+</body>
+</html>
