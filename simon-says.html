@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simon Says Memory Game — Free Online</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Simon Says Memory Game","operatingSystem":"ANY","applicationCategory":"GameApplication","description":"Free Simon Says memory game: watch the color sequence, repeat it, beat your high score. Levels keep growing — how far can you go? Share your score. No install.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<meta name="description" content="Free Simon Says memory game: watch and repeat the color sequence, level after level. Track your best score and share it with friends. Runs in your browser — no install, no login.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px 16px 20px}
+.wrap{max-width:560px;width:100%}
+h1{font-size:1.75rem;margin:6px 0 2px;color:#f8fafc;text-align:center}
+h1 b{color:#22d3ee}
+.sub{color:#94a3b8;font-size:.88rem;text-align:center;margin-bottom:14px}
+.hud{display:flex;justify-content:center;gap:16px;margin-bottom:14px}
+.stat{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:8px 20px;text-align:center;min-width:110px}
+.stat .l{font-size:.68rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em}
+.stat .v{font-size:1.5rem;font-weight:800;color:#f8fafc}
+.board{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.pad{border-radius:18px;height:150px;cursor:pointer;opacity:.85;transition:transform .05s,opacity .1s;border:3px solid #334155}
+.pad:active{transform:scale(.96)}
+.pad.lit{opacity:1;transform:scale(1.03);box-shadow:0 0 30px rgba(255,255,255,.35)}
+.p0{background:#3b82f6}.p1{background:#ef4444}.p2{background:#eab308}.p3{background:#22c55e}
+.msg{text-align:center;font-size:1.05rem;color:#cbd5e1;min-height:28px;margin-bottom:12px}
+.btn{padding:12px 26px;border:none;border-radius:12px;background:#6366f1;color:#fff;font-weight:800;font-size:1rem;cursor:pointer}
+.btn:hover{background:#4f46e5}
+.btn.green{background:#0d9488}
+.shareWrap{display:none;margin-top:10px;text-align:center}
+.share-btn{padding:10px 20px;border:none;border-radius:10px;background:#0d9488;color:#fff;font-weight:700;cursor:pointer;font-size:.95rem;margin:0 5px}
+.kofi{margin-top:14px;text-align:center;font-size:.85rem}.kofi a{color:#ff5e5b;text-decoration:none}
+.ads{margin-top:10px;text-align:center;font-size:.82rem}.ads a{color:#818cf8;text-decoration:none;margin:0 5px}
+.content{margin-top:24px}
+.content h2{color:#f8fafc;font-size:1.05rem;margin:16px 0 8px}
+.content p{color:#cbd5e1;font-size:.9rem;line-height:1.6;margin-bottom:10px}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:12px 0 2px}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🔴 Simon <b>Says</b></h1>
+<p class="sub">Watch the sequence · repeat it · level up · share your run</p>
+<div class="hud">
+<div class="stat"><div class="l">Level</div><div class="v" id="lvl">0</div></div>
+<div class="stat"><div class="l">Best</div><div class="v" id="best">—</div></div>
+</div>
+<div class="board" id="board">
+<div class="pad p0" data-i="0"></div><div class="pad p1" data-i="1"></div>
+<div class="pad p2" data-i="2"></div><div class="pad p3" data-i="3"></div>
+</div>
+<div class="msg" id="msg">Press START — watch the colors, then repeat them.</div>
+<div style="text-align:center"><button class="btn" id="start">▶ START</button></div>
+<div class="shareWrap" id="shareWrap"><button class="share-btn" onclick="shareScore()">📤 Share my run</button><button class="share-btn" onclick="startGame()" style="background:#475569">↻ Play again</button></div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this free game</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/reaction-time.html">Reaction Time</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/karma.html">Karma</a>
+</div>
+<div class="content">
+<h2>Free Simon Says Memory Game</h2>
+<p>This classic memory game tests and trains your short-term memory. Watch the growing sequence of colors, then tap them back in the same order. Each level adds one more step — the sequence never repeats itself exactly, so the challenge scales with you. The game tracks your <strong>best level</strong> in your browser and lets you share your run to challenge friends.</p>
+<h2>Why play a memory game?</h2>
+<p>Sequence-recall games like Simon train working memory, attention, and pattern recognition — the same skills used in coding, music, and learning. Short daily sessions measurably improve recall span. And it's a great icebreaker: who in your group can remember the longest sequence?</p>
+<h2>Simon Says FAQ</h2>
+<p><strong>How does scoring work?</strong> You reach level N by correctly repeating the N-step sequence; your score is the highest level reached. <strong>Is there a time limit?</strong> No — take your time, accuracy matters more than speed. <strong>Does it save my data?</strong> Only your best level is stored locally in your browser. <strong>How do I challenge friends?</strong> Use the share button after a run to copy a message with your score and a link to the game.</p>
+</div>
+<div class="foot"><a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> · <a href="privacy.html">Privacy</a></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+let seq=[], playing=false, inputIdx=0, level=0;
+let best=parseInt(localStorage.getItem('simon_best')||'0')||0;
+const pad=document.querySelectorAll('.pad');
+const msg=document.getElementById('msg');
+function updateBest(){ document.getElementById('best').textContent=best||'—'; document.getElementById('lvl').textContent=level; }
+function lit(i){ pad[i].classList.add('lit'); setTimeout(()=>pad[i].classList.remove('lit'),320); }
+async function playSeq(){
+  playing=true;
+  for(const i of seq){ lit(i); await new Promise(r=>setTimeout(r,420)); }
+  playing=false; inputIdx=0;
+  msg.textContent='Your turn — repeat the sequence.';
+}
+function startGame(){
+  seq=[]; level=0; inputIdx=0;
+  document.getElementById('start').textContent='RESTART';
+  document.getElementById('shareWrap').style.display='none';
+  updateBest();
+  msg.textContent='Watch carefully…';
+  setTimeout(()=>{ seq.push(Math.floor(Math.random()*4)); level=seq.length; updateBest(); playSeq(); },500);
+}
+function padClick(i){
+  if(playing) return;
+  lit(i);
+  if(i!==seq[inputIdx]){
+    fail(); return;
+  }
+  inputIdx++;
+  if(inputIdx===seq.length){
+    if(seq.length>=8) msg.textContent='Level '+level+'! Incredible — keep going?';
+    setTimeout(()=>{ seq.push(Math.floor(Math.random()*4)); level=seq.length; updateBest(); playSeq(); },700);
+  }
+}
+function fail(){
+  msg.textContent='💥 Wrong! You reached level '+level+'.';
+  if(level>best){ best=level; localStorage.setItem('simon_best',best); }
+  updateBest();
+  document.getElementById('shareWrap').style.display='block';
+}
+function shareScore(){
+  const txt='🧠 I reached level '+level+' on Simon Says (best '+best+'). Can you beat it? '+location.href;
+  if(navigator.clipboard) navigator.clipboard.writeText(txt);
+  if(navigator.share){ Promise.resolve(navigator.share({title:'Simon Says',text:txt})).catch(()=>{}); }
+  else msg.textContent='✓ Copied — challenge a friend!';
+}
+pad.forEach((p,i)=>p.addEventListener('click',()=>padClick(i)));
+document.getElementById('start').addEventListener('click',startGame);
+updateBest();
+</script>
+</body>
+</html>
