@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slug Generator — URL Slug Maker for SEO (Free)</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Slug Generator","operatingSystem":"ANY","applicationCategory":"UtilitiesApplication","description":"Turn any title or text into a clean, SEO-friendly URL slug. Lowercase, hyphenated, no special characters. Free and private.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<meta name="description" content="Free URL slug generator: convert any title or text into a clean SEO-friendly slug. Lowercase, hyphenated, no spaces or special characters. Private, runs in your browser.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:20px}
+.card{background:#1e293b;border-radius:16px;padding:28px;max-width:720px;width:100%}
+h1{color:#f8fafc;margin-bottom:4px;font-size:1.4rem}
+.sub{color:#94a3b8;margin-bottom:20px;font-size:.9rem}
+textarea{width:100%;min-height:130px;padding:14px;border-radius:10px;background:#0f172a;color:#e2e8f0;border:1px solid #475569;font-size:1rem;line-height:1.5;resize:vertical}
+.optrow{display:flex;gap:14px;margin-top:14px;flex-wrap:wrap;align-items:center}
+.optrow label{color:#94a3b8;font-size:.85rem;text-transform:uppercase;letter-spacing:.04em}
+.optrow select,.optrow input[type=checkbox]{accent-color:#6366f1}
+.outwrap{margin-top:16px}
+#out{width:100%;min-height:60px;padding:14px;border-radius:10px;background:#0f172a;color:#a5f3fc;border:1px solid #67e8f9;font-size:.95rem;font-family:ui-monospace,monospace;word-break:break-all}
+.btns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+button{padding:9px 22px;background:#6366f1;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.9rem}
+button:hover{background:#4f46e5}
+.btn-ghost{background:#64748b}
+.kofi{text-align:center;margin:16px 0 6px;padding:10px;background:#1e1e3a;border-radius:8px}
+.kofi a{color:#ff5e5b;font-weight:600;text-decoration:none}
+.ads{margin-top:10px;font-size:.85rem;text-align:center}
+.ads a{color:#818cf8;margin:0 6px}
+.content{margin-top:30px;max-width:720px;padding:0 6px}
+.content h2{color:#f8fafc;font-size:1.15rem;margin:22px 0 10px}
+.content p{color:#cbd5e1;line-height:1.65;margin-bottom:12px;font-size:.95rem}
+.content strong{color:#e2e8f0}
+@media(max-width:520px){body{padding:12px}.card{padding:18px}.content h2{font-size:1.05rem}}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>Slug Generator</h1>
+<p class="sub">Turn any title or text into a clean, SEO-friendly URL slug. Lowercase, hyphenated, no special characters.</p>
+<textarea id="inp" placeholder="e.g. How to Make a Perfect Cup of Coffee"></textarea>
+<div class="optrow">
+  <label>Separator
+    <select id="sep"><option value="-">hyphen (-)</option><option value="_">underscore (_)</option><option value="">none</option></select>
+  </label>
+  <label><input type="checkbox" id="camel" checked> lower-case</label>
+</div>
+<div class="outwrap"><div id="out">—</div></div>
+<div class="btns">
+  <button onclick="copyOut()">📋 Copy</button>
+  <button class="btn-ghost" onclick="clearAll()">🗑 Clear</button>
+</div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this tool on Ko-fi</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/word-counter.html">Word Counter</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/case-converter.html">Case Converter</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/uuid-generator.html">UUID</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+</div>
+
+<div class="content">
+<h2>Slug Generator — Make Clean SEO URLs</h2>
+<p>This free slug generator converts any title, headline, or sentence into a <strong>clean URL-friendly slug</strong> in a single click. It lowercases the text, removes punctuation and special characters, and joins the words with hyphens — exactly the format search engines and content management systems prefer. Paste your headline, pick a separator, and copy the result straight into your URL.</p>
+<h2>What Is a Slug and Why Does It Matter for SEO?</h2>
+<p>A slug is the readable part of a URL after the domain — for example <code style="color:#a5f3fc">/how-to-make-coffee</code>. Search engines use slugs to understand what a page is about, and users read them to decide whether a link is worth clicking. A good slug is <strong>short, descriptive, hyphenated, and lowercase</strong>, with stop words and special characters removed. This tool produces exactly that, so you get cleaner URLs that are easier to share, remember, and rank.</p>
+<h2>How to Use the Slug Generator</h2>
+<p>Type or paste your title into the box. The slug updates live below. Choose a separator (hyphen, underscore, or none) and toggle lowercase if you prefer to keep capitalization. When you are happy with the result, hit Copy. Because everything runs in your browser, your text is never uploaded and the tool works fully offline.</p>
+<h2>Slug Generator FAQ</h2>
+<p><strong>Does the tool remove stop words?</strong> By default it keeps all meaningful words but strips punctuation and symbols — you can remove extra words yourself. <strong>Can I handle non-Latin text?</strong> Non-ASCII characters are transliterated where possible and dropped otherwise, keeping the slug clean. <strong>Is my text stored?</strong> No — generation is entirely client-side. <strong>Why should slugs be lowercase?</strong> Lowercase, hyphenated slugs avoid duplicate URLs and are the convention almost every site follows.</p>
+</div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+const inp=document.getElementById('inp'), out=document.getElementById('out');
+const sep=document.getElementById('sep'), camel=document.getElementById('camel');
+const MAP={'а':'a','б':'b','в':'v','г':'g','д':'d','е':'e','ё':'e','ж':'zh','з':'z','и':'i','й':'y','к':'k','л':'l','м':'m','н':'n','о':'o','п':'p','р':'r','с':'s','т':'t','у':'u','ф':'f','х':'h','ц':'c','ч':'ch','ш':'sh','щ':'sch','ъ':'','ы':'y','ь':'','э':'e','ю':'yu','я':'ya','ä':'a','ö':'o','ü':'u','ß':'ss','ø':'o','å':'a','æ':'ae','œ':'oe','ñ':'n','ç':'c','é':'e','è':'e','ê':'e','à':'a','á':'a','â':'a','í':'i','ì':'i','ó':'o','ò':'o','ú':'u','ù':'u','ü':'u','ÿ':'y'};
+function slugify(str,separator,lower){
+  let s=String(str).trim().toLowerCase();
+  s=s.replace(/[а-яё]/gi, c=> MAP[c.toLowerCase()]!==undefined ? MAP[c.toLowerCase()] : c);
+  s=s.replace(/['’]/g,'');
+  if(separator){
+    s=s.replace(/[^a-z0-9]+/gi,separator);
+    s=s.replace(new RegExp('^\\'+separator+'+|\\'+separator+'+$','g'),'');
+    s=s.replace(new RegExp('\\'+separator+'+','g'),separator);
+  } else {
+    s=s.replace(/[^a-z0-9]+/gi,'');
+  }
+  if(lower) s=s.toLowerCase();
+  return s;
+}
+function render(){
+  const v=inp.value.trim();
+  if(!v){out.textContent='—';return;}
+  out.textContent=slugify(v,sep.value,camel.checked);
+}
+inp.addEventListener('input',render);
+sep.addEventListener('change',render);
+camel.addEventListener('change',render);
+function copyOut(){navigator.clipboard.writeText(out.textContent);}
+function clearAll(){inp.value='';render();inp.focus();}
+render();
+</script>
+</body>
+</html>
