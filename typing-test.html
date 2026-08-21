@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Typing Speed Test — Free WPM Test Online</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Typing Speed Test","operatingSystem":"ANY","applicationCategory":"GameApplication","description":"Free typing speed test: measure your WPM (words per minute) and accuracy. Try 15, 30 or 60 second modes, track your best score, share your result. No install, no login.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<meta name="description" content="Free typing speed test: measure your WPM and accuracy in 15, 30 or 60 seconds. Dictations, error tracking, personal best, shareable results. Works in your browser, no login.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px 16px 20px}
+.wrap{max-width:720px;width:100%}
+h1{font-size:1.75rem;margin:6px 0 2px;color:#f8fafc;text-align:center}
+h1 b{color:#22d3ee}
+.sub{color:#94a3b8;font-size:.88rem;text-align:center;margin-bottom:14px}
+.hud{display:flex;justify-content:center;gap:16px;margin-bottom:14px;flex-wrap:wrap}
+.stat{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:8px 18px;text-align:center;min-width:100px}
+.stat .l{font-size:.68rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em}
+.stat .v{font-size:1.5rem;font-weight:800;color:#f8fafc}
+.modes{display:flex;gap:8px;justify-content:center;margin-bottom:14px}
+.mode{padding:8px 16px;border-radius:999px;border:1px solid #334155;background:#1e293b;color:#cbd5e1;cursor:pointer;font-size:.85rem}
+.mode.active{background:#6366f1;border-color:#6366f1;color:#fff;font-weight:700}
+.text{background:#1e293b;border:1px solid #334155;border-radius:16px;padding:22px;font-size:1.35rem;line-height:2;min-height:130px;font-family:ui-monospace,Menlo,Consolas,monospace;word-spacing:8px}
+.text .done{color:#64748b}
+.text .cur{background:#fbbf24;color:#0b0f1a;border-radius:3px;padding:0 1px}
+.text .wrong{background:#f87171;color:#0b0f1a;border-radius:3px}
+.text .rest{color:#cbd5e1}
+.inputHint{margin-top:10px;text-align:center;color:#64748b;font-size:.85rem}
+.hiddenInput{position:absolute;opacity:0;pointer-events:none}
+.result{display:none;background:#0f5132;border:1px solid #166534;border-radius:16px;padding:22px;text-align:center;margin-top:16px}
+.result .big{font-size:2.6rem;font-weight:900;color:#4ade80}
+.result .det{color:#cbd5e1;font-size:.95rem;margin:6px 0 12px}
+.result .verdict{color:#a7f3d0;font-size:1rem;margin-bottom:14px}
+.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn{padding:10px 20px;border:none;border-radius:10px;background:#6366f1;color:#fff;font-weight:800;cursor:pointer;font-size:.95rem}
+.btn:hover{background:#4f46e5}
+.btn.green{background:#0d9488}
+.kofi{margin-top:14px;text-align:center;font-size:.85rem}.kofi a{color:#ff5e5b;text-decoration:none}
+.ads{margin-top:10px;text-align:center;font-size:.82rem}.ads a{color:#818cf8;text-decoration:none;margin:0 5px}
+.content{margin-top:24px}
+.content h2{color:#f8fafc;font-size:1.05rem;margin:16px 0 8px}
+.content p{color:#cbd5e1;font-size:.9rem;line-height:1.6;margin-bottom:10px}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:12px 0 2px}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>⌨️ Typing Speed <b>Test</b></h1>
+<p class="sub">Measure your WPM & accuracy — beat your best, share your score</p>
+<div class="hud">
+<div class="stat"><div class="l">WPM</div><div class="v" id="wpm">0</div></div>
+<div class="stat"><div class="l">Time</div><div class="v" id="timer">0</div></div>
+<div class="stat"><div class="l">Accuracy</div><div class="v" id="acc">100%</div></div>
+</div>
+<div class="modes" id="modes">
+<span class="mode" data-s="15">15 sec</span>
+<span class="mode active" data-s="30">30 sec</span>
+<span class="mode" data-s="60">60 sec</span>
+</div>
+<div class="text" id="text">Press any key to start.</div>
+<div class="inputHint" id="hint">Click here, then start typing → <span style="font-size:1.1rem">⬇</span></div>
+<input class="hiddenInput" id="ki" autocomplete="off" autocapitalize="off" spellcheck="false">
+<div class="result" id="result">
+<div class="big" id="rWpm">0 WPM</div>
+<div class="verdict" id="rVerdict"></div>
+<div class="det" id="rDet"></div>
+<div class="btns">
+<button class="btn green" onclick="shareScore()">📤 Share score</button>
+<button class="btn" onclick="restart()">↻ Try again</button>
+</div>
+</div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this free test</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/reaction-time.html">Reaction Time</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+<div class="content">
+<h2>Free Online Typing Speed Test</h2>
+<p>This typing test measures <strong>words per minute (WPM)</strong> and accuracy in 15, 30 or 60 seconds. Type as much of the shown text as you can before time runs out. WPM is calculated as <em>correct characters ÷ 5 ÷ minutes</em> — the standard formula used by most typing tests. Wrong characters are highlighted red; your accuracy is the share of correctly pressed keys.</p>
+<h2>What is a Good Typing Speed?</h2>
+<p>The average person types around <strong>40 WPM</strong>. 60–70 WPM is above average for office work, 80+ is professional level, and 100+ WPM is exceptional — top typists reach 120–150. Accuracy above 95% matters more than raw speed: a 100 WPM typist at 80% accuracy spends more time fixing errors than a 70 WPM typist at 99%.</p>
+<h2>How to Improve Your Typing Speed</h2>
+<p>Use all ten fingers and keep your hands in home position (ASDF / JKL;). Practice daily short sessions — consistency beats marathon practice. Focus on accuracy first; speed follows naturally. Touch typing — looking at the screen, not the keyboard — typically adds 10–20 WPM within a few weeks of practice.</p>
+<h2>Typing Test FAQ</h2>
+<p><strong>What is WPM?</strong> Words per minute — the number of five-character words you type per minute. <strong>Does this test store my data?</strong> No — only your best score is saved in your browser. <strong>Why did my WPM drop?</strong> A longer test (60s) usually scores lower than 15s because fatigue and longer text average out your speed — that's normal. <strong>Can I share my result?</strong> Yes — the share button copies a message with your score so you can challenge friends.</p>
+</div>
+<div class="foot"><a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> · <a href="privacy.html">Privacy</a></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+const WORDS=['the','quick','brown','fox','jumps','over','lazy','dog','type','speed','fast','hands','keyboard','screen','practice','every','day','improves','skill','focus','rhythm','accuracy','matters','most','touch','ten','fingers','home','position','steady','pace','breathe','relax','muscle','memory','repeat','words','sentence','punctuation','comma','period','question','mark','exclamation','great','job','keep','going','almost','there','finish','strong'];
+let mode=30, running=false, done=false, timer=null, startTime=0, elapsed=0;
+let text='', idx=0, correct=0, errors=0, total=0;
+
+function pickText(){
+  const n=Math.max(60, Math.ceil(mode/10)+30);
+  const out=[]; for(let i=0;i<n;i++){ out.push(WORDS[Math.floor(Math.random()*WORDS.length)]); }
+  return out.join(' ');
+}
+function render(){
+  const el=document.getElementById('text');
+  let html='';
+  for(let i=0;i<text.length;i++){
+    if(i<idx) html+='<span class="done">'+text[i]+'</span>';
+    else if(i===idx) html+='<span class="'+(wrongPending?'wrong':'cur')+'">'+text[i]+'</span>';
+    else html+='<span class="rest">'+text[i]+'</span>';
+  }
+  el.innerHTML=html;
+}
+let wrongPending=false;
+function start(){ running=true; done=false; startTime=Date.now(); tick(); document.getElementById('hint').textContent='Type away!'; }
+function tick(){ timer=setInterval(()=>{ elapsed=Math.floor((Date.now()-startTime)/1000); const left=Math.max(0,mode-elapsed); document.getElementById('timer').textContent=left; if(left<=0) finish(); },1000); }
+function liveWpm(){ const minutes=elapsed/60; return minutes>0?Math.round(correct/5/minutes):0; }
+function processChar(ch){
+  if(done) return;
+  if(!running){ start(); }
+  total++;
+  const expected=text[idx];
+  if(ch===expected){ correct++; idx++; wrongPending=false; }
+  else { errors++; wrongPending=true; }
+  document.getElementById('wpm').textContent=liveWpm();
+  document.getElementById('acc').textContent=Math.round(total?(100*correct/total):100)+'%';
+  if(idx>=text.length-5){ text+=' '+pickText(); } // extend pool
+  render();
+}
+function finish(){
+  done=true; clearInterval(timer);
+  const minutes=elapsed/60||(mode/60);
+  const wpm=Math.round(correct/5/minutes);
+  const acc=total?Math.round(100*correct/total):100;
+  const best=parseInt(localStorage.getItem('tt_best')||'0')||0;
+  if(wpm>best){ localStorage.setItem('tt_best',wpm); }
+  const verdict= wpm>=100?'🚀 Professional!':wpm>=80?'🔥 Very fast':wpm>=60?'👍 Above average':wpm>=40?'🙂 Average':'🐢 Keep practicing';
+  document.getElementById('rWpm').textContent=wpm+' WPM';
+  document.getElementById('rVerdict').textContent=verdict+(wpm>best?' — New personal best!':'');
+  document.getElementById('rDet').textContent='Accuracy '+acc+'% · Errors '+errors+' · Best '+Math.max(best,wpm)+' WPM';
+  document.getElementById('result').style.display='block';
+  document.getElementById('text').innerHTML='Done! <span style="color:#4ade80">'+wpm+' WPM</span> · '+acc+'%';
+}
+function restart(){
+  done=false; running=false; clearInterval(timer); elapsed=0; idx=0; correct=0; errors=0; total=0; wrongPending=false;
+  text=pickText(); document.getElementById('timer').textContent=mode; document.getElementById('wpm').textContent='0';
+  document.getElementById('acc').textContent='100%'; document.getElementById('result').style.display='none';
+  document.getElementById('hint').textContent='Click here, then start typing → ⬇';
+  render();
+}
+function shareScore(){
+  const w=document.getElementById('rWpm').textContent;
+  const txt='⌨️ My typing speed: '+w+' (best '+localStorage.getItem('tt_best')+'). Can you beat it? '+location.href;
+  if(navigator.clipboard) navigator.clipboard.writeText(txt);
+  if(navigator.share){ Promise.resolve(navigator.share({title:'Typing Speed Test',text:txt})).catch(()=>{}); }
+  else { document.getElementById('rDet').textContent='✓ Copied to clipboard — paste it anywhere to challenge friends'; }
+}
+document.getElementById('ki').addEventListener('input',e=>{ const ch=e.data; if(ch) processChar(ch); });
+document.getElementById('text').addEventListener('click',()=>document.getElementById('ki').focus());
+document.getElementById('modes').addEventListener('click',e=>{
+  const t=e.target.closest('.mode'); if(!t)return; mode=parseInt(t.dataset.s);
+  document.querySelectorAll('.mode').forEach(m=>m.classList.toggle('active',m===t)); restart();
+});
+restart();
+document.getElementById('ki').focus();
+</script>
+</body>
+</html>
