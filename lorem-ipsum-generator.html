@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lorem Ipsum Generator — Free Placeholder Text</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Lorem Ipsum Generator","operatingSystem":"ANY","applicationCategory":"UtilitiesApplication","description":"Free Lorem Ipsum generator: create dummy text by paragraphs, sentences or words, with optional HTML tags. Start with the classic 'Lorem ipsum', copy or download instantly.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<meta name="description" content="Free Lorem Ipsum generator: generate placeholder text as paragraphs, sentences, or words. Classic Lorem ipsum start, optional HTML tags, one-click copy and download. Runs in your browser.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px 16px 20px}
+.wrap{max-width:640px;width:100%}
+h1{font-size:1.7rem;margin:6px 0 2px;color:#f8fafc;text-align:center}
+h1 b{color:#22d3ee}
+.sub{color:#94a3b8;font-size:.88rem;text-align:center;margin-bottom:14px}
+.ctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center;background:#1e293b;border:1px solid #334155;border-radius:14px;padding:14px;margin-bottom:12px}
+.ctrl label{font-size:.8rem;color:#94a3b8}
+.ctrl input[type=number]{width:74px;padding:9px;border-radius:8px;border:1px solid #334155;background:#0b0f1a;color:#f8fafc;font-size:.95rem;text-align:center}
+.units{display:flex;gap:6px}
+.unit{padding:8px 14px;border-radius:999px;border:1px solid #334155;background:#0b0f1a;color:#cbd5e1;cursor:pointer;font-size:.82rem}
+.unit.active{background:#6366f1;color:#fff;font-weight:700}
+.opts{display:flex;gap:16px;margin:6px 0 12px;color:#94a3b8;font-size:.82rem;justify-content:center;flex-wrap:wrap}
+.opts label{display:flex;align-items:center;gap:5px;cursor:pointer}
+.btns{display:flex;gap:8px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+.btn{padding:11px 20px;border:none;border-radius:10px;background:#6366f1;color:#fff;font-weight:800;cursor:pointer;font-size:.9rem}
+.btn:hover{background:#4f46e5}
+.btn.green{background:#0d9488}.btn.sec{background:#334155}
+.out{background:#0b0f1a;border:1px solid #334155;border-radius:14px;padding:16px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85rem;line-height:1.7;color:#cbd5e1;max-height:340px;overflow:auto;white-space:pre-wrap;word-break:break-word}
+.kofi{margin-top:14px;text-align:center;font-size:.85rem}.kofi a{color:#ff5e5b;text-decoration:none}
+.ads{margin-top:10px;text-align:center;font-size:.82rem}.ads a{color:#818cf8;text-decoration:none;margin:0 5px}
+.content{margin-top:24px}
+.content h2{color:#f8fafc;font-size:1.05rem;margin:16px 0 8px}
+.content p{color:#cbd5e1;font-size:.9rem;line-height:1.6;margin-bottom:10px}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:12px 0 2px}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>✍️ Lorem Ipsum <b>Generator</b></h1>
+<p class="sub">Dummy text for mockups & layouts — paragraphs, sentences, words</p>
+<div class="ctrl">
+<label>Generate</label><input type="number" id="count" value="3" min="1" max="100">
+<div class="units" id="units">
+<span class="unit active" data-u="p">Paragraphs</span>
+<span class="unit" data-u="s">Sentences</span>
+<span class="unit" data-u="w">Words</span>
+</div>
+</div>
+<div class="opts">
+<label><input type="checkbox" id="classic" checked> Classic start (&ldquo;Lorem ipsum dolor…&rdquo;)</label>
+<label><input type="checkbox" id="html"> Wrap in &lt;p&gt; tags</label>
+</div>
+<div class="btns">
+<button class="btn" onclick="gen()">Generate</button>
+<button class="btn green" onclick="copyOut()">Copy</button>
+<button class="btn sec" onclick="downloadOut()">⬇ Download</button>
+</div>
+<div class="out" id="out">Lorem ipsum dolor sit amet…</div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this free tool</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/word-counter.html">Word Counter</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+<div class="content">
+<h2>Free Lorem Ipsum Generator</h2>
+<p>Generate <strong>placeholder text</strong> for your website mockups, print layouts, and prototypes. Choose how much dummy text you need — by paragraph, sentence, or word count — and toggle the classic opening and HTML tags. One click copies it or downloads it as a text file, ready to paste into Figma, Photoshop, or your HTML editor.</p>
+<h2>What is Lorem Ipsum?</h2>
+<p><em>Lorem ipsum</em> is scrambled Latin derived from Cicero's <em>De finibus bonorum et malorum</em> (45 BC). Typesetters adopted it in the 1500s as standard dummy text because its letter distributions look natural and — crucially — it doesn't distract readers with meaning. It remains the industry default for visual mockups.</p>
+<h2>Lorem Ipsum FAQ</h2>
+<p><strong>How much lorem ipsum should I use?</strong> One paragraph per major block is usually enough to judge layout and typography. <strong>Is it OK for production text?</strong> No — it's placeholder only; replace it with real copy before launch. <strong>Why does it start with "Lorem ipsum dolor sit amet"?</strong> That opening mirrors the original historical text. <strong>Is my data sent anywhere?</strong> No — generation runs entirely in your browser.</p>
+</div>
+<div class="foot"><a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> · <a href="privacy.html">Privacy</a></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+const WORDS=('lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum').split(' ');
+const STARTER='Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+let unit='p';
+function cap(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
+function sentence(){
+  const n=6+Math.floor(Math.random()*8); let w=[];
+  for(let i=0;i<n;i++) w.push(WORDS[Math.floor(Math.random()*WORDS.length)]);
+  return cap(w.join(' '))+'.';
+}
+function makeText(count,u,classic,html){
+  let parts=[];
+  for(let i=0;i<count;i++){
+    if(u==='p'){
+      let body='';
+      for(let s=0;s<4+Math.floor(Math.random()*3);s++) body+=sentence()+' ';
+      parts.push(classic&&i===0? STARTER.replace('et consectetur adipiscing elit','')+' '+body.trim() : body.trim());
+    } else if(u==='s'){ parts.push(classic&&i===0?STARTER:sentence()); }
+    else { let w=[]; for(let k=0;k<count;k++) w.push(WORDS[Math.floor(Math.random()*WORDS.length)]); parts.push(cap(w.join(' '))+'.'); break; }
+  }
+  let txt=parts.join(u==='w'?' ':'\n\n');
+  if(html) txt=parts.map(p=>'<p>'+p+'</p>').join('\n');
+  return txt;
+}
+function gen(){
+  const count=Math.max(1,Math.min(100,parseInt(document.getElementById('count').value)||3));
+  const classic=document.getElementById('classic').checked;
+  const html=document.getElementById('html').checked;
+  document.getElementById('out').textContent=makeText(count,unit,classic,html);
+}
+document.getElementById('units').addEventListener('click',e=>{
+  const t=e.target.closest('.unit'); if(!t)return;
+  unit=t.dataset.u;
+  document.querySelectorAll('.unit').forEach(x=>x.classList.toggle('active',x===t));
+  // words unit: count represents word count; paragraphs/sentences: count each
+  gen();
+});
+let last='';
+function copyOut(){ last=document.getElementById('out').textContent; if(navigator.clipboard) navigator.clipboard.writeText(last); const b=event.target; const old=b.textContent; b.textContent='Copied ✓'; setTimeout(()=>b.textContent=old,1200); }
+function downloadOut(){ last=document.getElementById('out').textContent; const b=new Blob([last],{type:'text/plain'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='lorem-ipsum.txt'; a.click(); }
+document.getElementById('count').addEventListener('change',gen);
+document.getElementById('classic').addEventListener('change',gen);
+document.getElementById('html').addEventListener('change',gen);
+gen();
+</script>
+</body>
+</html>
