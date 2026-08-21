@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTTP Status Codes — Full List & Meanings (RFC 9110)</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"HTTP Status Codes Reference","operatingSystem":"ANY","applicationCategory":"DeveloperApplication","description":"Complete HTTP status code reference: every code from 100 to 599 explained (RFC 9110), grouped by class, with a quick search. Free, instant, in your browser.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<meta name="description" content="Complete HTTP status code list: meanings of 1xx, 2xx, 3xx, 4xx, 5xx codes per RFC 9110. Search any status code (200, 301, 404, 500...) or name. Free reference, instant search.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px 16px 20px}
+.wrap{max-width:760px;width:100%}
+h1{font-size:1.7rem;margin:6px 0 2px;color:#f8fafc;text-align:center}
+h1 b{color:#22d3ee}
+.sub{color:#94a3b8;font-size:.88rem;text-align:center;margin-bottom:14px}
+.search{display:flex;gap:8px;margin-bottom:16px}
+.search input{flex:1;background:#0b0f1a;border:1px solid #334155;border-radius:10px;color:#f8fafc;padding:12px 14px;font-size:1rem}
+.search input:focus{outline:2px solid #6366f1;border-color:transparent}
+.classes{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;justify-content:center}
+.cls{padding:7px 14px;border-radius:999px;border:1px solid #334155;background:#1e293b;color:#cbd5e1;cursor:pointer;font-size:.8rem}
+.cls.active{background:#6366f1;color:#fff;font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th,td{border:1px solid #1e293b;padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f8fafc;position:sticky;top:0}
+td.code{font-family:ui-monospace,Menlo,monospace;font-weight:800;color:#22d3ee;white-space:nowrap}
+td .alt{color:#64748b;font-size:.75rem}
+tr:hover td{background:#16233b}
+.legend{margin-bottom:8px;font-size:.78rem;color:#64748b}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
+.kofi{margin-top:16px;text-align:center;font-size:.85rem}.kofi a{color:#ff5e5b;text-decoration:none}
+.ads{margin-top:10px;text-align:center;font-size:.82rem}.ads a{color:#818cf8;text-decoration:none;margin:0 5px}
+.content{margin-top:24px}
+.content h2{color:#f8fafc;font-size:1.05rem;margin:16px 0 8px}
+.content p{color:#cbd5e1;font-size:.9rem;line-height:1.6;margin-bottom:10px}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:12px 0 2px}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🌐 HTTP Status <b>Codes</b></h1>
+<p class="sub">Every code from 100 to 511 — meanings per RFC 9110 · searchable</p>
+<div class="search"><input id="q" type="search" placeholder="Search: 404, redirect, unauthorized, teapot…" autofocus></div>
+<div class="classes" id="classes"></div>
+<div class="legend"><span class="dot" style="background:#64748b"></span>standard · <span class="dot" style="background:#22d3ee"></span>unofficial/extension</div>
+<table id="tbl"><thead><tr><th style="width:120px">Code</th><th>Meaning</th></tr></thead><tbody id="rows"></tbody></table>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this free reference</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/js-minifier.html">JS Minifier</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+<div class="content">
+<h2>HTTP Status Code Reference</h2>
+<p>HTTP status codes are three-digit responses a server sends after each request. They're grouped into five classes: <strong>1xx</strong> informational, <strong>2xx</strong> success, <strong>3xx</strong> redirection, <strong>4xx</strong> client error, and <strong>5xx</strong> server error. The meanings below follow <code>RFC 9110</code> (standards) with common unofficial extensions noted separately.</p>
+<h2>Most Common Codes Developers Meet</h2>
+<p><strong>200 OK</strong> — the request succeeded. <strong>301 Moved Permanently</strong> — the URL has permanently moved (use in redirects for SEO). <strong>404 Not Found</strong> — the resource doesn't exist. <strong>401 Unauthorized</strong> — authentication required. <strong>403 Forbidden</strong> — no permission. <strong>429 Too Many Requests</strong> — rate-limited. <strong>500 Internal Server Error</strong> — something broke on the server.</p>
+<h2>HTTP Status Codes FAQ</h2>
+<p><strong>What does the first digit tell me?</strong> 1=info, 2=success, 3=redirect, 4=your client's fault, 5=server's fault. <strong>Which is better for redirects: 301 or 302?</strong> 301 is permanent (SEO passes link equity), 302 is temporary. <strong>What's an unofficial code?</strong> Codes like 418 I'm a Teapot are fun extensions that aren't part of the RFC — use them for internal tools, not public APIs.</p>
+</div>
+<div class="foot"><a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> · <a href="privacy.html">Privacy</a></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+const CODES=[
+[100,'Continue',0],[101,'Switching Protocols',0],[102,'Processing',0],[103,'Early Hints',0],
+[200,'OK',0],[201,'Created',0],[202,'Accepted',0],[203,'Non-Authoritative Information',0],[204,'No Content',0],[205,'Reset Content',0],[206,'Partial Content',0],[207,'Multi-Status',0],[208,'Already Reported',0],[226,'IM Used',0],
+[300,'Multiple Choices',0],[301,'Moved Permanently',0],[302,'Found',0],[303,'See Other',0],[304,'Not Modified',0],[305,'Use Proxy',0],[307,'Temporary Redirect',0],[308,'Permanent Redirect',0],
+[400,'Bad Request',0],[401,'Unauthorized',0],[402,'Payment Required',0],[403,'Forbidden',0],[404,'Not Found',0],[405,'Method Not Allowed',0],[406,'Not Acceptable',0],[407,'Proxy Authentication Required',0],[408,'Request Timeout',0],[409,'Conflict',0],[410,'Gone',0],[411,'Length Required',0],[412,'Precondition Failed',0],[413,'Payload Too Large',0],[414,'URI Too Long',0],[415,'Unsupported Media Type',0],[416,'Range Not Satisfiable',0],[417,'Expectation Failed',0],[418,"I'm a Teapot",1],[421,'Misdirected Request',0],[422,'Unprocessable Content',0],[423,'Locked',0],[424,'Failed Dependency',0],[425,'Too Early',0],[426,'Upgrade Required',0],[428,'Precondition Required',0],[429,'Too Many Requests',0],[431,'Request Header Fields Too Large',0],[451,'Unavailable For Legal Reasons',0],
+[500,'Internal Server Error',0],[501,'Not Implemented',0],[502,'Bad Gateway',0],[503,'Service Unavailable',0],[504,'Gateway Timeout',0],[505,'HTTP Version Not Supported',0],[506,'Variant Also Negotiates',0],[507,'Insufficient Storage',0],[508,'Loop Detected',0],[510,'Not Extended',0],[511,'Network Authentication Required',0],
+[418.5,'Easter Egg',1]
+];
+// strip easter egg helper row (keep fun but hide invalid 418.5)
+const DATA=CODES.filter(c=>c[0]===Math.floor(c[0]));
+let activeCls='all';
+const CLASSES=[['all','All'],['1','1xx'],['2','2xx'],['3','3xx'],['4','4xx'],['5','5xx']];
+function renderClasses(){document.getElementById('classes').innerHTML=CLASSES.map(c=>'<span class="cls'+(c[0]===activeCls?' active':'')+'" data-c="'+c[0]+'">'+c[1]+'</span>').join('');}
+function render(){
+  const q=document.getElementById('q').value.trim().toLowerCase();
+  const rows=document.getElementById('rows');
+  let html='';
+  for(const [code,name,unofficial] of DATA){
+    if(activeCls!=='all' && String(code)[0]!==activeCls) continue;
+    if(q && String(code).indexOf(q)<0 && name.toLowerCase().indexOf(q)<0) continue;
+    html+='<tr><td class="code">'+code+(unofficial?'</td><td>'+name+' <span class="alt">(unofficial)</span>':'</td><td>'+name)+'</td></tr>';
+  }
+  rows.innerHTML=html||'<tr><td colspan="2" style="color:#64748b;text-align:center;padding:20px">No codes match your search.</td></tr>';
+}
+document.getElementById('q').addEventListener('input',render);
+document.getElementById('classes').addEventListener('click',e=>{const t=e.target.closest('.cls');if(!t)return;activeCls=t.dataset.c;document.querySelectorAll('.cls').forEach(c=>c.classList.toggle('active',c===t));render();});
+renderClasses(); render();
+</script>
+</body>
+</html>
