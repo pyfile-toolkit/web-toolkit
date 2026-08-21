@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reaction Time Test — Free Online Reflex Speed Test</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Reaction Time Test","operatingSystem":"ANY","applicationCategory":"GameApplication","description":"Test your reaction time in milliseconds. Simple reflex speed test — click when the screen turns green. Free, no install.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<meta name="description" content="Free reaction time test: measure your reflexes in milliseconds. Click when the screen turns green, get your score and personal best. No install, no ads, works on any device.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:16px 0 20px}
+#game{max-width:480px;width:100%;text-align:center}
+h1{font-size:1.9rem;margin:6px 0 2px;color:#f8fafc}
+h1 b{color:#22d3ee}
+.sub{color:#94a3b8;font-size:.9rem;margin-bottom:14px}
+.arena{width:100%;height:380px;border-radius:20px;background:#1e293b;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:background .08s;border:1px solid #334155;position:relative}
+.arena.green{background:#0f5132}
+.arena .msg{font-size:1.25rem;font-weight:700;color:#cbd5e1;padding:0 24px;line-height:1.5}
+.arena .msg b{color:#4ade80}
+.arena .big{font-size:3rem;font-weight:900;color:#f8fafc}
+.hud{display:flex;justify-content:space-between;margin:12px 0;gap:10px}
+.stat{background:#1e293b;border-radius:12px;padding:10px 14px;flex:1}
+.stat .l{font-size:.72rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em}
+.stat .v{font-size:1.3rem;font-weight:700;color:#f8fafc}
+.avg{font-size:.9rem;color:#64748b;margin-bottom:12px}
+.btn{padding:12px 26px;border:none;border-radius:12px;background:#6366f1;color:#fff;font-weight:800;font-size:1rem;cursor:pointer}
+.btn:hover{background:#4f46e5}
+.shareWrap{margin-top:10px;display:none}
+.share-btn{padding:10px 20px;border:none;border-radius:10px;background:#0d9488;color:#fff;font-weight:700;cursor:pointer;font-size:.95rem;margin:0 5px}
+.ranking{margin-top:14px;font-size:.85rem;color:#94a3b8}
+.kofi{margin-top:14px;font-size:.85rem}.kofi a{color:#ff5e5b;text-decoration:none}
+.ads{margin-top:10px;text-align:center;font-size:.82rem}.ads a{color:#818cf8;text-decoration:none;margin:0 5px}
+.content{margin-top:26px;max-width:480px;text-align:left}
+.content h2{color:#f8fafc;font-size:1.1rem;margin:18px 0 8px}
+.content p{color:#cbd5e1;font-size:.9rem;line-height:1.6;margin-bottom:10px}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:12px 0 2px}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+@media(max-width:520px){.arena{height:320px}h1{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<div id="game">
+<h1>⚡ Reaction <b>Time</b> Test</h1>
+<p class="sub">Wait for green, then click as fast as you can. Hold to start.</p>
+<div class="arena" id="arena"><div class="msg" id="msg">Click to start,<br>then click immediately<br>when it turns <b>green</b>.</div></div>
+<div class="hud">
+  <div class="stat"><div class="l">Last</div><div class="v" id="last">—</div></div>
+  <div class="stat"><div class="l">Best</div><div class="v" id="best">—</div></div>
+  <div class="stat"><div class="l">Average</div><div class="v" id="avg">—</div></div>
+</div>
+<div class="avg">Average human reaction time is about <b>250–270 ms</b>. Top athletes: 150 ms.</div>
+<div class="shareWrap" id="shareWrap"><button class="share-btn" onclick="shareScore()">📤 Share my score</button><button class="share-btn" onclick="retry()" style="background:#475569">↻ Retry</button></div>
+<div class="ranking" id="ranking"></div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this free test</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/karma.html">Karma</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/the-shift.html">The Shift</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+<div class="content">
+<h2>Reaction Time Test — Measure Your Reflexes in Milliseconds</h2>
+<p>This free reaction time test measures how quickly your brain and body respond to a visual signal. Click to start, wait for the area to turn <strong>green</strong>, then click again as fast as possible. Your time is recorded in milliseconds and compared against average human reflexes.</p>
+<h2>How Reaction Time Works</h2>
+<p>Reaction time is the delay between a stimulus (the screen turning green) and your response (the click). An average person reacts in about <strong>250–270 ms</strong>; a simple visual reaction is faster than a complex decision. Your score is affected by fatigue, focus, caffeine, and how alert you are right now.</p>
+<h2>Why Test Your Reaction Speed?</h2>
+<p>Reaction speed matters for gaming, driving, sports, and reflexes in daily life. Taking a few trials gives a reliable average and lets you track how focus or tiredness affects you. It's also just a fun, quick challenge to share with friends — see who has the fastest reflexes.</p>
+<h2>Reaction Time FAQ</h2>
+<p><strong>What is a good reaction time?</strong> Under 250 ms is above average; under 200 ms is fast; pro gamers and athletes often reach 150–180 ms. <strong>Does the test store my data?</strong> No — everything runs locally and only your personal best is saved in your browser. <strong>Why did I get a faster score?</strong> Practice and alertness help — take a few attempts for a consistent average.</p>
+</div>
+</div>
+<div class="foot"><a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> · <a href="privacy.html">Privacy</a></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+const arena=document.getElementById('arena'), msg=document.getElementById('msg');
+const el_last=document.getElementById('last'), el_best=document.getElementById('best'), el_avg=document.getElementById('avg');
+const shareWrap=document.getElementById('shareWrap'), ranking=document.getElementById('ranking');
+let state='idle'; // idle | waiting | ready | done
+let startTime=0, timer=null;
+let attempts=[];
+let best=parseInt(localStorage.getItem('rt_best')||'0')||0;
+
+function verdict(ms){
+  if(ms<=180) return '🦾 Elite reflexes!';
+  if(ms<=220) return '⚡ Very fast';
+  if(ms<=270) return '👍 Above average';
+  if(ms<=350) return '🙂 Average';
+  return '🐢 Slow — try again';
+}
+function setArena(bg, html){ arena.className='arena'+(bg?' green':''); msg.innerHTML=html; }
+function resetState(){ clearTimeout(timer); state='idle'; setArena(false,'Click to start,<br>then click immediately<br>when it turns <b>green</b>.'); }
+function startTry(){
+  state='waiting';
+  setArena(false,'Wait for <b>green</b>…<br><span style="color:#f97316">do not click yet</span>');
+  const delay=800+Math.random()*2500;
+  timer=setTimeout(()=>{ if(state!=='waiting')return; state='ready'; setArena(true,'🔴 Click now!'); startTime=performance.now(); },delay);
+}
+function complete(ms){
+  attempts.push(ms);
+  const sum=attempts.reduce((a,b)=>a+b,0);
+  const avg=Math.round(sum/attempts.length);
+  el_last.textContent=ms+' ms';
+  el_avg.textContent=avg+' ms';
+  if(!best||ms<best){ best=ms; localStorage.setItem('rt_best',best); }
+  el_best.textContent=best+' ms';
+  setArena(false,'<div class="big">'+ms+' ms</div><div class="msg" style="color:#a5b4fc;margin-top:6px">'+verdict(ms)+'</div>');
+  const tries=attempts.length;
+  ranking.innerHTML='Attempt <b>'+tries+'/5</b> · chances: '+attempts.map(x=>x+'ms').join(' · ');
+  if(tries>=5){
+    state='done';
+    shareWrap.style.display='block';
+    ranking.innerHTML+='<br><b style="color:#f8fafc">Final · '+tries+'· Average '+avg+' ms · Best '+best+' ms</b>';
+  } else {
+    shareWrap.style.display='none';
+    msg.innerHTML+='<br><span style="font-size:.9rem;color:#64748b;margin-top:10px;display:inline-block">Click to go again</span>';
+    state='ended';
+  }
+}
+arena.addEventListener('click',()=>{
+  if(state==='idle'){ startTry(); return; }
+  if(state==='waiting'){ state='idle'; clearTimeout(timer); setArena(false,'Too soon! Click again,<br>then wait for <b>green</b>.'); return; }
+  if(state==='ready'){ const ms=Math.round(performance.now()-startTime); complete(ms); return; }
+  if(state==='ended'){ startTry(); return; }
+  // done: ignore
+});
+function retry(){ attempts=[]; el_last.textContent='—'; el_avg.textContent='—'; shareWrap.style.display='none'; ranking.textContent=''; resetState(); }
+function shareScore(){
+  const avg=attempts.length?Math.round(attempts.reduce((a,b)=>a+b,0)/attempts.length):0;
+  const txt='⚡ My avg reaction time is '+avg+' ms (best '+best+' ms). Can you beat it? '+location.href;
+  if(navigator.clipboard) navigator.clipboard.writeText(txt);
+  if(navigator.share){ Promise.resolve(navigator.share({title:'Reaction Time Test',text:txt})).catch(()=>{}); }
+  else { msg.innerHTML='<div class="big">Copied!</div><div class="msg" style="color:#a5b4fc">Share the link to challenge a friend.</div>'; }
+}
+</script>
+</body>
+</html>
