@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hash Generator — MD5, SHA-1, SHA-256, SHA-512 (Free)</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Hash Generator","operatingSystem":"ANY","applicationCategory":"UtilitiesApplication","description":"Generate MD5, SHA-1, SHA-256 and SHA-512 hashes of any text instantly. 100% client-side, private, free.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<meta name="description" content="Free online hash generator: MD5, SHA-1, SHA-256, SHA-512 of any text. Runs entirely in your browser — nothing is uploaded. Verify checksums and hashes instantly.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:20px}
+.card{background:#1e293b;border-radius:16px;padding:28px;max-width:720px;width:100%}
+h1{color:#f8fafc;margin-bottom:4px;font-size:1.4rem}
+.sub{color:#94a3b8;margin-bottom:20px;font-size:.9rem}
+textarea{width:100%;min-height:150px;padding:14px;border-radius:10px;background:#0f172a;color:#e2e8f0;border:1px solid #475569;font-size:1rem;line-height:1.5;resize:vertical;font-family:ui-monospace,monospace}
+.algos{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:16px}
+.algo{background:#334155;border-radius:10px;padding:12px;text-align:center;cursor:pointer;border:none;color:#e2e8f0;font-size:.9rem;transition:background .15s}
+.algo:hover{background:#4f46e5}
+.algo .n{font-weight:700;color:#818cf8;display:block;margin-bottom:2px;font-size:1rem}
+.outwrap{margin-top:16px}
+#out{width:100%;min-height:100px;padding:14px;border-radius:10px;background:#0f172a;color:#a5f3fc;border:1px solid #67e8f9;font-size:.8rem;font-family:ui-monospace,monospace;word-break:break-all;line-height:1.6;white-space:pre-wrap}
+.btns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+button{padding:9px 22px;background:#6366f1;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.9rem}
+button:hover{background:#4f46e5}
+.btn-ghost{background:#64748b}
+.kofi{text-align:center;margin:16px 0 6px;padding:10px;background:#1e1e3a;border-radius:8px}
+.kofi a{color:#ff5e5b;font-weight:600;text-decoration:none}
+.ads{margin-top:10px;font-size:.85rem;text-align:center}
+.ads a{color:#818cf8;margin:0 6px}
+.content{margin-top:30px;max-width:720px;padding:0 6px}
+.content h2{color:#f8fafc;font-size:1.15rem;margin:22px 0 10px}
+.content p{color:#cbd5e1;line-height:1.65;margin-bottom:12px;font-size:.95rem}
+.content strong{color:#e2e8f0}
+@media(max-width:520px){body{padding:12px}.card{padding:18px}.content h2{font-size:1.05rem}}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>Hash Generator</h1>
+<p class="sub">Generate MD5, SHA-1, SHA-256 or SHA-512 of any text. Runs in your browser — nothing is uploaded. You can verify checksums and hashes instantly.</p>
+<textarea id="inp" placeholder="Type or paste text to hash..."></textarea>
+<div class="algos" id="algos"></div>
+<div class="outwrap"><div id="out">Select an algorithm to generate the hash.</div></div>
+<div class="btns">
+  <button class="btn-ghost" onclick="copyOut()">📋 Copy</button>
+  <button class="btn-ghost" onclick="clearAll()">🗑 Clear</button>
+</div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this tool on Ko-fi</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/password-generator.html">Password Generator</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/word-counter.html">Word Counter</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/base64.html">Base64</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+</div>
+
+<div class="content">
+<h2>Hash Generator — MD5, SHA-1, SHA-256, SHA-512 Online</h2>
+<p>This free hash generator computes a cryptographic fingerprint of your text with <strong>MD5, SHA-1, SHA-256, or SHA-512</strong> in a single click. It runs entirely in your browser using the Web Crypto API and a pure-JavaScript reference implementation, so your data is never sent to a server. Hashes are the backbone of integrity checks, password storage, and deduplication — generate one to verify a string, compare files, or check whether two inputs differ.</p>
+<h2>Which Hash Should I Use?</h2>
+<p><strong>SHA-256</strong> and <strong>SHA-512</strong> are the modern, collision-resistant choices recommended for new work — from TLS certificates to secure password hashing (always with a salt). <strong>SHA-1</strong> is still common for legacy checksums and Git object IDs, but it is no longer considered cryptographically secure. <strong>MD5</strong> is fast and widely supported for checksums and deduplication, but it is broken for security purposes. For anything requiring strong security, prefer SHA-256 or SHA-512.</p>
+<h2>How to Verify a Checksum</h2>
+<p>Paste your text or file contents into the box, pick an algorithm, and copy the resulting hash. Compare it against the checksum published by the file's author — if they match, the data is intact and untampered. Because hashing is one-way, the same input always produces the same hash, which is exactly what makes checksum verification reliable.</p>
+<h2>Hash Generator FAQ</h2>
+<p><strong>Is my text sent anywhere?</strong> No — hashing happens entirely in your browser. <strong>Do all algorithms work offline?</strong> Yes. <strong>Is SHA-256 better than MD5?</strong> For security, yes; SHA-256 resists the collisions that break MD5 and SHA-1. <strong>Can I hash a whole file?</strong> Paste its contents here, or use a dedicated file-hash tool for large binaries.</p>
+</div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+const inp=document.getElementById('inp'), out=document.getElementById('out');
+function md5(s){
+  const M32=(1n<<32n)-1n;
+  const K=[0xd76aa478,0xe8c7b756,0x242070db,0xc1bdceee,0xf57c0faf,0x4787c62a,0xa8304613,0xfd469501,0x698098d8,0x8b44f7af,0xffff5bb1,0x895cd7be,0x6b901122,0xfd987193,0xa679438e,0x49b40821,0xf61e2562,0xc040b340,0x265e5a51,0xe9b6c7aa,0xd62f105d,0x02441453,0xd8a1e681,0xe7d3fbc8,0x21e1cde6,0xc33707d6,0xf4d50d87,0x455a14ed,0xa9e3e905,0xfcefa3f8,0x676f02d9,0x8d2a4c8a,0xfffa3942,0x8771f681,0x6d9d6122,0xfde5380c,0xa4beea44,0x4bdecfa9,0xf6bb4b60,0xbebfbc70,0x289b7ec6,0xeaa127fa,0xd4ef3085,0x04881d05,0xd9d4d039,0xe6db99e5,0x1fa27cf8,0xc4ac5665,0xf4292244,0x432aff97,0xab9423a7,0xfc93a039,0x655b59c3,0x8f0ccc92,0xffeff47d,0x85845dd1,0x6fa87e4f,0xfe2ce6e0,0xa3014314,0x4e0811a1,0xf7537e82,0xbd3af235,0x2ad7d2bb,0xeb86d391].map(x=>BigInt(x));
+  const S=[7,12,17,22,7,12,17,22,7,12,17,22,7,12,17,22,5,9,14,20,5,9,14,20,5,9,14,20,5,9,14,20,4,11,16,23,4,11,16,23,4,11,16,23,4,11,16,23,6,10,15,21,6,10,15,21,6,10,15,21,6,10,15,21];
+  const rotl=(x,n)=>((x<<BigInt(n))|(x>>BigInt(32-n)))&M32;
+  const mask=x=>x&M32;
+  const bytes=unescape(encodeURIComponent(s)).split('').map(c=>c.charCodeAt(0));
+  const origLen=BigInt(bytes.length*8);
+  bytes.push(0x80);
+  while(bytes.length%64!==56)bytes.push(0);
+  {let L=origLen;for(let i=0;i<8;i++){bytes.push(Number(L&0xffn));L>>=8n;}}
+  let a0=0x67452301n,b0=0xefcdab89n,c0=0x98badcfen,d0=0x10325476n;
+  for(let off=0;off<bytes.length;off+=64){
+    const M=[];for(let i=0;i<16;i++)M.push(BigInt(((bytes[off+i*4])|(bytes[off+i*4+1]<<8)|(bytes[off+i*4+2]<<16)|(bytes[off+i*4+3]<<24))>>>0));
+    let a=a0,b=b0,c=c0,d=d0;
+    for(let i=0;i<64;i++){
+      let F,g;
+      if(i<16){F=(b&c)|((M32^b)&d);g=i;}
+      else if(i<32){F=(d&b)|((M32^d)&c);g=(5*i+1)%16;}
+      else if(i<48){F=b^c^d;g=(3*i+5)%16;}
+      else{F=c^(b|(M32^d));g=(7*i)%16;}
+      F=mask(F+a+K[i]+M[g]); a=d; d=c; c=b; b=mask(b+rotl(F,S[i]));
+    }
+    a0=mask(a0+a);b0=mask(b0+b);c0=mask(c0+c);d0=mask(d0+d);
+  }
+  const out=[];[a0,b0,c0,d0].forEach(x=>{for(let i=0;i<4;i++){out.push(Number(x&0xffn).toString(16).padStart(2,'0'));x>>=8n;}});
+  return out.join('');
+}
+function sha1(s){
+  const M32=(1n<<32n)-1n;
+  const rotl=(x,n)=>((x<<BigInt(n))|(x>>BigInt(32-n)))&M32;
+  const mask=x=>x&M32;
+  const bytes=unescape(encodeURIComponent(s)).split('').map(c=>c.charCodeAt(0));
+  const origLen=BigInt(bytes.length*8);
+  bytes.push(0x80);
+  while(bytes.length%64!==56)bytes.push(0);
+  {let L=origLen;const be=[];for(let i=7;i>=0;i--)be.push(Number((L>>BigInt(i*8))&0xffn));bytes.push(...be);}
+  let h0=0x67452301n,h1=0xefcdab89n,h2=0x98badcfen,h3=0x10325476n,h4=0xc3d2e1f0n;
+  const w=new Array(80);
+  for(let off=0;off<bytes.length;off+=64){
+    for(let i=0;i<16;i++)w[i]=BigInt(((bytes[off+i*4]<<24)|(bytes[off+i*4+1]<<16)|(bytes[off+i*4+2]<<8)|bytes[off+i*4+3])>>>0);
+    for(let i=16;i<80;i++)w[i]=rotl(w[i-3]^w[i-8]^w[i-14]^w[i-16],1);
+    let a=h0,b=h1,c=h2,d=h3,e=h4;
+    for(let i=0;i<80;i++){
+      let f,k;
+      if(i<20){f=(b&c)|((M32^b)&d);k=0x5a827999n;}
+      else if(i<40){f=b^c^d;k=0x6ed9eba1n;}
+      else if(i<60){f=(b&c)|(b&d)|(c&d);k=0x8f1bbcdcn;}
+      else{f=b^c^d;k=0xca62c1d6n;}
+      const temp=mask(rotl(a,5)+f+e+k+w[i]);
+      e=d;d=c;c=rotl(b,30);b=a;a=temp;
+    }
+    h0=mask(h0+a);h1=mask(h1+b);h2=mask(h2+c);h3=mask(h3+d);h4=mask(h4+e);
+  }
+  const out=[];
+  [h0,h1,h2,h3,h4].forEach(x=>{for(let i=3;i>=0;i--)out.push(Number((x>>BigInt(i*8))&0xffn).toString(16).padStart(2,'0'));});
+  return out.join('');
+}
+async function shaHex(algo,s){
+  const bytes=new TextEncoder().encode(s);
+  const buf=await crypto.subtle.digest(algo,bytes);
+  return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+const algos=[
+  {name:'MD5',n:'md5',fn:s=>md5(s)},
+  {name:'SHA-1',n:'sha1',fn:s=>sha1(s)},
+  {name:'SHA-256',n:'sha256',fn:s=>shaHex('SHA-256',s)},
+  {name:'SHA-512',n:'sha512',fn:s=>shaHex('SHA-512',s)}
+];
+const wrap=document.getElementById('algos');
+algos.forEach(a=>{const b=document.createElement('button');b.className='algo';b.innerHTML='<span class="n">'+a.name+'</span>';b.onclick=()=>{const v=inp.value;if(!v){out.textContent='Enter some text first.';return;}Promise.resolve(a.fn(v)).then(h=>out.textContent=a.name+':\n'+h);};wrap.appendChild(b);});
+function copyOut(){navigator.clipboard.writeText(out.textContent);}
+function clearAll(){inp.value='';out.textContent='Select an algorithm to generate the hash.';inp.focus();}
+</script>
+</body>
+</html>
