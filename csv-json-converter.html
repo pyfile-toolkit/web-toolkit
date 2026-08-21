@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSV to JSON Converter — Free Online CSV JSON Converter</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"CSV to JSON Converter","operatingSystem":"ANY","applicationCategory":"DeveloperApplication","description":"Convert CSV to JSON and JSON to CSV online: paste your data, get both formats instantly. Handles quoted fields, commas in values, and proper JSON escaping. 100% client-side.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<meta name="description" content="Free CSV to JSON converter and back: CSV → JSON array of objects, JSON → CSV with proper quoting. Handles headers, quoted fields, commas in values. Instantly, privately, in your browser.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px 16px 20px}
+.wrap{max-width:760px;width:100%}
+h1{font-family:system-ui,sans-serif;font-size:1.7rem;margin:6px 0 2px;color:#f8fafc;text-align:center}
+h1 b{color:#22d3ee}
+.sub{font-family:system-ui,sans-serif;color:#94a3b8;font-size:.88rem;text-align:center;margin-bottom:14px}
+.dirs{display:flex;gap:8px;justify-content:center;margin-bottom:14px}
+.dir{padding:9px 18px;border-radius:999px;border:1px solid #334155;background:#1e293b;color:#cbd5e1;cursor:pointer;font-size:.85rem;font-family:system-ui,sans-serif}
+.dir.active{background:#6366f1;border-color:#6366f1;color:#fff;font-weight:700}
+textarea{width:100%;min-height:170px;background:#0b0f1a;border:1px solid #334155;border-radius:12px;color:#e2e8f0;padding:12px;font-size:.8rem;resize:vertical;line-height:1.5}
+.row2{display:flex;gap:10px;margin:10px 0;flex-wrap:wrap}
+.btn{padding:11px 20px;border:none;border-radius:10px;background:#6366f1;color:#fff;font-weight:800;cursor:pointer;font-size:.9rem;font-family:system-ui,sans-serif}
+.btn:hover{background:#4f46e5}
+.btn.sec{background:#334155}.btn.sec:hover{background:#475569}
+.btn.green{background:#0d9488}
+.err{color:#f87171;font-size:.8rem;margin:8px 0;font-family:system-ui,sans-serif;display:none}
+table{width:100%;border-collapse:collapse;font-size:.78rem;margin-top:10px}
+th,td{border:1px solid #334155;padding:6px 8px;text-align:left;word-break:break-word}
+th{background:#1e293b;color:#f8fafc}
+.kofi{margin-top:14px;text-align:center;font-size:.85rem;font-family:system-ui,sans-serif}.kofi a{color:#ff5e5b;text-decoration:none}
+.ads{margin-top:10px;text-align:center;font-size:.82rem;font-family:system-ui,sans-serif}.ads a{color:#818cf8;text-decoration:none;margin:0 5px}
+.content{margin-top:24px;font-family:system-ui,sans-serif}
+.content h2{color:#f8fafc;font-size:1.05rem;margin:16px 0 8px}
+.content p{color:#cbd5e1;font-size:.9rem;line-height:1.6;margin-bottom:10px}
+.content code{background:#1e293b;padding:1px 5px;border-radius:5px;color:#22d3ee;font-size:.85em}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:12px 0 2px;font-family:system-ui,sans-serif}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🔄 CSV ↔ JSON <b>Converter</b></h1>
+<p class="sub">Both ways instantly · handles quotes & commas · 100% private</p>
+<div class="dirs" id="dirs">
+<span class="dir active" data-d="c2j">CSV → JSON</span>
+<span class="dir" data-d="j2c">JSON → CSV</span>
+</div>
+<textarea id="in" placeholder='CSV → JSON: paste CSV with a header row, e.g.
+name,age,city
+Alice,30,"New York, NY"
+Bob,25,London'></textarea>
+<div class="row2">
+<button class="btn" onclick="convert()">Convert</button>
+<button class="btn sec" onclick="loadSample()">Load sample</button>
+<button class="btn sec" onclick="clearAll()">Clear</button>
+</div>
+<div class="err" id="err"></div>
+<div id="grid"></div>
+<div class="row2" id="dlRow" style="display:none">
+<button class="btn green" onclick="copyOut()">Copy result</button>
+<button class="btn sec" onclick="downloadOut()">⬇ Download</button>
+</div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this free tool</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/json-formatter.html">JSON Formatter</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+<div class="content">
+<h2>CSV to JSON Converter — How It Works</h2>
+<p>Paste a CSV (comma-separated values) with a header row and this converter produces a <strong>JSON array of objects</strong> — each row becomes an object keyed by the header names. Quoted fields are handled correctly: values containing commas, quotes, or newlines (RFC 4180 style) parse properly. The reverse direction builds a clean CSV from a JSON array of objects, quoting any field containing special characters.</p>
+<h2>Why Convert CSV to JSON?</h2>
+<p>JSON is the universal format for APIs, databases, and web apps. When a client hands you a spreadsheet export (CSV), converting it to JSON lets you insert it into MongoDB, PostgreSQL <code>jsonb</code>, Elasticsearch, or a browser app in one step. Converting JSON to CSV is just as common for reporting, Excel analysis, Google Sheets import, and machine-readable exports.</p>
+<h2>CSV to JSON FAQ</h2>
+<p><strong>Do I need a header row for CSV → JSON?</strong> Yes — the first row becomes the object keys. <strong>What if my CSV uses semicolons?</strong> This converter expects commas; replace the delimiter before converting. <strong>Are numbers kept as numbers?</strong> Values are kept as strings by default for safe round-tripping. <strong>Is my data uploaded?</strong> No — everything is converted locally in your browser, nothing is sent anywhere.</p>
+</div>
+<div class="foot"><a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> · <a href="privacy.html">Privacy</a></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+let lastOut='';
+function parseCSV(text){
+  let rows=[],row=[],cur='',q=false;
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(q){
+      if(c==='"'){ if(text[i+1]==='"'){cur+='"';i++;} else q=false; }
+      else cur+=c;
+    } else {
+      if(c==='"') q=true;
+      else if(c===','){ row.push(cur); cur=''; }
+      else if(c==='\n'||c==='\r'){ if(c==='\r'&&text[i+1]==='\n')i++; row.push(cur); cur=''; rows.push(row); row=[]; }
+      else cur+=c;
+    }
+  }
+  if(cur!==''||row.length){ row.push(cur); rows.push(row); }
+  return rows.filter(r=>!(r.length===1&&r[0].trim()===''));
+}
+function csvToJson(csv){
+  const rows=parseCSV(csv);
+  if(rows.length<2) throw new Error('Need a header row + at least one data row.');
+  const headers=rows[0].map(h=>h.trim());
+  const out=rows.slice(1).map(r=>{ const o={}; headers.forEach((h,i)=>{ o[h]=r[i]!==undefined?r[i]:''; }); return o; });
+  return JSON.stringify(out,null,2);
+}
+function jsonToCsv(json){
+  const data=JSON.parse(json);
+  if(!Array.isArray(data)) throw new Error('JSON must be an array of objects.');
+  if(data.length===0) return '';
+  const headers=Object.keys(data[0]);
+  for(const o of data){ for(const k of Object.keys(o)) if(!headers.includes(k)) headers.push(k); }
+  const esc=v=>{ v=String(v===null||v===undefined?'':v); return /[",\n\r]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v; };
+  return [headers.join(','), ...data.map(o=>headers.map(h=>esc(o[h])).join(','))].join('\n');
+}
+function convert(){
+  const dir=document.querySelector('.dir.active').dataset.d;
+  const raw=document.getElementById('in').value;
+  const err=document.getElementById('err');
+  err.style.display='none';
+  try{
+    let out, table='';
+    if(dir==='c2j'){
+      out=csvToJson(raw);
+      const rows=parseCSV(raw), h=rows[0].map(x=>x.trim());
+      table='<table><tr>'+h.map(x=>'<th>'+x+'</th>').join('')+'</tr>'+rows.slice(1,6).map(r=>'<tr>'+h.map((_,i)=>'<td>'+(r[i]??'')+'</td>').join('')+'</tr>').join('')+'<tr></tr></table>';
+    } else {
+      out=jsonToCsv(raw);
+    }
+    lastOut=out;
+    document.getElementById('grid').innerHTML= table? table : '<pre style="background:#0b0f1a;border:1px solid #334155;border-radius:10px;padding:12px;font-size:.8rem;white-space:pre-wrap;word-break:break-all;margin-top:10px;color:#cbd5e1">'+out+'</pre>';
+    document.getElementById('dlRow').style.display='flex';
+  }catch(e){ err.textContent='Error: '+e.message; err.style.display='block'; }
+}
+function copyOut(){ if(navigator.clipboard) navigator.clipboard.writeText(lastOut); const b=event.target; const old=b.textContent; b.textContent='Copied ✓'; setTimeout(()=>b.textContent=old,1200); }
+function downloadOut(){ const blob=new Blob([lastOut],{type:'text/plain'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=document.querySelector('.dir.active').dataset.d==='c2j'?'data.json':'data.csv'; a.click(); }
+function loadSample(){ document.getElementById('in').value='name,age,city\nAlice,30,"New York, NY"\nBob,25,London\nCarol,28,"Paris, France"'; convert(); }
+function clearAll(){ document.getElementById('in').value=''; document.getElementById('grid').innerHTML=''; document.getElementById('dlRow').style.display='none'; document.getElementById('err').style.display='none'; }
+document.getElementById('dirs').addEventListener('click',e=>{
+  const t=e.target.closest('.dir'); if(!t)return;
+  document.querySelectorAll('.dir').forEach(d=>d.classList.toggle('active',d===t));
+  document.getElementById('grid').innerHTML=''; document.getElementById('dlRow').style.display='none'; document.getElementById('err').style.display='none';
+});
+</script>
+</body>
+</html>
