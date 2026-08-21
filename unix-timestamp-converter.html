@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unix Timestamp Converter — Epoch Time Converter</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Unix Timestamp Converter","operatingSystem":"ANY","applicationCategory":"DeveloperApplication","description":"Convert Unix epoch timestamps to human-readable dates and back. Current Unix time, UTC and local timezone, ISO 8601, milliseconds. Free, instant, private.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<meta name="description" content="Free Unix timestamp (epoch) converter: timestamp → date & date → timestamp. Current Unix time live, UTC and local timezone, ISO 8601, milliseconds. No login, instant.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-variant-numeric:tabular-nums}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;align-items:center;flex-direction:column;padding:12px 16px 20px}
+.wrap{max-width:560px;width:100%}
+h1{font-size:1.7rem;margin:6px 0 2px;color:#f8fafc;text-align:center}
+h1 b{color:#22d3ee}
+.sub{color:#94a3b8;font-size:.88rem;text-align:center;margin-bottom:16px}
+.live{background:#1e293b;border:1px solid #334155;border-radius:14px;padding:16px;text-align:center;margin-bottom:18px}
+.live .l{font-size:.72rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em}
+.live .v{font-size:1.5rem;font-weight:800;color:#4ade80;margin:4px 0}
+.live .d{font-size:.85rem;color:#cbd5e1}
+.card{background:#1e293b;border:1px solid #334155;border-radius:16px;padding:20px;margin-bottom:16px}
+.card h2{font-size:.95rem;color:#f8fafc;margin-bottom:12px}
+.field{display:flex;gap:8px;margin-bottom:10px}
+.field input{flex:1;padding:11px 12px;border-radius:10px;border:1px solid #334155;background:#0b0f1a;color:#f8fafc;font-size:1rem}
+.field button{padding:11px 16px;border:none;border-radius:10px;background:#6366f1;color:#fff;font-weight:700;cursor:pointer;font-size:.9rem;white-space:nowrap}
+.field button:hover{background:#4f46e5}
+#toDate{display:flex;gap:8px;flex-wrap:wrap}
+#toDate input{flex:1;min-width:200px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.g{background:#0b0f1a;border:1px solid #334155;border-radius:10px;padding:10px 12px}
+.g .l{font-size:.68rem;color:#64748b;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
+.g .v{font-size:.9rem;color:#e2e8f0;word-break:break-all}
+.g .v small{opacity:.75}
+.kofi{margin-top:14px;text-align:center;font-size:.85rem}.kofi a{color:#ff5e5b;text-decoration:none}
+.ads{margin-top:10px;text-align:center;font-size:.82rem}.ads a{color:#818cf8;text-decoration:none;margin:0 5px}
+.content{margin-top:24px}
+.content h2{color:#f8fafc;font-size:1.05rem;margin:16px 0 8px}
+.content p{color:#cbd5e1;font-size:.9rem;line-height:1.6;margin-bottom:10px}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:12px 0 2px}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+@media(max-width:480px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🕰️ Unix Timestamp <b>Converter</b></h1>
+<p class="sub">Epoch ↔ human-readable date · UTC & local · milliseconds</p>
+<div class="live"><div class="l">Current Unix time</div><div class="v" id="now">—</div><div class="d" id="nowd">—</div></div>
+<div class="card">
+<h2>Timestamp → Date</h2>
+<div class="field"><input id="tsIn" type="number" inputmode="numeric" placeholder="e.g. 1724256000 (seconds) or 1724256000000 (ms)"><button onclick="tsToDate()">Convert</button></div>
+<div id="toDate"></div>
+</div>
+<div class="card">
+<h2>Date → Timestamp</h2>
+<div class="field"><input id="dtIn" type="datetime-local" value=""><button onclick="dtToTs()">Convert</button></div>
+<div class="grid">
+<div class="g"><div class="l">Seconds</div><div class="v" id="sOut">—</div></div>
+<div class="g"><div class="l">Milliseconds</div><div class="v" id="msOut">—</div></div>
+<div class="g"><div class="l">ISO 8601 (UTC)</div><div class="v" id="isoOut">—</div></div>
+<div class="g"><div class="l">Local time</div><div class="v" id="locOut">—</div></div>
+</div>
+</div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this free tool</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/json-formatter.html">JSON</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+<div class="content">
+<h2>What is a Unix Timestamp?</h2>
+<p>A Unix timestamp (also called epoch time) counts the number of <strong>seconds elapsed since January 1, 1970 UTC</strong> — ignoring leap seconds. It's the standard way computers and APIs store absolute time: a simple integer that's easy to sort, compare, and transmit. JavaScript's <code>Date.now()</code> returns the same value in <em>milliseconds</em>.</p>
+<h2>How to Convert Timestamp to Date</h2>
+<p>To convert epoch seconds to a date, add them to the 1970-01-01T00:00:00 UTC epoch. Most programming languages have a helper: <code>new Date(seconds * 1000)</code> in JavaScript, <code>datetime.fromtimestamp(sec)</code> in Python, or <code>date -d @1724256000</code> in Linux. Our converter does exactly this and shows you the result in both UTC and your local timezone.</p>
+<h2>Unix Time in Common Formats</h2>
+<p>APIs commonly deliver time in one of three shapes: seconds (10 digits, like 1724256000), milliseconds (13 digits, from JavaScript), or ISO 8601 strings (like 2024-08-21T14:00:00.000Z). If your timestamp doesn't look right, check the digit count — divide milliseconds by 1000 to get seconds.</p>
+<h2>Unix Timestamp FAQ</h2>
+<p><strong>What is the current Unix time?</strong> It updates live on this page (seconds since 1970-01-01 UTC). <strong>Why is my timestamp a 13-digit number?</strong> That's milliseconds — divide by 1000 for seconds. <strong>Does the converter know my timezone?</strong> It shows results in UTC and in your browser's local timezone automatically. <strong>Is my data uploaded?</strong> No — everything computes locally in your browser.</p>
+</div>
+<div class="foot"><a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> · <a href="privacy.html">Privacy</a></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+const now=document.getElementById('now'), nowd=document.getElementById('nowd');
+function tick(){ const s=Math.floor(Date.now()/1000); now.textContent=s; nowd.textContent=new Date().toUTCString(); }
+tick(); setInterval(tick,1000);
+function toSec(v){ const n=parseFloat(v); if(!isFinite(n))return null; return n<1e11?n:Math.floor(n/1000); }
+function tsToDate(){
+  const box=document.getElementById('toDate');
+  const sec=toSec(document.getElementById('tsIn').value);
+  if(sec===null){ box.innerHTML='<div class="g" style="color:#fca5a5;grid-column:1/-1">Enter a number (seconds or milliseconds).</div>'; return; }
+  const d=new Date(sec*1000); if(isNaN(d)){box.innerHTML='<div class="g" style="color:#fca5a5">Invalid timestamp.</div>';return;}
+  box.innerHTML='<div class="grid">'+
+    '<div class="g"><div class="l">UTC</div><div class="v">'+d.toUTCString()+'</div></div>'+
+    '<div class="g"><div class="l">Local</div><div class="v">'+d.toString()+'</div></div>'+
+    '<div class="g"><div class="l">ISO 8601</div><div class="v">'+d.toISOString()+'</div></div>'+
+    '<div class="g"><div class="l">Year / Timezone offset</div><div class="v">'+d.getUTCFullYear()+' · <small>UTC'+((d.getTimezoneOffset()/60)*-1>=0?'+':'')+((d.getTimezoneOffset()/60)*-1)+'h</small></div></div>'+
+    '</div>';
+}
+function dtToTs(){
+  const raw=document.getElementById('dtIn').value;
+  if(!raw){ return; }
+  const d=new Date(raw); if(isNaN(d)){return;}
+  const s=Math.floor(d.getTime()/1000);
+  document.getElementById('sOut').textContent=s;
+  document.getElementById('msOut').textContent=d.getTime();
+  document.getElementById('isoOut').textContent=d.toISOString();
+  document.getElementById('locOut').textContent=d.toString();
+}
+// default datetime-local = now
+(function(){const d=new Date();d.setMilliseconds(0);const p=x=>String(x).padStart(2,'0');document.getElementById('dtIn').value=d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+'T'+p(d.getHours())+':'+p(d.getMinutes());})();
+</script>
+</body>
+</html>
