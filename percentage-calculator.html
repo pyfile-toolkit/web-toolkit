@@ -93,5 +93,6 @@ function calculate(){const f=readFields();let val=mode.call(f);if(mode.id==='cha
 function copyResult(){const v=document.getElementById('rval').textContent; if(navigator.clipboard) navigator.clipboard.writeText(v); const b=event.target; const old=b.textContent; b.textContent='Copied!'; setTimeout(()=>b.textContent=old,1200);}
 renderModes(); renderInputs();
 </script>
+</div>
 </body>
 </html>
