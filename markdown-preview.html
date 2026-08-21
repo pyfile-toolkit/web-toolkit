@@ -136,6 +136,7 @@ render();
 
 function exportHTML(){
   const blob=new Blob(['<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Preview</title></head><body>'+prev.innerHTML+'
+<div class="related" style="font-family:system-ui;font-size:.85rem;color:#64748b;text-align:center;margin-top:14px">More tools: <a href="json-formatter.html">Json Formatter</a> · <a href="html-encoder.html">Html Encoder</a> · <a href="case-converter.html">Case Converter</a> · <a href="color-converter.html">Color Converter</a></div>
 <div class="content"><h2>What is Markdown?</h2><p>Markdown is a lightweight markup language that formats text using simple symbols — #, *, and >. It is widely used for README files, docs, forums, and notes because it is readable both raw and rendered.</p><h2>How to use the Markdown previewer</h2><p>Type Markdown on the left; the formatted preview updates live on the right. Export to HTML or MD when done. Writing in Markdown keeps your content structured and portable.</p><h2>Why use Markdown</h2><p>Markdown is fast, version-control friendly, and converts easily to HTML, PDF, and more. It is the standard for developer documentation.</p><h2>Markdown FAQ</h2><p><strong>Is Markdown hard to learn?</strong> No, most syntax is intuitive. <strong>Can I use it in apps?</strong> Yes, widely supported. <strong>Is my text uploaded?</strong> No, local only.</p></div>
 <div id="crypto-donate"></div>
 <script src="donate.js"></script>
