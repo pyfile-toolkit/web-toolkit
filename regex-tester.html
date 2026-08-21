@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regex Tester — Free Online Regular Expression Tester</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Regex Tester","operatingSystem":"ANY","applicationCategory":"DeveloperApplication","description":"Free online regex tester: live regex highlighting, match count, capture groups, flags (g i m s u). Test and debug regular expressions instantly in your browser.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<meta name="description" content="Free regex tester: test regular expressions with live highlighting, match list with capture groups, flags g/i/m/s/u, and match count. Pure JS, runs in your browser, no data leaves your device.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px 16px 20px}
+.wrap{max-width:760px;width:100%}
+h1{font-family:system-ui,sans-serif;font-size:1.7rem;margin:6px 0 2px;color:#f8fafc;text-align:center}
+h1 b{color:#22d3ee}
+.sub{font-family:system-ui,sans-serif;color:#94a3b8;font-size:.88rem;text-align:center;margin-bottom:14px}
+.reRow{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.reRow input[type=text]{flex:1;min-width:200px;background:#0b0f1a;border:1px solid #334155;border-radius:10px;color:#f8fafc;padding:11px 12px;font-size:1rem}
+.flags{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:10px;font-family:system-ui,sans-serif;font-size:.85rem;color:#94a3b8}
+.flags label{padding:5px 10px;border:1px solid #334155;border-radius:8px;cursor:pointer;background:#1e293b}
+.flags input{margin-right:4px}
+textarea{width:100%;min-height:150px;background:#0b0f1a;border:1px solid #334155;border-radius:12px;color:#e2e8f0;padding:12px;font-size:.85rem;resize:vertical;line-height:1.6}
+.matches{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:14px;margin-top:12px;min-height:60px}
+.matches .l{font-size:.72rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;font-family:system-ui,sans-serif}
+.hl{background:#fbbf24;color:#0b0f1a;border-radius:2px}
+.hl2{background:#34d399;color:#0b0f1a}
+.list{list-style:none;font-size:.8rem;color:#cbd5e1;max-height:200px;overflow:auto;margin-top:8px}
+.list li{padding:4px 6px;border-bottom:1px solid #1e293b}
+.list .n{color:#22d3ee;margin-right:8px;font-size:.72rem}
+.err{color:#f87171;font-size:.8rem;font-family:system-ui,sans-serif}
+.kofi{margin-top:14px;text-align:center;font-size:.85rem;font-family:system-ui,sans-serif}.kofi a{color:#ff5e5b;text-decoration:none}
+.ads{margin-top:10px;text-align:center;font-size:.82rem;font-family:system-ui,sans-serif}.ads a{color:#818cf8;text-decoration:none;margin:0 5px}
+.content{margin-top:24px;font-family:system-ui,sans-serif}
+.content h2{color:#f8fafc;font-size:1.05rem;margin:16px 0 8px}
+.content p{color:#cbd5e1;font-size:.9rem;line-height:1.6;margin-bottom:10px}
+.content code{background:#1e293b;padding:1px 5px;border-radius:5px;color:#22d3ee;font-size:.85em}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:12px 0 2px;font-family:system-ui,sans-serif}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🔍 Regex <b>Tester</b></h1>
+<p class="sub">Live highlighting · capture groups · match count</p>
+<div class="reRow"><input type="text" id="re" placeholder="Pattern, e.g. \b\w+@\w+\.\w+\b"><button class="btn" id="go" style="padding:11px 18px;border:none;border-radius:10px;background:#6366f1;color:#fff;font-weight:800;cursor:pointer;font-size:.9rem;font-family:system-ui,sans-serif">Test</button></div>
+<div class="flags">
+<label><input type="checkbox" data-f="g" checked> g</label>
+<label><input type="checkbox" data-f="i"> i</label>
+<label><input type="checkbox" data-f="m"> m</label>
+<label><input type="checkbox" data-f="s"> s</label>
+<label><input type="checkbox" data-f="u" checked> u</label>
+<button class="btn sec" id="sample" style="padding:6px 12px;border:none;border-radius:8px;background:#334155;color:#e2e8f0;cursor:pointer;font-family:system-ui,sans-serif;font-size:.8rem">Load sample</button>
+</div>
+<textarea id="str" placeholder="Test string — the first runnable highlighted text..."></textarea>
+<div class="matches"><div class="l">Matches · <span id="cnt">0</span></div><div id="hl"></div><ul class="list" id="list"></ul></div>
+<div class="err" id="err"></div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this free tool</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/text-diff.html">Text Diff</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+<div class="content">
+<h2>Free Online Regex Tester</h2>
+<p>Test your regular expressions against sample text with <strong>live match highlighting</strong>: every match is highlighted, grouped by color, and listed with its capture groups below. Toggle flags <code>g</code> (global), <code>i</code> (ignore case), <code>m</code> (multiline), <code>s</code> (dot-all), and <code>u</code> (unicode) and watch the results update instantly. Everything runs in your browser — your regex and text never leave your device.</p>
+<h2>Common Regex Examples</h2>
+<p>Email: <code>\b[\w.+-]+@[\w-]+\.[\w.]+\b</code> · Phone: <code>\+?\d[\d\s()-]{7,}\d</code> · URL: <code>https?://[\w.-]+</code> · Hex color: <code>#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})\b</code> · IP: <code>\b(?:\d{1,3}\.){3}\d{1,3}\b</code>. Load the sample to see highlighting in action, then paste your own pattern.</p>
+<h2>Regex Tester FAQ</h2>
+<p><strong>Why use a regex tester?</strong> Regex is error-prone — a tester shows you immediately whether your pattern matches what you think. <strong>What flags should I use?</strong> Use <code>g</code> to find all matches (not just the first), <code>i</code> for case-insensitive, <code>s</code> to make <code>.</code> match newlines. <strong>Is my data sent anywhere?</strong> No — matching runs 100% locally with JavaScript's built-in RegExp engine.</p>
+</div>
+<div class="foot"><a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> · <a href="privacy.html">Privacy</a></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+const reIn=document.getElementById('re'), strIn=document.getElementById('str');
+function flags(){ let f={g:false,i:false,m:false,s:false,u:false}; document.querySelectorAll('.flags input[data-f]').forEach(c=>{f[c.dataset.f]=c.checked;}); let s=''; if(f.g)s+='g'; if(f.i)s+='i'; if(f.m)s+='m'; if(f.s)s+='s'; if(f.u)s+='u'; return s; }
+function test(){
+  const err=document.getElementById('err'); err.textContent='';
+  const pat=reIn.value;
+  if(!pat){ document.getElementById('hl').textContent=''; document.getElementById('list').innerHTML=''; document.getElementById('cnt').textContent='0'; return; }
+  let re;
+  try{ re=new RegExp(pat, flags()); }catch(e){ err.textContent='Invalid regex: '+e.message.replace('Invalid regular expression: ',''); document.getElementById('hl').textContent=''; document.getElementById('list').innerHTML=''; document.getElementById('cnt').textContent='0'; return; }
+  const text=strIn.value;
+  const matches=[];
+  if(re.global){ let m,last=0; re.lastIndex=0;
+    while((m=re.exec(text))!==null){
+      matches.push({index:m.index,val:m[0],groups:m.slice(1)});
+      if(m.index===re.lastIndex) re.lastIndex++;
+    }
+  } else {
+    const m=re.exec(text);
+    if(m) matches.push({index:m.index,val:m[0],groups:m.slice(1)});
+  }
+  document.getElementById('cnt').textContent=matches.length;
+  // highlight
+  let html='',last=0,a=0;
+  matches.forEach(m=>{
+    html+=escapeHtml(text.slice(last,m.index))+'<span class="'+(a%2?'hl2':'hl')+'">'+escapeHtml(m.val)+'</span>';
+    last=m.index+m.val.length; a++;
+  });
+  html+=escapeHtml(text.slice(last));
+  document.getElementById('hl').innerHTML=html||'<span style="color:#64748b">No matches.</span>';
+  const list=document.getElementById('list');
+  list.innerHTML=matches.length? matches.map((m,i)=>'<li><span class="n">#'+(i+1)+'</span> "'+escapeHtml(m.val.length>60?m.val.slice(0,60)+'…':m.val)+'"'+(m.groups.length?' — groups: '+m.groups.map((g,j)=>'$'+(j+1)+'="'+escapeHtml(g||'')+'"').join(' '):'')+'</li>').join('') : '<li style="color:#64748b">No matches.</li>';
+}
+function escapeHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function loadSample(){ reIn.value='\\b\\w+@\\w+\\.\\w+\\b'; strIn.value='Contact john.doe@example.com or support@site.io for help. Also try admin@test-dev.co.uk\nSecond line: no email here, but 123 in numbers.'; test(); }
+document.getElementById('go').addEventListener('click',test);
+document.getElementById('sample').addEventListener('click',loadSample);
+reIn.addEventListener('input',test);
+strIn.addEventListener('input',test);
+document.querySelectorAll('.flags input[data-f]').forEach(c=>c.addEventListener('change',test));
+loadSample();
+</script>
+</body>
+</html>
