@@ -91,5 +91,6 @@ document.getElementById('q').addEventListener('input',render);
 document.getElementById('classes').addEventListener('click',e=>{const t=e.target.closest('.cls');if(!t)return;activeCls=t.dataset.c;document.querySelectorAll('.cls').forEach(c=>c.classList.toggle('active',c===t));render();});
 renderClasses(); render();
 </script>
+</div>
 </body>
 </html>
