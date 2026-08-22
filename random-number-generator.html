@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Number Generator — Free Online (1-100, dice, unique)</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Random Number Generator","operatingSystem":"ANY","applicationCategory":"UtilitiesApplication","description":"Free random number generator: pick random numbers in any range, generate many at once, unique draws, dice rolls and coin flips. Cryptographically secure. Runs in your browser.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<meta name="description" content="Free random number generator: random numbers in any range (1-100, 1-10, any), multiple draws, unique numbers, dice and coin flips. Secure randomness, 100% in your browser.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px 16px 20px}
+.wrap{max-width:540px;width:100%}
+h1{font-size:1.7rem;margin:6px 0 2px;color:#f8fafc;text-align:center}
+h1 b{color:#22d3ee}
+.sub{color:#94a3b8;font-size:.88rem;text-align:center;margin-bottom:14px}
+.big{font-size:4.4rem;font-weight:900;color:#22d3ee;text-align:center;margin:8px 0;font-variant-numeric:tabular-nums;min-height:80px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:14px}
+.chip{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:6px 12px;font-size:1.05rem;font-weight:700;color:#f8fafc}
+.ctrl{background:#1e293b;border:1px solid #334155;border-radius:14px;padding:16px;margin-bottom:12px}
+.row{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap;justify-content:center}
+.row label{font-size:.8rem;color:#94a3b8}
+.row input[type=number]{width:90px;padding:10px;border-radius:9px;border:1px solid #334155;background:#0b0f1a;color:#f8fafc;font-size:1rem;text-align:center}
+.chk{display:flex;gap:16px;justify-content:center;font-size:.82rem;color:#94a3b8;margin-bottom:12px;flex-wrap:wrap}
+.chk label{display:flex;gap:5px;align-items:center;cursor:pointer}
+.btns{display:flex;gap:8px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+.btn{padding:12px 24px;border:none;border-radius:11px;background:#6366f1;color:#fff;font-weight:800;cursor:pointer;font-size:.95rem}
+.btn:hover{background:#4f46e5}
+.btn.green{background:#0d9488}
+.btn.sec{background:#334155}
+.hist{display:none;background:#0b0f1a;border:1px solid #334155;border-radius:12px;padding:12px;margin-bottom:12px;max-height:150px;overflow:auto;font-family:ui-monospace,monospace;font-size:.8rem;color:#94a3b8;white-space:pre-wrap}
+.kofi{margin-top:14px;text-align:center;font-size:.85rem}.kofi a{color:#ff5e5b;text-decoration:none}
+.ads{margin-top:10px;text-align:center;font-size:.82rem}.ads a{color:#818cf8;text-decoration:none;margin:0 5px}
+.content{margin-top:24px}
+.content h2{color:#f8fafc;font-size:1.05rem;margin:16px 0 8px}
+.content p{color:#cbd5e1;font-size:.9rem;line-height:1.6;margin-bottom:10px}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:12px 0 2px}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🎲 Random Number <b>Generator</b></h1>
+<p class="sub">Any range · many draws · unique numbers · dice &amp; coin flips</p>
+<div class="big" id="big">—</div>
+<div class="chips" id="chips"></div>
+<div class="ctrl">
+<div class="row">
+<label>From <input type="number" id="min" value="1"></label>
+<label>To <input type="number" id="max" value="100"></label>
+<label>Count <input type="number" id="count" value="1" min="1" max="500"></label>
+</div>
+<div class="chk">
+<label><input type="checkbox" id="uniq"> Unique numbers</label>
+<label><input type="checkbox" id="sort"> Sort ascending</label>
+</div>
+<div class="btns">
+<button class="btn" onclick="roll()">🎲 Generate</button>
+<button class="btn sec" onclick="dice()">⚀ d6</button>
+<button class="btn sec" onclick="coin()">🪙 Coin</button>
+<button class="btn green" onclick="copyOut()">Copy</button>
+</div>
+</div>
+<div class="hist" id="hist"></div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this free tool</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/percentage-calculator.html">% Calculator</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/word-counter.html">Word Counter</a>
+</div>
+<div class="content">
+<h2>Free Random Number Generator</h2>
+<p>Generate <strong>random numbers</strong> in any range — the classic 1 to 100, custom ranges like 1 to 10 or 50 to 500, or negative ranges. Draw one number or many at once (up to 500), make the draw <strong>unique</strong> (no repeats) and sort it, exactly like picking names from a hat. Quick buttons roll a d6 or flip a coin. Great for testing, giveaways, game design, and decision-making.</p>
+<h2>How random is it?</h2>
+<p>This tool uses the browser's <code>crypto.getRandomValues()</code> — cryptographically secure randomness (the same source used for keys), not the pseudo-random Math.random. Uniqueness is enforced with </code>Fisher–Yates sampling</code>, the standard unbiased method, so a "range 1–50, 10 unique" draw is equivalent to a fair lottery without replacement.</p>
+<h2>RNG FAQ</h2>
+<p><strong>Can I get numbers between 1 and 10?</strong> Yes — set From=1, To=10, Count=1. <strong>Can draws repeat?</strong> By default yes (like rolling dice); tick "Unique numbers" to forbid repeats (the range must be at least as large as the count). <strong>Is it truly random?</strong> It's cryptographically secure randomness from your browser — about as good as random gets without hardware entropy. <strong>Is my data sent anywhere?</strong> No — everything runs locally.</p>
+</div>
+<div class="foot"><a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> · <a href="privacy.html">Privacy</a></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+let history=[];
+function randInt(min,max){
+  if(min>max){ const t=min; min=max; max=t; }
+  const range=max-min+1;
+  // rejection sampling for unbiased results over large ranges
+  const limit=Math.floor(0xFFFFFFFF/range)*range;
+  let x;
+  const buf=new Uint32Array(1);
+  do{ crypto.getRandomValues(buf); x=buf[0]; }while(x>=limit);
+  return min+(x%range);
+}
+function roll(){
+  const min=parseInt(document.getElementById('min').value)||1;
+  const max=parseInt(document.getElementById('max').value)||100;
+  const count=Math.max(1,Math.min(500,parseInt(document.getElementById('count').value)||1));
+  const uniq=document.getElementById('uniq').checked;
+  const sort=document.getElementById('sort').checked;
+  const lo=Math.min(min,max), hi=Math.max(min,max);
+  let nums;
+  if(uniq){
+    const span=hi-lo+1;
+    if(count>span){ document.getElementById('big').textContent='⚠ range too small'; return; }
+    nums=fisherYates(lo,hi,count);
+  } else {
+    nums=[]; for(let i=0;i<count;i++) nums.push(randInt(lo,hi));
+  }
+  if(sort) nums.sort((a,b)=>a-b);
+  show(nums);
+}
+function fisherYates(lo,hi,count){
+  const arr=[]; for(let i=lo;i<=hi;i++) arr.push(i);
+  for(let i=arr.length-1;i>0;i--){ const j=randInt(0,i); const t=arr[i]; arr[i]=arr[j]; arr[j]=t; }
+  return arr.slice(0,count);
+}
+function show(nums){
+  const big=document.getElementById('big');
+  const chips=document.getElementById('chips');
+  chips.innerHTML='';
+  if(nums.length===1){ big.textContent=nums[0]; }
+  else {
+    big.textContent=nums.length+' numbers';
+    nums.slice(0,60).forEach(n=>{ const c=document.createElement('span'); c.className='chip'; c.textContent=n; chips.appendChild(c); });
+    if(nums.length>60) chips.appendChild(Object.assign(document.createElement('span'),{className:'chip',textContent:'… +'+(nums.length-60)}));
+  }
+  history.unshift(nums.join(', '));
+  if(history.length>8) history.pop();
+  const h=document.getElementById('hist');
+  h.style.display='block'; h.textContent='History:\n'+history.join('\n');
+}
+function dice(){ document.getElementById('min').value=1; document.getElementById('max').value=6; document.getElementById('count').value=1; document.getElementById('uniq').checked=false; document.getElementById('sort').checked=false; roll(); }
+function coin(){ document.getElementById('min').value=0; document.getElementById('max').value=1; document.getElementById('count').value=1; document.getElementById('uniq').checked=false; roll(); const b=document.getElementById('big'); b.textContent=(b.textContent==='0'||b.textContent==='1')?(parseInt(b.textContent)===0?'🪙 Heads':'🪙 Tails'):b.textContent; }
+function copyOut(){
+  const vals=Array.from(document.querySelectorAll('.chip')).map(c=>c.textContent).filter(t=>!/^…/.test(t)).join(', ')||document.getElementById('big').textContent;
+  if(navigator.clipboard) navigator.clipboard.writeText(vals);
+  const b=event.target,o=b.textContent;b.textContent='Copied ✓';setTimeout(()=>b.textContent=o,1200);
+}
+</script>
+</body>
+</html>
