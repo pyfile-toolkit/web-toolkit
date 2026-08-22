@@ -185,5 +185,6 @@ function copyOut(){ if(navigator.clipboard) navigator.clipboard.writeText(docume
 function downloadOut(){ const b=new Blob([document.getElementById('mout').value],{type:'text/markdown'}); const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='article.md';a.click(); }
 convert();
 </script>
+</div>
 </body>
 </html>
