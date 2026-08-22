@@ -157,5 +157,6 @@ function copyOut(){ if(navigator.clipboard) navigator.clipboard.writeText(docume
 function downloadOut(){ const b=new Blob([document.getElementById('sout').value],{type:'text/plain'}); const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='query.sql';a.click(); }
 formatIt();
 </script>
+</div>
 </body>
 </html>
