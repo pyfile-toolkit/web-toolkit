@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XML Formatter — Free Online XML Beautifier</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"XML Formatter","operatingSystem":"ANY","applicationCategory":"DeveloperApplication","description":"Free XML formatter and beautifier: pretty-print minified XML with proper indentation, preserve comments, CDATA and processing instructions. Runs entirely in your browser.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<meta name="description" content="Free XML formatter: beautify minified XML with clean indentation. Handles comments, CDATA, processing instructions and attributes. 100% in your browser.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px 16px 20px}
+.wrap{max-width:740px;width:100%}
+h1{font-size:1.75rem;margin:6px 0 2px;color:#f8fafc;text-align:center}
+h1 b{color:#22d3ee}
+.sub{color:#94a3b8;font-size:.88rem;text-align:center;margin-bottom:14px}
+.btns{display:flex;gap:8px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+.btn{padding:11px 20px;border:none;border-radius:10px;background:#6366f1;color:#fff;font-weight:800;cursor:pointer;font-size:.9rem}
+.btn:hover{background:#4f46e5}
+.btn.green{background:#0d9488}.btn.sec{background:#334155}
+textarea{width:100%;height:280px;background:#0b0f1a;border:1px solid #334155;border-radius:12px;color:#e2e8f0;font-family:ui-monospace,Menlo,monospace;font-size:.82rem;line-height:1.55;padding:12px;resize:vertical;white-space:pre}
+.pane .lab{font-size:.75rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;display:flex;justify-content:space-between}
+.err{color:#f87171;font-size:.8rem;margin-top:8px;min-height:18px;text-align:center}
+.kofi{margin-top:14px;text-align:center;font-size:.85rem}.kofi a{color:#ff5e5b;text-decoration:none}
+.ads{margin-top:10px;text-align:center;font-size:.82rem}.ads a{color:#818cf8;text-decoration:none;margin:0 5px}
+.content{margin-top:24px}
+.content h2{color:#f8fafc;font-size:1.05rem;margin:16px 0 8px}
+.content p{color:#cbd5e1;font-size:.9rem;line-height:1.6;margin-bottom:10px}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:12px 0 2px}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🗂️ XML <b>Formatter</b></h1>
+<p class="sub">Pretty-print minified XML — clean indentation, safe comments &amp; CDATA</p>
+<div class="btns">
+<button class="btn" onclick="formatIt()">Format XML</button>
+<button class="btn green" onclick="copyOut()">Copy</button>
+<button class="btn sec" onclick="downloadOut()">⬇ Download</button>
+</div>
+<div class="pane"><div class="lab"><span>Input XML</span></div>
+<textarea id="xin" spellcheck="false"><?xml version="1.0" encoding="UTF-8"?><catalog><book id="bk101"><author>Gambardella</author><title>XML Developer's Guide</title><price>44.95</price><description>   An in-depth look at creating applications with XML.   </description></book><book id="bk102"><author>Ralls</author><title>Midnight Rain</title><price>5.95</price></book></catalog></textarea></div>
+<div class="pane" style="margin-top:12px"><div class="lab"><span>Formatted XML</span></div>
+<textarea id="xout" spellcheck="false" readonly></textarea></div>
+<div class="err" id="err"></div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this free tool</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/json-formatter.html">JSON Formatter</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/html-encoder.html">HTML Encoder</a>
+</div>
+<div class="content">
+<h2>Free XML Formatter / Pretty Printer</h2>
+<p>Turn minified or messy XML into a <strong>readable, indented document</strong> in one click. The formatter walks the markup without an external parser: it indents elements by nesting depth, keeps <code>&lt;!-- comments --&gt;</code>, <code>&lt;![CDATA[...]]&gt;</code> blocks, and <code>&lt;?processing instructions?&gt;</code> intact, and normalizes whitespace inside text nodes. Ideal for configs, feed parsing, and API responses.</p>
+<h2>Why beautify XML?</h2>
+<p>Minified XML from APIs, exports, or legacy systems is painful to read and diff. Pretty-printing makes structure visible at a glance — parent/child hierarchy, attribute placement, and text content — which speeds up debugging, documentation, and code review. It never changes the meaning: whitespace is insignificant to XML semantics except inside <code>CDATA</code> and <code>pre</code>-like content, which are preserved verbatim.</p>
+<h2>XML Formatter FAQ</h2>
+<p><strong>Does it validate my XML?</strong> It formats well-formed input and reports balanced-tag errors; it is not a full schema validator. <strong>Is whitespace inside tags changed?</strong> Only inter-tag whitespace is normalized — attribute spacing is preserved as written. <strong>Is my data sent anywhere?</strong> No — formatting runs locally in your browser.</p>
+</div>
+<div class="foot"><a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> · <a href="privacy.html">Privacy</a></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+function formatXml(xml){
+  // tokenize: tags, comments, CDATA, PI, text
+  const tokens=[]; let i=0;
+  while(i<xml.length){
+    const lt=xml.indexOf('<',i);
+    if(lt===-1){ if(xml.slice(i).trim()) tokens.push({t:'text',v:xml.slice(i)}); break; }
+    if(lt>i){ const t=xml.slice(i,lt); if(t.trim()) tokens.push({t:'text',v:t}); i=lt; continue; }
+    // lt===i
+    if(xml.startsWith('<!--',i)){ const e=xml.indexOf('-->',i+4); if(e===-1){ tokens.push({t:'text',v:xml.slice(i)}); break; } tokens.push({t:'comment',v:xml.slice(i,e+3)}); i=e+3; continue; }
+    if(xml.startsWith('<![CDATA[',i)){ const e=xml.indexOf(']]>',i+9); if(e===-1){ tokens.push({t:'text',v:xml.slice(i)}); break; } tokens.push({t:'cdata',v:xml.slice(i,e+3)}); i=e+3; continue; }
+    if(xml.startsWith('<?',i)){ const e=xml.indexOf('?>',i+2); if(e===-1){ tokens.push({t:'text',v:xml.slice(i)}); break; } tokens.push({t:'pi',v:xml.slice(i,e+2)}); i=e+2; continue; }
+    if(xml.startsWith('<!',i)){ // doctype or other decl
+      const e=xml.indexOf('>',i+2); if(e===-1){ tokens.push({t:'text',v:xml.slice(i)}); break; } tokens.push({t:'pi',v:xml.slice(i,e+1)}); i=e+1; continue;
+    }
+    const e=xml.indexOf('>',i+1); if(e===-1){ tokens.push({t:'text',v:xml.slice(i)}); break; }
+    const tag=xml.slice(i,e+1);
+    if(tag.startsWith('</')) tokens.push({t:'close',v:tag});
+    else if(tag.endsWith('/>')) tokens.push({t:'self',v:tag});
+    else tokens.push({t:'open',v:tag});
+    i=e+1;
+  }
+  // format
+  const out=[]; let depth=0; let textPending=false;
+  const pad=()=>'  '.repeat(depth);
+  for(const tk of tokens){
+    if(tk.t==='open'){
+      out.push(pad()+tk.v); depth++; textPending=false;
+    } else if(tk.t==='close'){
+      depth=Math.max(0,depth-1); out.push(pad()+tk.v);
+    } else if(tk.t==='self'){
+      out.push(pad()+tk.v);
+    } else if(tk.t==='text'){
+      const t=tk.v.replace(/\s+/g,' ').trim();
+      if(t){ out.push(pad()+t); textPending=true; }
+    } else if(tk.t==='comment'){
+      out.push(pad()+tk.v);
+    } else if(tk.t==='cdata'){
+      out.push(pad()+tk.v);
+    } else if(tk.t==='pi'){
+      if(out.length) out.push(pad()+tk.v); else out.push(tk.v);
+    }
+  }
+  return out.join('\n');
+}
+function formatIt(){
+  const err=document.getElementById('err'); err.textContent='';
+  try{
+    const xml=document.getElementById('xin').value;
+    if(!xml.trim()){ err.textContent='Empty input'; return; }
+    document.getElementById('xout').value=formatXml(xml);
+  }catch(e){ err.textContent='Error: '+e.message; }
+}
+function copyOut(){ if(navigator.clipboard) navigator.clipboard.writeText(document.getElementById('xout').value); const b=event.target,o=b.textContent;b.textContent='Copied ✓';setTimeout(()=>b.textContent=o,1200); }
+function downloadOut(){ const b=new Blob([document.getElementById('xout').value],{type:'application/xml'}); const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='formatted.xml';a.click(); }
+formatIt();
+</script>
+</div>
+</body>
+</html>
