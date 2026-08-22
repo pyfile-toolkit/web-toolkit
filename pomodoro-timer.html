@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pomodoro Timer — Free Online Focus Timer</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Pomodoro Timer","operatingSystem":"ANY","applicationCategory":"UtilitiesApplication","description":"Free Pomodoro timer for deep work: 25-minute focus sessions with short and long breaks, desktop notifications, session stats and streaks. Runs entirely in your browser.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<meta name="description" content="Free Pomodoro timer: 25/5 focus sessions with long breaks, desktop notifications, daily session stats and streak tracking. No install, works offline, 100% in your browser.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px 16px 24px}
+.wrap{max-width:520px;width:100%}
+h1{font-size:1.7rem;margin:6px 0 2px;color:#f8fafc;text-align:center}
+h1 b{color:#22d3ee}
+.sub{color:#94a3b8;font-size:.88rem;text-align:center;margin-bottom:14px}
+.mode{display:flex;gap:6px;justify-content:center;margin-bottom:18px}
+.mbtn{padding:9px 20px;border-radius:999px;border:1px solid #334155;background:#0f0b1a;color:#94a3b8;cursor:pointer;font-size:.85rem;font-weight:600}
+.mbtn.active{background:#6366f1;border-color:#6366f1;color:#fff}
+.ring{width:250px;height:250px;margin:0 auto 18px;border-radius:50%;background:conic-gradient(#6366f1 var(--p,0%),#1e293b 0);display:flex;align-items:center;justify-content:center;position:relative}
+.ring::before{content:'';position:absolute;inset:12px;border-radius:50%;background:#0b0f1a}
+.time{position:relative;font-size:3.2rem;font-weight:800;color:#f8fafc;font-variant-numeric:tabular-nums}
+.controls{display:flex;gap:10px;justify-content:center;margin-bottom:14px}
+.btn{padding:12px 26px;border:none;border-radius:12px;background:#6366f1;color:#fff;font-weight:800;font-size:.95rem;cursor:pointer;min-width:110px}
+.btn:hover{background:#4f46e5}
+.btn.sec{background:#334155}
+.stats{display:flex;justify-content:center;gap:14px;margin-bottom:16px;font-size:.8rem;color:#94a3b8;flex-wrap:wrap}
+.stats b{color:#f8fafc;font-size:1.05rem;display:block;text-align:center}
+.opts{display:flex;gap:10px;justify-content:center;margin-bottom:14px;flex-wrap:wrap}
+.opts label{font-size:.78rem;color:#94a3b8;display:flex;align-items:center;gap:5px}
+.opts input{width:58px;padding:7px;border-radius:8px;border:1px solid #334155;background:#0b0f1a;color:#f8fafc;font-size:.85rem;text-align:center}
+.kofi{margin-top:14px;text-align:center;font-size:.85rem}.kofi a{color:#ff5e5b;text-decoration:none}
+.ads{margin-top:10px;text-align:center;font-size:.82rem}.ads a{color:#818cf8;text-decoration:none;margin:0 5px}
+.content{margin-top:24px}
+.content h2{color:#f8fafc;font-size:1.05rem;margin:16px 0 8px}
+.content p{color:#cbd5e1;font-size:.9rem;line-height:1.6;margin-bottom:10px}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:12px 0 2px}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🍅 Pomodoro <b>Timer</b></h1>
+<p class="sub">Deep work in 25-minute blocks · short &amp; long breaks · stats &amp; streaks</p>
+<div class="mode" id="modeSel">
+<span class="mbtn active" data-m="focus">Focus</span>
+<span class="mbtn" data-m="short">Short Break</span>
+<span class="mbtn" data-m="long">Long Break</span>
+</div>
+<div class="ring" id="ring"><div class="time" id="time">25:00</div></div>
+<div class="controls">
+<button class="btn" id="startBtn" onclick="toggle()">▶ Start</button>
+<button class="btn sec" onclick="reset()">↺ Reset</button>
+</div>
+<div class="stats">
+<div class="st"><b id="sToday">0</b>Sessions today</div>
+<div class="st"><b id="sTotal">0</b>All sessions</div>
+<div class="st"><b id="sStreak">0</b>Day streak</div>
+</div>
+<div class="opts">
+<label>Focus <input type="number" id="oFocus" value="25" min="1" max="120"></label>
+<label>Short <input type="number" id="oShort" value="5" min="1" max="60"></label>
+<label>Long <input type="number" id="oLong" value="15" min="1" max="90"></label>
+<label><input type="checkbox" id="oNotif" checked> Notify</label>
+</div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this free tool</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/reaction-time.html">Reaction Time</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/typing-test.html">Typing Test</a>
+</div>
+<div class="content">
+<h2>Free Pomodoro Timer</h2>
+<p>The <strong>Pomodoro Technique</strong>: work for 25 focused minutes, take a 5-minute break, and after four rounds take a longer 15-minute break. This timer implements the classic cycle with a live progress ring, desktop notifications, and <strong>local stats</strong> — sessions today, all sessions, and your daily streak. Customize any duration to fit your own rhythm.</p>
+<h2>Why does Pomodoro work?</h2>
+<p>Structured focus beats willpower. Short, timed blocks create a sense of urgency that helps you start (the hardest part), while scheduled breaks prevent burnout. Over a day, four to eight Pomodoros move real projects forward. Developers, writers, and students have used the technique for decades — it turns "work for hours" into "win 25-minute rounds."</p>
+<h2>Pomodoro Timer FAQ</h2>
+<p><strong>What does the ring show?</strong> The conic-gradient ring fills clockwise as you complete the session. <strong>Does it notify me?</strong> Optionally you'll get a browser notification on break/focus switches — enable it in your browser settings. <strong>Where are my stats stored?</strong> Only in your browser's local storage — nothing is ever uploaded. <strong>Does it keep running if I switch tabs?</strong> Yes — the timer is based on real time, not requestAnimationFrame, so it stays accurate in background tabs.</p>
+</div>
+<div class="foot"><a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> · <a href="privacy.html">Privacy</a></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+// ---------- pure logic ----------
+function formatTime(sec){ return String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0'); }
+function nextMode(mode,cycle){
+  if(mode==='focus') return (cycle%4===0)?'long':'short';
+  return 'focus';
+}
+// ---------- state ----------
+let mode='focus', total=25*60, left=25*60, running=false;
+let cycle=0; let tick=null;
+const elTime=document.getElementById('time');
+const elRing=document.getElementById('ring');
+function durations(){ return {focus:(parseInt(document.getElementById('oFocus').value)||25)*60, short:(parseInt(document.getElementById('oShort').value)||5)*60, long:(parseInt(document.getElementById('oLong').value)||15)*60}; }
+function setMode(m,keepTotal){
+  mode=m; const d=durations()[m];
+  if(!keepTotal){ total=d; left=d; }
+  document.querySelectorAll('#modeSel .mbtn').forEach(b=>b.classList.toggle('active',b.dataset.m===m));
+  render();
+}
+function render(){
+  elTime.textContent=formatTime(left);
+  const p=Math.max(0,Math.min(1,1-left/total))*100;
+  elRing.style.setProperty('--p',p+'%');
+}
+function toggle(){
+  if(running){ stop(); return; }
+  running=true; document.getElementById('startBtn').textContent='▮▮ Pause';
+  tick=setInterval(step,250);
+}
+function stop(){ running=false; clearInterval(tick); tick=null; document.getElementById('startBtn').textContent='▶ Start'; }
+function reset(){ stop(); total=durations()[mode]; left=total; render(); }
+function step(){
+  if(!running) return;
+  left-=0.25;
+  if(left<=0){ complete(); }
+  render();
+}
+function notify(){
+  if(!document.getElementById('oNotif').checked) return;
+  const msg=mode==='focus'?'Focus time! 🍅':'Break over — back to work!';
+  try{ if('Notification' in window){ if(Notification.permission==='granted') new Notification('Pomodoro',{body:msg}); else if(Notification.permission!=='denied') Notification.requestPermission(); } }catch(e){}
+}
+function bumpStats(){
+  const today=new Date().toISOString().slice(0,10);
+  const st=JSON.parse(localStorage.getItem('pomo')||'{"t":0,"d":{}}');
+  st.t=(st.t||0)+1; st.d[today]=(st.d[today]||0)+1;
+  localStorage.setItem('pomo',JSON.stringify(st));
+  renderStats();
+}
+function renderStats(){
+  const today=new Date().toISOString().slice(0,10);
+  const st=JSON.parse(localStorage.getItem('pomo')||'{"t":0,"d":{}}');
+  document.getElementById('sToday').textContent=st.d[today]||0;
+  document.getElementById('sTotal').textContent=st.t||0;
+  let streak=0; const keys=Object.keys(st.d||{}).sort();
+  const last=keys[keys.length-1];
+  if(st.d[last]&&last===today) streak++;
+  else if(st.d[last]&&last!==today && Math.abs(new Date(last)-new Date(today))/86400000===1) streak++;
+  document.getElementById('sStreak').textContent=streak||(Object.keys(st.d||{}).length?1:0);
+}
+document.getElementById('modeSel').addEventListener('click',e=>{
+  const m=e.target.closest('.mbtn'); if(!m||running) return;
+  cycle = m.dataset.m==='focus'?cycle:(m.dataset.m==='long'?Math.max(0,cycle-Math.floor(cycle/4)*4):cycle);
+  setMode(m.dataset.m,false);
+});
+['oFocus','oShort','oLong'].forEach(id=>document.getElementById(id).addEventListener('change',()=>{ if(!running) reset(); }));
+function complete(){
+  stop();
+  const wasFocus=(mode==='focus');
+  if(wasFocus){ cycle++; bumpStats(); }
+  const next= wasFocus? (cycle%4===0?'long':'short') : 'focus';
+  total=durations()[next]; left=total; mode=next;
+  document.querySelectorAll('#modeSel .mbtn').forEach(b=>b.classList.toggle('active',b.dataset.m===next));
+  render();
+  notify();
+}
+render(); renderStats();
+</script>
+</body>
+</html>
