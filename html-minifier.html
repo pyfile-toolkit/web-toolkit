@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Minifier — Free Online Minify HTML</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"HTML Minifier","operatingSystem":"ANY","applicationCategory":"DeveloperApplication","description":"Free HTML minifier: compress HTML by removing comments and whitespace while preserving pre, textarea, script and conditional comments. See bytes saved instantly. 100% in your browser.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<meta name="description" content="Free HTML minifier and formatter: minify HTML in one click with safe handling of pre, code, textarea and IE conditional comments. Live size stats. Runs entirely in your browser.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px 16px 20px}
+.wrap{max-width:760px;width:100%}
+h1{font-size:1.75rem;margin:6px 0 2px;color:#f8fafc;text-align:center}
+h1 b{color:#22d3ee}
+.sub{color:#94a3b8;font-size:.88rem;text-align:center;margin-bottom:14px}
+.stats{display:flex;gap:14px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+.st{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:6px 16px;text-align:center}
+.st .l{font-size:.65rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em}
+.st .v{font-size:1.1rem;font-weight:800;color:#4ade80}
+.btns{display:flex;gap:8px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+.btn{padding:11px 20px;border:none;border-radius:10px;background:#6366f1;color:#fff;font-weight:800;cursor:pointer;font-size:.9rem}
+.btn:hover{background:#4f46e5}
+.btn.green{background:#0d9488}.btn.sec{background:#334155}
+.opts{display:flex;gap:16px;justify-content:center;margin-bottom:12px;color:#94a3b8;font-size:.82rem;flex-wrap:wrap}
+.opts label{display:flex;align-items:center;gap:5px;cursor:pointer}
+textarea{width:100%;height:250px;background:#0b0f1a;border:1px solid #334155;border-radius:12px;color:#e2e8f0;font-family:ui-monospace,Menlo,monospace;font-size:.8rem;line-height:1.55;padding:12px;resize:vertical;white-space:pre}
+.pane .lab{font-size:.75rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;display:flex;justify-content:space-between}
+.err{color:#f87171;font-size:.8rem;margin-top:8px;min-height:18px;text-align:center}
+.kofi{margin-top:14px;text-align:center;font-size:.85rem}.kofi a{color:#ff5e5b;text-decoration:none}
+.content{margin-top:24px}
+.content h2{color:#f8fafc;font-size:1.05rem;margin:16px 0 8px}
+.content p{color:#cbd5e1;font-size:.9rem;line-height:1.6;margin-bottom:10px}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:12px 0 2px}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🗜️ HTML <b>Minifier</b></h1>
+<p class="sub">Compress HTML safely — comments out, whitespace collapsed, pre preserved</p>
+<div class="stats">
+<div class="st"><div class="l">Original</div><div class="v" id="so">0 B</div></div>
+<div class="st"><div class="l">Minified</div><div class="v" id="sm">0 B</div></div>
+<div class="st"><div class="l">Saved</div><div class="v" id="ss">0%</div></div>
+</div>
+<div class="btns">
+<button class="btn" onclick="minifyIt()">Minify</button>
+<button class="btn green" onclick="copyOut()">Copy</button>
+<button class="btn sec" onclick="downloadOut()">⬇ Download</button>
+</div>
+<div class="opts">
+<label><input type="checkbox" id="oComments" checked> Remove comments</label>
+<label><input type="checkbox" id="oSpace" checked> Collapse whitespace</label>
+<label><input type="checkbox" id="oCond" checked> Keep IE conditional comments</label>
+</div>
+<div class="pane"><div class="lab"><span>Input HTML</span></div>
+<textarea id="hin" spellcheck="false"><!DOCTYPE html>
+<html>
+<head>
+  <!-- page title -->
+  <title>Demo Page</title>
+  <meta charset="utf-8">
+</head>
+<body>
+  <main>
+    <h1>Hello   world</h1>
+    <p>Some text with <strong>bold</strong> content.</p>
+<pre>
+  indented code
+    stays intact
+</pre>
+    <textarea>  whitespace preserved too\n</textarea>
+    <!--[if IE]><p>IE only</p><![endif]-->
+  </main>
+</body>
+</html></textarea></div>
+<div class="pane" style="margin-top:10px"><div class="lab"><span>Minified output</span></div>
+<textarea id="hout" spellcheck="false" readonly></textarea></div>
+<div class="err" id="err"></div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this free tool</a></div>
+<div class="content">
+<h2>Free HTML Minifier</h2>
+<p>Minify HTML to shrink page size and improve load speed. This minifier removes HTML comments, collapses inter-tag whitespace, and trims attribute whitespace — while <strong>safely preserving everything inside <code>&lt;pre&gt;</code>, <code>&lt;code&gt;</code>, and <code>&lt;textarea&gt;</code></strong>, plus optional IE conditional comments. Smaller HTML means faster first paint, lower bandwidth, and better Core Web Vitals scores.</p>
+<h2>Why minify HTML?</h2>
+<p>Every byte matters for real users: on mobile networks, a 40% HTML reduction can shave hundreds of milliseconds off critical rendering. Minified HTML also makes your markup cleaner to ship through build pipelines. Unlike JS/CSS, HTML minification is best done at build time — use this tool to prepare templates, email HTML, or static pages before deployment.</p>
+<h2>HTML Minifier FAQ</h2>
+<p><strong>Is minified HTML still valid?</strong> Yes — whitespace between markup tags is insignificant to rendering, so removing it doesn't change output (except inside pre/code/textarea, which we preserve). <strong>What happens to inline JS and CSS?</strong> Their content is preserved verbatim and only surrounding whitespace is trimmed. <strong>Can I undo minification?</strong> Yes — use our formatter/beautifier to re-indent the compact markup (or keep a copy of the original). <strong>Is my code sent anywhere?</strong> No — everything runs locally in your browser.</p>
+</div>
+<div class="foot"><a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> · <a href="privacy.html">Privacy</a></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+function minifyHtml(html, opts){
+  opts=opts||{comments:true,space:true,cond:true};
+  let out=html;
+  // 1) comments: remove HTML comments, keep IE conditionals if requested
+  if(opts.comments){
+    out=out.replace(/<!--[\s\S]*?-->/g,function(m){
+      if(opts.cond&&/^<!--\s*\[if /.test(m)&&/<!\[endif\]-->\s*$/.test(m)) return m;
+      return '';
+    });
+  }
+  // 2) protect pre/code/textarea/script/style content
+  const guards=[];
+  out=out.replace(/<(pre|code|textarea|script|style)(\s[^>]*)?>[\s\S]*?<\/\1>/gi,function(m){
+    guards.push(m); return '\u0000'+ (guards.length-1) +'\u0000';
+  });
+  if(opts.space){
+    // collapse runs of whitespace between tags & trim around tags
+    out=out.replace(/>\s+</g,'><');
+    out=out.replace(/\s{2,}/g,' ');
+    out=out.replace(/>\s([a-z])/g,'>$1');
+  }
+  // restore guards
+  out=out.replace(/\u0000\d+\u0000/g,function(m){ return guards[parseInt(m.slice(1,-1),10)]; });
+  return out.trim();
+}
+function minifyIt(){
+  const err=document.getElementById('err'); err.textContent='';
+  try{
+    const html=document.getElementById('hin').value;
+    const opts={comments:document.getElementById('oComments').checked,space:document.getElementById('oSpace').checked,cond:document.getElementById('oCond').checked};
+    const out=minifyHtml(html,opts);
+    document.getElementById('hout').value=out;
+    const a=html.length,b=out.length;
+    document.getElementById('so').textContent=fmt(a); document.getElementById('sm').textContent=fmt(b);
+    document.getElementById('ss').textContent=(a>0?Math.round((1-b/a)*100):0)+'%';
+  }catch(e){ err.textContent='Error: '+e.message; }
+}
+function fmt(n){ return n>1024?(n/1024).toFixed(1)+' KB':n+' B'; }
+function copyOut(){ if(navigator.clipboard) navigator.clipboard.writeText(document.getElementById('hout').value); const b=event.target,o=b.textContent;b.textContent='Copied ✓';setTimeout(()=>b.textContent=o,1200); }
+function downloadOut(){ const b=new Blob([document.getElementById('hout').value],{type:'text/html'}); const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='index.min.html';a.click(); }
+document.querySelectorAll('#oComments,#oSpace,#oCond').forEach(el=>el.addEventListener('change',minifyIt));
+minifyIt();
+</script>
+</body>
+</html>
