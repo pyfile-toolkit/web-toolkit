@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WCAG Color Contrast Explained: AA/AAA Ratios, Formula, and How to Check</title>
+<meta name="description" content="WCAG color contrast explained simply: how the 4.5:1 and 3:1 ratios work, the luminance formula behind them, real pass/fail examples, and a free tool to check any color pair.">
+<meta property="og:title" content="WCAG Color Contrast Explained: AA/AAA Ratios, Formula, and How to Check">
+<meta property="og:description" content="How WCAG contrast ratios work, the math, real examples, and a free instant checker.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"WCAG Color Contrast Explained: AA/AAA Ratios, Formula, and How to Check","description":"How WCAG contrast ratios work, the math, real examples, and a free instant checker.","datePublished":"2026-08-22","dateModified":"2026-08-22","author":{"@type":"Organization","name":"Web Toolkit"},"publisher":{"@type":"Organization","name":"Web Toolkit"},"mainEntityOfPage":"https://pyfile-toolkit.github.io/web-toolkit/guides/wcag-contrast-explained.html"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://pyfile-toolkit.github.io/web-toolkit/"},{"@type":"ListItem","position":2,"name":"WCAG Contrast Explained","item":"https://pyfile-toolkit.github.io/web-toolkit/guides/wcag-contrast-explained.html"}]}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px 16px 40px}
+.wrap{max-width:720px;width:100%}
+.crumb{font-size:.75rem;color:#64748b;margin:10px 0 4px}.crumb a{color:#818cf8;text-decoration:none}
+h1{font-size:1.9rem;line-height:1.25;color:#f8fafc;margin:8px 0 10px}
+.meta{font-size:.8rem;color:#64748b;margin-bottom:18px}
+article h2{font-size:1.3rem;color:#22d3ee;margin:28px 0 10px}
+article h3{font-size:1.05rem;color:#e2e8f0;margin:20px 0 8px}
+article p{color:#cbd5e1;font-size:.95rem;line-height:1.75;margin-bottom:14px}
+article ul,article ol{color:#cbd5e1;font-size:.95rem;line-height:1.7;margin:0 0 14px 22px}
+article li{margin-bottom:6px}
+pre{background:#111827;border:1px solid #334155;border-radius:10px;padding:14px;font-family:ui-monospace,Menlo,monospace;font-size:.82rem;line-height:1.6;color:#a5f3fc;overflow:auto;margin:0 0 16px;white-space:pre}
+code{font-family:ui-monospace,Menlo,monospace;background:#1e293b;padding:1px 5px;border-radius:5px;font-size:.85em;color:#fbbf24}
+table{width:100%;border-collapse:collapse;margin:0 0 18px;font-size:.88rem}
+th,td{border:1px solid #334155;padding:9px 11px;text-align:left;color:#cbd5e1}
+th{background:#1e293b;color:#f8fafc}
+.pass{color:#4ade80}.fail{color:#f87171}
+.swatch{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;border:1px solid #334155;margin-right:6px}
+.cta{background:#1e293b;border:1px solid #334155;border-radius:14px;padding:18px;margin:24px 0;text-align:center}
+.cta p{color:#94a3b8;margin-bottom:12px;font-size:.9rem}
+.btn{display:inline-block;padding:11px 22px;border-radius:10px;background:#6366f1;color:#fff;font-weight:800;text-decoration:none;font-size:.9rem}
+.btn:hover{background:#4f46e5}
+.kofi{margin-top:20px;text-align:center;font-size:.85rem}.kofi a{color:#ff5e5b;text-decoration:none}
+.related{margin-top:26px}
+.related a{display:block;color:#818cf8;text-decoration:none;font-size:.9rem;margin-bottom:8px}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:14px 0 2px}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="crumb"><a href="../index.html">← Home</a> · <a href="../contrast-checker.html">👁️ Contrast Checker</a></div>
+<h1>WCAG Color Contrast Explained: AA/AAA Ratios, Formula, and How to Check</h1>
+<div class="meta">Updated August 22, 2026 · Read time: ~5 min · Part of the Web Toolkit dev guide series</div>
+<article>
+<p>“Contrast ratio 4.5:1” — you've seen it in Lighthouse reports, accessibility audits, and every WCAG checklist. But what does the number actually mean, how is it computed, and which pairs pass? This guide explains the WCAG contrast formula (WCAG 2.x), the AA/AAA thresholds, and shows you working examples you can verify yourself in thirty seconds.</p>
+
+<h2>The one-line rule</h2>
+<p><strong>Body text needs at least 4.5:1; large text (18px+ or 14px+ bold) needs 3:1 — and AAA raises both to 7:1 and 4.5:1.</strong> If you remember nothing else, remember those four numbers.</p>
+
+<h2>1. What a contrast ratio actually is</h2>
+<p>The ratio compares the <strong>relative luminance</strong> of two colors — how bright they appear to a human eye, not their RGB values. The formula from WCAG 2.x is:</p>
+<pre>contrast = (L_lightest + 0.05) / (L_darkest + 0.05)
+
+where L is relative luminance:
+  L = 0.2126·R' + 0.7152·G' + 0.0722·B'
+
+and each channel is linearized first:
+  c &lt;= 0.03928 → c/12.92
+  c &gt;  0.03928 → ((c + 0.055)/1.055)^2.4</pre>
+<p>The three coefficients (0.2126 / 0.7152 / 0.0722) mirror human color sensitivity: we are far more sensitive to green than to blue, which is why pure blue is a famously bad text color despite looking “dark.”</p>
+
+<h2>2. The thresholds (memorize this table)</h2>
+<table>
+<tr><th>Level</th><th>Normal text</th><th>Large text (18pt/24px, or 14pt bold)</th><th>UI components / graphics</th></tr>
+<tr><td><strong>AA</strong> (minimum)</td><td>4.5 : 1</td><td>3 : 1</td><td>3 : 1</td></tr>
+<tr><td><strong>AAA</strong> (enhanced)</td><td>7 : 1</td><td>4.5 : 1</td><td>—</td></tr>
+</table>
+<p>AA is the legal and practical baseline (Section 508, EN 301 549, ADA case law). AAA is a stretch goal for long-form reading — most sites don't need it for everything.</p>
+
+<h2>3. Real examples, verified</h2>
+<ul>
+<li><span class="swatch" style="background:#000"></span>Black on white: <strong>21 : 1</strong> — <span class="pass">passes everything</span> (the theoretical maximum).</li>
+<li><span class="swatch" style="background:#3b82f6"></span>Blue #3B82F6 on white: ≈ <strong>3.7 : 1</strong> — passes <em>large text</em> AA only, <span class="fail">fails normal text</span>.</li>
+<li><span class="swatch" style="background:#767676"></span>Grey #767676 on white: ≈ <strong>4.5 : 1</strong> — <span class="pass">passes AA</span>, <span class="fail">fails AAA</span>.</li>
+<li><span class="swatch" style="background:#c0c0c0"></span>Light grey #C0C0C0 on white: ≈ <strong>1.8 : 1</strong> — <span class="fail">fails everything</span>.</li>
+<li><span class="swatch" style="background:#0000ff"></span>Pure blue #0000FF on white: ≈ <strong>8.6 : 1</strong> — <span class="pass">passes AAA</span> (counterintuitive, but true: low green/red luminance).</li>
+</ul>
+<p>The takeaway: <strong>avoid “design greys”</strong> (any grey text lighter than roughly #767676 on white). Light greys are the #1 contrast failure in real websites.</p>
+
+<h2>4. How to check any pair instantly</h2>
+<p>Instead of doing the math by hand, use our free in-browser contrast checker — pick two colors and see the ratio, the AA/AAA badges, and a live preview in one click. Nothing is uploaded:</p>
+<div class="cta">
+<p>Enter a text color and background color — get the WCAG ratio and AA/AAA verdict instantly.</p>
+<a class="btn" href="../contrast-checker.html">Open Color Contrast Checker</a>
+</div>
+
+<h2>5. Common mistakes</h2>
+<ol>
+<li><strong>Judging by eye</strong> — human perception is terrible at this; a pair you think looks fine can fail at 3:1.</li>
+<li><strong>Forgetting large-text exceptions</strong> — headers pass at 3:1, but the same color as body text fails at 4.5:1.</li>
+<li><strong>Ignoring opacity</strong> — text rendered at 80% opacity blends with the background; test the <em>rendered</em> color, not the declared one.</li>
+<li><strong>Failing disabled states</strong> — disabled buttons/labels are often exempt, but only if genuinely disabled (not just visually grey).</li>
+<li><strong>Assuming black-on-white always works</strong> — it does (21:1), but pure white on light UI rarely does.</li>
+</ol>
+
+<h2>6. Frequently asked questions</h2>
+<p><strong>What is the minimum contrast ratio for text?</strong> 4.5:1 for normal text and 3:1 for large text under WCAG AA.</p>
+<p><strong>How do I compute the ratio?</strong> Use the formula above, or any checker — the math is deterministic, so every reliable tool returns identical results for the same two colors.</p>
+<p><strong>Does WCAG 2.2 change the ratios?</strong> No — 2.2 kept the contrast requirements unchanged; it added new success criteria (e.g., focus appearance) but the 4.5:1 / 3:1 numbers remain.</p>
+<p><strong>What about WCAG 3.0 (APCA)?</strong> The next generation proposes a different perceptual model (APCA) with non-linear scores. It's still a draft; design for WCAG 2.x AA today.</p>
+<p><strong>Are logos and decorative content exempt?</strong> Yes — text that is part of a logo, brand name, or purely decorative is excluded from contrast requirements.</p>
+
+<div class="related">
+<h3 style="margin-top:26px">Related tools &amp; guides</h3>
+<a href="../contrast-checker.html">👁️ Color Contrast Checker</a>
+<a href="../color-converter.html">🎨 Color Converter</a>
+<a href="../color-palette.html">🌈 Color Palette Generator</a>
+<a href="yaml-vs-json.html">📚 YAML vs JSON guide</a>
+<a href="../index.html">← Full Toolkit</a>
+</div>
+</article>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this free tool — every tip keeps it ad-free</a></div>
+<div class="foot"><a href="../index.html">← Toolkit</a> · <a href="../premium.html">Premium</a> · <a href="../privacy.html">Privacy</a></div>
+<div id="crypto-donate"></div>
+<script src="../donate.js"></script>
+</body>
+</html>
