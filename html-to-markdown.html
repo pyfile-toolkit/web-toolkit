@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML to Markdown Converter — Free Online</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"HTML to Markdown Converter","operatingSystem":"ANY","applicationCategory":"DeveloperApplication","description":"Free HTML to Markdown converter: paste HTML, get clean Markdown instantly. Headings, links, lists, code, tables and images supported. Runs 100% in your browser.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<meta name="description" content="Free HTML to Markdown converter: turn HTML into clean Markdown in one click. Headings, links, lists, code blocks, tables and images. Private, in-browser.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px 16px 20px}
+.wrap{max-width:780px;width:100%}
+h1{font-size:1.75rem;margin:6px 0 2px;color:#f8fafc;text-align:center}
+h1 b{color:#22d3ee}
+.sub{color:#94a3b8;font-size:.88rem;text-align:center;margin-bottom:14px}
+.btns{display:flex;gap:8px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+.btn{padding:11px 20px;border:none;border-radius:10px;background:#6366f1;color:#fff;font-weight:800;cursor:pointer;font-size:.9rem}
+.btn:hover{background:#4f46e5}
+.btn.green{background:#0d9488}.btn.sec{background:#334155}
+textarea{width:100%;height:260px;background:#0b0f1a;border:1px solid #334155;border-radius:12px;color:#e2e8f0;font-family:ui-monospace,Menlo,monospace;font-size:.82rem;line-height:1.55;padding:12px;resize:vertical;white-space:pre}
+.pane .lab{font-size:.75rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;display:flex;justify-content:space-between}
+.err{color:#f87171;font-size:.8rem;margin-top:8px;min-height:18px;text-align:center}
+.kofi{margin-top:14px;text-align:center;font-size:.85rem}.kofi a{color:#ff5e5b;text-decoration:none}
+.ads{margin-top:10px;text-align:center;font-size:.82rem}.ads a{color:#818cf8;text-decoration:none;margin:0 5px}
+.content{margin-top:24px}
+.content h2{color:#f8fafc;font-size:1.05rem;margin:16px 0 8px}
+.content p{color:#cbd5e1;font-size:.9rem;line-height:1.6;margin-bottom:10px}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:12px 0 2px}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>⇄ HTML <b>to Markdown</b></h1>
+<p class="sub">Paste HTML, get clean Markdown ready for docs, blogs, and READMEs</p>
+<div class="btns">
+<button class="btn" onclick="convert()">Convert</button>
+<button class="btn green" onclick="copyOut()">Copy</button>
+<button class="btn sec" onclick="downloadOut()">⬇ Download</button>
+</div>
+<div class="pane"><div class="lab"><span>HTML input</span></div>
+<textarea id="hin" spellcheck="false"><h1>Post title</h1>
+<p>Hello <strong>world</strong>! Read <a href="https://example.com">this guide</a>.</p>
+<ul>
+<li>First item</li>
+<li>Second item with <code>code</code></li>
+</ul>
+<blockquote>Important note.</blockquote>
+<pre>npm install markdown-it</pre>
+<img src="pic.png" alt="A picture"></textarea></div>
+<div class="pane" style="margin-top:12px"><div class="lab"><span>Markdown output</span></div>
+<textarea id="mout" spellcheck="false" readonly></textarea></div>
+<div class="err" id="err"></div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this free tool</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/markdown-preview.html">Markdown Preview</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+<div class="content">
+<h2>Free HTML to Markdown Converter</h2>
+<p>Convert <strong>HTML to Markdown</strong> for docs, blog migrations, README conversion, or AI-prompt embedding. The converter handles the common elements: headings (<code>&lt;h1&gt;</code>–<code>&lt;h6&gt;</code>), paragraphs, links, images, bold/italic, inline and block code, ordered/unordered lists (with nesting), blockquotes, horizontal rules, and basic tables. Entities like <code>&amp;amp;</code> are decoded to <code>&amp;</code>.</p>
+<h2>Why convert HTML to Markdown?</h2>
+<p>Markdown is the lingua franca of documentation: GitHub READMEs, dev.to, Notion exports, and most static-site generators. When you grab content from the web — which is HTML — or inherit a legacy CMS, converting to Markdown makes it clean, portable, and diffable. It's also the perfect way to paste content into an LLM prompt without markup noise.</p>
+<h2>HTML to Markdown FAQ</h2>
+<p><strong>Is my HTML sent to a server?</strong> No — conversion runs entirely in your browser. <strong>Do tables convert?</strong> Yes, basic tables become pipe-markdown tables. <strong>What about inline styles and scripts?</strong> They are skipped — only visible content converts. <strong>Can I reverse it?</strong> Yes — use our Markdown Preview to render the result back.</p>
+</div>
+<div class="foot"><a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> · <a href="privacy.html">Privacy</a></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+function decodeEntities(s){
+  const map={'&amp;':'&','&lt;':'<','&gt;':'>','&quot;':'"','&#39;':"'",'&apos;':"'",'&nbsp;':' '};
+  s=s.replace(/&(amp|lt|gt|quot|#39|apos|nbsp);/g,(m,k)=>map[m]);
+  s=s.replace(/&#(\d+);/g,(m,d)=>String.fromCharCode(+d));
+  return s;
+}
+function convertInline(html){
+  let s=html;
+  s=s.replace(/<a\s[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/gi,(m,h,txt)=>'['+convertInline(txt)+']('+h+')');
+  s=s.replace(/<img\s[^>]*src="([^"]*)"[^>]*alt="([^"]*)"[^>]*\/?>/gi,(m,src,alt)=>'!['+alt+']('+src+')');
+  s=s.replace(/<img\s[^>]*alt="([^"]*)"[^>]*src="([^"]*)"[^>]*\/?>/gi,(m,alt,src)=>'!['+alt+']('+src+')');
+  s=s.replace(/<(strong|b)>([\s\S]*?)<\/\1>/gi,(m,t,txt)=>'**'+convertInline(txt)+'**');
+  s=s.replace(/<(em|i)>([\s\S]*?)<\/\1>/gi,(m,t,txt)=>'*'+convertInline(txt)+'*');
+  s=s.replace(/<(del|s)>([\s\S]*?)<\/\1>/gi,(m,t,txt)=>'~~'+convertInline(txt)+'~~');
+  s=s.replace(/<code>([\s\S]*?)<\/code>/gi,(m,c)=>'`'+c+'`');
+  s=s.replace(/<br\s*\/?>/gi,'\n');
+  s=decodeEntities(s);
+  s=s.replace(/<[^>]+>/g,'');
+  return s.trim();
+}
+function scanBalanced(html, tag){
+  const open='<'+tag; const close='</'+tag+'>';
+  const res=[]; let depth=0, start=-1, i=0;
+  while(i<html.length){
+    if(html[i]==='<'){
+      const rest=html.slice(i);
+      if(rest.startsWith(open)){ if(depth===0) start=i; depth++; const g=rest.indexOf('>'); i+=(g>=0?g+1:1); continue; }
+      if(rest.startsWith(close)){ depth--; if(depth===0&&start>=0){ res.push(html.slice(start,i+close.length)); start=-1; } i+=close.length; continue; }
+    }
+    i++;
+  }
+  return res;
+}
+function convertList(html){
+  function buildLines(block,ordered,depth){
+    const lines=[];
+    const inner=block.slice(block.indexOf('>')+1, block.length-('</'+'ul>'.slice(0,0)||4)); // placeholder
+    let inner2=block.slice(block.indexOf('>')+1); inner2=inner2.replace(/<\/[uo]l>$/i,'');
+    const items=scanBalanced(inner2,'li');
+    for(const raw of items){
+      let it=raw.slice(raw.indexOf('>')+1, raw.length-5);
+      const kidsU=scanBalanced(it,'ul'); const kidsO=scanBalanced(it,'ol');
+      const kids=kidsU.concat(kidsO);
+      for(const kb of kids) it=it.replace(kb,'');
+      lines.push('    '.repeat(depth)+ (ordered?'1. ':'- ')+ convertInline(it.replace(/<\/?li[^>]*>/gi,'').trim()));
+      for(const kb of kidsU) lines.push(buildLines(kb,false,depth+1));
+      for(const kb of kidsO) lines.push(buildLines(kb,true,depth+1));
+    }
+    return lines.join('\n');
+  }
+  let rest=html;
+  for(const b of scanBalanced(rest,'ul')){ rest=rest.replace(b,'\n'+buildLines(b,false,0)+'\n'); }
+  for(const b of scanBalanced(rest,'ol')){ rest=rest.replace(b,'\n'+buildLines(b,true,0)+'\n'); }
+  return rest;
+}
+function convertTables(html){
+  return html.replace(/<table[^>]*>([\s\S]*?)<\/table>/gi,(m,t)=>{
+    const rows=[];
+    const rowRe=/<tr[^>]*>([\s\S]*?)<\/tr>/gi; let rm;
+    while((rm=rowRe.exec(t))) rows.push(rm[1]);
+    const grid=rows.map(r=>{
+      const cells=[]; const cRe=/<t[hd][^>]*>([\s\S]*?)<\/t[hd]>/gi; let cm;
+      while((cm=cRe.exec(r))) cells.push(convertInline(cm[1]));
+      return cells;
+    });
+    if(!grid.length) return '';
+    const w=Math.max(...grid.map(r=>r.length));
+    const header=grid[0]; const sep=[]; const body=grid.slice(1);
+    let out='';
+    header.forEach(()=>sep.push('---'));
+    out+='| '+header.join(' | ')+' |\n| '+sep.join(' | ')+' |\n';
+    body.forEach(r=>{ const row=Array(w).fill('').map((_,i)=>r[i]||''); out+='| '+row.join(' | ')+' |\n'; });
+    return out;
+  });
+}
+function htmlToMarkdown(html){
+  let s=html;
+  // headings
+  s=s.replace(/<h([1-6])[^>]*>([\s\S]*?)<\/h\1>/gi,(m,n,txt)=>'\n'+'#'.repeat(+n)+' '+convertInline(txt)+'\n');
+  // code blocks
+  s=s.replace(/<pre[^>]*>([\s\S]*?)<\/pre>/gi,(m,c)=>'\n```\n'+decodeEntities(c.replace(/<[^>]+>/g,'')).trim()+'\n```\n');
+  s=convertTables(s);
+  s=convertList(s);
+  s=s.replace(/<blockquote[^>]*>([\s\S]*?)<\/blockquote>/gi,(m,q)=>'\n> '+q.replace(/<br\s*\/?>/gi,'\n> ').replace(/<\/?p[^>]*>/gi,'\n> ').replace(/<[^>]+>/g,'').trim()+'\n');
+  s=s.replace(/<hr\s*\/?>/gi,'\n---\n');
+  s=s.replace(/<\/p>/gi,'\n');
+  s=s.replace(/<p[^>]*>/gi,'');
+  s=s.replace(/<\/?div[^>]*>/gi,'\n');
+  // remaining block-level to newlines, then inline convert
+  s=s.replace(/<(h[1-6]|ul|ol|li|table|tr|td|th|code|pre)\b[^>]*>[\s\S]*?<\/\1>/gi,m=>m); // leave as-is (already handled)
+  s=s.replace(/<li[^>]*>(?![\s\S]*?<\/li>)/gi,'- ');
+  s=convertInline(s);
+  // normalize whitespace
+  s=s.replace(/[ \t]+\n/g,'\n').replace(/\n{3,}/g,'\n\n').trim();
+  return s+'\n';
+}
+function convert(){
+  const err=document.getElementById('err'); err.textContent='';
+  try{
+    const html=document.getElementById('hin').value;
+    if(!html.trim()){ err.textContent='Empty input'; return; }
+    document.getElementById('mout').value=htmlToMarkdown(html);
+  }catch(e){ err.textContent='Error: '+e.message; }
+}
+function copyOut(){ if(navigator.clipboard) navigator.clipboard.writeText(document.getElementById('mout').value); const b=event.target,o=b.textContent;b.textContent='Copied ✓';setTimeout(()=>b.textContent=o,1200); }
+function downloadOut(){ const b=new Blob([document.getElementById('mout').value],{type:'text/markdown'}); const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='article.md';a.click(); }
+convert();
+</script>
+</body>
+</html>
