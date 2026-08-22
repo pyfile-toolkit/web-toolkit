@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Box Shadow Generator — Free CSS Box Shadow Tool</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Box Shadow Generator","operatingSystem":"ANY","applicationCategory":"DesignApplication","description":"Free CSS box shadow generator: adjust offset, blur, spread and color with live preview, toggle inset, copy ready-to-use CSS. Runs entirely in your browser.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<meta name="description" content="Free CSS box shadow generator: offsets, blur, spread, color and inset with live preview. Copy ready-made box-shadow CSS in one click. 100% in your browser.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px 16px 20px}
+.wrap{max-width:620px;width:100%}
+h1{font-size:1.7rem;margin:6px 0 2px;color:#f8fafc;text-align:center}
+h1 b{color:#22d3ee}
+.sub{color:#94a3b8;font-size:.88rem;text-align:center;margin-bottom:14px}
+.stage{height:220px;background:repeating-linear-gradient(45deg,#151a28 0 18px,#101524 18px 36px);border:1px solid #334155;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.box{width:130px;height:130px;background:#6366f1;border-radius:14px;transition:box-shadow .15s}
+.ctrl{background:#1e293b;border:1px solid #334155;border-radius:14px;padding:16px;margin-bottom:12px}
+.row{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+.row label{font-size:.78rem;color:#94a3b8;min-width:92px}
+.row input[type=range]{flex:1;accent-color:#6366f1}
+.row .val{width:52px;text-align:right;font-size:.85rem;color:#f8fafc;font-variant-numeric:tabular-nums}
+.row input[type=color]{width:52px;height:38px;border:none;border-radius:8px;background:transparent;cursor:pointer}
+.hex{width:92px;padding:8px;border-radius:8px;border:1px solid #334155;background:#0b0f1a;color:#f8fafc;font-size:.85rem;text-align:center;text-transform:uppercase}
+.presets{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.pr{flex:1;min-width:90px;padding:11px 8px;border:none;border-radius:10px;background:#0f172a;font-size:.75rem;cursor:pointer;color:#cbd5e1;border:1px solid #334155}
+.btns{display:flex;gap:8px;justify-content:center;margin-bottom:12px}
+.btn{padding:11px 20px;border:none;border-radius:10px;background:#6366f1;color:#fff;font-weight:800;cursor:pointer;font-size:.88rem}
+.btn.green{background:#0d9488}
+.checkboxRow{display:flex;gap:16px;justify-content:center;font-size:.82rem;color:#94a3b8;margin-bottom:12px}
+textarea{width:100%;height:74px;background:#0b0f1a;border:1px solid #334155;border-radius:12px;color:#a5f3fc;font-family:ui-monospace,Menlo,monospace;font-size:.82rem;padding:12px;resize:none}
+.kofi{margin-top:14px;text-align:center;font-size:.85rem}.kofi a{color:#ff5e5b;text-decoration:none}
+.ads{margin-top:10px;text-align:center;font-size:.82rem}.ads a{color:#818cf8;text-decoration:none;margin:0 5px}
+.content{margin-top:24px}
+.content h2{color:#f8fafc;font-size:1.05rem;margin:16px 0 8px}
+.content p{color:#cbd5e1;font-size:.9rem;line-height:1.6;margin-bottom:10px}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:12px 0 2px}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>📦 Box Shadow <b>Generator</b></h1>
+<p class="sub">Offset · blur · spread · color · inset — with live preview &amp; CSS output</p>
+<div class="stage"><div class="box" id="box"></div></div>
+<div class="presets" id="presets">
+<button class="pr" data-p="soft">Soft</button><button class="pr" data-p="sharp">Sharp</button>
+<button class="pr" data-p="glow">Glow</button><button class="pr" data-p="inset">Inset</button>
+<button class="pr" data-p="float">Floating</button><button class="pr" data-p="neon">Neon</button>
+</div>
+<div class="ctrl">
+<div class="row"><label>Offset X</label><input type="range" id="ox" min="-50" max="50" value="4"><span class="val" id="oxV">4px</span></div>
+<div class="row"><label>Offset Y</label><input type="range" id="oy" min="-50" max="50" value="6"><span class="val" id="oyV">6px</span></div>
+<div class="row"><label>Blur</label><input type="range" id="bl" min="0" max="100" value="12"><span class="val" id="blV">12px</span></div>
+<div class="row"><label>Spread</label><input type="range" id="sp" min="-20" max="40" value="0"><span class="val" id="spV">0px</span></div>
+<div class="row"><label>Color</label><input type="color" id="col" value="#00000066"><input class="hex" id="colH" maxlength="9" value="#00000066"></div>
+</div>
+<div class="checkboxRow"><label><input type="checkbox" id="inset"> Inset shadow</label></div>
+<div class="btns">
+<button class="btn" onclick="copyCSS()">Copy CSS</button>
+<button class="btn green" onclick="randomize()">🎲 Randomize</button>
+</div>
+<textarea id="cssout" readonly></textarea>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this free tool</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/css-gradient-generator.html">Gradient</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/color-converter.html">Color Converter</a>
+</div>
+<div class="content">
+<h2>Free CSS Box Shadow Generator</h2>
+<p>Design <strong>CSS box shadows</strong> visually: horizontal and vertical offsets, blur radius, spread, and color — then toggle <strong>inset</strong> for inner shadows. The live preview updates instantly and the CSS output — e.g. <code>box-shadow: 4px 6px 12px rgba(0,0,0,0.4);</code> — is ready to copy into any stylesheet. Six presets (soft, sharp, glow, inset, floating, neon) give you starting points in one click.</p>
+<h2>Understanding the values</h2>
+<p><code>offset-x</code> shifts the shadow horizontally, <code>offset-y</code> vertically (positive = down). <code>blur</code> softens the edge; larger values spread the shadow out and fade it. <code>spread</code> expands or contracts the shadow size without blurring. The <code>inset</code> keyword draws the shadow inside the element instead. Alpha colors (like <code>rgba</code> or 8-digit hex) render soft, realistic shadows.</p>
+<h2>Box Shadow FAQ</h2>
+<p><strong>What's a common "shadow that works"?</strong> Start with <code>0 4px 12px rgba(0,0,0,0.15)</code> — subtle enough for cards. <strong>Can shadows go on all sides?</strong> Negative offsets drag the shadow up/left; zero offsets with blur produce a symmetric halo. <strong>Is my design sent anywhere?</strong> No — everything runs locally in your browser.</p>
+</div>
+<div class="foot"><a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> · <a href="privacy.html">Privacy</a></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+function cssShadow(o){ // o = {ox,oy,bl,sp,col,inset}
+  const parts=[];
+  if(o.inset) parts.push('inset');
+  parts.push(o.ox+'px '+o.oy+'px '+o.bl+'px');
+  if(o.sp!==0) parts.push(o.sp+'px');
+  parts.push(o.col);
+  return parts.join(' ');
+}
+function read(){
+  return {ox:parseInt(document.getElementById('ox').value), oy:parseInt(document.getElementById('oy').value),
+    bl:parseInt(document.getElementById('bl').value), sp:parseInt(document.getElementById('sp').value),
+    col:document.getElementById('colH').value||'#00000066', inset:document.getElementById('inset').checked};
+}
+function update(){
+  const o=read();
+  const s=cssShadow(o);
+  document.getElementById('cssout').value='box-shadow: '+s+';';
+  document.getElementById('box').style.boxShadow=s;
+  document.getElementById('oxV').textContent=o.ox+'px';
+  document.getElementById('oyV').textContent=o.oy+'px';
+  document.getElementById('blV').textContent=o.bl+'px';
+  document.getElementById('spV').textContent=o.sp+(o.sp?'px':'px');
+}
+const PRESETS={
+  soft:{ox:0,oy:4,bl:12,sp:0,col:'#00000033',inset:false},
+  sharp:{ox:4,oy:4,bl:0,sp:0,col:'#00000066',inset:false},
+  glow:{ox:0,oy:0,bl:16,sp:2,col:'#22d3ee88',inset:false},
+  inset:{ox:0,oy:2,bl:8,sp:-2,col:'#00000088',inset:true},
+  float:{ox:0,oy:12,bl:24,sp:-8,col:'#00000044',inset:false},
+  neon:{ox:0,oy:0,bl:20,sp:4,col:'#f0f0ffaa',inset:false}
+};
+function apply(o){
+  document.getElementById('ox').value=o.ox; document.getElementById('oy').value=o.oy;
+  document.getElementById('bl').value=o.bl; document.getElementById('sp').value=o.sp;
+  document.getElementById('colH').value=o.col;
+  document.getElementById('col').value=o.col.length===9?o.col.slice(0,7):o.col;
+  document.getElementById('inset').checked=!!o.inset;
+  update();
+}
+document.getElementById('presets').addEventListener('click',e=>{
+  const b=e.target.closest('.pr'); if(b) apply(PRESETS[b.dataset.p]);
+});
+['ox','oy','bl','sp'].forEach(id=>document.getElementById(id).addEventListener('input',update));
+document.getElementById('col').addEventListener('input',e=>{ document.getElementById('colH').value=e.target.value; update(); });
+document.getElementById('colH').addEventListener('input',function(){
+  let v=this.value.replace(/[^0-9a-fA-F#]/g,'').slice(0,9);
+  this.value=v;
+  if(/^#[0-9a-fA-F]{6}$/.test(v)||/^#[0-9a-fA-F]{8}$/.test(v)) document.getElementById('col').value=v.slice(0,7);
+  update();
+});
+document.getElementById('inset').addEventListener('change',update);
+function copyCSS(){
+  if(navigator.clipboard) navigator.clipboard.writeText(document.getElementById('cssout').value);
+  const b=event.target,o=b.textContent;b.textContent='Copied ✓';setTimeout(()=>b.textContent=o,1200);
+}
+function randomize(){
+  const r=()=>Math.floor(Math.random()*30)-8;
+  const alpha='#'+Math.floor(Math.random()*200).toString(16).padStart(2,'0')+'0000'+(55+Math.floor(Math.random()*60)).toString(16);
+  const o={ox:r(),oy:r()+4,bl:5+Math.floor(Math.random()*20),sp:Math.floor(Math.random()*10)-4,col:alpha,inset:Math.random()<0.15};
+  apply(o);
+}
+document.getElementById('col').value='#000000';
+apply(PRESETS.soft);
+</script>
+</body>
+</html>
