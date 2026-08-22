@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MD5 vs SHA-256: Hashing Explained for Developers</title>
+<meta name="description" content="MD5 vs SHA-256 explained: how hashing works, why MD5 and SHA-1 are broken, collision attacks, salt, and when to use SHA-256 instead. Includes a comparison table.">
+<meta property="og:title" content="MD5 vs SHA-256: Hashing Explained for Developers">
+<meta property="og:description" content="How hashing works, why MD5/SHA-1 are broken, and when to use SHA-256.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"MD5 vs SHA-256: Hashing Explained for Developers","description":"How hashing works, why MD5/SHA-1 are broken, and when to use SHA-256.","datePublished":"2026-08-22","dateModified":"2026-08-22","author":{"@type":"Organization","name":"Web Toolkit"},"publisher":{"@type":"Organization","name":"Web Toolkit"},"mainEntityOfPage":"https://pyfile-toolkit.github.io/web-toolkit/guides/md5-vs-sha256.html"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://pyfile-toolkit.github.io/web-toolkit/"},{"@type":"ListItem","position":2,"name":"MD5 vs SHA-256","item":"https://pyfile-toolkit.github.io/web-toolkit/guides/md5-vs-sha256.html"}]}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px 16px 40px}
+.wrap{max-width:720px;width:100%}
+.crumb{font-size:.75rem;color:#64748b;margin:10px 0 4px}.crumb a{color:#818cf8;text-decoration:none}
+h1{font-size:1.9rem;line-height:1.25;color:#f8fafc;margin:8px 0 10px}
+.meta{font-size:.8rem;color:#64748b;margin-bottom:18px}
+article h2{font-size:1.3rem;color:#22d3ee;margin:28px 0 10px}
+article h3{font-size:1.05rem;color:#e2e8f0;margin:20px 0 8px}
+article p{color:#cbd5e1;font-size:.95rem;line-height:1.75;margin-bottom:14px}
+article ul,article ol{color:#cbd5e1;font-size:.95rem;line-height:1.7;margin:0 0 14px 22px}
+article li{margin-bottom:6px}
+pre{background:#111827;border:1px solid #334155;border-radius:10px;padding:14px;font-family:ui-monospace,Menlo,monospace;font-size:.82rem;line-height:1.6;color:#a5f3fc;overflow:auto;margin:0 0 16px;white-space:pre}
+code{font-family:ui-monospace,Menlo,monospace;background:#1e293b;padding:1px 5px;border-radius:5px;font-size:.85em;color:#fbbf24}
+table{width:100%;border-collapse:collapse;margin:0 0 18px;font-size:.88rem}
+th,td{border:1px solid #334155;padding:9px 11px;text-align:left;color:#cbd5e1}
+th{background:#1e293b;color:#f8fafc}
+.bad{color:#f87171}.good{color:#4ade80}
+.cta{background:#1e293b;border:1px solid #334155;border-radius:14px;padding:18px;margin:24px 0;text-align:center}
+.cta p{color:#94a3b8;margin-bottom:12px;font-size:.9rem}
+.btn{display:inline-block;padding:11px 22px;border-radius:10px;background:#6366f1;color:#fff;font-weight:800;text-decoration:none;font-size:.9rem}
+.btn:hover{background:#4f46e5}
+.kofi{margin-top:20px;text-align:center;font-size:.85rem}.kofi a{color:#ff5e5b;text-decoration:none}
+.related{margin-top:26px}
+.related a{display:block;color:#818cf8;text-decoration:none;font-size:.9rem;margin-bottom:8px}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:14px 0 2px}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="crumb"><a href="../index.html">← Home</a> · <a href="../hash-generator.html">🔑 Hash Generator</a></div>
+<h1>MD5 vs SHA-256: Hashing Explained for Developers</h1>
+<div class="meta">Updated August 22, 2026 · Read time: ~6 min · Part of the Web Toolkit dev guide series</div>
+<article>
+<p>You've seen MD5, SHA-1, and SHA-256 in checksum tools, package managers, and database tables — but which one should you actually use in 2026? This guide explains what hashing is, why <strong>MD5 and SHA-1 are cryptographically broken</strong>, and when each algorithm is (or isn't) safe.</p>
+
+<h2>The one-line rule</h2>
+<p><strong>For any security-sensitive use — passwords, integrity checks against tampering, API signatures — use SHA-256 (or stronger), never MD5 or SHA-1.</strong> MD5 and SHA-1 remain only in legacy compatibility and non-security contexts (e.g., accidental-duplicate detection).</p>
+
+<h2>1. What a hash actually is</h2>
+<p>A hash function maps any input — a file, a password, a message — to a fixed-size digest:</p>
+<pre>MD5("hello world")   = 5eb63bbbe01eeed093cb22bb8f5acdc3
+SHA-1("hello world") = 2aae6c35c94fcfb415dbe95f408b9ce91ee846ed
+SHA-256("hello world") = b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9</pre>
+<p>Three defining properties make hashes useful:</p>
+<ul>
+<li><strong>Deterministic</strong> — same input always gives the same output.</li>
+<li><strong>One-way</strong> — you can't recover the input from the digest (no practical inverse).</li>
+<li><strong>Avalanche effect</strong> — changing one bit of input flips roughly half the output bits, so similar inputs look completely different.</li>
+</ul>
+
+<h2>2. The comparison table</h2>
+<table>
+<tr><th>Algorithm</th><th>Digest size</th><th>Broken?</th><th>Status in 2026</th><th>Good for</th></tr>
+<tr><td>MD5</td><td>128-bit (32 hex)</td><td class="bad">Yes — collisions since 2004</td><td class="bad">Never for security</td><td>Caching keys, dedupe</td></tr>
+<tr><td>SHA-1</td><td>160-bit (40 hex)</td><td class="bad">Yes — SHAttered 2017</td><td class="bad">Deprecated everywhere</td><td>Legacy git objects</td></tr>
+<tr><td>SHA-256</td><td>256-bit (64 hex)</td><td class="good">No known practical attack</td><td class="good">Industry default</td><td>Signatures, integrity, TLS</td></tr>
+<tr><td>SHA-512</td><td>512-bit (128 hex)</td><td class="good">No known practical attack</td><td class="good">Stronger sibling</td><td>High-security contexts</td></tr>
+</table>
+
+<h2>3. Why MD5 and SHA-1 are broken</h2>
+<p><strong>Collision</strong> = two different inputs producing the same digest. In 2004, researchers demonstrated MD5 collisions; by 2008 they were producing them in <strong>seconds</strong> on consumer hardware. SHA-1's first real collision ("SHAttered", 2017) took Google roughly 6,500 CPU-years — still feasible for a well-resourced attacker, and the method has only gotten cheaper since.</p>
+<p>Why this matters: if an attacker can craft a file that hashes identically to a <em>legitimate</em> one, they can swap malicious content into a system that trusts hash-based fingerprints — think package downloads, certificates, or code signing. There's also the <strong>birthday paradox</strong>: collisions for an n-bit hash become practical at roughly 2^(n/2) operations — for MD5 that's ~2^64 (fast), for SHA-256 ~2^128 (world was not built for that).</p>
+
+<h2>4. Password hashing — a separate topic</h2>
+<p>Even SHA-256 is the <strong>wrong tool for passwords</strong>. Password hashes need to be <em>slow</em> to resist brute force, which is why the industry uses <strong>bcrypt, scrypt, or Argon2</strong> (and salts everything). Plain SHA-256 for passwords is vulnerable to fast dictionary attacks — use a password-stretching KDF instead. MD5-for-passwords is worst of all: roughly <code>10^10</code> hashes per second are trivial on GPUs.</p>
+
+<h2>5. What SHA-256 is used for today</h2>
+<ul>
+<li><strong>File integrity</strong> — download checksums (most Linux ISOs publish SHA-256).</li>
+<li><strong>TLS certificates &amp; signatures</strong> — SHA-256 is the default in the Web PKI.</li>
+<li><strong>API integrity</strong> — HMAC-SHA256 message authentication.</li>
+<li><strong>Content addressing</strong> — dedup systems and some blob stores.</li>
+<li><strong>Merkle trees</strong> — blockchains, git commit integrity.</li>
+</ul>
+<div class="cta">
+<p>Compute MD5, SHA-1, SHA-256, SHA-512 and HMAC for any text instantly — in your browser.</p>
+<a class="btn" href="../hash-generator.html">Open Hash Generator</a>
+</div>
+
+<h2>6. Frequently asked questions</h2>
+<p><strong>Is MD5 still used?</strong> Yes, but only where integrity-adversary isn't a concern: checksums for accidental corruption, caching keys, deduplication. Never for security. <strong>Is SHA-256 quantum-safe?</strong> Grover's algorithm halves effective strength to 2^128 — still safe in practice for decades. <strong>Can I reverse a hash?</strong> No, but short inputs (passwords, names) can be found via precomputed rainbow tables — which is why salt exists. <strong>Which should I pick for checksums?</strong> SHA-256: universally supported and practical.</p>
+
+<div class="related">
+<h3 style="margin-top:26px">Related tools &amp; guides</h3>
+<a href="../hash-generator.html">🔑 Hash Generator (MD5/SHA/HMAC)</a>
+<a href="../password-strength.html">🔒 Password Strength Checker</a>
+<a href="../base64.html">🔤 Base64 Encoder</a>
+<a href="base64-explained.html">📚 Base64 Encoding Explained</a>
+<a href="yaml-vs-json.html">📚 YAML vs JSON guide</a>
+</div>
+</article>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this free tool — every tip keeps it ad-free</a></div>
+<div class="foot"><a href="../index.html">← Toolkit</a> · <a href="../premium.html">Premium</a> · <a href="../privacy.html">Privacy</a></div>
+<div id="crypto-donate"></div>
+<script src="../donate.js"></script>
+</body>
+</html>
