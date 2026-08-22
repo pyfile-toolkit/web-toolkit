@@ -24,7 +24,7 @@
   gtag('config', 'G-RDDV2FW9HY');
 </script>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bulk Image Resizer — Free Browser Tool</title>
+<title>Bulk Image Resizer & Compressor — Free Browser Tool</title>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -36,7 +36,7 @@
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
 }
 </script>
-    <meta name="description" content="Resize multiple images at once directly in your browser. Set custom dimensions, preserve aspect ratio. No upload, 100% private.">
+    <meta name="description" content="Compress and resize images in bulk — JPEG quality control, WebP output, all local. Resize multiple images at once directly in your browser. Set custom dimensions, preserve aspect ratio. No upload, 100% private.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh;display:flex;;;padding:20px}
@@ -99,12 +99,17 @@ h1{font-size:1.5rem;margin-bottom:8px;color:#f8fafc}
 <button data-q="0.7">Medium</button>
 <button data-q="0.5">Low</button>
 </div>
+<div class="quality-select" id="formatSelect">
+<button class="active" data-f="image/jpeg">JPEG</button>
+<button data-f="image/webp">WebP</button>
+<button data-f="image/png">PNG</button>
+</div>
 <button class="btn btn-primary" id="btnResize" disabled>Resize Images</button>
 <div class="preview" id="preview"></div>
 <div class="stats" id="stats"></div>
 </div>
 <script>
-let files=[],quality=0.9;
+let files=[],quality=0.9,format="image/jpeg";
 const dz=document.getElementById('dropZone'),fi=document.getElementById('fileInput'),
   preview=document.getElementById('preview'),btn=document.getElementById('btnResize'),
   stats=document.getElementById('stats');
@@ -113,6 +118,12 @@ dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('dragover
 dz.addEventListener('dragleave',()=>dz.classList.remove('dragover'));
 dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('dragover');handleFiles(e.dataTransfer.files)});
 fi.addEventListener('change',()=>handleFiles(fi.files));
+document.getElementById('formatSelect').addEventListener('click',e=>{
+  if(e.target.tagName==='BUTTON'){
+    document.querySelectorAll('#formatSelect button').forEach(b=>b.classList.remove('active'));
+    e.target.classList.add('active');format=e.target.dataset.f;
+  }
+});
 document.getElementById('qualitySelect').addEventListener('click',e=>{
   if(e.target.tagName==='BUTTON'){
     document.querySelectorAll('#qualitySelect button').forEach(b=>b.classList.remove('active'));
@@ -141,13 +152,13 @@ btn.addEventListener('click',async()=>{
     const c=document.createElement('canvas');let nw=img.width,nh=img.height;
     if(nw>w){nh=nh*(w/nw);nw=w}if(nh>h){nw=nw*(h/nh);nh=h}
     c.width=nw;c.height=nh;const ctx=c.getContext('2d');ctx.drawImage(img,0,0,nw,nh);
-    const blob=await new Promise(r=>c.toBlob(r,'image/jpeg',quality));
+    const blob=await new Promise(r=>c.toBlob(r,format,format==='image/png'?undefined:quality));
     const a=document.createElement('a');a.href=URL.createObjectURL(blob);
-    a.download=file.name.replace(/\.\w+$/,'')+'_resized.jpg';a.click();
+    a.download=file.name.replace(/\.\w+$/,'')+'_resized.'+(format==='image/png'?'png':format==='image/webp'?'webp':'jpg');a.click();
     totalBefore+=file.size;totalAfter+=blob.size;count++;
   }
   totalBefore/=1024;totalAfter/=1024;
-  stats.innerHTML=`✅ Resized ${count} image${count>1?'s':''}<br>Before: ${totalBefore.toFixed(1)} KB → After: ${totalAfter.toFixed(1)} KB (${((1-totalAfter/totalBefore)*100).toFixed(0)}% saved)`;
+  stats.innerHTML=`✅ Compressed ${count} image${count>1?'s':''}<br>Before: ${totalBefore.toFixed(1)} KB → After: ${totalAfter.toFixed(1)} KB (${((1-totalAfter/totalBefore)*100).toFixed(0)}% saved)`;
   stats.classList.add('show');btn.textContent='Resize Images';btn.disabled=false;
 });
 </script>
