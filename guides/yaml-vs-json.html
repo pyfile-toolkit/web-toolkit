@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YAML vs JSON: Key Differences, Use Cases, and Conversion Guide</title>
+<meta name="description" content="YAML vs JSON explained: syntax differences, when to use which, common pitfalls, and how to convert between them with free online tools. Includes tables and real config examples.">
+<meta property="og:title" content="YAML vs JSON: Key Differences, Use Cases, and Conversion Guide">
+<meta property="og:description" content="Compare YAML and JSON by syntax, typing, comments, and use cases. Convert both ways with free in-browser tools.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"YAML vs JSON: Key Differences, Use Cases, and Conversion Guide","description":"Compare YAML and JSON by syntax, typing, comments, and use cases. Convert both ways with free in-browser tools.","datePublished":"2026-08-22","dateModified":"2026-08-22","author":{"@type":"Organization","name":"Web Toolkit"},"publisher":{"@type":"Organization","name":"Web Toolkit"},"mainEntityOfPage":"https://pyfile-toolkit.github.io/web-toolkit/guides/yaml-vs-json.html"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://pyfile-toolkit.github.io/web-toolkit/"},{"@type":"ListItem","position":2,"name":"YAML vs JSON","item":"https://pyfile-toolkit.github.io/web-toolkit/guides/yaml-vs-json.html"}]}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px 16px 40px}
+.wrap{max-width:720px;width:100%}
+.crumb{font-size:.75rem;color:#64748b;margin:10px 0 4px}.crumb a{color:#818cf8;text-decoration:none}
+h1{font-size:1.9rem;line-height:1.25;color:#f8fafc;margin:8px 0 10px}
+.meta{font-size:.8rem;color:#64748b;margin-bottom:18px}
+article h2{font-size:1.3rem;color:#22d3ee;margin:28px 0 10px}
+article h3{font-size:1.05rem;color:#e2e8f0;margin:20px 0 8px}
+article p{color:#cbd5e1;font-size:.95rem;line-height:1.75;margin-bottom:14px}
+article ul,article ol{color:#cbd5e1;font-size:.95rem;line-height:1.7;margin:0 0 14px 22px}
+article li{margin-bottom:6px}
+pre{background:#111827;border:1px solid #334155;border-radius:10px;padding:14px;font-family:ui-monospace,Menlo,monospace;font-size:.82rem;line-height:1.6;color:#a5f3fc;overflow:auto;margin:0 0 16px;white-space:pre}
+pre .c{color:#64748b}
+code{font-family:ui-monospace,Menlo,monospace;background:#1e293b;padding:1px 5px;border-radius:5px;font-size:.85em;color:#fbbf24}
+table{width:100%;border-collapse:collapse;margin:0 0 18px;font-size:.88rem}
+th,td{border:1px solid #334155;padding:9px 11px;text-align:left;color:#cbd5e1}
+th{background:#1e293b;color:#f8fafc}
+.cta{background:#1e293b;border:1px solid #334155;border-radius:14px;padding:18px;margin:24px 0;text-align:center}
+.cta p{color:#94a3b8;margin-bottom:12px;font-size:.9rem}
+.btn{display:inline-block;padding:11px 22px;border-radius:10px;background:#6366f1;color:#fff;font-weight:800;text-decoration:none;font-size:.9rem}
+.btn:hover{background:#4f46e5}
+.kofi{margin-top:20px;text-align:center;font-size:.85rem}.kofi a{color:#ff5e5b;text-decoration:none}
+.related{margin-top:26px}
+.related a{display:block;color:#818cf8;text-decoration:none;font-size:.9rem;margin-bottom:8px}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:14px 0 2px}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="crumb"><a href="../index.html">← Home</a> · <a href="../yaml-json-converter.html">YAML ⇄ JSON Converter</a></div>
+<h1>YAML vs JSON: Key Differences, Use Cases, and Conversion Guide</h1>
+<div class="meta">Updated August 22, 2026 · Read time: ~6 min · Part of the Web Toolkit dev guide series</div>
+<article>
+<p>Every developer eventually hits the same question: <em>should this config be YAML or JSON?</em> Both are text formats for structured data, and any valid JSON is valid YAML — but the two behave very differently in practice. This guide explains the real differences, when to pick each, and shows you how to convert between them without losing data.</p>
+
+<h2>The one-sentence summary</h2>
+<p><strong>JSON for machines (APIs, storage, data exchange), YAML for humans (configuration, CI/CD, documentation).</strong> If a person will edit the file, prefer YAML; if a program will process it at scale, prefer JSON. Everything below is the reasoning behind that rule — plus the cases where it breaks.</p>
+
+<h2>1. Syntax at a glance</h2>
+<p>YAML uses indentation to express structure. JSON uses braces and commas. The same object looks like this in each:</p>
+<pre><span class="c"># YAML — indentation-driven</span>
+server:
+  host: localhost
+  port: 8080
+  tls: true
+users:
+  - name: alice
+    admin: true
+  - name: bob
+    admin: false</pre>
+<pre>{
+  "server": { "host": "localhost", "port": 8080, "tls": true },
+  "users": [
+    { "name": "alice", "admin": true },
+    { "name": "bob", "admin": false }
+  ]
+}</pre>
+<p>Both encode the same structure. YAML is quieter to the eye — no quotes or commas — and mirrors the indentation most developers already read in code. JSON is explicit: every key is quoted, every value typed, every comma required.</p>
+
+<h2>2. Key differences, side by side</h2>
+<table>
+<tr><th>Aspect</th><th>YAML</th><th>JSON</th></tr>
+<tr><td>Comments</td><td>✅ Native with <code>#</code></td><td>❌ Not allowed</td></tr>
+<tr><td>Quoting keys</td><td>Usually optional</td><td>Always required</td></tr>
+<tr><td>Multi-line strings</td><td>✅ Block scalars (<code>|</code>, <code>&gt;</code>)</td><td>❌ Escapes only</td></tr>
+<tr><td>Anchors &amp; aliases</td><td>✅ (<code>&amp;anchor</code>, <code>*alias</code>)</td><td>❌ None</td></tr>
+<tr><td>Values with colons <code>:</code></td><td>Need quoting</td><td>Fine unquoted</td></tr>
+<tr><td>Tab characters</td><td>❌ Forbidden in indentation</td><td>Allowed (whitespace insignificant)</td></tr>
+<tr><td>Parser availability</td><td>Every language, but slower</td><td>Literally everywhere, fastest</td></tr>
+<tr><td>Template interpolation</td><td>Common in CI/CD tooling</td><td>Rare in config contexts</td></tr>
+</table>
+
+<h2>3. Typing pitfalls that bite in YAML</h2>
+<p>The biggest practical gotcha: YAML guesses types. Strings that <em>look</em> like numbers or booleans get converted:</p>
+<pre><span class="c"># YAML: these are NOT strings!</span>
+version: 1.0         <span class="c"># becomes a float 1.0</span>
+enabled: yes         <span class="c"># becomes boolean true (in YAML 1.1)</span>
+id: 001              <span class="c"># becomes the integer 1 — leading zeros lost!</span>
+port: "8080"         <span class="c"># quoting forces a string</span></pre>
+<p>This is the classic source of <em>“it worked in my editor but broke in production”</em>. JSON never surprises you: <code>"8080"</code> is a string, <code>8080</code> is a number, period. If you are generating serial numbers, codes, or anything with leading zeros, prefer JSON — or quote aggressively in YAML.</p>
+
+<h2>4. When to choose JSON</h2>
+<ul>
+<li><strong>API request/response bodies</strong> — every HTTP framework speaks JSON natively.</li>
+<li><strong>Data at scale</strong> — JSON.parse is significantly faster than most YAML parsers, and JSON is trivially streamed and indexed.</li>
+<li><strong>Storage and caches</strong> — Redis, MongoDB, Postgres JSONB, flat files.</li>
+<li><strong>Interchange between systems</strong> — no type-guessing, stable schema expectations.</li>
+<li><strong>Anything with leading zeros or colon-heavy values</strong> — avoids the pitfall above.</li>
+</ul>
+
+<h2>5. When to choose YAML</h2>
+<ul>
+<li><strong>Configuration files humans edit</strong> — Docker Compose, Kubernetes manifests, GitHub Actions, Ansible, CI pipelines.</li>
+<li><strong>Documentation with embedded data</strong> — front matter, specs, examples.</li>
+<li><strong>Large hand-written configs</strong> — comments explain intent, which JSON forbids.</li>
+<li><strong>When readability trumps parsing speed</strong> — the format is self-documenting.</li>
+</ul>
+
+<h2>6. Converting between the two</h2>
+<p>Because both express the same data model, conversion is lossless <em>for equivalent values</em> — with two caveats: comments and anchors only exist in YAML, so JSON output drops them; and YAML's implicit typing can change value types if you convert JSON→YAML→JSON carelessly (see section 3).</p>
+<p>For quick, private conversion you can use our free in-browser converter — nothing is uploaded to any server:</p>
+<div class="cta">
+<p>Convert config files between formats instantly — nested maps, lists, comments handled.</p>
+<a class="btn" href="../yaml-json-converter.html">Open YAML ⇄ JSON Converter</a>
+</div>
+
+<h2>7. Common mistakes</h2>
+<ol>
+<li><strong>Tabs in YAML indentation</strong> — always spaces; a stray tab breaks the whole file.</li>
+<li><strong>Duplicate keys</strong> — YAML parsers may silently take the last occurrence.</li>
+<li><strong>Trailing whitespace</strong> — harmless in JSON, occasionally meaningful in YAML block scalars.</li>
+<li><strong>Yes/no on/off</strong> — in YAML 1.1 these are booleans, not strings; most modern tooling uses YAML 1.2 where they stay strings, but legacy files can still surprise.</li>
+<li><strong>Commas in JSON, none in YAML</strong> — a missing comma is the #1 JSON syntax error; forgetting you don't need them is the #1 YAML confusion.</li>
+</ol>
+
+<h2>8. Frequently asked questions</h2>
+<p><strong>Is JSON a subset of YAML?</strong> Yes — YAML 1.2 is a strict superset: every valid JSON document is also valid YAML, which is why many tools accept either format.</p>
+<p><strong>Which is faster?</strong> JSON. Native parsers in JS, Rust, Go, and Python are built-in and heavily optimized; YAML always goes through a third-party parser.</p>
+<p><strong>Why do Kubernetes files use YAML, not JSON?</strong> Because manifests are maintained by people, and YAML's comments and readability justify the parsing cost. The API itself can also consume JSON.</p>
+<p><strong>Can I convert JSON to YAML and back without losing data?</strong> Yes, if you quote values that YAML would re-type (leading-zero codes, <code>yes</code> strings) and you don't need comments preserved.</p>
+<p><strong>Which should I learn first?</strong> JSON — it's simpler and universal. YAML after, since you'll meet it in DevOps tooling.</p>
+
+<div class="related">
+<h3 style="margin-top:26px">Related tools &amp; guides</h3>
+<a href="../yaml-json-converter.html">⇅ YAML ⇄ JSON Converter</a>
+<a href="../json-formatter.html">↔ JSON Formatter &amp; Validator</a>
+<a href="../csv-json-converter.html">⇄ CSV ⇄ JSON Converter</a>
+<a href="../json-schema-validator.html">✔ JSON Schema Validator</a>
+<a href="../text-diff.html">⧉ Text Diff Tool</a>
+</div>
+</article>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this free tool — every tip keeps it ad-free</a></div>
+<div class="foot"><a href="../index.html">← Toolkit</a> · <a href="../privacy.html">Privacy</a></div>
+<div id="crypto-donate"></div>
+<script src="../donate.js"></script>
+</div>
+</body>
+</html>
