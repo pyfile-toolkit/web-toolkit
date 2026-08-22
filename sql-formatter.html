@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQL Formatter — Free Online SQL Beautifier</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"SQL Formatter","operatingSystem":"ANY","applicationCategory":"DeveloperApplication","description":"Free SQL formatter and beautifier: paste messy SQL, get readable indented queries instantly. Preserves strings and comments, handles SELECT, JOINs, subqueries and CASE. Runs in your browser.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<meta name="description" content="Free SQL formatter: beautify messy SQL into readable indented queries. Handles SELECT, JOIN, subqueries, CASE and comments while preserving strings. 100% in your browser.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px 16px 20px}
+.wrap{max-width:780px;width:100%}
+h1{font-size:1.75rem;margin:6px 0 2px;color:#f8fafc;text-align:center}
+h1 b{color:#22d3ee}
+.sub{color:#94a3b8;font-size:.88rem;text-align:center;margin-bottom:14px}
+.btns{display:flex;gap:8px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+.btn{padding:11px 20px;border:none;border-radius:10px;background:#6366f1;color:#fff;font-weight:800;cursor:pointer;font-size:.9rem}
+.btn:hover{background:#4f46e5}
+.btn.green{background:#0d9488}.btn.sec{background:#334155}
+textarea{width:100%;height:280px;background:#0b0f1a;border:1px solid #334155;border-radius:12px;color:#e2e8f0;font-family:ui-monospace,Menlo,monospace;font-size:.82rem;line-height:1.55;padding:12px;resize:vertical;white-space:pre}
+.pane .lab{font-size:.75rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;display:flex;justify-content:space-between}
+.err{color:#f87171;font-size:.8rem;margin-top:8px;min-height:18px;text-align:center}
+.kofi{margin-top:14px;text-align:center;font-size:.85rem}.kofi a{color:#ff5e5b;text-decoration:none}
+.ads{margin-top:10px;text-align:center;font-size:.82rem}.ads a{color:#818cf8;text-decoration:none;margin:0 5px}
+.content{margin-top:24px}
+.content h2{color:#f8fafc;font-size:1.05rem;margin:16px 0 8px}
+.content p{color:#cbd5e1;font-size:.9rem;line-height:1.6;margin-bottom:10px}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:12px 0 2px}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🛠️ SQL <b>Formatter</b></h1>
+<p class="sub">Beautify messy SQL — clean indentation for SELECT, JOINs, subqueries, CASE</p>
+<div class="btns">
+<button class="btn" onclick="formatIt()">Format SQL</button>
+<button class="btn green" onclick="copyOut()">Copy</button>
+<button class="btn sec" onclick="downloadOut()">⬇ Download</button>
+</div>
+<div class="pane"><div class="lab"><span>Input SQL</span></div>
+<textarea id="sin" spellcheck="false">SELECT u.id,u.name,count(o.id) AS orders,sum(o.total) total
+FROM users u LEFT JOIN orders o ON o.user_id=u.id AND o.status='paid'
+WHERE u.created_at>'2026-01-01' AND (u.plan='pro' OR u.plan='team')
+GROUP BY u.id,u.name HAVING count(o.id)>=3
+ORDER BY total DESC LIMIT 10;</textarea></div>
+<div class="pane" style="margin-top:12px"><div class="lab"><span>Formatted SQL</span></div>
+<textarea id="sout" spellcheck="false" readonly></textarea></div>
+<div class="err" id="err"></div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this free tool</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/json-formatter.html">JSON Formatter</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+</div>
+<div class="content">
+<h2>Free Online SQL Formatter</h2>
+<p>Paste any <strong>messy or minified SQL</strong> and get a clean, consistently indented query in one click. The formatter understands the structure of common SQL: it breaks <code>SELECT</code> lists onto separate lines, aligns <code>JOIN</code>s, indents subqueries and <code>CASE</code> expressions, and puts each major clause (<code>WHERE</code>, <code>GROUP BY</code>, <code>ORDER BY</code>, <code>LIMIT</code>, …) on its own line — while <strong>preserving string literals and comments exactly</strong>.</p>
+<h2>Why format SQL?</h2>
+<p>Readable SQL is debuggable SQL. Well-formatted queries are easier to review in code reviews, easier to spot mistakes in join logic, and much easier to share in documentation or tickets. If you inherit a 300-line one-liner, this tool turns it into something a human can actually reason about.</p>
+<h2>SQL Formatter FAQ</h2>
+<p><strong>Which SQL dialects are supported?</strong> The formatter is dialect-agnostic for common syntax: Postgres, MySQL, SQLite, SQL Server, and BigQuery all work for standard queries. <strong>Is my query sent anywhere?</strong> No — formatting runs entirely in your browser. <strong>Does it change my query's meaning?</strong> No — whitespace is insignificant in SQL, so reformatting never alters execution or results.</p>
+</div>
+<div class="foot"><a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> · <a href="privacy.html">Privacy</a></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+const CLAUSES=['SELECT','FROM','WHERE','GROUP BY','ORDER BY','HAVING','LIMIT','OFFSET','UNION','UNION ALL','INTERSECT','EXCEPT','SET','VALUES','RETURNING'];
+const JOINS=['JOIN','LEFT JOIN','RIGHT JOIN','INNER JOIN','OUTER JOIN','FULL JOIN','LEFT OUTER JOIN','RIGHT OUTER JOIN','FULL OUTER JOIN','CROSS JOIN'];
+function formatSql(sql){
+  const MULTI=new Map([
+    ['GROUP BY','G','BY'],['ORDER BY','O','BY'],['UNION ALL','U','ALL'],
+    ['LEFT JOIN','J','JOIN'],['RIGHT JOIN','J','JOIN'],['INNER JOIN','J','JOIN'],
+    ['FULL JOIN','J','JOIN'],['OUTER JOIN','J','JOIN'],
+    ['LEFT OUTER JOIN','J','JOIN'],['RIGHT OUTER JOIN','J','JOIN'],
+    ['FULL OUTER JOIN','J','JOIN'],['CROSS JOIN','J','JOIN'],
+    ['INSERT INTO','I','INTO'],['LEFT JOIN LATERAL','J','JOIN']]);
+  const PHRASE=new Map([['GROUP','BY'],['ORDER','BY'],['UNION','ALL'],['LEFT','OUTER'],['RIGHT','OUTER'],['FULL','OUTER'],['LEFT','JOIN'],['RIGHT','JOIN'],['INNER','JOIN'],['FULL','JOIN'],['OUTER','JOIN'],['CROSS','JOIN'],['INSERT','INTO'],['LATERAL','JOIN']]);
+  const CLAUSES=new Set(['SELECT','FROM','WHERE','GROUP BY','ORDER BY','HAVING','LIMIT','OFFSET','UNION','UNION ALL','INTERSECT','EXCEPT','SET','VALUES','RETURNING','DELETE','UPDATE','INSERT INTO']);
+  const JOINCS=new Set(Array.from(MULTI.keys()).concat(['JOIN']));
+  // tokenize
+  const toks=[]; let i=0;
+  while(i<sql.length){
+    const ch=sql[i];
+    if(ch==='\''||ch==='"'){
+      let j=i+1,s=ch;
+      while(j<sql.length){ if(sql[j]==='\\'&&sql[j+1]){ s+=sql.slice(j,j+2); j+=2; continue; } if(sql[j]===ch&&sql[j+1]===ch){ s+=sql.slice(j,j+2); j+=2; continue; } if(sql[j]===ch){ s+=ch; j++; break; } s+=sql[j]; j++; }
+      toks.push({t:'S',v:s}); i=j;
+    } else if(ch==='-'&&sql[i+1]==='-'){
+      let j=i+2; while(j<sql.length&&sql[j]!=='\n') j++;
+      toks.push({t:'C',v:sql.slice(i,j)}); i=j;
+    } else if(ch==='/'&&sql[i+1]==='*'){
+      let j=i+2; while(j<sql.length&&!(sql[j]==='*'&&sql[j+1]==='/')) j++;
+      toks.push({t:'C',v:sql.slice(i,j+2)}); i=j+2;
+    } else if(',()'.indexOf(ch)>=0){ toks.push({t:ch,v:ch}); i++; }
+    else if('=<>!+-*/'.indexOf(ch)>=0){ toks.push({t:'O',v:ch}); i++; }
+    else if(/\s/.test(ch)){ i++; }
+    else { let j=i; while(j<sql.length&&!/\s/.test(sql[j])&&',()'.indexOf(sql[j])<0&&'=<>!+-*/'.indexOf(sql[j])<0) j++; toks.push({t:'W',v:sql.slice(i,j)}); i=j; }
+  }
+  // phrase-merge pass (known multi-word phrases only)
+  const merged=[]; let k=0;
+  while(k<toks.length){
+    if(toks[k].t==='W'&&PHRASE.has(toks[k].v.toUpperCase())&&k+1<toks.length&&toks[k+1].t==='W'&&toks[k+1].v.toUpperCase()===PHRASE.get(toks[k].v.toUpperCase())){
+      const key=toks[k].v.toUpperCase()+' '+toks[k+1].v.toUpperCase();
+      merged.push({t:'W',v:key}); k+=2;
+    } else { merged.push(toks[k]); k++; }
+  }
+  const lines=[]; let line=''; let depth=0; let inlineParen=0; let lastWasClause=false;
+  const flush=()=>{ if(line.trim()!==''){ lines.push('  '.repeat(depth)+line.trim()); line=''; } };
+  const indent=()=>'  '.repeat(depth);
+  function upper(w){ return /^[a-zA-Z_][a-zA-Z0-9_]*$/.test(w)?w.toUpperCase():w; }
+  for(const tk of merged){
+    const U=tk.t==='W'?tk.v.toUpperCase():'';
+    if(tk.t==='W'){
+      if(CLAUSES.has(U)||JOINCS.has(U)){ flush(); line=U+' '; lastWasClause=!(U==='VALUES'); continue; }
+      if(U==='CASE'){ flush(); depth++; line='CASE '; continue; }
+      if(U==='END'){ flush(); depth=Math.max(0,depth-1); line='END'; continue; }
+      if(U==='AND'||U==='OR'){ if(line.trim().length>24){ flush(); line=U+' '; } else { line=line.trim(); line+=' '+U+' '; } continue; }
+      if(U==='ON'||U==='WHEN'){ flush(); line=U+' '; continue; }
+      if(U==='THEN'){ line=line.trim()+' THEN '; continue; }
+      line+=(line===''||line.endsWith(' ')||line.endsWith('(')?'':' ')+tk.v; lastWasClause=false;
+    } else if(tk.t==='S'||tk.t==='O'){
+      line+=(line===''||line.endsWith(' ')||line.endsWith('(')?'':' ')+tk.v; lastWasClause=false;
+    } else if(tk.t==='C'){
+      flush(); lines.push(indent()+tk.v);
+    } else if(tk.t===','){
+      line+=',';
+    } else if(tk.t==='('){
+      if(lastWasClause||line.trim()===''){ flush(); depth++; lines.push(indent()+'('); depth++; inlineParen=0; lastWasClause=false; }
+      else { line=line.trim()+' ('; depth++; inlineParen++; }
+    } else if(tk.t===')'){
+      depth=Math.max(0,depth-1);
+      if(inlineParen>0){ line+=')'; inlineParen--; }
+      else { flush(); lines.push(indent()+')'); }
+    }
+  }
+  flush();
+  return lines.join('\n');
+}
+function formatIt(){
+  const err=document.getElementById('err'); err.textContent='';
+  try{
+    const sql=document.getElementById('sin').value;
+    const out=formatSql(sql);
+    document.getElementById('sout').value=out;
+  }catch(e){ err.textContent='Error: '+e.message; }
+}
+function copyOut(){ if(navigator.clipboard) navigator.clipboard.writeText(document.getElementById('sout').value); const b=event.target,o=b.textContent;b.textContent='Copied ✓';setTimeout(()=>b.textContent=o,1200); }
+function downloadOut(){ const b=new Blob([document.getElementById('sout').value],{type:'text/plain'}); const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='query.sql';a.click(); }
+formatIt();
+</script>
+</body>
+</html>
