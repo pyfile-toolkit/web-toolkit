@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Word Puzzle — Free Daily Word Game (Wordle-style)</title>
+<meta name="description" content="Free daily word puzzle: guess the 5-letter word in 6 tries. One puzzle per day, shareable grid results, streak tracking. No signup, plays in your browser.">
+<meta property="og:title" content="Word Puzzle — Free Daily Word Game">
+<meta property="og:description" content="One 5-letter puzzle a day. 6 guesses. Share your grid. Streak tracking.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Daily Word Puzzle","operatingSystem":"ANY","applicationCategory":"GameApplication","description":"Free Wordle-style daily word game: guess the 5-letter word in 6 tries, share your grid, track streaks. Runs in your browser.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;user-select:none;-webkit-tap-highlight-color:transparent}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:10px 12px 24px}
+.wrap{max-width:480px;width:100%}
+h1{font-size:1.5rem;text-align:center;color:#f8fafc;margin:4px 0 2px}
+h1 b{color:#22d3ee}
+.sub{text-align:center;color:#94a3b8;font-size:.8rem;margin-bottom:10px}
+.hud{display:flex;justify-content:center;gap:12px;margin-bottom:12px;font-size:.8rem;color:#94a3b8}
+.hud b{color:#f8fafc}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:14px}
+.cell{aspect-ratio:1;border:2px solid #334155;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:800;text-transform:uppercase;color:#f8fafc;background:#0b0f1a;transition:transform .15s}
+.cell.pop{animation:pop .3s}
+@keyframes pop{50%{transform:scale(1.12)}}
+.cell.g{background:#15803d;border-color:#15803d}
+.cell.y{background:#b45309;border-color:#b45309}
+.cell.n{background:#374151;border-color:#374151}
+.cell.fill{border-color:#64748b}
+.kb{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;margin-bottom:10px}
+.kb .key{border:none;border-radius:6px;background:#1e293b;color:#e2e8f0;padding:11px 0;font-size:.85rem;font-weight:700;cursor:pointer;text-transform:uppercase}
+.kb .key.g{background:#15803d}.kb .key.y{background:#b45309}.kb .key.n{background:#334155}
+.kb .key.wide{grid-column:span 2}
+.msg{text-align:center;min-height:26px;font-size:.95rem;color:#cbd5e1;margin-bottom:6px;font-weight:600}
+.share{margin-top:4px;display:flex;gap:8px;justify-content:center;display:flex}
+.share button{padding:9px 14px;border:none;border-radius:9px;background:#0d9488;color:#fff;font-weight:800;cursor:pointer;font-size:.85rem}
+.share button.sec{background:#475569;display:none}
+.kofi{margin-top:16px;text-align:center;font-size:.82rem}.kofi a{color:#ff5e5b;text-decoration:none}
+.content{width:100%}
+.content h2{color:#f8fafc;font-size:1rem;margin:18px 0 8px;text-align:left}
+.content p{color:#cbd5e1;font-size:.86rem;line-height:1.6;margin-bottom:10px;text-align:left}
+.content strong{color:#e2e8f0}
+.foot{width:100%;text-align:center;font-size:.78rem;color:#64748b;padding:14px 0 2px}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🔤 Daily Word <b>Puzzle</b></h1>
+<p class="sub">One 5-letter word a day · 6 guesses · share your grid</p>
+<div class="hud"><span>Puzzle <b id="pnum">#1</b></span><span>Streak <b id="streak">0</b></span><span>Best <b id="best">0</b></span></div>
+<div class="grid" id="grid"></div>
+<div class="msg" id="msg"></div>
+<div class="share"><button id="btnShare" onclick="shareResult()">📤 Share result</button><button class="sec" onclick="startGame()">↻ Play again</button></div>
+<div class="kb" id="kb"></div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this free game</a></div>
+<div class="content">
+<h2>Free Daily Word Puzzle — Wordle-style</h2>
+<p>Guess the secret <strong>5-letter word</strong> in up to 6 tries — the same puzzle for everyone each day, so you can compare results. Green = correct letter &amp; position, yellow = right letter, wrong spot, grey = not in the word. After each guess the tiles animate and the on-screen keyboard remembers what you've learned.</p>
+<h2>Why daily?</h2>
+<p>One puzzle a day builds a <strong>streak</strong> — and a habit. Our daily seed means every player gets the identical word, so sharing your result grid (<strong>🟩🟨⬛</strong>) turns words into a social game: can your friends beat your score today?</p>
+<h2>Word game FAQ</h2>
+<p><strong>How many letters?</strong> Five, always. <strong>What if the same letter appears twice?</strong> Feedback follows the Wordle rules: tiles are revealed left to right with duplicates handled fairly. <strong>Does it save my progress?</strong> Only your streak and best streak are stored in your browser — nothing is uploaded.</p>
+</div>
+<div class="foot"><a href="index.html">← Toolkit</a> · <a href="../privacy.html">Privacy</a></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+// ---------- word list (curated common 5-letter words) ----------
+const WORDS=['about','above','abuse','actor','acute','admit','adopt','adult','after','again','agent','agree','ahead','alarm','album','alert','alias','alien','align','alive','allow','alone','along','alter','amber','angle','angry','apart','apple','apply','arena','argue','arise','armor','array','arrow','aside','asset','audio','audit','avoid','award','aware','badly','baker','basic','beach','began','begin','being','below','bench','bible','birth','black','blade','blame','blank','blast','blaze','bleed','blend','blind','blink','block','blood','bloom','board','boast','bonus','boost','booth','bound','brain','brand','brave','bread','break','breed','brick','bride','brief','bring','broad','broke','brown','build','built','bunch','burst','buyer','cabin','cable','camel','canal','candy','carbon','career','cargo','carry','catch','cause','cease','chain','chair','chalk','charm','chart','chase','cheap','cheat','check','cheek','cheer','chess','chief','child','chill','choir','chose','chunk','civic','civil','claim','class','clean','clear','clerk','click','cliff','climb','clock','close','cloth','cloud','coach','coast','cocoa','color','comic','coral','corner','cost','couch','could','count','court','cover','crack','craft','crane','crash','crazy','cream','creed','creek','creep','crest','crime','crisp','cross','crowd','crown','crush','curry','curve','cycle','daily','dairy','dance','dated','dealt','death','debut','decay','decor','delay','delta','dense','depot','depth','desert','diary','dice','digit','diner','dirty','disco','ditch','dive','dodge','doing','dough','dozen','draft','drain','drama','drank','dream','dress','dried','drift','drill','drink','drive','drove','drown','dutch','dusty','dying','eager','early','earth','eight','elbow','elder','elect','elite','empty','enemy','enjoy','enter','entry','equal','error','essay','event','every','exact','exist','extra','fable','fairy','faith','false','fancy','fatal','fault','favor','fence','ferry','fiber','field','fiery','fifth','fifty','fight','final','first','fixed','flame','flash','fleet','flesh','flint','float','flock','flood','floor','flour','fluid','flush','focus','force','forge','forth','forty','found','frame','fraud','fresh','front','frost','fruit','fully','funny','gauge','genre','ghost','giant','given','glass','globe','glory','glove','going','grace','grade','grain','grand','grant','grape','graph','grasp','grass','grave','great','green','greet','grief','grill','grind','gross','group','grove','grown','guard','guess','guide','guild','guilt','habit','happy','hardy','harsh','haste','hatch','haven','heart','heavy','hedge','helico','hello','hence','honey','honor','horse','hotel','house','human','humor','hurry','ideal','image','imply','index','inner','input','issue','ivory','jewel','joint','jolly','judge','juice','karma','kayak','knife','known','label','labor','lager','large','laser','later','laugh','layer','learn','lease','least','leave','legal','lemon','level','lever','light','limit','liver','local','lodge','logic','loose','lotus','lover','lower','lucky','lunar','lunch','lyric','magic','major','maker','manor','march','match','maybe','mayor','meant','medal','media','melon','mercy','merge','merit','merry','metal','meter','micro','midst','might','minor','minus','mixed','model','money','month','moral','motor','mount','mouse','mouth','movie','music','naive','nanny','nasal','naval','needs','nerve','never','newer','newly','niche','night','ninja','noble','noise','north','noted','novel','nurse','nylon','occur','ocean','offer','often','olive','onion','onset','optim','orbit','order','organ','other','ought','ounce','outer','owner','ozone','paint','panel','panic','paper','park','part','party','paste','patch','pause','peace','peach','pearl','penny','peril','phase','phone','photo','piano','piece','pilot','pinch','pitch','pivot','pixel','pizza','place','plain','plane','plant','plate','plaza','pluck','plumb','point','polar','porch','posed','pouch','pound','power','press','price','pride','prime','print','prior','prize','probe','prone','proof','proud','prove','proxy','pulse','punch','pupil','puppy','purse','queen','query','quest','queue','quick','quiet','quite','quota','quote','radar','radio','raise','rally','ranch','range','rapid','ratio','reach','react','ready','real','realm','rebel','refer','reign','relax','reply','rider','ridge','rifle','right','rigid','rinse','risen','risky','rival','river','roast','robust','rocky','roman','rouge','route','royal','rugby','ruler','rumor','rural','sadly','saint','salad','sandy','sauce','scale','scarf','scene','scent','scope','score','scout','scrap','scrub','seize','sense','serve','seven','shade','shaft','shake','shall','shame','shape','share','shark','sharp','shave','sheep','sheet','shelf','shell','shift','shine','shirt','shock','shoot','shore','short','shout','shove','shown','sight','sigma','since','siren','sixth','sixty','sized','skill','skirt','skull','slang','sleek','sleep','slice','slide','slope','smart','smoke','snake','solar','solid','solve','sorry','sound','south','space','spare','spark','spawn','speak','speed','spell','spend','spice','spike','spine','spite','split','spoke','spoon','sport','spray','squad','stack','staff','stage','stake','stall','stamp','stand','stare','start','state','steam','steel','steep','steer','stern','stick','stiff','still','stock','stone','stool','store','storm','story','stove','strap','straw','strip','stuck','study','stuff','style','sugar','suite','sunny','super','surge','sushi','swear','sweep','sweet','swift','swing','sword','syrup','table','taken','taste','taunt','teach','tempt','tender','tense','thick','thing','think','third','thorn','those','three','throw','thumb','tidal','tiger','tight','timer','tired','title','toast','today','token','topic','torch','total','touch','tough','tower','trace','track','trade','trail','train','trait','tramp','trash','treat','trend','trial','tribe','trick','tried','troop','truck','truly','trump','trunk','trust','truth','tulip','twice','twin','uncle','under','union','unite','unity','until','upper','upset','urban','usage','usual','utter','vacant','valid','value','valve','vapor','vault','vegan','venue','verse','video','vigil','viral','virus','visit','vital','vivid','vocal','vodka','voice','voter','vowel','wagon','waist','waste','watch','water','weave','weird','whale','wheat','wheel','where','which','while','white','whole','whose','width','witch','woman','world','worry','worse','worst','worth','would','wound','wreck','wrist','write','wrong','wrote','yacht','yield','young','youth','zebra'
+// dedupe + keep 5-letter only (defensive)
+].filter((v,i,a)=>a.indexOf(v)===i&&v.length===5);
+const KEYROWS=[['q','w','e','r','t','y','u','i','o','p'],['a','s','d','f','g','h','j','k','l','back'],['enter','z','x','c','v','b','n','m','del']];
+// ---------- pure game logic ----------
+function dayNumber(d){ return Math.floor((d.getTime()+d.getTimezoneOffset()*60000)/86400000); }
+function pickWord(date){ return WORDS[dayNumber(date)%WORDS.length]; }
+function evaluate(guess,answer){
+  const res=Array(5).fill('n');
+  const ansCount={};
+  for(let i=0;i<5;i++){ if(guess[i]===answer[i]){ res[i]='g'; } else { ansCount[answer[i]]=(ansCount[answer[i]]||0)+1; } }
+  for(let i=0;i<5;i++){ if(res[i]==='n'&&ansCount[guess[i]]>0){ res[i]='y'; ansCount[guess[i]]--; } }
+  return res;
+}
+function makeGrid(rows){ return rows.map(r=>r.map(x=>x[0]).join('')).join('\n'); }
+function shareText(puzzleNum,guesses,win){ return '🔤 Word Puzzle '+puzzleNum+' '+(win?guesses+'/6':'X/6')+'\n'+makeGrid(guesses.map((r,i)=>({g:r.map(c=>c==='g'?'🟩':c==='y'?'🟨':'⬛').join('')}))) .replace(/[^\n]/g,'')+guesses.map(r=>r.map(c=>c==='g'?'🟩':c==='y'?'🟨':'⬛').join('')).join('\n'); }
+// ---------- UI ----------
+let answer=pickWord(new Date()), row=0, col=0, guesses=[], done=false;
+const grid=document.getElementById('grid');
+function buildGrid(){ grid.innerHTML=''; for(let i=0;i<30;i++){ const d=document.createElement('div'); d.className='cell'; d.dataset.i=i; grid.appendChild(d); } }
+function buildKB(){
+  const kb=document.getElementById('kb');
+  for(const r of KEYROWS) for(const k of r){
+    const b=document.createElement('button'); b.className='key'+(k==='back'||k==='enter'?' wide':''); b.textContent=k==='back'?'⌫':k==='enter'?'↵':k; b.dataset.k=k; kb.appendChild(b);
+  }
+  kb.addEventListener('click',e=>{ const k=e.target.dataset.k; if(k) keyTap(k); });
+}
+function cell(i){ return grid.children[i]; }
+function render(){
+  for(let i=0;i<30;i++){ const r=Math.floor(i/5),c=i%5,el=cell(i);
+    el.className='cell';
+    if(r<guesses.length){ const g=guesses[r]; el.textContent=g[c]; el.classList.add(evaluate(g,answer)[c]==='g'?'g':evaluate(g,answer)[c]==='y'?'y':'n'); }
+    else if(r===row&&c<col){ el.textContent=currentGuess()[c]; el.classList.add('fill'); }
+  }
+  document.getElementById('pnum').textContent='#'+dayNumber(new Date());
+}
+function currentGuess(){ return (guesses[row]||Array(5).fill('')).slice(); }
+function keyTap(k){
+  if(done) return;
+  if(k==='back'){ if(col>0){ col--; render(); } return; }
+  if(k==='enter'){
+    if(col===5){ const g=currentGuess().join(''); const res=evaluate(g,answer);
+      guesses[row]=g.split('');
+      if(g===answer){ done=true; win(); return; }
+      row++; col=0;
+      if(row===6){ done=true; lose(); return; }
+      render(); return;
+    }
+    document.getElementById('msg').textContent='Not enough letters'; setTimeout(()=>{document.getElementById('msg').textContent='';},1000); return;
+  }
+  if(col<5){ guesses[row]=(currentGuess()); guesses[row][col]=k; col++; render(); }
+}
+function finish(win){
+  const today=dayNumber(new Date());
+  const st=JSON.parse(localStorage.getItem('wp_state')||'{}');
+  if(st.day!==today){ st.day=today; st.cur=st.win?st.cur+1:1; }
+  document.getElementById('streak').textContent=st.cur||0;
+  document.getElementById('best').textContent=Math.max(st.cur||0,st.best||0);
+  st.best=Math.max(st.cur||0,st.best||0); localStorage.setItem('wp_state',JSON.stringify(st));
+  document.getElementById('btnShare').style.display='';
+}
+function win(){ document.getElementById('msg').textContent='🎉 You got it in '+(row+1)+'!'; finish(true); }
+function lose(){ document.getElementById('msg').textContent='😵 The word was '+answer.toUpperCase()+'.'; finish(false); }
+function shareResult(){
+  const n=dayNumber(new Date());
+  const win=done&&row<6&&guesses.length<=6;
+  const rows=guesses.map(g=>Array.from(g||'').map((ch,idx)=>evaluate(g,answer)[idx]==='g'?'🟩':evaluate(g,answer)[idx]==='y'?'🟨':'⬛').join('')); // guess g is array now
+  while(rows.length<6) rows.push('⬛⬛⬛⬛⬛');
+  const txt='🔤 Word Puzzle #'+n+' — '+(win?'Solved in '+(row+1)+'/6':'X/6')+'\n'+rows.join('\n');
+  if(navigator.share){ Promise.resolve(navigator.share({title:'Word Puzzle',text:txt})).catch(()=>{}); }
+  else if(navigator.clipboard){ navigator.clipboard.writeText(txt); }
+  document.getElementById('msg').textContent='✓ Copied — challenge a friend!';
+}
+function buildGrid(){ grid.innerHTML=''; for(let i=0;i<30;i++){ const d=document.createElement('div'); d.className='cell'; d.dataset.i=i; grid.appendChild(d); } }
+function buildKB(){
+  const kb=document.getElementById('kb');
+  for(const r of KEYROWS) for(const k of r){
+    const b=document.createElement('button'); b.className='key'+(k==='back'||k==='enter'?' wide':''); b.textContent=k==='back'?'⌫':k==='enter'?'↵':k; b.dataset.k=k; kb.appendChild(b);
+  }
+  kb.addEventListener('click',e=>{ const k=e.target.dataset.k; if(k) keyTap(k); });
+}
+function cell(i){ return grid.children[i]; }
+function render(){
+  for(let i=0;i<30;i++){ const r=Math.floor(i/5),c=i%5,el=cell(i);
+    el.className='cell';
+    if(r<guesses.length){ const g=guesses[r]; el.textContent=g[c]; el.classList.add(evaluate(g,answer)[c]==='g'?'g':evaluate(g,answer)[c]==='y'?'y':'n'); }
+    else if(r===row&&c<col){ el.textContent=currentGuess()[c]; el.classList.add('fill'); }
+  }
+  document.getElementById('pnum').textContent='#'+dayNumber(new Date());
+}
+function currentGuess(){ return (guesses[row]||Array(5).fill('')).slice(); }
+function keyTap(k){
+  if(done) return;
+  if(k==='back'){ if(col>0){ col--; render(); } return; }
+  if(k==='enter'){
+    if(col===5){ const g=currentGuess().join(''); const res=evaluate(g,answer);
+      guesses[row]=g.split('');
+      if(g===answer){ done=true; win(); return; }
+      row++; col=0;
+      if(row===6){ done=true; lose(); return; }
+      render(); return;
+    }
+    document.getElementById('msg').textContent='Not enough letters'; setTimeout(()=>{document.getElementById('msg').textContent='';},1000); return;
+  }
+  if(col<5){ guesses[row]=(currentGuess()); guesses[row][col]=k; col++; render(); }
+}
+function finish(win){
+  const today=dayNumber(new Date());
+  const st=JSON.parse(localStorage.getItem('wp_state')||'{}');
+  if(st.day!==today){ st.day=today; st.cur=st.win?st.cur+1:1; }
+  document.getElementById('streak').textContent=st.cur||0;
+  document.getElementById('best').textContent=Math.max(st.cur||0,st.best||0);
+  st.best=Math.max(st.cur||0,st.best||0); localStorage.setItem('wp_state',JSON.stringify(st));
+  document.getElementById('btnShare').style.display='';
+}
+function win(){ document.getElementById('msg').textContent='🎉 You got it in '+(row+1)+'!'; finish(true); }
+function lose(){ document.getElementById('msg').textContent='😵 The word was '+answer.toUpperCase()+'.'; finish(false); }
+function shareResult(){
+  const n=dayNumber(new Date());
+  const win=done&&row<6;
+  const txt='🔤 Word Puzzle #'+n+' — '+(win?('Solved in '+(row+1)+'/6'):'Failed X/6')+'\n'+guesses.map(g=>g.map((ch,i)=>evaluate(g.join(''),g[i]||answer.replace(/./g,''))[i]==='g'?'🟩':evaluate(g.join(''),g[i]||answer.replace(/./g,''))[i]==='y'?'🟨':'⬛').slice(0,0).join('') + g.map((ch,i)=>evaluate(g,answer)[i]==='g'?'🟩':evaluate(g,answer)[i]==='y'?'🟨':'⬛').join('')).join('\n');
+  if(navigator.share){ navigator.share({title:'Word Puzzle',text:txt}).catch(()=>{}); }
+  else if(navigator.clipboard){ navigator.clipboard.writeText(txt); }
+  document.getElementById('msg').textContent='✓ Copied — challenge a friend!';
+}
+buildGrid(); buildKB(); render();
+</script>
+</body>
+</html>
