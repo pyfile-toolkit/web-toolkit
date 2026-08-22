@@ -210,6 +210,11 @@ footer a{color:#818cf8}
 
 <h2 class="section-title">Free Tools</h2>
 <div class="tools">
+<div style="max-width:640px;margin:18px auto 10px;position:relative">
+<input type="search" id="toolSearch" placeholder="🔎 Search tools, games & guides… (e.g. json, color, wpm)"
+ style="width:100%;padding:13px 18px;border-radius:12px;border:1px solid #334155;background:#0b0f1a;color:#f8fafc;font-size:.95rem;outline:none">
+<div id="searchCount" style="text-align:center;font-size:.75rem;color:#64748b;margin-top:6px;min-height:16px"></div>
+</div>
 <div class="tool-card">
 <h3>📸 Bulk Image Resizer</h3>
 <p>Resize multiple images at once. Set max dimensions and quality — download all at once.</p>
@@ -495,6 +500,27 @@ footer a{color:#818cf8}
 </div>
 
 <div id="crypto-donate"></div>
+
+<script>
+const cardEls=Array.from(document.querySelectorAll('.tool-card'));
+const allCards=cardEls.length;
+const countEl=document.getElementById('searchCount');
+if(countEl) countEl.textContent=allCards+' tools, games & guides — all free, all in your browser';
+const inp=document.getElementById('toolSearch');
+if(inp){
+  inp.addEventListener('input',()=>{
+    const q=inp.value.trim().toLowerCase();
+    let shown=0;
+    cardEls.forEach(c=>{
+      const hit=!q||c.textContent.toLowerCase().includes(q);
+      c.style.display=hit?'':'none';
+      if(hit) shown++;
+    });
+    if(countEl) countEl.textContent=q?shown+' match(es)':'All '+allCards+' tools — all free, all in your browser';
+  });
+}
+</script>
+
 <script src="donate.js"></script>
 </body>
 </html>
