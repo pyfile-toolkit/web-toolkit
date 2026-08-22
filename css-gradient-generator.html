@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Gradient Generator — Free Linear & Radial</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"CSS Gradient Generator","operatingSystem":"ANY","applicationCategory":"DesignApplication","description":"Free CSS gradient generator: build linear and radial gradients visually, pick colors and angle, copy ready-to-use CSS. Runs entirely in your browser.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<meta name="description" content="Free CSS gradient generator: create linear and radial gradients with live preview, color stops, adjustable angle. Copy clean CSS instantly. 100% in your browser.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px 16px 20px}
+.wrap{max-width:640px;width:100%}
+h1{font-size:1.75rem;margin:6px 0 2px;color:#f8fafc;text-align:center}
+h1 b{color:#22d3ee}
+.sub{color:#94a3b8;font-size:.88rem;text-align:center;margin-bottom:14px}
+.preview{height:190px;border-radius:16px;border:1px solid #334155;margin-bottom:14px;transition:background .2s}
+.ctrl{background:#1e293b;border:1px solid #334155;border-radius:14px;padding:14px;margin-bottom:12px}
+.row{display:flex;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+.row label{font-size:.78rem;color:#94a3b8;min-width:70px}
+.type{display:flex;gap:6px}
+.tbtn{padding:8px 14px;border-radius:999px;border:1px solid #334155;background:#0b0f1a;color:#cbd5e1;cursor:pointer;font-size:.82rem}
+.tbtn.active{background:#6366f1;color:#fff;font-weight:700}
+input[type=color]{width:52px;height:38px;border:none;border-radius:8px;background:transparent;cursor:pointer}
+input[type=number]{width:76px;padding:9px;border-radius:8px;border:1px solid #334155;background:#0b0f1a;color:#f8fafc;font-size:.9rem;text-align:center}
+input[type=range]{flex:1;min-width:120px;accent-color:#6366f1}
+.hex{width:88px;padding:8px;border-radius:8px;border:1px solid #334155;background:#0b0f1a;color:#f8fafc;font-size:.85rem;text-align:center;text-transform:uppercase}
+textarea{width:100%;height:96px;background:#0b0f1a;border:1px solid #334155;border-radius:12px;color:#a5f3fc;font-family:ui-monospace,Menlo,monospace;font-size:.8rem;line-height:1.6;padding:12px;resize:vertical}
+.btns{display:flex;gap:8px;margin:10px 0}
+.btn{padding:10px 18px;border:none;border-radius:9px;background:#6366f1;color:#fff;font-weight:800;cursor:pointer;font-size:.85rem}
+.btn.green{background:#0d9488}
+.presets{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.pr{border:none;border-radius:10px;height:40px;flex:1;min-width:80px;cursor:pointer;border:1px solid #334155}
+.kofi{margin-top:14px;text-align:center;font-size:.85rem}.kofi a{color:#ff5e5b;text-decoration:none}
+.ads{margin-top:10px;text-align:center;font-size:.82rem}.ads a{color:#818cf8;text-decoration:none;margin:0 5px}
+.content{margin-top:24px}
+.content h2{color:#f8fafc;font-size:1.05rem;margin:16px 0 8px}
+.content p{color:#cbd5e1;font-size:.9rem;line-height:1.6;margin-bottom:10px}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:12px 0 2px}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🌈 CSS Gradient <b>Generator</b></h1>
+<p class="sub">Linear &amp; radial gradients with live preview — copy the CSS</p>
+<div class="preview" id="prev"></div>
+<div class="presets" id="presets"></div>
+<div class="ctrl">
+<div class="row"><label>Type</label><div class="type" id="typeSel"><span class="tbtn active" data-t="linear">Linear</span><span class="tbtn" data-t="radial">Radial</span></div></div>
+<div class="row"><label>Colors</label>
+<input type="color" id="c1" value="#667eea"><input class="hex" id="h1" maxlength="7" value="#667eea">
+<input type="color" id="c2" value="#764ba2"><input class="hex" id="h2" maxlength="7" value="#764ba2"></div>
+<div class="row" id="angleRow"><label>Angle (deg)</label><input type="range" id="angle" min="0" max="360" value="135"><input type="number" id="angleN" value="135" min="0" max="360"></div>
+<div class="row" id="shapeRow" style="display:none"><label>Shape</label>
+<div class="type" id="shapeSel"><span class="tbtn active" data-s="circle">Circle</span><span class="tbtn" data-s="ellipse">Ellipse</span></div></div>
+</div>
+<div class="btns">
+<button class="btn" onclick="copyCSS()">Copy CSS</button>
+<button class="btn green" onclick="randomize()">🎲 Randomize</button>
+<button class="btn" style="background:#334155" onclick="swap()">⇄ Swap</button>
+</div>
+<textarea id="cssout" readonly></textarea>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this free tool</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/color-converter.html">Color Converter</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/color-palette.html">Palette</a>
+</div>
+<div class="content">
+<h2>Free CSS Gradient Generator</h2>
+<p>Design <strong>CSS gradients</strong> visually: pick two (or more via presets) colors, set a linear angle or choose a radial circle/ellipse, and watch the live preview update instantly. The generator outputs clean CSS — <code>background: linear-gradient(135deg, #667eea, #764ba2);</code> — ready to paste into any stylesheet.</p>
+<h2>Linear vs radial gradients</h2>
+<p>A <strong>linear gradient</strong> blends colors along a straight line at your chosen angle (0–360°; 90deg is bottom-to-top, 135deg is a popular diagonal). A <strong>radial gradient</strong> emanates from the center outward — circle keeps uniform proportions, ellipse stretches to the element's shape. Both support multiple stops and transparency when you use hex+alpha colors.</p>
+<h2>Gradient FAQ</h2>
+<p><strong>Can I use more than two colors?</strong> Yes — reason about extra stops as comma-separated values; this generator is the quick two-stop builder, and its presets show popular multi-tone combos. <strong>Does the preview look the same in production?</strong> Yes — the CSS is standard and runs identically in every modern browser. <strong>Is my design sent anywhere?</strong> No — everything happens locally in your browser.</p>
+</div>
+<div class="foot"><a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> · <a href="privacy.html">Privacy</a></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+<script>
+const PRESETS=[
+  {name:'Sunset',c:['#ff7e5f','#feb47b'],a:80},
+  {name:'Ocean',c:['#2193b0','#6dd5ed'],a:180},
+  {name:'Neon',c:['#00dbde','#fc00ff'],a:135},
+  {name:'Forest',c:['#134e5e','#71b280'],a:120},
+  {name:'Flame',c:['#f83600','#f9d423'],a:315}
+];
+let type='linear',shape='circle';
+function buildCSS(){
+  const c1=document.getElementById('h1').value||'#667eea';
+  const c2=document.getElementById('h2').value||'#764ba2';
+  if(type==='linear'){
+    const a=document.getElementById('angleN').value||135;
+    return 'background: linear-gradient('+a+'deg, '+c1+', '+c2+');';
+  }
+  return 'background: radial-gradient('+shape+', '+c1+', '+c2+');';
+}
+function update(){
+  document.getElementById('prev').style.background=buildCSS().replace('background: ','').replace(';','');
+  document.getElementById('cssout').value=buildCSS();
+}
+function copyCSS(){
+  if(navigator.clipboard) navigator.clipboard.writeText(document.getElementById('cssout').value);
+  const b=event.target,o=b.textContent;b.textContent='Copied ✓';setTimeout(()=>b.textContent=o,1200);
+}
+function randomize(){
+  const r=()=>'#'+Math.floor(Math.random()*16777215).toString(16).padStart(6,'0');
+  setColors(r(),r());
+}
+function swap(){ const a=document.getElementById('h1').value,b=document.getElementById('h2').value; setColors(b,a); }
+function setColors(hex1,hex2){
+  document.getElementById('c1').value=hex1; document.getElementById('h1').value=hex1;
+  document.getElementById('c2').value=hex2; document.getElementById('h2').value=hex2; update();
+}
+// events
+document.getElementById('c1').addEventListener('input',e=>{document.getElementById('h1').value=e.target.value;update();});
+document.getElementById('c2').addEventListener('input',e=>{document.getElementById('h2').value=e.target.value;update();});
+['h1','h2'].forEach(id=>document.getElementById(id).addEventListener('input',function(){
+  const v=this.value.replace(/[^0-9a-fA-F#]/g,'').slice(0,7);
+  this.value=v;
+  const is1=id==='h1';
+  const prev=document.getElementById(is1?'c1':'c2');
+  if(/^#[0-9a-fA-F]{6}$/.test(v)) prev.value=v;
+  update();
+}));
+document.getElementById('angle').addEventListener('input',e=>{document.getElementById('angleN').value=e.target.value;update();});
+document.getElementById('angleN').addEventListener('input',e=>{document.getElementById('angle').value=e.target.value;update();});
+document.getElementById('typeSel').addEventListener('click',e=>{
+  const t=e.target.closest('.tbtn'); if(!t)return;
+  type=t.dataset.t==='radial'?'radial':'linear';
+  document.querySelectorAll('#typeSel .tbtn').forEach(b=>b.classList.toggle('active',b===t));
+  document.getElementById('angleRow').style.display=type==='linear'?'':'none';
+  document.getElementById('shapeRow').style.display=type==='radial'?'':'none';
+  update();
+});
+document.getElementById('shapeSel').addEventListener('click',e=>{
+  const t=e.target.closest('.tbtn'); if(!t)return;
+  shape=t.dataset.s==='ellipse'?'ellipse':'circle';
+  document.querySelectorAll('#shapeSel .tbtn').forEach(b=>b.classList.toggle('active',b===t)); update();
+});
+// presets
+const ps=document.getElementById('presets');
+PRESETS.forEach(p=>{ const b=document.createElement('button'); b.className='pr'; b.style.background='linear-gradient('+p.a+'deg, '+p.c[0]+', '+p.c[1]+')'; b.title=p.name; b.addEventListener('click',()=>setColors(p.c[0],p.c[1])); ps.appendChild(b); });
+update();
+</script>
+</div>
+</body>
+</html>
