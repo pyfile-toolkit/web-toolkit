@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Web Dev Toolkit", "item": "https://pyfile-toolkit.github.io/web-toolkit/"}, {"@type": "ListItem", "position": 2, "name": "Diff Checker — Compare Text Online", "item": "https://pyfile-toolkit.github.io/web-toolkit/diff-checker.html"}]}
+</script>
+<meta property="og:title" content="Diff Checker — Free Online Text Comparison Tool">
+<meta property="og:description" content="Compare two texts or code files online for free. Line-by-line diff with added, removed and unchanged lines highlighted. 100% private — nothing is uploaded.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pyfile-toolkit.github.io/web-toolkit/diff-checker.html">
+<meta property="og:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Diff Checker — Free Online Text Comparison Tool">
+<meta name="twitter:description" content="Compare two texts or code files online for free. Line-by-line diff with added, removed and unchanged lines highlighted. Private.">
+<meta name="twitter:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png"><link rel="icon" href="favicon.ico" sizes="any">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diff Checker — Free Online Text Comparison Tool</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Diff Checker",
+  "operatingSystem": "ANY",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Compare two texts, documents or code snippets line by line. Added, removed and unchanged lines highlighted. Instant, private, free.",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<meta name="description" content="Free online diff checker: compare two texts or code files line by line, instantly. Added, removed and unchanged lines are color-coded. 100% private — your data stays in your browser.">
+<style>
+:root{--bg:#0f1420;--panel:#171e2e;--border:#2a3350;--text:#e8ecf5;--muted:#93a0bd;--add-bg:#0e2f1d;--add:#4ade80;--del-bg:#3a1420;--del:#f87171;--accent:#5b8cff}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;padding:24px}
+.wrap{max-width:1080px;margin:0 auto}
+.badges{display:flex;gap:8px;font-size:12px;color:var(--muted);margin:6px 0 18px;flex-wrap:wrap}
+.badge{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
+h1{font-size:26px;margin-bottom:6px}
+.sub{color:var(--muted);margin-bottom:22px;font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px}
+.panel h2{font-size:14px;color:var(--muted);font-weight:600;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+textarea{width:100%;min-height:280px;background:#0c1220;color:var(--text);border:1px solid var(--border);border-radius:8px;padding:10px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px;resize:vertical}
+textarea:focus{outline:2px solid var(--accent)}
+.actions{display:flex;gap:10px;margin:16px 0;flex-wrap:wrap;align-items:center}
+button{background:var(--accent);border:none;color:#0b1020;font-weight:700;padding:10px 18px;border-radius:8px;cursor:pointer;font-size:14px}
+button.ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+button:hover{filter:brightness(1.1)}
+.stats{font-size:13px;color:var(--muted)}
+.stats b{color:var(--text)}
+.result{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px;margin-top:8px}
+.result h2{font-size:14px;color:var(--muted);margin-bottom:10px}
+pre{margin:0}
+.dl{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px;white-space:pre-wrap;word-break:break-word;padding:4px 10px;border-radius:6px;display:block;margin-bottom:2px}
+.dl.add{background:var(--add-bg);color:var(--add)}
+.dl.del{background:var(--del-bg);color:var(--del)}
+.dl.same{color:#b9c4dd}
+.seg{display:flex;gap:4px;align-items:center;color:var(--muted);font-size:12px;margin:6px 0 10px;flex-wrap:wrap}
+.empty{color:var(--muted);font-style:italic}
+.info{margin-top:28px;color:var(--muted);font-size:14px;max-width:760px}
+.info h2{color:var(--text);font-size:17px;margin:18px 0 8px}
+.info p{margin-bottom:10px}
+.back a{color:#9db8ff;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="back"><a href="index.html">← Web Dev Toolkit</a></div>
+<div class="badges"><span class="badge">Free</span><span class="badge">No sign-up</span><span class="badge">Private (client-side)</span></div>
+<h1>Diff Checker</h1>
+<p class="sub">Compare two texts, documents or code snippets line by line. Added, removed and unchanged lines are color-coded instantly — and your data never leaves your browser.</p>
+
+<div class="grid">
+  <div class="panel"><h2><span>Original text</span><span></span></h2>
+    <textarea id="a" placeholder="Paste the original text here..."></textarea>
+  </div>
+  <div class="panel"><h2><span>Changed text</span><span></span></h2>
+    <textarea id="b" placeholder="Paste the changed text here..."></textarea>
+  </div>
+</div>
+
+<div class="actions">
+  <button id="cmp">Compare</button>
+  <button id="swap" class="ghost">Swap</button>
+  <button id="clr" class="ghost">Clear</button>
+  <span class="stats" id="stats"></span>
+</div>
+
+<div class="result"><h2>Diff</h2><div class="seg" id="legend"><span style="color:#4ade80">+ added</span> <span style="color:#f87171">− removed</span> <span style="color:#b9c4dd">unchanged</span></div><pre id="out"><p class="empty">Paste two versions and click Compare.</p></pre></div>
+
+<div class="info">
+<h2>What is a diff?</h2>
+<p>A diff is a line-by-line comparison of two versions of a text — code, config files, documents, logs. The checker highlights <strong>added</strong> (green), <strong>removed</strong> (red) and <strong>unchanged</strong> lines, so you can see exactly what changed between revisions in seconds.</p>
+<h2>Why use a diff tool?</h2>
+<p>Developers use diffs to review code changes before merging, compare config files between environments, or track what an editor or script modified. Writers and editors compare draft versions, and analysts compare exported reports or CSV snapshots. A fast, private diff checker saves the pain of reading two documents side by side.</p>
+<h2>Is it private?</h2>
+<p>Yes. Everything runs in your browser with JavaScript. Your text is never uploaded, stored or logged — the tool works even offline after the page loads.</p>
+</div>
+</div>
+<script src="scripts/diff-lib.js"></script>
+<script>
+const $a=document.getElementById('a'),$b=document.getElementById('b'),$out=document.getElementById('out'),$st=document.getElementById('stats');
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function run(){
+  const ops=DiffLib.diffLines(DiffLib.splitText($a.value),DiffLib.splitText($b.value));
+  const s=DiffLib.stats(ops), sim=DiffLib.similarity(ops);
+  if(ops.length===0){$out.innerHTML='<p class="empty">Both texts are empty — nothing to compare.</p>';$st.textContent='';return;}
+  $out.innerHTML=ops.map(o=>
+    '<span class="dl '+o.type+'">'+(o.type==='add'?'+ ':'− ')+esc(o.text||' ')+'</span>').join('\n');
+  $st.innerHTML='<b>'+s.same+'</b> unchanged · <b style="color:#4ade80">+'+s.add+'</b> added · <b style="color:#f87171">−'+s.del+'</b> removed · <b>'+sim+'%</b> similarity';
+}
+document.getElementById('cmp').addEventListener('click',run);
+document.getElementById('swap').addEventListener('click',()=>{const t=$a.value;$a.value=$b.value;$b.value=t;run();});
+document.getElementById('clr').addEventListener('click',()=>{$a.value='';$b.value='';run();});
+$a.addEventListener('input',()=>{});
+$b.addEventListener('input',()=>{});
+document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();run();}});
+</script>
+</body>
+</html>
