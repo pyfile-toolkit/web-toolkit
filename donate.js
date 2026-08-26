@@ -1,6 +1,8 @@
 // Универсальный крипто-донат блок. Встраивается: <div id="crypto-donate"></div> + <script src="donate.js"></script>
 window.CRYPTO_DONATIONS = {
   BTC: { label: "Bitcoin (BTC)", addr: "1CaYRsXjEWN2JvpBuku75dK9rUgiFvXkb5" },
+  LNB: { label: "Lightning (sats)", addr: "68hx4qea@ln.bot" },
+  ETH: { label: "Ethereum (EVM)", addr: "0xA43774fD2e867FC45b782456d78F135a215D5561" },
   SOL: { label: "Solana (SOL)", addr: "3JSfz26cREL7RqssSWCZ2Aoafh6wZ8BVaDSSQPKuqN2Z" }
 };
 (function(){
