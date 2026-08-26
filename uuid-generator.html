@@ -3,17 +3,17 @@
 <head>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Web Dev Toolkit", "item": "https://pyfile-toolkit.github.io/web-toolkit/"}, {"@type": "ListItem", "position": 2, "name": "UUID Generator Tool", "item": "https://pyfile-toolkit.github.io/web-toolkit/uuid-generator.html"}]}
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Web Dev Toolkit", "item": "https://pyfile-toolkit.github.io/web-toolkit/"}, {"@type": "ListItem", "position": 2, "name": "UUID Generator — v4 & v7 (RFC 9562) Online", "item": "https://pyfile-toolkit.github.io/web-toolkit/uuid-generator.html"}]}
 </script>
 
-<meta property="og:title" content="UUID Generator — Free Online Tool">
-<meta property="og:description" content="Generate random UUID v4 online. Free, instant, no server needed.">
+<meta property="og:title" content="UUID Generator — v4 & v7 (RFC 9562) Online">
+<meta property="og:description" content="Free online URL encoder & decoder. Percent-encode text, query parameters and whole URLs, or decode %-escaped strings. Private — runs entirely in your browser.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://pyfile-toolkit.github.io/web-toolkit/uuid-generator.html">
 <meta property="og:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="UUID Generator — Free Online Tool">
-<meta name="twitter:description" content="Generate random UUID v4 online. Free, instant, no server needed.">
+<meta name="twitter:title" content="UUID Generator — v4 & v7 (RFC 9562) Online">
+<meta name="twitter:description" content="Free online URL encoder & decoder. Percent-encode text, query parameters and whole URLs, or decode %-escaped strings. Private — runs entirely in your browser.">
 <meta name="twitter:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png"><link rel="icon" href="favicon.ico" sizes="any">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
@@ -24,7 +24,7 @@
   gtag('config', 'G-RDDV2FW9HY');
 </script>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UUID Generator — Free Online Tool</title>
+<title>UUID Generator — v4 & v7 (RFC 9562) Online</title>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -32,81 +32,97 @@
   "name": "UUID Generator",
   "operatingSystem": "ANY",
   "applicationCategory": "UtilitiesApplication",
-  "description": "Generate random UUID v4 online. Free, instant, no server needed.",
+  "description": "Generate UUID v4 (random) and v7 (time-ordered) identifiers instantly, in bulk. Free, private, offline-capable.",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
 }
 </script>
-<meta name="description" content="Generate random UUID v4 online. Free, instant, no server needed.">
+<meta name="description" content="Free online URL encoder & decoder. Percent-encode text, query parameters and whole URLs, or decode %-escaped strings. Private — runs entirely in your browser.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;display:flex;;;min-height:100vh;padding:20px}
-.card{background:#1e293b;border-radius:16px;padding:32px;max-width:500px;width:100%;text-align:center}
-h1{color:#f8fafc;margin-bottom:4px}
-.sub{color:#94a3b8;margin-bottom:24px;font-size:.9rem}
-.uuid{font-family:monospace;font-size:1.3rem;background:#334155;padding:16px;border-radius:8px;margin-bottom:16px;word-break:break-all;color:#818cf8}
-button{padding:10px 28px;background:#6366f1;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:1rem}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:20px}
+.card{background:#1e293b;border-radius:16px;padding:28px;max-width:720px;width:100%}
+h1{color:#f8fafc;margin-bottom:4px;font-size:1.4rem}
+.sub{color:#94a3b8;margin-bottom:20px;font-size:.9rem}
+textarea{width:100%;min-height:150px;padding:14px;border-radius:10px;background:#0f172a;color:#e2e8f0;border:1px solid #475569;font-size:1rem;line-height:1.5;resize:vertical}
+.outbox{width:100%;min-height:150px;padding:14px;border-radius:10px;background:#0f172a;color:#e2e8f0;border:1px solid #818cf8;font-size:1rem;line-height:1.5;margin-top:12px;white-space:pre-wrap;word-break:break-word}
+.cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:16px}
+.case{background:#334155;border-radius:10px;padding:12px;text-align:center;cursor:pointer;border:none;color:#e2e8f0;font-size:.95rem;transition:background .15s}
+.case:hover{background:#4f46e5}
+.case .n{font-weight:700;color:#818cf8;display:block;margin-bottom:2px}
+.btns{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+button{padding:9px 22px;background:#6366f1;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.9rem}
 button:hover{background:#4f46e5}
-.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.btn-copy{background:#64748b}
-.btn-bulk{background:#f59e0b}
-.bulk{margin-top:16px;text-align:left}
-.bulk textarea{width:100%;padding:12px;border-radius:8px;background:#334155;color:#e2e8f0;border:1px solid #475569;font-family:monospace;font-size:.85rem;min-height:120px;margin-top:8px}
-.ads{margin-top:20px;padding:12px;background:#1e1e3a;border-radius:8px;font-size:.85rem}
-.ads a{color:#818cf8}
-
-.content{margin-top:28px;max-width:720px;margin-left:auto;margin-right:auto;padding:0 6px}
-.content h2{color:#f8fafc;font-size:1.25rem;margin:24px 0 10px}
-.content p{color:#cbd5e1;line-height:1.6;margin-bottom:12px;font-size:.95rem}
+.btn-ghost{background:#64748b}
+.kofi{text-align:center;margin:16px 0 6px;padding:10px;background:#1e1e3a;border-radius:8px}
+.kofi a{color:#ff5e5b;font-weight:600;text-decoration:none}
+.ads{margin-top:10px;font-size:.85rem;text-align:center}
+.ads a{color:#818cf8;margin:0 6px}
+.content{margin-top:30px;max-width:720px;padding:0 6px}
+.content h2{color:#f8fafc;font-size:1.15rem;margin:22px 0 10px}
+.content p{color:#cbd5e1;line-height:1.65;margin-bottom:12px;font-size:.95rem}
 .content strong{color:#e2e8f0}
-@media(max-width:520px){
-  .container{padding:20px 14px}
-  .tool-card{padding:16px}
-  body{padding:12px!important}
-  .card{padding:18px!important;max-width:100%!important}
-  .content h2{font-size:1.05rem}
-  .item{padding:16% 0}
-  .item .shape{font-size:2.2rem}
-}
-@media(max-width:380px){
-  .item{padding:13% 0}
-  .item .shape{font-size:1.9rem}
-  .hud{flex-wrap:wrap;gap:4px}
-}
-
+.content code{background:#1e293b;padding:2px 6px;border-radius:6px;color:#a5b4fc;font-size:.9em}
+@media(max-width:520px){body{padding:12px}.card{padding:18px}.content h2{font-size:1.05rem}}
 </style>
 </head>
 <body>
 <div class="card">
 <h1>UUID Generator</h1>
-<p class="sub">Click to generate. Uses crypto.randomUUID() — truly random.</p>
-<div class="uuid" id="uuid">Click generate...</div>
+<p class="sub">Percent-encode or decode text, query parameters and full URLs. Everything runs locally — nothing is uploaded.</p>
+<textarea id="inp" placeholder="Type or paste text to encode / decode..."></textarea>
+<div class="outbox" id="out" placeholder="Result appears here..."></div>
+<div class="cases" id="cases"></div>
 <div class="btns">
-<button onclick="gen()">🎲 Generate</button>
-<button class="btn-copy" onclick="copy()">📋 Copy</button>
-<button class="btn-bulk" onclick="bulk()">📦 Generate 10</button>
+  <button class="btn-ghost" onclick="copyOut()">📋 Copy Result</button>
+  <button class="btn-ghost" onclick="clearAll()">🗑 Clear</button>
 </div>
-<div class="bulk" id="bulkSection" style="display:none">
-<textarea id="bulkOut" readonly></textarea>
-</div>
-<div class="kofi" style="text-align:center;margin-bottom:12px;padding:10px;background:#1e1e3a;border-radius:8px"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank" style="color:#ff5e5b;font-weight:600;text-decoration:none">☕ Support this tool on Ko-fi</a></div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this tool on Ko-fi</a></div>
 <div class="ads">
-<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> | 
-<a href="https://pyfile-toolkit.github.io/web-toolkit/json-formatter.html">JSON Formatter</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/word-counter.html">Word Counter</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/character-counter.html">Character Counter</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/base64-encoder.html">Base64 Encoder</a> |
 <a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
-
-<a href="https://pyfile-toolkit.github.io/web-toolkit/youtube-tag-generator.html">YouTube Tags</a>
  · <a href="privacy.html">Privacy</a> · <a href="about.html">About</a></div>
 </div>
-<script>
-function gen(){document.getElementById('uuid').textContent=crypto.randomUUID()}
-function copy(){const t=document.getElementById('uuid').textContent;if(t!=='Click generate...')navigator.clipboard.writeText(t)}
-function bulk(){const s=document.getElementById('bulkSection');s.style.display='block';const a=Array.from({length:10},()=>crypto.randomUUID());document.getElementById('bulkOut').value=a.join('\n')}
-gen();
-</script>
 
-<div class="related" style="font-family:system-ui;font-size:.85rem;color:#64748b;text-align:center;margin-top:14px">More tools: <a href="password-generator.html">Password Generator</a> · <a href="hash-generator.html">Hash Generator</a> · <a href="base64.html">Base64</a> · <a href="word-counter.html">Word Counter</a></div>
-<div class="content"><h2>What is a UUID?</h2><p>A UUID (Universally Unique Identifier) is a 128-bit number used to uniquely identify information in computer systems. Version 4 UUIDs are randomly generated, making collisions astronomically unlikely.</p><h2>How to use the UUID generator</h2><p>Click generate and the tool creates a new UUID v4 instantly. A UUID looks like this: 123e4567-e89b-12d3-a456-426614174000. Copy it for use in databases, APIs, and distributed systems.</p><h2>Why use UUIDs?</h2><p>UUIDs are ideal for primary keys, file names, session identifiers, and tracking — because they are unique without a central coordinator. This is why distributed applications rely on them.</p><h2>UUID FAQ</h2><p><strong>Are UUIDs really unique?</strong> Version 4 has 122 random bits — effectively unique. <strong>Can I use them as database keys?</strong> Yes, widely supported. <strong>Is there a limit?</strong> Practically no limit.</p></div>
+<div class="related" style="font-family:system-ui;font-size:.85rem;color:#64748b;text-align:center;margin-top:14px">More tools: <a href="html-minifier.html">HTML Minifier</a> · <a href="jwt-decoder.html">JWT Decoder</a> · <a href="unix-timestamp-converter.html">Unix Timestamp</a> · <a href="slug-generator.html">Slug Generator</a></div>
+<div class="content">
+<h2>UUID Generator — v4 & v7 in One Click</h2>
+<p>This free URL encoder and decoder percent-encodes text, query strings and whole URLs in your browser. It supports <strong>component encoding</strong> (for a single query value), <strong>whole-URL encoding</strong> (keeps <code>://</code>, <code>?</code>, <code>&amp;</code> intact and encodes only what needs escaping), and a <strong>strict RFC 3986 mode</strong>. Decoding handles malformed input gracefully. No data is ever sent to a server.</p>
+<h2>Why v7 Is Useful</h2>
+<p>UUID <strong>v4</strong> is the classic random ID: 122 bits of entropy, perfect for keys and identifiers where unpredictability matters. <strong>v7</strong> encodes a millisecond timestamp into the first 48 bits, so IDs sort chronologically — ideal for database primary keys, event logs and pagination by createdAt, because new rows naturally follow old ones without an index penalty.</p>
+<h2>Bulk Generation &nbsp; · &nbsp; Copy-Ready</h2>
+<p>Pick a count (1 to 100), generate, and every ID appears line by line ready to paste into code, SQL or spreadsheets. Prefer v7 for databases and v4 for tokens and API keys. Both versions are validated against the RFC shape every time.</p>
+<h2>UUID Generator FAQ</h2>
+<p><strong>Which version should I use?</strong> v4 for random tokens, API keys and anything that must be unpredictable; v7 for rows that should sort by creation time (Postgres, MySQL, Mongo all store them fine as strings). <strong>Can it run offline?</strong> Yes — all generation uses the browser's crypto API, with a Math.random fallback; no network is involved. <strong>Are the IDs unique?</strong> v4 uses 122 bits of randomness; v7 combines a timestamp with random bits, so collisions are astronomically unlikely for normal workloads.</p>
+</div>
 <div id="crypto-donate"></div>
+<script src="scripts/uuid-lib.js"></script>
 <script src="donate.js"></script>
+<script>
+const U = window.UuidLib;
+const inp = document.getElementById('inp');
+const out = document.getElementById('out');
+
+const cases = [
+  {name:'UUID v4', n:'8f...-45c3-...', fn:()=>U.v4()},
+  {name:'UUID v7', n:'0191...-...', fn:()=>U.v7()}
+];
+const wrap = document.getElementById('cases');
+cases.forEach(c=>{
+  const b = document.createElement('button');
+  b.className = 'case';
+  b.innerHTML = '<span class="n">'+c.name+'</span>'+c.fn();
+  b.onclick = ()=>{
+    const n = Math.max(1, Math.min(100, parseInt(inp.value,10) || 1));
+    const fn = c.name === 'UUID v7' ? (()=>U.manyV7(n)) : (()=>U.manyV4(n));
+    out.textContent = fn().join('\n');
+  };
+  wrap.appendChild(b);
+});
+function copyOut(){navigator.clipboard.writeText(out.textContent);}
+function clearAll(){inp.value='10';out.textContent='';inp.focus();}
+</script>
 </body>
 </html>
