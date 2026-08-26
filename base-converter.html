@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Web Dev Toolkit", "item": "https://pyfile-toolkit.github.io/web-toolkit/"}, {"@type": "ListItem", "position": 2, "name": "Number Base Converter (Binary, Hex, Decimal)", "item": "https://pyfile-toolkit.github.io/web-toolkit/base-converter.html"}]}
+</script>
+<meta property="og:title" content="Number Base Converter — Binary, Hex, Decimal Online">
+<meta property="og:description" content="Convert numbers between binary, octal, decimal and hexadecimal instantly. Big integers supported. 100% private — runs in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pyfile-toolkit.github.io/web-toolkit/base-converter.html">
+<meta property="og:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Number Base Converter — Binary, Hex, Decimal Online">
+<meta name="twitter:description" content="Convert between binary, octal, decimal and hex instantly. Big integers supported. Private.">
+<meta name="twitter:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png"><link rel="icon" href="favicon.ico" sizes="any">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number Base Converter — Binary, Hex, Decimal, Octal</title>
+<meta name="description" content="Free online number base converter: decimal to binary, binary to hex, hex to octal and more, instantly — for values of any size, including BigInt. Private, no sign-up, no upload.">
+<style>
+:root{--bg:#0f1420;--panel:#171e2e;--border:#2a3350;--text:#e8ecf5;--muted:#93a0bd;--accent:#5b8cff}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;padding:24px}
+.wrap{max-width:760px;margin:0 auto}
+.badges{display:flex;gap:8px;font-size:12px;color:var(--muted);margin:6px 0 18px;flex-wrap:wrap}
+.badge{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
+h1{font-size:26px;margin-bottom:6px}
+.sub{color:var(--muted);margin-bottom:22px;font-size:15px}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px}
+input,select{background:#0c1220;color:var(--text);border:1px solid var(--border);border-radius:8px;padding:9px 11px;font-size:15px;font-family:ui-monospace,Consolas,monospace}
+input[type=text]{width:100%;margin-bottom:12px}
+.row{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+select{font-family:inherit}
+button{background:var(--accent);border:none;color:#0b1020;font-weight:700;padding:9px 16px;border-radius:8px;cursor:pointer;font-size:14px;margin-right:8px}
+button.ghost{background:transparent;color:var(--text);border:1px solid var(--border);margin-right:0}
+button:hover{filter:brightness(1.1)}
+.out{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+@media(max-width:600px){.out{grid-template-columns:1fr}}
+.out .cell{background:#0c1220;border:1px solid var(--border);border-radius:8px;padding:10px}
+.out .cell b{display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+.out .cell span{font-family:ui-monospace,Consolas,monospace;font-size:15px;word-break:break-all;color:#cfe3ff}
+.err{color:#f87171;font-size:13px;margin-top:10px;min-height:18px}
+.info{margin-top:28px;color:var(--muted);font-size:14px}
+.info h2{color:var(--text);font-size:17px;margin:18px 0 8px}
+.info p{margin-bottom:10px}
+code{background:#0c1220;border-radius:4px;padding:1px 5px;font-size:13px}
+.back a{color:#9db8ff;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="back"><a href="index.html">← Web Dev Toolkit</a></div>
+<div class="badges"><span class="badge">Free</span><span class="badge">BigInt ready</span><span class="badge">Private (client-side)</span></div>
+<h1>Number Base Converter</h1>
+<p class="sub">Convert between binary, octal, decimal and hexadecimal — instantly, for numbers of any size. Paste a value, pick its base, and see all four representations update live.</p>
+<div class="panel">
+<input type="text" id="val" placeholder="255" autocomplete="off">
+<div class="row">
+  <select id="base">
+    <option value="2">Binary (2)</option>
+    <option value="8">Octal (8)</option>
+    <option value="10" selected>Decimal (10)</option>
+    <option value="16">Hexadecimal (16)</option>
+  </select>
+  <button id="conv">Convert</button>
+  <button id="swap" class="ghost">Swap DEC ↔ HEX</button>
+</div>
+<div class="out">
+  <div class="cell"><b>Binary</b><span id="o2">11111111</span></div>
+  <div class="cell"><b>Octal</b><span id="o8">377</span></div>
+  <div class="cell"><b>Decimal</b><span id="o10">255</span></div>
+  <div class="cell"><b>Hexadecimal</b><span id="o16">FF</span></div>
+</div>
+<div class="err" id="err"></div>
+</div>
+<div class="info">
+<h2>How it works</h2>
+<p>Every value has multiple equivalent notations. <code>255</code> (decimal) is <code>11111111</code> in binary, <code>377</code> in octal and <code>FF</code> in hexadecimal. This converter parses your input as an integer in the chosen base and re-renders it in all four — using BigInt under the hood, so it also handles enormous numbers like full-length Ethereum addresses and 256-bit hashes.</p>
+<h2>Common uses</h2>
+<p>Developers convert between bases constantly: subnet masks and permissions (decimal ↔ octal), colors (decimal ↔ hex), bit flags (binary ↔ hex), and cryptographic material (hex ↔ binary). With this tool you never need to switch mental gears — just paste and read.</p>
+<h2>Is it private?</h2>
+<p>Yes — conversion happens entirely in your browser. Nothing is uploaded, stored or logged.</p>
+</div>
+</div>
+<script src="scripts/base-lib.js"></script>
+<script>
+const $v=document.getElementById('val'),$b=document.getElementById('base'),$e=document.getElementById('err');
+const ids={2:'o2',8:'o8',10:'o10',16:'o16'};
+function run(){
+  const src=$b.value, s=$v.value.trim();
+  const v=BaseLib.parseBase(s, +src);
+  $e.textContent='';
+  if(v===null){ $e.textContent='Invalid value for base '+src+' — only digits 0-'+(src==='16'?'F':src==='8'?'7':src==='2'?'1':'9')+' are allowed.'; return; }
+  for(const b of [2,8,10,16]) document.getElementById(ids[b]).textContent=BaseLib.formatBase(v,b);
+}
+document.getElementById('conv').addEventListener('click',run);
+document.getElementById('swap').addEventListener('click',()=>{ const a=$v.value.trim(), from=$b.value; if(!BaseLib.isValid(a,+from)){run();return;} const dec=BaseLib.formatBase(BaseLib.parseBase(a,+from),10); if(+from===16){$b.value='10';$v.value=dec;} else if(+from===10){const h=BaseLib.formatBase(BaseLib.parseBase(a,+from),16); $b.value='16';$v.value=h;} run(); });
+$v.addEventListener('keydown',e=>{ if(e.key==='Enter'){e.preventDefault();run();} });
+run();
+</script>
+</body>
+</html>
