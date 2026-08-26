@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM API Access — Pay with Lightning, No KYC</title>
+<meta name="description" content="Pay-per-hour LLM API access without credit cards or KYC. Open models (LFM 2.5, Nemotron, Inkling, Cohere) via a single OpenAI-compatible endpoint. Pay with Lightning or on-chain BTC.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#0b1020;color:#e6e9f2;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px}
+.wrap{max-width:860px;width:100%}
+.hero{text-align:center;padding:38px 10px 26px}
+.hero h1{font-size:2rem;color:#fff;margin-bottom:10px;background:linear-gradient(90deg,#8b5cf6,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent;background-clip:initial;-webkit-text-fill-color:transparent}
+.hero p{color:#9aa5c0;font-size:1.05rem;max-width:640px;margin:0 auto}
+.badges{margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.badge{background:#16203a;border:1px solid #2a3654;border-radius:999px;padding:6px 14px;font-size:.82rem;color:#b8c4e0}
+.models{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:28px 0}
+.model{background:#121a30;border:1px solid #24304f;border-radius:14px;padding:16px}
+.model b{color:#e6e9f2;font-size:.95rem}
+.model span{display:block;color:#7d8aab;font-size:.8rem;margin-top:5px;line-height:1.4}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:26px 0}
+.plan{background:#121a30;border:1px solid #24304f;border-radius:16px;padding:20px;text-align:center}
+.plan.hot{border-color:#8b5cf6;box-shadow:0 0 24px rgba(139,92,246,.25)}
+.plan h3{font-size:1.05rem;color:#fff}
+.plan .price{font-size:1.8rem;font-weight:800;color:#fff;margin:10px 0 4px}
+.plan .price small{font-size:.9rem;color:#8b9cc0;font-weight:400}
+.plan ul{list-style:none;margin:14px 0;text-align:left;color:#aab6d2;font-size:.9rem;padding:0 8px}
+.plan li{margin:7px 0;display:flex;gap:8px}
+.plan li::before{content:"✓";color:#34d399}
+a.pay{display:block;margin:8px auto 0;background:linear-gradient(90deg,#f5b400,#f7c948);color:#1a1204;font-weight:700;text-decoration:none;padding:11px 18px;border-radius:10px;font-size:.92rem;width:fit-content}
+a.pay2{display:block;margin:8px auto 0;background:#21304f;color:#dbe4f6;font-weight:600;text-decoration:none;padding:11px 18px;border-radius:10px;font-size:.9rem;width:fit-content}
+.steps{background:#121a30;border:1px solid #24304f;border-radius:16px;padding:22px;margin:26px 0}
+.steps h2{color:#fff;font-size:1.15rem;margin-bottom:14px}
+.step{display:flex;gap:14px;margin:12px 0;color:#c3cede;font-size:.95rem;line-height:1.55}
+.step b{color:#ffd76a;white-space:nowrap}
+form{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+input,select{background:#0b1020;border:1px solid #2a3654;border-radius:9px;padding:11px 13px;color:#e6e9f2;font-size:.95rem}
+input::placeholder{color:#5d6a8a}
+button[type=submit]{background:#7c6cf6;border:none;color:#fff;font-weight:700;padding:12px;border-radius:10px;font-size:.98rem;cursor:pointer}
+button[type=submit]:hover{background:#6a58ef}
+.note{color:#7d8aab;font-size:.85rem;margin-top:26px;text-align:center;line-height:1.6}
+a{color:#8fb8ff}
+code{background:#16203a;padding:2px 7px;border-radius:6px;color:#a5b4fc;font-size:.88em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <h1>LLM API — priced in sats</h1>
+    <p>One OpenAI-compatible endpoint. No credit card, no KYC, no account needed to start. Pay by Lightning (or on-chain BTC) and get a key in ~an hour.</p>
+    <div class="badges"><span class="badge">⚡ Lightning accepted</span><span class="badge">₿ On-chain BTC</span><span class="badge">🔒 No KYC</span><span class="badge">🧠 Open models only</span></div>
+  </div>
+
+  <div class="models">
+    <div class="model"><b>LFM-2.5 26B</b><span>Strong general reasoning, long context. Great default.</span></div>
+    <div class="model"><b>Nemotron 3.5 Lightning</b><span>Fast code and instruct model from NVIDIA.</span></div>
+    <div class="model"><b>Inkling Small</b><span>Cheap, snappy, good for classification and extraction.</span></div>
+    <div class="model"><b>Cohere Mini</b><span>Small English-first model for summaries and rewrites.</span></div>
+  </div>
+
+  <div class="plans">
+    <div class="plan">
+      <h3>Trial</h3>
+      <div class="price">2,000 <small>sats ≈ $0.25</small></div>
+      <ul><li>7 days of access</li><li>~1M tokens budget</li><li>All models above</li><li>Rate limit: 5 req/min</li></ul>
+      <a class="pay" href="lightning:68hx4qea@ln.bot?amount=2000">⚡ Pay 2,000 sats</a>
+      <a class="pay2" href="bitcoin:1CaYRsXjEWN2JvpBuku75dK9rUgiFvXkb5?amount=0.00002&label=LLM+Trial">₿ Pay on-chain</a>
+    </div>
+    <div class="plan hot">
+      <h3>Pro ★</h3>
+      <div class="price">6,000 <small>sats ≈ $0.75</small></div>
+      <ul><li>30 days of access</li><li>~8M tokens budget</li><li>All models + priority queue</li><li>Rate limit: 30 req/min</li></ul>
+      <a class="pay" href="lightning:68hx4qea@ln.bot?amount=6000">⚡ Pay 6,000 sats</a>
+      <a class="pay2" href="bitcoin:1CaYRsXjEWN2JvpBuku75dK9rUgiFvXkb5?amount=0.00006&label=LLM+Pro">₿ Pay on-chain</a>
+    </div>
+  </div>
+
+  <div class="steps">
+    <h2>How it works</h2>
+    <div class="step"><b>1.</b> Pick a plan and pay via Lightning (above) or the BTC address <code>1CaYRsXjEWN2JvpBuku75dK9rUgiFvXkb5</code>.</div>
+    <div class="step"><b>2.</b> Fill in the form below with the exact amount you sent and your email. Your key lands in your inbox within a couple of hours.</div>
+    <div class="step"><b>3.</b> Point your app at <code>https://llm.pyfile-toolkit.workers.dev/v1</code> (OpenAI-compatible) and start.</div>
+    <form action="https://formsubmit.co/pyfile-toolkit@mail.ru" method="POST">
+      <input type="hidden" name="_subject" value="LLM API order">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="email" name="email" placeholder="Your email (API key goes here)" required>
+      <input type="text" name="plan" placeholder="Plan + amount sent, e.g. Pro 6000 sats (LN)" required>
+      <button type="submit">Request my API key</button>
+    </form>
+  </div>
+
+  <p class="note">Keys are issued manually after the payment lands — usually within the hour, always within a day. Need a bigger budget or long-term access? Email <a href="mailto:pyfile-toolkit@mail.ru">pyfile-toolkit@mail.ru</a>.<br>This page is part of the <a href="https://pyfile-toolkit.github.io/web-toolkit/">Web Dev Toolkit</a>.</p>
+</div>
+</body>
+</html>
