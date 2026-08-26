@@ -98,7 +98,7 @@ button:hover{background:#4f46e5}
 <p><strong>Which version should I use?</strong> v4 for random tokens, API keys and anything that must be unpredictable; v7 for rows that should sort by creation time (Postgres, MySQL, Mongo all store them fine as strings). <strong>Can it run offline?</strong> Yes — all generation uses the browser's crypto API, with a Math.random fallback; no network is involved. <strong>Are the IDs unique?</strong> v4 uses 122 bits of randomness; v7 combines a timestamp with random bits, so collisions are astronomically unlikely for normal workloads.</p>
 </div>
 <div id="crypto-donate"></div>
-<script src="scripts/uuid-lib.js"></script>
+<script src="scripts/uuid-gen-lib.js"></script>
 <script src="donate.js"></script>
 <script>
 const U = window.UuidLib;
