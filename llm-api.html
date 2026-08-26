@@ -4,7 +4,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LLM API Access — Pay with Lightning, No KYC</title>
-<meta name="description" content="Pay-per-hour LLM API access without credit cards or KYC. Open models (LFM 2.5, Nemotron, Inkling, Cohere) via a single OpenAI-compatible endpoint. Pay with Lightning or on-chain BTC.">
+<meta name="description" content="Prepaid LLM API access via Lightning or on-chain Bitcoin, no credit card and no KYC. Open models (LFM 2.5, Nemotron 3.5, Inkling Small, Cohere North) through one OpenAI-compatible endpoint.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:system-ui,-apple-system,sans-serif;background:#0b1020;color:#e6e9f2;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px}
@@ -42,6 +42,10 @@ button[type=submit]:hover{background:#6a58ef}
 a{color:#8fb8ff}
 code{background:#16203a;padding:2px 7px;border-radius:6px;color:#a5b4fc;font-size:.88em}
 </style>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Product","name":"LLM API Access (pay-per-use, no KYC)","description":"Prepaid access to open LLM models (LFM 2.5, Nemotron 3.5 Lightning, Inkling Small, Cohere North) through one OpenAI-compatible endpoint. Pay with Lightning or on-chain Bitcoin, no credit card and no signup walls.","offers":{"@type":"AggregateOffer","lowPrice":"2000","highPrice":"6000","priceCurrency":"XBT","offerCount":"2","availability":"https://schema.org/InStock"},"brand":{"@type":"Organization","name":"pyfile-toolkit"}}
+</script>
 </head>
 <body>
 <div class="wrap">
@@ -79,7 +83,7 @@ code{background:#16203a;padding:2px 7px;border-radius:6px;color:#a5b4fc;font-siz
     <h2>How it works</h2>
     <div class="step"><b>1.</b> Pick a plan and pay via Lightning (above) or the BTC address <code>1CaYRsXjEWN2JvpBuku75dK9rUgiFvXkb5</code>.</div>
     <div class="step"><b>2.</b> Fill in the form below with the exact amount you sent and your email. Your key lands in your inbox within a couple of hours.</div>
-    <div class="step"><b>3.</b> Point your app at <code>https://llm.pyfile-toolkit.workers.dev/v1</code> (OpenAI-compatible) and start.</div>
+    <div class="step"><b>3.</b> Point your app at the OpenAI-compatible endpoint URL we send to your inbox with the key — same <code>/v1</code> shape as OpenAI, drop-in for most SDKs.</div>
     <form action="https://formsubmit.co/pyfile-toolkit@mail.ru" method="POST">
       <input type="hidden" name="_subject" value="LLM API order">
       <input type="hidden" name="_captcha" value="false">
@@ -89,7 +93,7 @@ code{background:#16203a;padding:2px 7px;border-radius:6px;color:#a5b4fc;font-siz
     </form>
   </div>
 
-  <p class="note">Keys are issued manually after the payment lands — usually within the hour, always within a day. Need a bigger budget or long-term access? Email <a href="mailto:pyfile-toolkit@mail.ru">pyfile-toolkit@mail.ru</a>.<br>This page is part of the <a href="https://pyfile-toolkit.github.io/web-toolkit/">Web Dev Toolkit</a>.</p>
+  <p class="note">Keys are issued manually after the payment lands (the endpoint URL and usage notes ride along in the same email) — usually within the hour, always within a day. Need a bigger budget or long-term access? Email <a href="mailto:pyfile-toolkit@mail.ru">pyfile-toolkit@mail.ru</a>.<br>This page is part of the <a href="https://pyfile-toolkit.github.io/web-toolkit/">Web Dev Toolkit</a>.</p>
 </div>
 </body>
 </html>
