@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Web Dev Toolkit", "item": "https://pyfile-toolkit.github.io/web-toolkit/"}, {"@type": "ListItem", "position": 2, "name": "How QR Codes Work", "item": "https://pyfile-toolkit.github.io/web-toolkit/guides/qr-codes-explained.html"}]}
+</script>
+<meta property="og:title" content="How QR Codes Work: Structure, Error Correction & Data Capacity">
+<meta property="og:description" content="A friendly technical explainer: how QR codes store data, why error correction matters, which versions hold more, and how to make scannable codes.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://pyfile-toolkit.github.io/web-toolkit/guides/qr-codes-explained.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How QR Codes Work: Structure, Error Correction & Data Capacity">
+<link rel="icon" href="favicon.ico" sizes="any">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How QR Codes Work: Structure, Error Correction & Data Capacity</title>
+<meta name="description" content="How QR codes work under the hood: finder patterns, alignment, version size, error-correction levels L/M/Q/H, what limits capacity, and practical tips for scannable codes.">
+<style>
+:root{--bg:#0f1420;--panel:#171e2e;--border:#2a3350;--text:#e8ecf5;--muted:#93a0bd;--accent:#5b8cff}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.65;padding:28px}
+.wrap{max-width:780px;margin:0 auto}
+.back a{color:#9db8ff;text-decoration:none;font-size:14px}
+h1{font-size:28px;margin:14px 0 8px}
+.meta{color:var(--muted);font-size:13px;margin-bottom:24px}
+h2{font-size:20px;color:#cfe3ff;margin:26px 0 10px}
+p{margin-bottom:14px;color:#d6ddef}
+ul,ol{margin:0 0 14px 22px;color:#d6ddef}
+li{margin-bottom:6px}
+code{background:#0c1220;border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+th,td{border:1px solid var(--border);padding:8px 10px;text-align:left;color:#c9d4ea}
+th{background:var(--panel);color:#e8ecf5}
+a{color:#9db8ff}
+.cta{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px;margin:24px 0}
+.cta b{color:#e8ecf5}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="back"><a href="../index.html">← Web Dev Toolkit</a> · <a href="base64-explained.html">Guides</a></div>
+<h1>How QR Codes Work: Structure, Error Correction &amp; Capacity</h1>
+<div class="meta">Guide · 8 min read · by the Web Dev Toolkit team</div>
+
+<p>QR codes are everywhere — menus, payment terminals, product packaging, event badges. But under that chessboard of black and white squares there is a well-designed error-correcting system that can still be read when 30% of it is damaged. Here's how it actually works.</p>
+
+<h2>Anatomy of a QR code</h2>
+<p>Every QR code is a grid of modules (the squares), surrounded by a <strong>quiet zone</strong> of at least four white modules. Inside, three regions matter most:</p>
+<ul>
+<li><strong>Finder patterns</strong> — the three large square-in-square markers in the corners. They tell the scanner where the code is and how it's rotated. There is deliberately no fourth corner marker, which lets the reader determine orientation.</li>
+<li><strong>Alignment patterns</strong> — smaller markers placed on a grid; they correct for perspective and distortion when the code is printed on curved surfaces.</li>
+<li><strong>Data + error-correction area</strong> — everything else: the encoded payload, format information, and Reed–Solomon redundancy bytes.</li>
+</ul>
+
+<h2>Versions: how codes grow</h2>
+<p>QR codes come in 40 versions. Version 1 is 21×21 modules; each version adds 4 modules per side, up to 177×177 for version 40. Bigger versions hold more data but need cleaner printing and larger quiet zones. The table below shows typical maximum capacity at each error-correction level for a moderate version:</p>
+<table>
+<tr><th>Error level</th><th>Fault tolerance</th><th>Max digits (v5, 37×37)</th><th>Max bytes (v5)</th></tr>
+<tr><td>L</td><td>~7%</td><td>~106</td><td>~62</td></tr>
+<tr><td>M</td><td>~15%</td><td>~86</td><td>~49</td></tr>
+<tr><td>Q</td><td>~25%</td><td>~66</td><td>~39</td></tr>
+<tr><td>H</td><td>~30%</td><td>~48</td><td>~29</td></tr>
+</table>
+
+<h2>Why error correction matters</h2>
+<p>Reed–Solomon error correction splits your data into blocks and adds redundancy bytes. The scanner can reconstruct the original payload even if part of the pattern is covered by a logo, scratched, or photographed at an angle. This is why you can safely place a logo in the center of a code made with a high correction level — and why cheap stickers on curved coffee cups still scan.</p>
+
+<h2>What limits capacity</h2>
+<ul>
+<li><strong>Mode</strong> — numeric mode packs ~3 digits into 10 bits, alphanumeric ~2 chars into 11 bits, byte mode 8 bits per char. Numeric is the most efficient.</li>
+<li><strong>Error level</strong> — H costs ~2x the space of L.</li>
+<li><strong>Version</strong> — bigger grids = more data, but harder to read from a distance.</li>
+<li><strong>Print size</strong> — practical rule of thumb: print a code large enough that each module is at least ~1–2 mm on the medium you'll scan.</li>
+</ul>
+
+<h2>Practical tips for scannable codes</h2>
+<ul>
+<li>Keep content short — a URL under ~100 characters scans better and leaves room for a higher error level.</li>
+<li>Use white quiet-zone padding around the code.</li>
+<li>Never crop or add rounded corners to the finder patterns.</li>
+<li>Test on the device your audience actually uses.</li>
+<li>If the code will be printed on a textured or curved surface, choose level H.</li>
+</ul>
+
+<div class="cta">
+<b>⚡ Make your own:</b> generate fully private, spec-compliant QR codes right in your browser with our <a href="../qr-generator.html">free QR Code Generator</a> — no uploads, no accounts, PNG download included.
+</div>
+
+<p><em>Sources: ISO/IEC 18004 (spec), Thonky's QR tutorial, and practical testing with the <a href="../qr-generator.html">Web Dev Toolkit QR generator</a>.</em></p>
+</div>
+</body>
+</html>
