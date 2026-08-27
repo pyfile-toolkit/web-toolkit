@@ -85,9 +85,9 @@ code{background:#16203a;padding:2px 7px;border-radius:6px;color:#a5b4fc;font-siz
 
   <div class="steps">
     <h2>How it works</h2>
-    <div class="step"><b>1.</b> Pick a plan and pay via Lightning (above) or the BTC address <code>1CaYRsXjEWN2JvpBuku75dK9rUgiFvXkb5</code>.</div>
-    <div class="step"><b>2.</b> Fill in the form below with the exact amount you sent and your email. Your key lands in your inbox within a couple of hours.</div>
-    <div class="step"><b>3.</b> Point your app at the OpenAI-compatible endpoint URL we send to your inbox with the key — same <code>/v1</code> shape as OpenAI, drop-in for most SDKs.</div>
+    <div class="step"><b>1.</b> Pick a plan and pay via Lightning (above) or via BTC address <code>1CaYRsXjEWN2JvpBuku75dK9rUgiFvXkb5</code>.</div>
+    <div class="step"><b>2.</b> Fill in the form below with the exact amount you sent and your email — we process manually after payment lands.</div>
+    <div class="step"><b>3.</b> Freellmapi (localhost:3001) or your own proxy: <code>/v1/chat/completions</code> endpoint (same shape as OpenAI, drop-in).</div>
     <form action="https://formsubmit.co/pyfile-toolkit@mail.ru" method="POST">
       <input type="hidden" name="_subject" value="LLM API order">
       <input type="hidden" name="_captcha" value="false">
@@ -99,7 +99,7 @@ code{background:#16203a;padding:2px 7px;border-radius:6px;color:#a5b4fc;font-siz
 
   <div class="steps">
     <h2>FAQ</h2>
-    <details><summary><b>How do I get my API key?</b></summary><div class="step">Pay for a plan above, then submit the form with the exact amount and your email. Keys are issued manually after the payment lands - usually within the hour, always within a day.</div></details>
+    <details><summary><b>How do I get my API key?</b></summary><div class="step">Pay for a plan above, then submit the form with the exact amount and your email. Keys are issued manually after the payment lands - simple frellmapi proxy or endpoint is configured in your email along with the key.</div></details>
     <details><summary><b>Can I pay less than the plan price?</b></summary><div class="step">Yes - any amount above 1,000 sats works as a top-up. Tell us the exact amount in the form and we will grant proportionally more or less token budget.</div></details>
     <details><summary><b>Is this really no-KYC and anonymous?</b></summary><div class="step">Yes. Payments go over Lightning or on-chain BTC, no card, no identity. Your email is the only contact point you choose to give.</div></details>
     <details><summary><b>What are the routing fees on Lightning?</b></summary><div class="step">Small payments lose roughly 4 sats to routing, independent of amount. That is why plans start at 2,000 sats - at that size fees are negligible.</div></details>
