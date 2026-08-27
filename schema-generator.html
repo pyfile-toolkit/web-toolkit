@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Web Dev Toolkit", "item": "https://pyfile-toolkit.github.io/web-toolkit/"}, {"@type": "ListItem", "position": 2, "name": "JSON-LD Schema Generator — Structured Data Snippets for SEO", "item": "https://pyfile-toolkit.github.io/web-toolkit/schema-generator.html"}]}
+</script>
+
+<meta property="og:title" content="JSON-LD Schema Generator — Structured Data Snippets for SEO">
+<meta property="og:description" content="Free online URL encoder & decoder. Percent-encode text, query parameters and whole URLs, or decode %-escaped strings. Private — runs entirely in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pyfile-toolkit.github.io/web-toolkit/schema-generator.html">
+<meta property="og:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="JSON-LD Schema Generator — Structured Data Snippets for SEO">
+<meta name="twitter:description" content="Free online URL encoder & decoder. Percent-encode text, query parameters and whole URLs, or decode %-escaped strings. Private — runs entirely in your browser.">
+<meta name="twitter:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png"><link rel="icon" href="favicon.ico" sizes="any">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON-LD Schema Generator — Structured Data Snippets for SEO</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON-LD Generator",
+  "operatingSystem": "ANY",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Generate validated JSON-LD structured data for your page. Free, private, offline-capable.",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<meta name="description" content="Free online URL encoder & decoder. Percent-encode text, query parameters and whole URLs, or decode %-escaped strings. Private — runs entirely in your browser.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:20px}
+.card{background:#1e293b;border-radius:16px;padding:28px;max-width:720px;width:100%}
+h1{color:#f8fafc;margin-bottom:4px;font-size:1.4rem}
+.sub{color:#94a3b8;margin-bottom:20px;font-size:.9rem}
+textarea{width:100%;min-height:150px;padding:14px;border-radius:10px;background:#0f172a;color:#e2e8f0;border:1px solid #475569;font-size:1rem;line-height:1.5;resize:vertical}
+.outbox{width:100%;min-height:150px;padding:14px;border-radius:10px;background:#0f172a;color:#e2e8f0;border:1px solid #818cf8;font-size:1rem;line-height:1.5;margin-top:12px;white-space:pre-wrap;word-break:break-word}
+.cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:16px}
+.case{background:#334155;border-radius:10px;padding:12px;text-align:center;cursor:pointer;border:none;color:#e2e8f0;font-size:.95rem;transition:background .15s}
+.case:hover{background:#4f46e5}
+.case .n{font-weight:700;color:#818cf8;display:block;margin-bottom:2px}
+.btns{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+button{padding:9px 22px;background:#6366f1;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.9rem}
+button:hover{background:#4f46e5}
+.btn-ghost{background:#64748b}
+.kofi{text-align:center;margin:16px 0 6px;padding:10px;background:#1e1e3a;border-radius:8px}
+.kofi a{color:#ff5e5b;font-weight:600;text-decoration:none}
+.ads{margin-top:10px;font-size:.85rem;text-align:center}
+.ads a{color:#818cf8;margin:0 6px}
+.content{margin-top:30px;max-width:720px;padding:0 6px}
+.content h2{color:#f8fafc;font-size:1.15rem;margin:22px 0 10px}
+.content p{color:#cbd5e1;line-height:1.65;margin-bottom:12px;font-size:.95rem}
+.content strong{color:#e2e8f0}
+.content code{background:#1e293b;padding:2px 6px;border-radius:6px;color:#a5b4fc;font-size:.9em}
+@media(max-width:520px){body{padding:12px}.card{padding:18px}.content h2{font-size:1.05rem}}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>JSON-LD Schema Generator</h1>
+<p class="sub">Percent-encode or decode text, query parameters and full URLs. Everything runs locally — nothing is uploaded.</p>
+<textarea id="inp" placeholder="Type or paste text to encode / decode..."></textarea>
+<div class="outbox" id="out" placeholder="Result appears here..."></div>
+<div class="cases" id="cases"></div>
+<div class="btns">
+  <button class="btn-ghost" onclick="copyOut()">📋 Copy Result</button>
+  <button class="btn-ghost" onclick="clearAll()">🗑 Clear</button>
+</div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this tool on Ko-fi</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/word-counter.html">Word Counter</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/character-counter.html">Character Counter</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/base64-encoder.html">Base64 Encoder</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+ · <a href="privacy.html">Privacy</a> · <a href="about.html">About</a></div>
+</div>
+
+<div class="related" style="font-family:system-ui;font-size:.85rem;color:#64748b;text-align:center;margin-top:14px">More tools: <a href="html-minifier.html">HTML Minifier</a> · <a href="jwt-decoder.html">JWT Decoder</a> · <a href="unix-timestamp-converter.html">Unix Timestamp</a> · <a href="slug-generator.html">Slug Generator</a></div>
+<div class="content">
+<h2>JSON-LD Schema Generator — Rich Results Made Simple</h2>
+<p>This free URL encoder and decoder percent-encodes text, query strings and whole URLs in your browser. It supports <strong>component encoding</strong> (for a single query value), <strong>whole-URL encoding</strong> (keeps <code>://</code>, <code>?</code>, <code>&amp;</code> intact and encodes only what needs escaping), and a <strong>strict RFC 3986 mode</strong>. Decoding handles malformed input gracefully. No data is ever sent to a server.</p>
+<h2>How It Works</h2>
+<p>Paste document A on the left and document B on the right (both must be valid JSON; the tool will tell you if one is not). Click Diff and get a sorted list of every path that changed — keys are sorted alphabetically, arrays by index, and changed values show both sides. This is the fastest way to review config diffs, API response migrations or deployment-generator changes before committing.</p>
+<h2>Search-Engine-Ready Output</h2>
+<p>The output matches what Google, Bing and Yandex expect for rich results: valid schema.org JSON with optional fields omitted. No registration, no watermark, no limits.</p>
+<h2>JSON-LD FAQ</h2>
+<p><strong>What counts as "changed"?</strong> Any leaf value that differs (numbers, strings, booleans, null) or a key present in only one side. <strong>Big JSON files?</strong> The flattener handles deep nesting and large arrays comfortably — it is a simple in-memory pass. <strong>Order-insensitive?</strong> Object keys are sorted before comparison, so reordered keys do not count as changes; arrays, however, are compared by position.</p>
+</div>
+<div id="crypto-donate"></div>
+<script src="scripts/schema-ld-lib.js"></script>
+<script src="donate.js"></script>
+<script>
+const SL = window.SchemaLdLib;
+const wrap = document.getElementById('cases');
+const bta = document.getElementById('b'); // second textarea placeholder in cloned page
+if (bta) bta.parentNode.removeChild(bta);
+const inp = document.getElementById('inp');
+inp.placeholder = 'JSON-LD output appears here';
+
+const TYPES = ['Organization','Product','Article','FAQPage','BreadcrumbList'];
+const FIELDS = {
+  Organization: [['name','Name'],['url','Website URL'],['logo','Logo URL']],
+  Product: [['name','Product name'],['description','Description'],['price','Price (e.g. 9.99)'],['currency','Currency (USD)'],['image','Image URL'],['url','Product URL']],
+  Article: [['headline','Headline'],['description','Description'],['author','Author name'],['publisher','Publisher'],['datePublished','Published date (YYYY-MM-DD)'],['image','Image URL']],
+  FAQPage: [['q1q','Question 1'],['q1a','Answer 1'],['q2q','Question 2'],['q2a','Answer 2'],['q3q','Question 3'],['q3a','Answer 3']],
+  BreadcrumbList: [['c1n','Level 1 name'],['c1u','Level 1 URL'],['c2n','Level 2 name'],['c2u','Level 2 URL'],['c3n','Level 3 name'],['c3u','Level 3 URL']]
+};
+const sel = document.createElement('select');
+sel.style.cssText = 'padding:10px;border-radius:10px;border:1px solid #2a3654;background:#121a30;color:#e6e9f2;font-size:1rem;margin-bottom:14px;width:100%';
+TYPES.forEach(t=>{ const o=document.createElement('option'); o.value=t; o.textContent=t; sel.appendChild(o); });
+sel.addEventListener('change', renderFields);
+function renderFields(){
+  const keys = Object.keys(FIELDS[sel.value]);
+  inp.setAttribute('rows', Math.max(10, keys.length+2));
+  inp.value = '';
+}
+inp.insertAdjacentElement('beforebegin', sel);
+const gen = document.createElement('button');
+gen.className = 'case'; gen.innerHTML = '<span class="n">Generate ▸</span>';
+gen.onclick = function(){
+  const v = sel.value;
+  const fields = {};
+  if (v === 'FAQPage') {
+    const qs = [];
+    for (let i=1;i<=3;i++){
+      const q = document.getElementById('f_q'+i+'q'); const a = document.getElementById('f_q'+i+'a');
+      if (q && q.value.trim()) qs.push({q:q.value.trim(), a:(a?a.value.trim():'')});
+    }
+    fields.questions = qs;
+  } else if (v === 'BreadcrumbList') {
+    const items = [];
+    for (let i=1;i<=3;i++){
+      const n = document.getElementById('f_c'+i+'n'); const u = document.getElementById('f_c'+i+'u');
+      if (n && u && n.value.trim() && u.value.trim()) items.push({name:n.value.trim(), url:u.value.trim()});
+    }
+    fields.items = items;
+  } else {
+    (FIELDS[v]||[]).forEach(([k,label])=>{ const el = document.getElementById('f_'+k); if (el && el.value.trim()) fields[k]=el.value.trim(); });
+  }
+  const out = SL.render(v, fields);
+  inp.value = out ? JSON.stringify(out, null, 2) : 'Select a type and fill some fields.';
+};
+wrap.appendChild(gen);
+const copy = document.createElement('button');
+copy.className = 'case'; copy.innerHTML = '<span class="n">Copy</span>';
+copy.onclick = function(){ navigator.clipboard && navigator.clipboard.writeText(inp.value); };
+wrap.appendChild(copy);
+
+// build field inputs
+const fieldHost = document.createElement('div');
+fieldHost.style.cssText = 'display:grid;gap:8px;margin-bottom:12px';
+inp.insertAdjacentElement('beforebegin', fieldHost);
+function buildFields(){
+  fieldHost.innerHTML = '';
+  FIELDS[sel.value].forEach(([k,label])=>{
+    const lab = document.createElement('label');
+    lab.textContent = label;
+    lab.style.cssText = 'font-size:.8rem;color:#9aa5c0;display:block';
+    const input = document.createElement('input');
+    input.id = 'f_'+k;
+    input.placeholder = label;
+    input.style.cssText = 'width:100%;padding:9px 12px;border-radius:8px;border:1px solid #2a3654;background:#0f1626;color:#e6e9f2;font-size:.95rem';
+    fieldHost.appendChild(lab); fieldHost.appendChild(input);
+  });
+}
+sel.addEventListener('change', buildFields);
+buildFields();
+</script>
+</body>
+</html>
