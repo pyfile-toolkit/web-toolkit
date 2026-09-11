@@ -11,16 +11,16 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" href="favicon.ico" sizes="any">
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Accepting Lightning Payments on a Static Site: LN Address, Invoices, No KYC</title>
-<meta name="description" content="Base64 encoding explained: the 64-character alphabet, how 3 bytes become 4 characters, why there's 33% overhead, when padding = appears, and real use cases from data URIs to JWTs.">
-<meta property="og:title" content="Base64 Encoding Explained: How It Works, Why 33% Overhead, and Examples">
-<meta property="og:description" content="The 64-char alphabet, byte→character mapping, padding, use cases, and a free encoder.">
+<meta name="description" content="How to accept Lightning payments on a static site: a Lightning address, two links, no merchant account, no KYC. Real setup with sats from payments that went through.">
+<meta property="og:title" content="Accepting Lightning Payments on a Static Site (No KYC)">
+<meta property="og:description" content="LN address, invoices, no backend, no KYC — the practical setup I use on a static GitHub Pages site.">
 <meta property="og:type" content="article">
 <meta name="twitter:card" content="summary">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"Base64 Encoding Explained: How It Works, Why 33% Overhead, and Examples","description":"The 64-char alphabet, byte→character mapping, padding, use cases, and a free encoder.","datePublished":"2026-08-22","dateModified":"2026-08-22","author":{"@type":"Organization","name":"Web Toolkit"},"publisher":{"@type":"Organization","name":"Web Toolkit"},"mainEntityOfPage":"https://pyfile-toolkit.github.io/web-toolkit/guides/base64-explained.html"}
+{"@context":"https://schema.org","@type":"Article","headline":"Accepting Lightning Payments on a Static Site (No KYC)","description":"LN address, invoices, no backend, no KYC — the practical setup.","datePublished":"2026-09-11","dateModified":"2026-09-11","author":{"@type":"Organization","name":"Web Toolkit"},"publisher":{"@type":"Organization","name":"Web Toolkit"},"mainEntityOfPage":"https://pyfile-toolkit.github.io/web-toolkit/guides/lnd-payments-guide.html"}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://pyfile-toolkit.github.io/web-toolkit/"},{"@type":"ListItem","position":2,"name":"Base64 Explained","item":"https://pyfile-toolkit.github.io/web-toolkit/guides/base64-explained.html"}]}
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://pyfile-toolkit.github.io/web-toolkit/"},{"@type":"ListItem","position":2,"name":"Lightning Payments Guide","item":"https://pyfile-toolkit.github.io/web-toolkit/guides/lnd-payments-guide.html"}]}
 </script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -94,6 +94,7 @@ th{background:#1e293b;color:#f8fafc}
 <p><b>Can I accept fiat too?</b> Sure - the on-chain Bitcoin link works globally, and for card payments you would add a processor form, but LN stays the zero-fee-custody option.</p>
 <p><b>How do I confirm a payment before shipping?</b> Match the exact amount and memo, or wait for the wallet baseline to change by the expected amount. For fixed-price products, check once and issue.</p>
 
+<p class="backlink"><a href="https://pyfile-toolkit.github.io/web-toolkit/llm-api.html">Need an LLM API you can pay per call with Lightning? See plans →</a></p>
 <p class="backlink"><a href="https://pyfile-toolkit.github.io/web-toolkit/">← All 65+ free dev tools</a></p>
 </div>
 </body>
