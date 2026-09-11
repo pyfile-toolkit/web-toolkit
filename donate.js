@@ -19,6 +19,10 @@ window.CRYPTO_DONATIONS = {
       }).join('')+
       '</div>'+
       '<div id="donate-addr" style="margin-top:10px;font-family:monospace;font-size:.8rem;color:#94a3b8;word-break:break-all"></div>'+
+      '</div>'+
+      '<div style="margin-top:12px;padding:12px 14px;background:#0f1326;border:1px solid #2b3550;border-radius:10px;text-align:center;font-size:.86rem;color:#cbd5e1">'+
+      'Need an LLM API for your app? One OpenAI-compatible endpoint, no signup — '+
+      '<a href="https://pyfile-toolkit.github.io/web-toolkit/llm-api.html" style="color:#818cf8;font-weight:600">pay per call with Lightning &rarr;</a>'+
       '</div>';
   }
   window.showDonateAddr = function(k){
