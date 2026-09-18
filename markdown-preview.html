@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Web Dev Toolkit", "item": "https://pyfile-toolkit.github.io/web-toolkit/"}, {"@type": "ListItem", "position": 2, "name": "Markdown Previewer", "item": "https://pyfile-toolkit.github.io/web-toolkit/markdown-preview.html"}]}
+</script>
+
+<meta property="og:title" content="Markdown Previewer">
+<meta property="og:description" content="Live markdown preview as you type. Export to HTML or MD. Free, instant, 100% browser-based.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pyfile-toolkit.github.io/web-toolkit/markdown-preview.html">
+<meta property="og:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Markdown Previewer">
+<meta name="twitter:description" content="Live markdown preview as you type. Export to HTML or MD. Free, instant, 100% browser-based.">
+<meta name="twitter:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png"><link rel="icon" href="favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Markdown Previewer</title>
+<link rel="canonical" href="https://pyfile-toolkit.github.io/web-toolkit/markdown-preview.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Markdown Previewer",
+  "operatingSystem": "ANY",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Live markdown preview as you type. Export to HTML or MD.",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<meta name="description" content="Live markdown preview as you type. Export to HTML or MD. Free, instant, 100% browser-based.">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-RDDV2FW9HY");</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;padding:20px}
+.card{max-width:900px;margin:0 auto;background:#1e293b;border-radius:16px;padding:32px}
+h1{text-align:center;color:#f8fafc;margin-bottom:4px}
+.sub{text-align:center;color:#94a3b8;margin-bottom:20px;font-size:.9rem}
+.panels{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.panel h3{color:#f8fafc;margin-bottom:8px;font-size:.9rem}
+textarea{width:100%;padding:12px;border-radius:8px;background:#334155;color:#e2e8f0;border:1px solid #475569;font-family:monospace;font-size:.85rem;resize:vertical;min-height:300px}
+.preview{background:#1e1e3a;border:1px solid #334155;border-radius:8px;padding:16px;min-height:300px;overflow-y:auto}
+.preview h1{color:#f8fafc;font-size:1.4rem;margin:16px 0 8px;text-align:left}
+.preview h2{color:#f8fafc;font-size:1.2rem;margin:12px 0 6px}
+.preview p{color:#cbd5e1;margin:8px 0}
+.preview code{background:#334155;padding:2px 6px;border-radius:4px;font-size:.85rem}
+.preview pre{background:#0f172a;padding:12px;border-radius:8px;overflow-x:auto}
+.preview a{color:#818cf8}
+.kofi{text-align:center;margin:16px 0 8px;padding:10px;background:#1e1e3a;border-radius:8px}
+.kofi a{color:#ff5e5b;font-weight:600;text-decoration:none}
+.btns{display:flex;gap:8px;justify-content:center;margin:12px 0;flex-wrap:wrap}
+button{padding:8px 16px;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.85rem}
+.btn-exp{background:#22c55e;color:#fff}
+.btn-copy{background:#64748b;color:#fff}
+.ads{margin-top:16px;padding:12px;background:#1e1e3a;border-radius:8px;text-align:center;font-size:.85rem}
+.ads a{color:#818cf8}
+
+.content{margin-top:28px;max-width:720px;margin-left:auto;margin-right:auto;padding:0 6px}
+.content h2{color:#f8fafc;font-size:1.25rem;margin:24px 0 10px}
+.content p{color:#cbd5e1;line-height:1.6;margin-bottom:12px;font-size:.95rem}
+.content strong{color:#e2e8f0}
+@media(max-width:520px){
+  .container{padding:20px 14px}
+  .tool-card{padding:16px}
+  body{padding:12px!important}
+  .card{padding:18px!important;max-width:100%!important}
+  .content h2{font-size:1.05rem}
+  .item{padding:16% 0}
+  .item .shape{font-size:2.2rem}
+}
+@media(max-width:380px){
+  .item{padding:13% 0}
+  .item .shape{font-size:1.9rem}
+  .hud{flex-wrap:wrap;gap:4px}
+}
+
+</style>
+</head>
+<body>
+<div class="card">
+<h1>📝 Markdown Previewer</h1>
+<p class="sub">Type markdown on the left — see rendered HTML on the right</p>
+<div class="panels">
+<div class="panel">
+<h3>Markdown</h3>
+<textarea id="input" placeholder="# Hello World&#10;&#10;This is **bold** and *italic*&#10;&#10;- List item 1&#10;- List item 2&#10;&#10;[Link](https://example.com)&#10;&#10;`inline code`"># Hello World
+
+This is **bold** and *italic*
+
+- List item 1
+- List item 2
+
+[Link](https://example.com)
+
+`inline code`</textarea>
+</div>
+<div class="panel">
+<h3>Preview</h3>
+<div class="preview" id="preview"></div>
+</div>
+</div>
+<div class="btns">
+<button class="btn-exp" onclick="exportHTML()">📥 Export HTML</button>
+<button class="btn-copy" onclick="copyPreview()">📋 Copy HTML</button>
+</div>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank">☕ Support this tool on Ko-fi</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+
+<a href="https://pyfile-toolkit.github.io/web-toolkit/youtube-tag-generator.html">YouTube Tags</a>
+ · <a href="privacy.html">Privacy</a> · <a href="about.html">About</a></div>
+</div>
+<script>
+const inp=document.getElementById('input'),prev=document.getElementById('preview');
+function render(){
+  let md=inp.value;
+  // Headers
+  md=md.replace(/^### (.+)$/gm,'<h3>$1</h3>');
+  md=md.replace(/^## (.+)$/gm,'<h2>$1</h2>');
+  md=md.replace(/^# (.+)$/gm,'<h1>$1</h1>');
+  // Bold, italic
+  md=md.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  md=md.replace(/\*(.+?)\*/g,'<em>$1</em>');
+  // Links
+  md=md.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2">$1</a>');
+  // Inline code
+  md=md.replace(/`([^`]+)`/g,'<code>$1</code>');
+  // Lists
+  md=md.replace(/^- (.+)$/gm,'<li>$1</li>');
+  md=md.replace(/(<li>.*<\/li>\n?)+/g,'<ul>$&</ul>');
+  // Paragraphs
+  md=md.replace(/^(?!<[hul/])(.+)$/gm,'<p>$1</p>');
+  prev.innerHTML=md;
+}
+inp.addEventListener('input',render);
+render();
+
+function exportHTML(){
+  const blob=new Blob(['<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Preview</title></head><body>'+prev.innerHTML+'
+<div class="related" style="font-family:system-ui;font-size:.85rem;color:#64748b;text-align:center;margin-top:14px">More tools: <a href="json-formatter.html">Json Formatter</a> · <a href="html-encoder.html">Html Encoder</a> · <a href="case-converter.html">Case Converter</a> · <a href="color-converter.html">Color Converter</a></div>
+<div class="content"><h2>What is Markdown?</h2><p>Markdown is a lightweight markup language that formats text using simple symbols — #, *, and >. It is widely used for README files, docs, forums, and notes because it is readable both raw and rendered.</p><h2>How to use the Markdown previewer</h2><p>Type Markdown on the left; the formatted preview updates live on the right. Export to HTML or MD when done. Writing in Markdown keeps your content structured and portable.</p><h2>Why use Markdown</h2><p>Markdown is fast, version-control friendly, and converts easily to HTML, PDF, and more. It is the standard for developer documentation.</p><h2>Markdown FAQ</h2><p><strong>Is Markdown hard to learn?</strong> No, most syntax is intuitive. <strong>Can I use it in apps?</strong> Yes, widely supported. <strong>Is my text uploaded?</strong> No, local only.</p></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+</body></html>'],{type:'text/html'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='preview.html';a.click();
+}
+function copyPreview(){navigator.clipboard.writeText(prev.innerHTML)}
+</script>
+
+<div class="content"><h2>What is Markdown?</h2><p>Markdown is a lightweight markup language that formats text using simple symbols — #, *, and >. It is widely used for README files, docs, forums, and notes because it is readable both raw and rendered.</p><h2>How to use the Markdown previewer</h2><p>Type Markdown on the left; the formatted preview updates live on the right. Export to HTML or MD when done. Writing in Markdown keeps your content structured and portable.</p><h2>Why use Markdown</h2><p>Markdown is fast, version-control friendly, and converts easily to HTML, PDF, and more. It is the standard for developer documentation.</p><h2>Markdown FAQ</h2><p><strong>Is Markdown hard to learn?</strong> No, most syntax is intuitive. <strong>Can I use it in apps?</strong> Yes, widely supported. <strong>Is my text uploaded?</strong> No, local only.</p></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Web Dev Toolkit", "item": "https://pyfile-toolkit.github.io/web-toolkit/"}, {"@type": "ListItem", "position": 2, "name": "CSS Minifier — Compress CSS Online Free", "item": "https://pyfile-toolkit.github.io/web-toolkit/css-minifier.html"}]}
+</script>
+
+<meta property="og:title" content="CSS Minifier — Compress CSS Online Free">
+<meta property="og:description" content="Minify CSS code online — remove whitespace, comments, and optimize. Free, instant, 100% browser-based.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pyfile-toolkit.github.io/web-toolkit/css-minifier.html">
+<meta property="og:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CSS Minifier — Compress CSS Online Free">
+<meta name="twitter:description" content="Minify CSS code online — remove whitespace, comments, and optimize. Free, instant, 100% browser-based.">
+<meta name="twitter:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png"><link rel="icon" href="favicon.ico" sizes="any">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Minifier — Compress CSS Online Free</title>
+<link rel="canonical" href="https://pyfile-toolkit.github.io/web-toolkit/css-minifier.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "CSS Minifier",
+  "operatingSystem": "ANY",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Minify CSS code online - remove whitespace, comments, and optimize. Free.",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<meta name="description" content="Minify CSS code online — remove whitespace, comments, and optimize. Free, instant, 100% browser-based.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;padding:20px}
+.card{max-width:700px;margin:0 auto;background:#1e293b;border-radius:16px;padding:32px}
+h1{text-align:center;color:#f8fafc;margin-bottom:4px}
+.sub{text-align:center;color:#94a3b8;margin-bottom:20px;font-size:.9rem}
+textarea{width:100%;padding:12px;border-radius:8px;background:#334155;color:#e2e8f0;border:1px solid #475569;font-family:monospace;font-size:.85rem;resize:vertical;min-height:180px;margin-bottom:12px}
+.btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+button{padding:8px 20px;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.9rem}
+.btn-min{background:#6366f1;color:#fff}
+.btn-beauty{background:#f59e0b;color:#fff}
+.btn-copy{background:#64748b;color:#fff}
+.stats{text-align:center;color:#94a3b8;margin:8px 0;font-size:.85rem}
+.ads{margin-top:16px;padding:12px;background:#1e1e3a;border-radius:8px;text-align:center;font-size:.85rem}
+.ads a{color:#818cf8}
+.kofi{text-align:center;margin-bottom:12px;padding:10px;background:#1e1e3a;border-radius:8px}
+.kofi a{color:#ff5e5b;font-weight:600;text-decoration:none}
+
+.content{margin-top:28px;max-width:720px;margin-left:auto;margin-right:auto;padding:0 6px}
+.content h2{color:#f8fafc;font-size:1.25rem;margin:24px 0 10px}
+.content p{color:#cbd5e1;line-height:1.6;margin-bottom:12px;font-size:.95rem}
+.content strong{color:#e2e8f0}
+@media(max-width:520px){
+  .container{padding:20px 14px}
+  .tool-card{padding:16px}
+  body{padding:12px!important}
+  .card{padding:18px!important;max-width:100%!important}
+  .content h2{font-size:1.05rem}
+  .item{padding:16% 0}
+  .item .shape{font-size:2.2rem}
+}
+@media(max-width:380px){
+  .item{padding:13% 0}
+  .item .shape{font-size:1.9rem}
+  .hud{flex-wrap:wrap;gap:4px}
+}
+
+</style>
+</head>
+<body>
+<div class="card">
+<h1>CSS Minifier</h1>
+<p class="sub">Paste CSS — get compressed, production-ready output</p>
+<textarea id="input" placeholder="/* Paste your CSS here */
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+h1 {
+  color: #333;
+}"></textarea>
+<div class="btns">
+<button class="btn-min" onclick="minify()">📦 Minify</button>
+<button class="btn-beauty" onclick="beautify()">✨ Beautify</button>
+<button class="btn-copy" onclick="copy()">📋 Copy</button>
+</div>
+<div class="stats" id="stats"></div>
+<textarea id="output" readonly style="min-height:180px"></textarea>
+<div class="kofi"><a href="https://ko-fi.com/pyfiletoolkit">☕ Support on Ko-fi</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+
+<a href="https://pyfile-toolkit.github.io/web-toolkit/youtube-tag-generator.html">YouTube Tags</a>
+ · <a href="privacy.html">Privacy</a> · <a href="about.html">About</a></div>
+</div>
+<script>
+const inp=document.getElementById('input'),out=document.getElementById('output'),st=document.getElementById('stats');
+function minify(){
+  let css=inp.value
+    .replace(/\/\*[\s\S]*?\*\//g,'')  // comments
+    .replace(/\s+/g,' ')               // collapse whitespace
+    .replace(/;\s*/g,';')              // no space after ;
+    .replace(/\s*\{\s*/g,'{')          // no space around {
+    .replace(/\s*\}\s*/g,'}')          // no space around }
+    .replace(/\s*:\s*/g,':')           // no space around :
+    .replace(/\s*,\s*/g,',')           // no space after ,
+    .replace(/;\}/g,'}')               // remove last ;
+    .trim();
+  out.value=css;
+  const savings=inp.value.length-css.length;
+  st.textContent='Compressed: '+css.length+' chars · Saved '+savings+' chars ('+Math.round(savings/inp.value.length*100)+'%)';
+}
+function beautify(){
+  let css=inp.value
+    .replace(/\s*\{\s*/g,' {\n  ')
+    .replace(/\s*;\s*/g,';\n  ')
+    .replace(/\s*\}\s*/g,'\n}\n')
+    .replace(/\/\*[\s\S]*?\*\//g,m=>'\n'+m+'\n');
+  out.value=css.trim();
+  st.textContent='Beautified: '+out.value.length+' chars';
+}
+function copy(){out.select();navigator.clipboard.writeText(out.value);st.textContent='📋 Copied!'}
+</script>
+
+<div class="related" style="font-family:system-ui;font-size:.85rem;color:#64748b;text-align:center;margin-top:14px">More tools: <a href="js-minifier.html">Js Minifier</a> · <a href="json-formatter.html">Json Formatter</a> · <a href="html-encoder.html">Html Encoder</a> · <a href="case-converter.html">Case Converter</a></div>
+<div class="content"><h2>What is a CSS Minifier?</h2><p>A CSS minifier removes unnecessary characters from your stylesheet — whitespace, comments, and redundant syntax — without changing how it renders. Smaller CSS files load faster, which improves page speed and Core Web Vitals.</p><h2>How to minify CSS</h2><p>Paste your CSS and click minify. The tool strips comments and whitespace instantly, all in your browser. Minifying is a standard step in web performance optimization alongside JavaScript compression.</p><h2>Why minify matters</h2><p>Minified CSS reduces download size and parse time, which matters for mobile users and slow connections. Combined with gzip, minification is one of the easiest performance wins.</p><h2>CSS minifier FAQ</h2><p><strong>Will minifying break my site?</strong> No, if your CSS is valid. <strong>Is it reversible?</strong> You can keep the original as a comment. <strong>Does it run locally?</strong> Yes, nothing is uploaded.</p></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+</body>
+</html>

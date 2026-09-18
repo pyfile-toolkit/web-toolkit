@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<meta property="og:title" content="Web Dev Toolkit — Free Browser-Based Tools">
+<meta property="og:description" content="Free online developer tools: JSON formatter, Base64 encoder, UUID generator, QR code generator, image resizer, markdown previewer, color palette generator. No install, 100% browser-based.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pyfile-toolkit.github.io/web-toolkit/index.html">
+<meta property="og:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Dev Toolkit — Free Browser-Based Tools">
+<meta name="twitter:description" content="Free online developer tools: JSON formatter, Base64 encoder, UUID generator, QR code generator, image resizer, markdown previewer, color palette generator. No install, 100% browser-based.">
+<meta name="twitter:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png"><link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="canonical" href="https://pyfile-toolkit.github.io/web-toolkit/">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Chrome Web Store verification -->
+<meta name="google-site-verification" content=""/><title>Web Dev Toolkit — Free Browser-Based Tools</title>
+<meta name="description" content="Free online developer tools: JSON formatter, Base64 encoder, UUID generator, QR code generator, image resizer, markdown previewer, color palette generator. No install, 100% browser-based.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;line-height:1.6}
+.container{max-width:900px;margin:0 auto;padding:40px 20px}
+.hero{text-align:center;padding:60px 0 40px}
+.hero h1{font-size:2.5rem;color:#f8fafc;margin-bottom:16px}
+.hero p{font-size:1.1rem;color:#94a3b8;max-width:600px;margin:0 auto}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin:40px 0}
+.tool-card{background:#1e293b;border-radius:12px;padding:24px;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
+.tool-card:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.3)}
+.tool-card h3{color:#f8fafc;margin-bottom:8px;font-size:1.2rem}
+.tool-card p{color:#94a3b8;font-size:.9rem;margin-bottom:16px;flex:1 1 auto}
+.tool-card .btn{display:inline-block;padding:8px 16px;border-radius:8px;font-weight:600;text-decoration:none;font-size:.85rem;margin-right:8px;margin-bottom:8px}
+.btn-free{background:#334155;color:#e2e8f0}
+.btn-pro{background:#6366f1;color:#fff}
+.btn-free:hover{background:#475569}.btn-pro:hover{background:#4f46e5}
+.section-title{font-size:1.8rem;color:#f8fafc;margin:40px 0 20px;text-align:center}
+.pro-tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.pro-card{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:20px;text-align:center}
+.pro-card h4{color:#f8fafc;margin-bottom:4px}
+.pro-card .price{color:#818cf8;font-size:1.2rem;font-weight:700;margin:8px 0}
+.pro-card .btn{margin:0}
+footer{text-align:center;padding:40px 0;color:#64748b;font-size:.85rem}
+footer a{color:#818cf8}
+
+@media(max-width:640px){
+  .container{padding:28px 16px}
+  .tools{grid-template-columns:1fr;gap:14px;margin:24px 0}
+  .hero h1{font-size:1.5rem}
+  .hero{padding:30px 10px}
+}
+@media(max-width:380px){
+  .tool-card .btn{display:block;margin:8px auto;width:100%}
+}
+
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "Web Dev Toolkit - Free Browser Tools", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "📸 Bulk Image Resizer", "url": "https://pyfile-toolkit.github.io/web-toolkit/image-resizer.html"}, {"@type": "ListItem", "position": 2, "name": "🎨 Color Palette Generator", "url": "https://pyfile-toolkit.github.io/web-toolkit/color-palette.html"}, {"@type": "ListItem", "position": 3, "name": "🎨 Color Converter", "url": "https://pyfile-toolkit.github.io/web-toolkit/color-converter.html"}, {"@type": "ListItem", "position": 4, "name": "👁️ Color Contrast Checker", "url": "https://pyfile-toolkit.github.io/web-toolkit/contrast-checker.html"}, {"@type": "ListItem", "position": 5, "name": "🌈 CSS Gradient Generator", "url": "https://pyfile-toolkit.github.io/web-toolkit/css-gradient-generator.html"}, {"@type": "ListItem", "position": 6, "name": "⇄ HTML to Markdown", "url": "https://pyfile-toolkit.github.io/web-toolkit/html-to-markdown.html"}, {"@type": "ListItem", "position": 7, "name": "🗂️ XML Formatter", "url": "https://pyfile-toolkit.github.io/web-toolkit/xml-formatter.html"}, {"@type": "ListItem", "position": 8, "name": "🍅 Pomodoro Timer", "url": "https://pyfile-toolkit.github.io/web-toolkit/pomodoro-timer.html"}, {"@type": "ListItem", "position": 9, "name": "🎲 Random Number Generator", "url": "https://pyfile-toolkit.github.io/web-toolkit/random-number-generator.html"}, {"@type": "ListItem", "position": 10, "name": "📦 Box Shadow Generator", "url": "https://pyfile-toolkit.github.io/web-toolkit/box-shadow-generator.html"}, {"@type": "ListItem", "position": 11, "name": "📝 Markdown Previewer", "url": "https://pyfile-toolkit.github.io/web-toolkit/markdown-preview.html"}, {"@type": "ListItem", "position": 12, "name": "🔤 JSON Formatter", "url": "https://pyfile-toolkit.github.io/web-toolkit/json-formatter.html"}, {"@type": "ListItem", "position": 13, "name": "🔒 Base64 Encoder", "url": "https://pyfile-toolkit.github.io/web-toolkit/base64.html"}, {"@type": "ListItem", "position": 14, "name": "🎲 UUID Generator", "url": "https://pyfile-toolkit.github.io/web-toolkit/uuid-generator.html"}, {"@type": "ListItem", "position": 15, "name": "📊 Markdown Table Generator", "url": "https://pyfile-toolkit.github.io/web-toolkit/md-table-generator.html"}, {"@type": "ListItem", "position": 16, "name": "📦 EAN-13 Barcode Generator", "url": "https://pyfile-toolkit.github.io/web-toolkit/barcode-generator.html"}, {"@type": "ListItem", "position": 17, "name": "🔍 JSON Diff", "url": "https://pyfile-toolkit.github.io/web-toolkit/json-diff.html"}, {"@type": "ListItem", "position": 18, "name": "🧾 JSON-LD Generator", "url": "https://pyfile-toolkit.github.io/web-toolkit/schema-generator.html"}, {"@type": "ListItem", "position": 19, "name": "🔢 Word Counter", "url": "https://pyfile-toolkit.github.io/web-toolkit/word-counter.html"}, {"@type": "ListItem", "position": 20, "name": "🔤 Character Counter", "url": "https://pyfile-toolkit.github.io/web-toolkit/character-counter.html"}, {"@type": "ListItem", "position": 21, "name": "📑 Diff Checker", "url": "https://pyfile-toolkit.github.io/web-toolkit/diff-checker.html"}, {"@type": "ListItem", "position": 22, "name": "📝 Markdown to HTML", "url": "https://pyfile-toolkit.github.io/web-toolkit/md-to-html.html"}, {"@type": "ListItem", "position": 23, "name": "🔳 QR Code Generator", "url": "https://pyfile-toolkit.github.io/web-toolkit/qr-generator.html"}, {"@type": "ListItem", "position": 24, "name": "🔢 Number Base Converter", "url": "https://pyfile-toolkit.github.io/web-toolkit/base-converter.html"}, {"@type": "ListItem", "position": 25, "name": "🔗 URL Encoder/Decoder", "url": "https://pyfile-toolkit.github.io/web-toolkit/url-encoder-decoder.html"}, {"@type": "ListItem", "position": 26, "name": "✉️ Email Extractor", "url": "https://pyfile-toolkit.github.io/web-toolkit/email-extractor.html"}, {"@type": "ListItem", "position": 27, "name": "🤖 LLM API (Pay with LN)", "url": "https://pyfile-toolkit.github.io/web-toolkit/llm-api.html"}, {"@type": "ListItem", "position": 28, "name": "🔠 Case Converter", "url": "https://pyfile-toolkit.github.io/web-toolkit/case-converter.html"}, {"@type": "ListItem", "position": 29, "name": "🔗 Slug Generator", "url": "https://pyfile-toolkit.github.io/web-toolkit/slug-generator.html"}, {"@type": "ListItem", "position": 30, "name": "🔐 Password Generator", "url": "https://pyfile-toolkit.github.io/web-toolkit/password-generator.html"}, {"@type": "ListItem", "position": 31, "name": "💪 Password Strength Checker", "url": "https://pyfile-toolkit.github.io/web-toolkit/password-strength.html"}, {"@type": "ListItem", "position": 32, "name": "🔍 Hash Generator", "url": "https://pyfile-toolkit.github.io/web-toolkit/hash-generator.html"}, {"@type": "ListItem", "position": 33, "name": "📱 QR Code Generator", "url": "https://pyfile-toolkit.github.io/web-toolkit/qrcode.html"}, {"@type": "ListItem", "position": 34, "name": "🎬 YouTube Tag Generator", "url": "https://pyfile-toolkit.github.io/web-toolkit/youtube-tag-generator.html"}, {"@type": "ListItem", "position": 35, "name": "🔧 HTML Encoder/Decoder", "url": "https://pyfile-toolkit.github.io/web-toolkit/html-encoder.html"}, {"@type": "ListItem", "position": 36, "name": "🌐 URL Encoder/Decoder", "url": "https://pyfile-toolkit.github.io/web-toolkit/url-encoder.html"}, {"@type": "ListItem", "position": 37, "name": "🧹 CSS Minifier", "url": "https://pyfile-toolkit.github.io/web-toolkit/css-minifier.html"}, {"@type": "ListItem", "position": 38, "name": "🗜️ HTML Minifier", "url": "https://pyfile-toolkit.github.io/web-toolkit/html-minifier.html"}, {"@type": "ListItem", "position": 39, "name": "⚙️ JS Minifier", "url": "https://pyfile-toolkit.github.io/web-toolkit/js-minifier.html"}, {"@type": "ListItem", "position": 40, "name": "➗ Text Diff Checker", "url": "https://pyfile-toolkit.github.io/web-toolkit/text-diff.html"}, {"@type": "ListItem", "position": 41, "name": "✅ JSON Schema Validator", "url": "https://pyfile-toolkit.github.io/web-toolkit/json-schema-validator.html"}, {"@type": "ListItem", "position": 42, "name": "🧮 Percentage Calculator", "url": "https://pyfile-toolkit.github.io/web-toolkit/percentage-calculator.html"}, {"@type": "ListItem", "position": 43, "name": "🕰️ Unix Timestamp Converter", "url": "https://pyfile-toolkit.github.io/web-toolkit/unix-timestamp-converter.html"}, {"@type": "ListItem", "position": 44, "name": "🔐 JWT Decoder", "url": "https://pyfile-toolkit.github.io/web-toolkit/jwt-decoder.html"}, {"@type": "ListItem", "position": 45, "name": "🔄 CSV ↔ JSON Converter", "url": "https://pyfile-toolkit.github.io/web-toolkit/csv-json-converter.html"}, {"@type": "ListItem", "position": 46, "name": "⇅ YAML ⇄ JSON Converter", "url": "https://pyfile-toolkit.github.io/web-toolkit/yaml-json-converter.html"}, {"@type": "ListItem", "position": 47, "name": "🛠️ SQL Formatter", "url": "https://pyfile-toolkit.github.io/web-toolkit/sql-formatter.html"}, {"@type": "ListItem", "position": 48, "name": "🔍 Regex Tester", "url": "https://pyfile-toolkit.github.io/web-toolkit/regex-tester.html"}, {"@type": "ListItem", "position": 49, "name": "✍️ Lorem Ipsum Generator", "url": "https://pyfile-toolkit.github.io/web-toolkit/lorem-ipsum-generator.html"}, {"@type": "ListItem", "position": 50, "name": "🌐 HTTP Status Codes", "url": "https://pyfile-toolkit.github.io/web-toolkit/http-status-codes.html"}, {"@type": "ListItem", "position": 51, "name": "🌱 Brandseed", "url": "https://pyfile-toolkit.github.io/web-toolkit/brandseed.html"}, {"@type": "ListItem", "position": 52, "name": "⚡ The Shift", "url": "https://pyfile-toolkit.github.io/web-toolkit/the-shift.html"}, {"@type": "ListItem", "position": 53, "name": "🎲 Karma", "url": "https://pyfile-toolkit.github.io/web-toolkit/karma.html"}, {"@type": "ListItem", "position": 54, "name": "⚡ Reaction Time Test", "url": "https://pyfile-toolkit.github.io/web-toolkit/reaction-time.html"}, {"@type": "ListItem", "position": 55, "name": "⌨️ Typing Speed Test", "url": "https://pyfile-toolkit.github.io/web-toolkit/typing-test.html"}, {"@type": "ListItem", "position": 56, "name": "🔴 Simon Says Memory Game", "url": "https://pyfile-toolkit.github.io/web-toolkit/simon-says.html"}, {"@type": "ListItem", "position": 57, "name": "🔤 Daily Word Puzzle", "url": "https://pyfile-toolkit.github.io/web-toolkit/word-puzzle.html"}, {"@type": "ListItem", "position": 58, "name": "YAML vs JSON: Key Differences", "url": "https://pyfile-toolkit.github.io/web-toolkit/guides/yaml-vs-json.html"}, {"@type": "ListItem", "position": 59, "name": "WCAG Contrast Explained", "url": "https://pyfile-toolkit.github.io/web-toolkit/guides/wcag-contrast-explained.html"}, {"@type": "ListItem", "position": 60, "name": "Base64 Encoding Explained", "url": "https://pyfile-toolkit.github.io/web-toolkit/guides/base64-explained.html"}, {"@type": "ListItem", "position": 61, "name": "MD5 vs SHA-256 Explained", "url": "https://pyfile-toolkit.github.io/web-toolkit/guides/md5-vs-sha256.html"}, {"@type": "ListItem", "position": 62, "name": "LLM API Without Signup or KYC", "url": "https://pyfile-toolkit.github.io/web-toolkit/guides/llm-api-no-kyc.html"}]}</script>
+</head>
+<body>
+<div class="container">
+<div class="hero">
+<h1>🛠️ Web Dev Toolkit</h1>
+<p>Free browser-based tools for developers and designers. No installation, no server uploads — everything runs locally in your browser.</p>
+</div>
+
+<h2 class="section-title">Free Tools</h2>
+<div class="tools">
+<div style="max-width:640px;margin:18px auto 10px;position:relative">
+<input type="search" id="toolSearch" placeholder="🔎 Search tools, games & guides… (e.g. json, color, wpm)"
+ style="width:100%;padding:13px 18px;border-radius:12px;border:1px solid #334155;background:#0b0f1a;color:#f8fafc;font-size:.95rem;outline:none">
+<div id="searchCount" style="text-align:center;font-size:.75rem;color:#64748b;margin-top:6px;min-height:16px"></div>
+</div>
+<div class="tool-card">
+<h3>📸 Bulk Image Resizer</h3>
+<p>Resize multiple images at once. Set max dimensions and quality — download all at once.</p>
+<a href="image-resizer.html" class="btn btn-free">Open Tool</a>
+<a href="https://pyfiletoolkit.gumroad.com/l/image-resizer" class="btn btn-pro">Pro →</a>
+</div>
+<div class="tool-card">
+<h3>🎨 Color Palette Generator</h3>
+<p>Generate harmonious color schemes from any base color. 5 harmony types. Click to copy.</p>
+<a href="color-palette.html" class="btn btn-free">Open Tool</a>
+<a href="https://pyfiletoolkit.gumroad.com/l/color-palette" class="btn btn-pro">Pro →</a>
+</div>
+<div class="tool-card">
+<h3>🎨 Color Converter</h3>
+<p>Convert between HEX, RGB & HSL instantly. Live preview & copy.</p>
+<a href="color-converter.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>👁️ Color Contrast Checker</h3>
+<p>WCAG AA/AAA contrast ratio for text & background. Live preview.</p>
+<a href="contrast-checker.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🌈 CSS Gradient Generator</h3>
+<p>Linear & radial gradients, live preview, copy-ready CSS.</p>
+<a href="css-gradient-generator.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>⇄ HTML to Markdown</h3>
+<p>Convert HTML to clean Markdown: headings, links, lists, tables.</p>
+<a href="html-to-markdown.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🗂️ XML Formatter</h3>
+<p>Pretty-print XML: indentation, comments, CDATA, processing instructions.</p>
+<a href="xml-formatter.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🍅 Pomodoro Timer</h3>
+<p>25/5 focus sessions, long breaks, notifications, streaks. Deep work.</p>
+<a href="pomodoro-timer.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🎲 Random Number Generator</h3>
+<p>Any range, many draws, unique & sorted. Dice and coin flips.</p>
+<a href="random-number-generator.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>📦 Box Shadow Generator</h3>
+<p>Offset, blur, spread, color, inset — live preview + CSS copy.</p>
+<a href="box-shadow-generator.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>📝 Markdown Previewer</h3>
+<p>Live preview as you type. Export to HTML or MD. Templates included.</p>
+<a href="markdown-preview.html" class="btn btn-free">Open Tool</a>
+<a href="https://pyfiletoolkit.gumroad.com/l/md-preview" class="btn btn-pro">Pro →</a>
+</div>
+<div class="tool-card">
+<h3>🔤 JSON Formatter</h3>
+<p>Format, validate & minify JSON. Beautify messy data in one click.</p>
+<a href="json-formatter.html" class="btn btn-free">Open Tool</a>
+<a href="https://pyfiletoolkit.gumroad.com/l/dszhj" class="btn btn-pro">Pro →</a>
+</div>
+<div class="tool-card">
+<h3>🔒 Base64 Encoder</h3>
+<p>Encode/decode Base64 strings instantly. 100% client-side.</p>
+<a href="base64.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🎲 UUID Generator</h3>
+<p>Generate random UUID v4. One click, truly random. Bulk mode.</p>
+<a href="uuid-generator.html" class="btn btn-free">Open Tool</a>
+<div class="tool-card">
+<h3>📊 Markdown Table Generator</h3>
+<p>Paste CSV and get a clean Markdown table for READMEs — quotes handled, pipes escaped.</p>
+<a href="md-table-generator.html" class="btn btn-free">Open Tool</a>
+<div class="tool-card">
+<h3>📦 EAN-13 Barcode Generator</h3>
+<p>Type a product code, get a print-ready EAN-13 barcode. Check digit auto-added.</p>
+<a href="barcode-generator.html" class="btn btn-free">Open Tool</a>
+<div class="tool-card">
+<h3>🔍 JSON Diff</h3>
+<p>Paste two JSON documents, see exactly what changed — added, removed, modified.</p>
+<a href="json-diff.html" class="btn btn-free">Open Tool</a>
+<div class="tool-card">
+<h3>🧾 JSON-LD Generator</h3>
+<p>Structured data for rich results: Organization, Product, Article, FAQ, Breadcrumbs.</p>
+<a href="schema-generator.html" class="btn btn-free">Open Tool</a>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="tool-card">
+<h3>🔢 Word Counter</h3>
+<p>Count words, characters, sentences & paragraphs. Live, private.</p>
+<a href="word-counter.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🔤 Character Counter</h3>
+<p>Count letters, characters, words & lines. Live, private.</p>
+<a href="character-counter.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>📑 Diff Checker</h3>
+<p>Compare two texts or code files line by line. Added/removed lines highlighted.</p>
+<a href="diff-checker.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>📝 Markdown to HTML</h3>
+<p>Convert Markdown to clean HTML instantly. Headings, lists, code blocks & more.</p>
+<a href="md-to-html.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🔳 QR Code Generator</h3>
+<p>Create QR codes from URLs, text, WiFi & emails. Download as PNG. Private.</p>
+<a href="qr-generator.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🔢 Number Base Converter</h3>
+<p>Convert between binary, octal, decimal & hex instantly. Big numbers supported.</p>
+<a href="base-converter.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🔗 URL Encoder/Decoder</h3>
+<p>Percent-encode text, query params & whole URLs, or decode %-escaped strings.</p>
+<a href="url-encoder-decoder.html" class="btn btn-free">Open Tool</a>
+<div class="tool-card">
+<h3>🔑 UUID Generator</h3>
+<p>Generate UUID v4 & v7 in bulk — random or time-ordered IDs, copy-ready.</p>
+<a href="uuid-generator.html" class="btn btn-free">Open Tool</a>
+</div>
+
+</div>
+<div class="tool-card">
+<h3>✉️ Email Extractor</h3>
+<p>Pull every email address out of text or logs. Unique, sorted, copy-ready.</p>
+<a href="email-extractor.html" class="btn btn-free">Open Tool</a>
+<div class="tool-card">
+<h3>🤖 LLM API (Pay with LN)</h3>
+<p>Open-models API access via one OpenAI-compatible endpoint. Pay with Lightning, no KYC.</p>
+<a href="llm-api.html" class="btn btn-free">View Plans</a>
+</div>
+
+</div>
+<div class="tool-card">
+<h3>🔠 Case Converter</h3>
+<p>Convert text to UPPERCASE, lowercase, Title & Sentence case.</p>
+<a href="case-converter.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🔗 Slug Generator</h3>
+<p>Make clean SEO-friendly URL slugs from any title or text.</p>
+<a href="slug-generator.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🔐 Password Generator</h3>
+<p>Create strong, secure random passwords. Custom length & sets.</p>
+<a href="password-generator.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>💪 Password Strength Checker</h3>
+<p>Score any password & get tips to make it uncrackable.</p>
+<a href="password-strength.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🔍 Hash Generator</h3>
+<p>MD5, SHA-1, SHA-256 & SHA-512 of any text. Private, instant.</p>
+<a href="hash-generator.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>📱 QR Code Generator</h3>
+<p>Create QR codes from text or URLs. Free, instant, no tracking.</p>
+<a href="qrcode.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🎬 YouTube Tag Generator</h3>
+<p>Generate optimized YouTube tags instantly. Free, no login, runs in your browser.</p>
+<a href="youtube-tag-generator.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🔧 HTML Encoder/Decoder</h3>
+<p>Encode & decode HTML entities instantly. Private, pure client-side.</p>
+<a href="html-encoder.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🌐 URL Encoder/Decoder</h3>
+<p>Encode & decode URLs for safe links and query strings.</p>
+<a href="url-encoder.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🧹 CSS Minifier</h3>
+<p>Shrink CSS files for faster pages. Private, in your browser.</p>
+<a href="css-minifier.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🗜️ HTML Minifier</h3>
+<p>Compress HTML: strip comments, collapse whitespace, keep pre intact.</p>
+<a href="html-minifier.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>⚙️ JS Minifier</h3>
+<p>Minify JavaScript to reduce bundle size & speed up load.</p>
+<a href="js-minifier.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>➗ Text Diff Checker</h3>
+<p>Compare two texts and spot differences side by side.</p>
+<a href="text-diff.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>✅ JSON Schema Validator</h3>
+<p>Validate JSON documents against a JSON schema instantly.</p>
+<a href="json-schema-validator.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🧮 Percentage Calculator</h3>
+<p>What is X% of Y, % change, add/subtract %. Instant & private.</p>
+<a href="percentage-calculator.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🕰️ Unix Timestamp Converter</h3>
+<p>Epoch ↔ date, UTC & local, ms & ISO 8601. Live current time.</p>
+<a href="unix-timestamp-converter.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🔐 JWT Decoder</h3>
+<p>Decode any JWT header & payload as pretty JSON, exp as date. Private.</p>
+<a href="jwt-decoder.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🔄 CSV ↔ JSON Converter</h3>
+<p>CSV to JSON & back: headers, quoted fields, commas in values.</p>
+<a href="csv-json-converter.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>⇅ YAML ⇄ JSON Converter</h3>
+<p>Convert config files both ways — nested maps, lists, comments.</p>
+<a href="yaml-json-converter.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🛠️ SQL Formatter</h3>
+<p>Beautify messy SQL: SELECT lists, JOINs, subqueries, CASE.</p>
+<a href="sql-formatter.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🔍 Regex Tester</h3>
+<p>Live regex highlighting, capture groups, flags g/i/m/s/u.</p>
+<a href="regex-tester.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>✍️ Lorem Ipsum Generator</h3>
+<p>Dummy text: paragraphs, sentences or words. Classic or not, HTML too.</p>
+<a href="lorem-ipsum-generator.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🌐 HTTP Status Codes</h3>
+<p>Full 100–511 reference with meanings (RFC 9110). Instant search.</p>
+<a href="http-status-codes.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>🌱 Brandseed</h3>
+<p>Grow a full brand from one word — name, colors, logo & tagline.</p>
+<a href="brandseed.html" class="btn btn-free">Open Tool</a>
+</div>
+<div class="tool-card">
+<h3>⚡ The Shift</h3>
+<p>Fast reflex game where the rule keeps changing. One mistake ends the run.</p>
+<a href="the-shift.html" class="btn btn-free">Play Now</a>
+</div>
+<div class="tool-card">
+<h3>🎲 Karma</h3>
+<p>Push-your-luck dice game. Stack points, then bank before it busts.</p>
+<a href="karma.html" class="btn btn-free">Play Now</a>
+</div>
+<div class="tool-card">
+<h3>⚡ Reaction Time Test</h3>
+<p>Measure your reflexes in ms. Fast & shareable — beat your best.</p>
+<a href="reaction-time.html" class="btn btn-free">Play Now</a>
+</div>
+<div class="tool-card">
+<h3>⌨️ Typing Speed Test</h3>
+<p>Measure your WPM & accuracy in 15/30/60s. Share your score.</p>
+<a href="typing-test.html" class="btn btn-free">Play Now</a>
+</div>
+<div class="tool-card">
+<h3>🔴 Simon Says Memory Game</h3>
+<p>Watch, repeat, level up. Classic memory game — share your run.</p>
+<a href="simon-says.html" class="btn btn-free">Play Now</a>
+</div>
+<div class="tool-card">
+<h3>🔤 Daily Word Puzzle</h3>
+<p>Wordle-style: one 5-letter word a day, 6 guesses, share your grid.</p>
+<a href="word-puzzle.html" class="btn btn-free">Play Now</a>
+</div>
+</div>
+
+<h2 class="section-title">Pro Tools</h2>
+<p style="text-align:center;color:#94a3b8;margin-top:-8px"><a href="premium.html" style="color:#818cf8">View all Pro tools, the bundle & why it supports the free site →</a></p>
+<div class="pro-tools">
+<div class="pro-card">
+<h4>CSV Toolkit</h4>
+<p class="price">€3.51</p>
+<a href="https://pyfiletoolkit.gumroad.com/l/frmuw" class="btn btn-pro">Buy on Gumroad</a>
+</div>
+<div class="pro-card">
+<h4>JSON ↔ CSV Converter</h4>
+<p class="price">€2.99</p>
+<a href="https://pyfiletoolkit.gumroad.com/l/dszhj" class="btn btn-pro">Buy on Gumroad</a>
+</div>
+<div class="pro-card">
+<h4>PyFile Toolkit</h4>
+<p class="price">€4.39</p>
+<a href="https://pyfiletoolkit.gumroad.com/l/inmuks" class="btn btn-pro">Buy on Gumroad</a>
+</div>
+</div>
+
+
+<div class="content" style="max-width:900px;margin:40px auto 0;padding:0 20px">
+<h2 class="section-title">Free Online Developer & Web Tools</h2>
+<p>Web Dev Toolkit is a collection of <strong>free online developer tools that run 100% in your browser</strong>&nbsp;— no installation, no accounts, no server uploads. Whether you need a <a href="json-formatter.html">JSON formatter</a>, <a href="password-generator.html">password generator</a>, <a href="hash-generator.html">hash generator</a>, <a href="color-converter.html">color converter</a>, <a href="case-converter.html">case converter</a>, <a href="diff-checker.html">diff checker</a>, <a href="word-counter.html">word counter</a>, or a <a href="slug-generator.html">URL slug generator</a>, everything works instantly and privately on this page.</p>
+<p>Because every tool is <strong>client-side</strong>, your data never leaves your device. Feed in sensitive code, private text, or passwords with total confidence that nothing is transmitted or logged. This makes the toolkit ideal for developers, designers, students, and anyone who wants fast, dependable utilities without ads or sign-ups.</p>
+<h2 class="section-title">Why Use Browser-Based Tools?</h2>
+<p>Browser-based tools load instantly, work offline, and never store your data on a remote server. Unlike installable applications, there is nothing to download, update, or configure — open a page and it just works. They are also cross-platform: the same tool runs on Windows, macOS, Linux, Android, and iOS.</p>
+<p>The most popular categories here include <strong>text tools</strong> (case converter, word counter, character counter), <strong>security tools</strong> (password generator, password strength checker, hash generator), <strong>color tools</strong> (color converter, color palette generator), and <strong>data tools</strong> (JSON formatter, Base64 encoder, UUID generator).</p>
+<h2 class="section-title">Private, Fast, and Always Free</h2>
+<p>Every utility in the Web Dev Toolkit is free forever — no hidden premium walls for core features. A handful of optional <a href="premium.html">Pro tools</a> add convenience for power users, but the essentials remain free and open. Contributions via <a href="https://ko-fi.com/pyfiletoolkit" target="_blank">Ko-fi</a> or crypto keep the project online, ad-light, and independent.</p>
+<p>Bookmark this page and come back whenever you need a quick, reliable tool you can trust.</p>
+</div>
+
+
+<h2 style="margin:34px 0 12px;color:#f8fafc;font-size:1.25rem">📚 Dev Guides</h2>
+<div class="tool-card">
+<h3>YAML vs JSON: Key Differences</h3>
+<p>Syntax, typing pitfalls, when to use which, conversion guide. Deep reference with tables & examples.</p>
+<a href="guides/yaml-vs-json.html" class="btn btn-free">Read Guide</a>
+</div>
+<div class="tool-card">
+<h3>WCAG Contrast Explained</h3>
+<p>How 4.5:1 & 3:1 work, the luminance formula, real pass/fail examples.</p>
+<a href="guides/wcag-contrast-explained.html" class="btn btn-free">Read Guide</a>
+</div>
+<div class="tool-card">
+<h3>Base64 Encoding Explained</h3>
+<p>The 64-char alphabet, 33% overhead, padding & data URIs — with examples.</p>
+<a href="guides/base64-explained.html" class="btn btn-free">Read Guide</a>
+</div>
+<div class="tool-card">
+<h3>MD5 vs SHA-256 Explained</h3>
+<p>Why MD5/SHA-1 are broken, when to use SHA-256, password hashing truth.</p>
+<a href="guides/md5-vs-sha256.html" class="btn btn-free">Read Guide</a>
+</div>
+<footer>
+<p>All tools run locally — no data ever leaves your browser. <a href="https://github.com/pyfile-toolkit/web-toolkit">GitHub</a> · <a href="https://pyfiletoolkit.gumroad.com">Gumroad</a></p>
+
+<div style="text-align:center;margin:40px 0;padding:24px;background:#1e293b;border-radius:12px">
+  <h3 style="color:#f8fafc;margin-bottom:8px">☕ Support this project</h3>
+  <p style="color:#94a3b8;margin-bottom:16px">If these free tools helped you, buy me a coffee!</p>
+  <a href="https://ko-fi.com/pyfiletoolkit" target="_blank" style="display:inline-block;padding:10px 24px;background:#ff5e5b;color:#fff;border-radius:8px;text-decoration:none;font-weight:600">☕ Ko-fi</a>
+  &nbsp;
+  <a href="https://github.com/sponsors/pyfile-toolkit" target="_blank" style="display:inline-block;padding:10px 24px;background:#db61a2;color:#fff;border-radius:8px;text-decoration:none;font-weight:600">❤️ GitHub Sponsors</a>
+</div>
+ · <a href="privacy.html">Privacy</a> · <a href="about.html">About</a></footer>
+</div>
+
+<div id="crypto-donate"></div>
+
+<script>
+const cardEls=Array.from(document.querySelectorAll('.tool-card'));
+const allCards=cardEls.length;
+const countEl=document.getElementById('searchCount');
+if(countEl) countEl.textContent=allCards+' tools, games & guides — all free, all in your browser';
+const inp=document.getElementById('toolSearch');
+if(inp){
+  inp.addEventListener('input',()=>{
+    const q=inp.value.trim().toLowerCase();
+    let shown=0;
+    cardEls.forEach(c=>{
+      const hit=!q||c.textContent.toLowerCase().includes(q);
+      c.style.display=hit?'':'none';
+      if(hit) shown++;
+    });
+    if(countEl) countEl.textContent=q?shown+' match(es)':'All '+allCards+' tools — all free, all in your browser';
+  });
+}
+</script>
+
+<script src="donate.js"></script>
+</body>
+</html>

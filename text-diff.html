@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Web Dev Toolkit", "item": "https://pyfile-toolkit.github.io/web-toolkit/"}, {"@type": "ListItem", "position": 2, "name": "Text Diff Checker — Compare Text Online Free", "item": "https://pyfile-toolkit.github.io/web-toolkit/text-diff.html"}]}
+</script>
+
+<meta property="og:title" content="Text Diff Checker — Compare Text Online Free">
+<meta property="og:description" content="Compare two texts and find differences instantly. Free online diff tool, no upload, 100% browser-based.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pyfile-toolkit.github.io/web-toolkit/text-diff.html">
+<meta property="og:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Text Diff Checker — Compare Text Online Free">
+<meta name="twitter:description" content="Compare two texts and find differences instantly. Free online diff tool, no upload, 100% browser-based.">
+<meta name="twitter:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png"><link rel="icon" href="favicon.ico" sizes="any">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text Diff Checker — Compare Text Online Free</title>
+<link rel="canonical" href="https://pyfile-toolkit.github.io/web-toolkit/text-diff.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Text Diff Checker",
+  "operatingSystem": "ANY",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Compare two texts and find differences instantly. Free online diff tool.",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<meta name="description" content="Compare two texts and find differences instantly. Free online diff tool, no upload, 100% browser-based.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;padding:20px}
+.card{max-width:900px;margin:0 auto;background:#1e293b;border-radius:16px;padding:32px}
+h1{text-align:center;color:#f8fafc;margin-bottom:4px}
+.sub{text-align:center;color:#94a3b8;margin-bottom:24px;font-size:.9rem}
+.panels{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.panel h3{color:#f8fafc;margin-bottom:8px;font-size:.9rem}
+textarea{width:100%;padding:12px;border-radius:8px;background:#334155;color:#e2e8f0;border:1px solid #475569;font-family:monospace;font-size:.85rem;resize:vertical;min-height:150px}
+.btns{text-align:center;margin-bottom:16px}
+button{padding:10px 28px;background:#6366f1;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:1rem}
+button:hover{background:#4f46e5}
+.result{background:#0f172a;border-radius:8px;padding:16px;min-height:100px;font-family:monospace;font-size:.85rem;white-space:pre-wrap;line-height:1.6}
+.add{background:rgba(34,197,94,.2);color:#22c55e}
+.rem{background:rgba(239,68,68,.2);color:#ef4444}
+.stats{text-align:center;color:#94a3b8;margin:8px 0;font-size:.85rem}
+.ads{margin-top:16px;padding:12px;background:#1e1e3a;border-radius:8px;text-align:center;font-size:.85rem}
+.ads a{color:#818cf8}
+
+.content{margin-top:28px;max-width:720px;margin-left:auto;margin-right:auto;padding:0 6px}
+.content h2{color:#f8fafc;font-size:1.25rem;margin:24px 0 10px}
+.content p{color:#cbd5e1;line-height:1.6;margin-bottom:12px;font-size:.95rem}
+.content strong{color:#e2e8f0}
+@media(max-width:520px){
+  .container{padding:20px 14px}
+  .tool-card{padding:16px}
+  body{padding:12px!important}
+  .card{padding:18px!important;max-width:100%!important}
+  .content h2{font-size:1.05rem}
+  .item{padding:16% 0}
+  .item .shape{font-size:2.2rem}
+}
+@media(max-width:380px){
+  .item{padding:13% 0}
+  .item .shape{font-size:1.9rem}
+  .hud{flex-wrap:wrap;gap:4px}
+}
+
+</style>
+</head>
+<body>
+<div class="card">
+<h1>Text Diff Checker</h1>
+<p class="sub">Paste two texts — see what changed, added, removed</p>
+<div class="panels">
+<div class="panel">
+<h3>Original Text</h3>
+<textarea id="text1" placeholder="Paste original text here..."></textarea>
+</div>
+<div class="panel">
+<h3>Modified Text</h3>
+<textarea id="text2" placeholder="Paste modified text here..."></textarea>
+</div>
+</div>
+<div class="btns"><button onclick="diff()">🔍 Compare</button></div>
+<div class="stats" id="stats"></div>
+<div class="result" id="result">Differences will appear here...</div>
+<div class="kofi" style="text-align:center;margin-bottom:12px;padding:10px;background:#1e1e3a;border-radius:8px"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank" style="color:#ff5e5b;font-weight:600;text-decoration:none">☕ Support this tool on Ko-fi</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> | 
+<a href="https://pyfile-toolkit.github.io/web-toolkit/json-formatter.html">JSON</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/base64.html">Base64</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium</a>
+
+<a href="https://pyfile-toolkit.github.io/web-toolkit/youtube-tag-generator.html">YouTube Tags</a>
+ · <a href="privacy.html">Privacy</a> · <a href="about.html">About</a></div>
+</div>
+<script>
+function diff(){
+  const t1=document.getElementById('text1').value, t2=document.getElementById('text2').value;
+  if(!t1&&!t2)return;
+  const lines1=t1.split('\n'), lines2=t2.split('\n');
+  let html='', added=0, removed=0;
+  const max=Math.max(lines1.length,lines2.length);
+  for(let i=0;i<max;i++){
+    const l1=lines1[i]||'', l2=lines2[i]||'';
+    if(l1===l2) html+=escape(l1)+'\n';
+    else{
+      if(l1) {html+='<span class=rem>- '+escape(l1)+'</span>\n';removed++}
+      if(l2) {html+='<span class=add>+ '+escape(l2)+'</span>\n';added++}
+    }
+  }
+  document.getElementById('result').innerHTML=html||'No differences';
+  document.getElementById('stats').textContent=`${added} added · ${removed} removed · ${max} lines total`;
+}
+function escape(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+</script>
+
+<div class="related" style="font-family:system-ui;font-size:.85rem;color:#64748b;text-align:center;margin-top:14px">More tools: <a href="word-counter.html">Word Counter</a> · <a href="case-converter.html">Case Converter</a> · <a href="json-formatter.html">Json Formatter</a> · <a href="js-minifier.html">Js Minifier</a></div>
+<div class="content"><h2>What is a Text Diff Checker?</h2><p>A diff tool compares two texts and highlights the differences between them. It is essential for developers reviewing code changes, editors checking revisions, and writers comparing drafts.</p><h2>How to use the diff tool</h2><p>Paste your original text in one box and the edited version in the other. The tool highlights added, removed, and changed lines instantly — all in your browser.</p><h2>Why use a diff checker</h2><p>Reviewing changes catches errors and unwanted edits before they ship. Whether comparing code, configs, or documents, a reliable diff tool saves time.</p><h2>Diff checker FAQ</h2><p><strong>Can it compare large files?</strong> Yes, it handles long documents. <strong>Is my text uploaded?</strong> No, everything runs locally. <strong>Can I compare code?</strong> Yes, it works on any text.</p></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+</body>
+</html>

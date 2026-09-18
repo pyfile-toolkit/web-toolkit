@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Web Dev Toolkit", "item": "https://pyfile-toolkit.github.io/web-toolkit/"}, {"@type": "ListItem", "position": 2, "name": "Base64 Encoder/Decoder Tool", "item": "https://pyfile-toolkit.github.io/web-toolkit/base64.html"}]}
+</script>
+
+<meta property="og:title" content="Base64 Encoder/Decoder — Free Online Tool">
+<meta property="og:description" content="Encode and decode Base64 strings instantly in your browser. Free, no upload, 100% local.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pyfile-toolkit.github.io/web-toolkit/base64.html">
+<meta property="og:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Base64 Encoder/Decoder — Free Online Tool">
+<meta name="twitter:description" content="Encode and decode Base64 strings instantly in your browser. Free, no upload, 100% local.">
+<meta name="twitter:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png"><link rel="icon" href="favicon.ico" sizes="any">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Base64 Encoder/Decoder — Free Online Tool</title>
+<link rel="canonical" href="https://pyfile-toolkit.github.io/web-toolkit/base64.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Base64 Encoder/Decoder",
+  "operatingSystem": "ANY",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Encode and decode Base64 strings instantly in your browser. Free, no upload, 100% local.",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<meta name="description" content="Encode and decode Base64 strings instantly in your browser. Free, no upload, 100% local.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;display:flex;;;min-height:100vh;padding:20px}
+.card{background:#1e293b;border-radius:16px;padding:32px;max-width:550px;width:100%}
+h1{color:#f8fafc;margin-bottom:8px;text-align:center}
+.sub{color:#94a3b8;margin-bottom:20px;text-align:center;font-size:.9rem}
+textarea{width:100%;padding:12px;border-radius:8px;background:#334155;color:#e2e8f0;border:1px solid #475569;resize:vertical;font-size:1rem;min-height:100px;margin-bottom:12px}
+.btns{display:flex;gap:10px;justify-content:center}
+button{padding:10px 28px;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.95rem}
+.btn-enc{background:#6366f1;color:#fff}
+.btn-dec{background:#22c55e;color:#fff}
+.btn-enc:hover{background:#4f46e5}
+.btn-dec:hover{background:#16a34a}
+.result{margin-top:16px}
+.result label{color:#94a3b8;font-size:.85rem}
+.ads{margin-top:20px;padding:12px;background:#1e1e3a;border-radius:8px;text-align:center;font-size:.85rem}
+.ads a{color:#818cf8}
+
+.content{margin-top:28px;max-width:720px;margin-left:auto;margin-right:auto;padding:0 6px}
+.content h2{color:#f8fafc;font-size:1.25rem;margin:24px 0 10px}
+.content p{color:#cbd5e1;line-height:1.6;margin-bottom:12px;font-size:.95rem}
+.content strong{color:#e2e8f0}
+@media(max-width:520px){
+  .container{padding:20px 14px}
+  .tool-card{padding:16px}
+  body{padding:12px!important}
+  .card{padding:18px!important;max-width:100%!important}
+  .content h2{font-size:1.05rem}
+  .item{padding:16% 0}
+  .item .shape{font-size:2.2rem}
+}
+@media(max-width:380px){
+  .item{padding:13% 0}
+  .item .shape{font-size:1.9rem}
+  .hud{flex-wrap:wrap;gap:4px}
+}
+
+</style>
+</head>
+<body>
+<div class="card">
+<h1>Base64 Encoder / Decoder</h1>
+<p class="sub">Paste text → encode or decode instantly. No server, 100% local.</p>
+<textarea id="input" placeholder="Paste text here..."></textarea>
+<div class="btns">
+<button class="btn-enc" onclick="encode()">🔒 Encode</button>
+<button class="btn-dec" onclick="decode()">🔓 Decode</button>
+</div>
+<div class="result">
+<label>Result:</label>
+<textarea id="output" readonly style="min-height:100px"></textarea>
+</div>
+<div class="kofi" style="text-align:center;margin-bottom:12px;padding:10px;background:#1e1e3a;border-radius:8px"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank" style="color:#ff5e5b;font-weight:600;text-decoration:none">☕ Support this tool on Ko-fi</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Back to Toolkit</a> | 
+<a href="https://pyfiletoolkit.gumroad.com/">Get Premium Tools</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/qrcode.html">QR Generator</a>
+
+<a href="https://pyfile-toolkit.github.io/web-toolkit/youtube-tag-generator.html">YouTube Tags</a>
+ · <a href="privacy.html">Privacy</a> · <a href="about.html">About</a></div>
+</div>
+<script>
+const inp=document.getElementById('input'),out=document.getElementById('output');
+function encode(){try{out.value=btoa(inp.value)}catch(e){out.value='Error: invalid characters for Base64'}}
+function decode(){try{out.value=atob(inp.value)}catch(e){out.value='Error: not valid Base64'}}
+</script>
+
+<div class="related" style="font-family:system-ui;font-size:.85rem;color:#64748b;text-align:center;margin-top:14px">More tools: <a href="url-encoder.html">Url Encoder</a> · <a href="html-encoder.html">Html Encoder</a> · <a href="jwt-decoder.html">Jwt Decoder</a> · <a href="hash-generator.html">Hash Generator</a></div>
+<div class="content"><h2>What is Base64?</h2><p>Base64 is an encoding scheme that converts binary data into ASCII text using 64 characters. It is used to safely transmit binary data (images, files, audio) through text-based protocols like email and JSON APIs.</p><h2>How to use the Base64 encoder/decoder</h2><p>Type or paste text and click <strong>Encode</strong> to convert it to Base64, or paste Base64 and click <strong>Decode</strong> to get the original text. Everything happens locally in your browser — no data is uploaded.</p><h2>Common Base64 uses</h2><p>Base64 is common for embedding images in HTML/CSS, encoding authentication tokens in HTTP headers, and transferring binary attachments. Understanding encode/decode is essential for many developers and sysadmins.</p><h2>Base64 FAQ</h2><p><strong>Is Base64 encryption?</strong> No, it is encoding, not encryption — it can be reversed instantly. <strong>Does Base64 reduce size?</strong> It increases size by about 33%. <strong>Is my data safe?</strong> Yes, everything runs locally.</p></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+</body>
+</html>

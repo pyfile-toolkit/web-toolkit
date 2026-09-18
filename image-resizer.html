@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Web Dev Toolkit", "item": "https://pyfile-toolkit.github.io/web-toolkit/"}, {"@type": "ListItem", "position": 2, "name": "Bulk Image Resizer — Free Browser Tool", "item": "https://pyfile-toolkit.github.io/web-toolkit/image-resizer.html"}]}
+</script>
+
+<meta property="og:title" content="Bulk Image Resizer — Free Browser Tool">
+<meta property="og:description" content="Resize multiple images at once directly in your browser. Set custom dimensions, preserve aspect ratio. No upload, 100% private.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pyfile-toolkit.github.io/web-toolkit/image-resizer.html">
+<meta property="og:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bulk Image Resizer — Free Browser Tool">
+<meta name="twitter:description" content="Resize multiple images at once directly in your browser. Set custom dimensions, preserve aspect ratio. No upload, 100% private.">
+<meta name="twitter:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png"><link rel="icon" href="favicon.ico" sizes="any">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bulk Image Resizer & Compressor — Free Browser Tool</title>
+<link rel="canonical" href="https://pyfile-toolkit.github.io/web-toolkit/image-resizer.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Bulk Image Resizer",
+  "operatingSystem": "ANY",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Resize multiple images at once directly in your browser.",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+    <meta name="description" content="Compress and resize images in bulk — JPEG quality control, WebP output, all local. Resize multiple images at once directly in your browser. Set custom dimensions, preserve aspect ratio. No upload, 100% private.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh;display:flex;;;padding:20px}
+.container{max-width:600px;width:100%;background:#1e293b;border-radius:16px;padding:30px;box-shadow:0 25px 50px rgba(0,0,0,.4)}
+h1{font-size:1.5rem;margin-bottom:8px;color:#f8fafc}
+.sub{color:#94a3b8;margin-bottom:24px;font-size:.9rem}
+.drop-zone{border:2px dashed #475569;border-radius:12px;padding:40px 20px;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:20px}
+.drop-zone:hover,.drop-zone.dragover{border-color:#6366f1;background:rgba(99,102,241,.1)}
+.drop-zone p{color:#94a3b8}
+.settings{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.settings label{flex:1;min-width:120px}
+.settings span{display:block;font-size:.8rem;color:#94a3b8;margin-bottom:4px}
+.settings input{width:100%;padding:10px;border-radius:8px;border:1px solid #475569;background:#0f172a;color:#e2e8f0;font-size:1rem}
+.btn{width:100%;padding:14px;border:none;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-primary{background:#6366f1;color:#fff}
+.btn-primary:hover{background:#4f46e5}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed}
+.preview{margin-top:20px}
+.preview-item{display:flex;align-items:center;gap:12px;padding:10px;background:#0f172a;border-radius:8px;margin-bottom:8px}
+.preview-item img{width:48px;height:48px;object-fit:cover;border-radius:4px}
+.preview-item .info{flex:1;font-size:.85rem}
+.stats{margin-top:16px;padding:12px;background:rgba(99,102,241,.15);border-radius:8px;font-size:.9rem;text-align:center;display:none}
+.stats.show{display:block}
+.quality-select{display:flex;gap:8px;margin-bottom:16px}
+.quality-select button{padding:8px 16px;border-radius:8px;border:1px solid #475569;background:#0f172a;color:#94a3b8;cursor:pointer;font-size:.85rem}
+.quality-select button.active{background:#6366f1;color:#fff;border-color:#6366f1}
+
+.content{margin-top:28px;max-width:720px;margin-left:auto;margin-right:auto;padding:0 6px}
+.content h2{color:#f8fafc;font-size:1.25rem;margin:24px 0 10px}
+.content p{color:#cbd5e1;line-height:1.6;margin-bottom:12px;font-size:.95rem}
+.content strong{color:#e2e8f0}
+@media(max-width:520px){
+  .container{padding:20px 14px}
+  .tool-card{padding:16px}
+  body{padding:12px!important}
+  .card{padding:18px!important;max-width:100%!important}
+  .content h2{font-size:1.05rem}
+  .item{padding:16% 0}
+  .item .shape{font-size:2.2rem}
+}
+@media(max-width:380px){
+  .item{padding:13% 0}
+  .item .shape{font-size:1.9rem}
+  .hud{flex-wrap:wrap;gap:4px}
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+<h1>📸 Bulk Image Resizer</h1>
+<p class="sub">Resize multiple images at once. All processing happens locally in your browser — no uploads.</p>
+<div class="drop-zone" id="dropZone"><p>🖼️ Drop images here or click to select</p><input type="file" id="fileInput" accept="image/*" multiple hidden></div>
+<div class="settings">
+<label><span>Max Width (px)</span><input type="number" id="width" value="800" min="1"></label>
+<label><span>Max Height (px)</span><input type="number" id="height" value="600" min="1"></label>
+</div>
+<div class="quality-select" id="qualitySelect">
+<button class="active" data-q="0.9">High</button>
+<button data-q="0.7">Medium</button>
+<button data-q="0.5">Low</button>
+</div>
+<div class="quality-select" id="formatSelect">
+<button class="active" data-f="image/jpeg">JPEG</button>
+<button data-f="image/webp">WebP</button>
+<button data-f="image/png">PNG</button>
+</div>
+<button class="btn btn-primary" id="btnResize" disabled>Resize Images</button>
+<div class="preview" id="preview"></div>
+<div class="stats" id="stats"></div>
+</div>
+<script>
+let files=[],quality=0.9,format="image/jpeg";
+const dz=document.getElementById('dropZone'),fi=document.getElementById('fileInput'),
+  preview=document.getElementById('preview'),btn=document.getElementById('btnResize'),
+  stats=document.getElementById('stats');
+dz.addEventListener('click',()=>fi.click());
+dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('dragover')});
+dz.addEventListener('dragleave',()=>dz.classList.remove('dragover'));
+dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('dragover');handleFiles(e.dataTransfer.files)});
+fi.addEventListener('change',()=>handleFiles(fi.files));
+document.getElementById('formatSelect').addEventListener('click',e=>{
+  if(e.target.tagName==='BUTTON'){
+    document.querySelectorAll('#formatSelect button').forEach(b=>b.classList.remove('active'));
+    e.target.classList.add('active');format=e.target.dataset.f;
+  }
+});
+document.getElementById('qualitySelect').addEventListener('click',e=>{
+  if(e.target.tagName==='BUTTON'){
+    document.querySelectorAll('#qualitySelect button').forEach(b=>b.classList.remove('active'));
+    e.target.classList.add('active');quality=parseFloat(e.target.dataset.q);
+  }
+});
+function handleFiles(f){files=[...f].filter(f=>f.type.startsWith('image/'));renderPreview()}
+function renderPreview(){
+  preview.innerHTML='';if(!files.length){btn.disabled=true;return}
+  btn.disabled=false;
+  files.forEach((f,i)=>{
+    const div=document.createElement('div');div.className='preview-item';
+    const img=document.createElement('img');img.src=URL.createObjectURL(f);
+    const info=document.createElement('div');info.className='info';
+    info.innerHTML=`<strong>${f.name}</strong><br>${(f.size/1024).toFixed(1)} KB`;
+    div.appendChild(img);div.appendChild(info);preview.appendChild(div);
+  });
+}
+btn.addEventListener('click',async()=>{
+  const w=parseInt(document.getElementById('width').value)||800;
+  const h=parseInt(document.getElementById('height').value)||600;
+  let totalBefore=0,totalAfter=0,count=0;
+  stats.classList.remove('show');btn.disabled=true;btn.textContent='Processing...';
+  for(const file of files){
+    const img=await createImageBitmap(file);
+    const c=document.createElement('canvas');let nw=img.width,nh=img.height;
+    if(nw>w){nh=nh*(w/nw);nw=w}if(nh>h){nw=nw*(h/nh);nh=h}
+    c.width=nw;c.height=nh;const ctx=c.getContext('2d');ctx.drawImage(img,0,0,nw,nh);
+    const blob=await new Promise(r=>c.toBlob(r,format,format==='image/png'?undefined:quality));
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    a.download=file.name.replace(/\.\w+$/,'')+'_resized.'+(format==='image/png'?'png':format==='image/webp'?'webp':'jpg');a.click();
+    totalBefore+=file.size;totalAfter+=blob.size;count++;
+  }
+  totalBefore/=1024;totalAfter/=1024;
+  stats.innerHTML=`✅ Compressed ${count} image${count>1?'s':''}<br>Before: ${totalBefore.toFixed(1)} KB → After: ${totalAfter.toFixed(1)} KB (${((1-totalAfter/totalBefore)*100).toFixed(0)}% saved)`;
+  stats.classList.add('show');btn.textContent='Resize Images';btn.disabled=false;
+});
+</script>
+
+<div style="margin-top:24px;padding:14px;background:#1e1e3a;border-radius:8px;text-align:center;font-size:.85rem">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/" style="color:#818cf8;text-decoration:none;margin:0 6px">← Toolkit</a>
+<a href="https://pyfile-toolkit.github.io/web-toolkit/youtube-tag-generator.html" style="color:#818cf8;text-decoration:none;margin:0 6px">YouTube Tags</a>
+<a href="https://pyfile-toolkit.github.io/web-toolkit/qrcode.html" style="color:#818cf8;text-decoration:none;margin:0 6px">QR Code</a>
+<a href="https://pyfiletoolkit.gumroad.com/" style="color:#818cf8;text-decoration:none;margin:0 6px">Premium</a> · <a href="privacy.html">Privacy</a> · <a href="about.html">About</a>
+</div>
+
+<div class="related" style="font-family:system-ui;font-size:.85rem;color:#64748b;text-align:center;margin-top:14px">More tools: <a href="color-palette.html">Color Palette</a> · <a href="qrcode.html">Qrcode</a> · <a href="color-converter.html">Color Converter</a> · <a href="css-minifier.html">Css Minifier</a></div>
+<div class="content"><h2>What is a Bulk Image Resizer?</h2><p>An image resizer changes the dimensions of images — reducing file size and preparing them for web, email, or print. Bulk resizing handles many files at once, saving hours of manual work.</p><h2>How to use it</h2><p>Select multiple images, set the maximum width/height, and click resize. The tool processes them locally in your browser and downloads the optimized versions.</p><h2>Why resize images</h2><p>Resizing images cuts page load time, saves bandwidth, and ensures they fit your layout. It is a staple for photographers, marketers, and web developers.</p><h2>Image resizer FAQ</h2><p><strong>Is my image uploaded?</strong> No, all processing is local. <strong>Does it keep quality?</strong> You control the JPEG quality. <strong>What formats are supported?</strong> PNG, JPG, and common image types.</p></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+</body>
+
+</html>

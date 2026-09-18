@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Web Dev Toolkit", "item": "https://pyfile-toolkit.github.io/web-toolkit/"}, {"@type": "ListItem", "position": 2, "name": "JSON Formatter & Validator Tool", "item": "https://pyfile-toolkit.github.io/web-toolkit/json-formatter.html"}]}
+</script>
+
+<meta property="og:title" content="JSON Formatter & Validator — Free Online Tool">
+<meta property="og:description" content="Format, validate and beautify JSON online. Free, no upload, 100% browser-based.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pyfile-toolkit.github.io/web-toolkit/json-formatter.html">
+<meta property="og:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="JSON Formatter & Validator — Free Online Tool">
+<meta name="twitter:description" content="Format, validate and beautify JSON online. Free, no upload, 100% browser-based.">
+<meta name="twitter:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png"><link rel="icon" href="favicon.ico" sizes="any">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON Formatter & Validator — Free Online Tool</title>
+<link rel="canonical" href="https://pyfile-toolkit.github.io/web-toolkit/json-formatter.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON Formatter & Validator",
+  "operatingSystem": "ANY",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Format, validate and beautify JSON online. Free, no upload, 100% browser-based.",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<meta name="description" content="Format, validate and beautify JSON online. Free, no upload, 100% browser-based.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;display:flex;;;min-height:100vh;padding:20px}
+.card{background:#1e293b;border-radius:16px;padding:32px;max-width:600px;width:100%}
+h1{color:#f8fafc;text-align:center;margin-bottom:4px}
+.sub{color:#94a3b8;text-align:center;margin-bottom:20px;font-size:.9rem}
+textarea{width:100%;padding:12px;border-radius:8px;background:#334155;color:#e2e8f0;border:1px solid #475569;font-family:monospace;font-size:.9rem;resize:vertical;min-height:120px;margin-bottom:12px}
+.btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+button{padding:8px 20px;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.9rem}
+.btn-fmt{background:#6366f1;color:#fff}
+.btn-min{background:#f59e0b;color:#fff}
+.btn-valid{background:#22c55e;color:#fff}
+.btn-copy{background:#64748b;color:#fff}
+.stats{text-align:center;margin:8px 0;font-size:.8rem;color:#94a3b8}
+.ads{margin-top:16px;padding:12px;background:#1e1e3a;border-radius:8px;text-align:center;font-size:.85rem}
+.ads a{color:#818cf8}
+
+.content{margin-top:28px;max-width:720px;margin-left:auto;margin-right:auto;padding:0 6px}
+.content h2{color:#f8fafc;font-size:1.25rem;margin:24px 0 10px}
+.content p{color:#cbd5e1;line-height:1.6;margin-bottom:12px;font-size:.95rem}
+.content strong{color:#e2e8f0}
+@media(max-width:520px){
+  .container{padding:20px 14px}
+  .tool-card{padding:16px}
+  body{padding:12px!important}
+  .card{padding:18px!important;max-width:100%!important}
+  .content h2{font-size:1.05rem}
+  .item{padding:16% 0}
+  .item .shape{font-size:2.2rem}
+}
+@media(max-width:380px){
+  .item{padding:13% 0}
+  .item .shape{font-size:1.9rem}
+  .hud{flex-wrap:wrap;gap:4px}
+}
+
+</style>
+</head>
+<body>
+<div class="card">
+<h1>JSON Formatter & Validator</h1>
+<p class="sub">Paste messy JSON → get pretty, valid output instantly</p>
+<textarea id="input" placeholder='{"name":"test","data":[1,2,3]}'></textarea>
+<div class="btns">
+<button class="btn-fmt" onclick="format()">✨ Format</button>
+<button class="btn-min" onclick="minify()">📦 Minify</button>
+<button class="btn-valid" onclick="validate()">✅ Validate</button>
+<button class="btn-copy" onclick="copyResult()">📋 Copy</button>
+</div>
+<div class="stats" id="stats"></div>
+<textarea id="output" readonly style="min-height:120px"></textarea>
+<div class="kofi" style="text-align:center;margin-bottom:12px;padding:10px;background:#1e1e3a;border-radius:8px"><a href="https://ko-fi.com/pyfiletoolkit" target="_blank" style="color:#ff5e5b;font-weight:600;text-decoration:none">☕ Support this tool on Ko-fi</a></div>
+<div class="ads">
+<a href="https://pyfile-toolkit.github.io/web-toolkit/">← Toolkit</a> | 
+<a href="https://pyfile-toolkit.github.io/web-toolkit/base64.html">Base64</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/qrcode.html">QR Code</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/youtube-tag-generator.html">YouTube Tags</a> |
+<a href="https://pyfile-toolkit.github.io/web-toolkit/brandseed.html">Brandseed</a> |
+<a href="https://pyfiletoolkit.gumroad.com/">Premium Tools</a>
+ · <a href="privacy.html">Privacy</a> · <a href="about.html">About</a></div>
+</div>
+<script>
+const inp=document.getElementById('input'),out=document.getElementById('output'),st=document.getElementById('stats');
+function format(){try{const o=JSON.parse(inp.value);out.value=JSON.stringify(o,null,2);st.textContent='✓ Valid JSON · '+out.value.length+' chars'}catch(e){st.textContent='❌ '+e.message}}
+function minify(){try{const o=JSON.parse(inp.value);out.value=JSON.stringify(o);st.textContent='✓ Minified · '+out.value.length+' chars'}catch(e){st.textContent='❌ '+e.message}}
+function validate(){try{JSON.parse(inp.value);out.value=inp.value;st.textContent='✅ Valid JSON'}catch(e){out.value='';st.textContent='❌ Invalid: '+e.message}}
+function copyResult(){if(!out.value)return;navigator.clipboard.writeText(out.value);st.textContent='📋 Copied!'}
+format();
+</script>
+
+<div class="related" style="font-family:system-ui;font-size:.85rem;color:#64748b;text-align:center;margin-top:14px">More tools: <a href="json-schema-validator.html">Json Schema Validator</a> · <a href="url-encoder.html">Url Encoder</a> · <a href="html-encoder.html">Html Encoder</a> · <a href="uuid-generator.html">Uuid Generator</a></div>
+<div class="content"><h2>What is a JSON Formatter?</h2><p>A JSON formatter (also called a JSON prettifier or beautifier) takes raw, minified JSON and reformats it with proper indentation so humans can read it easily. Validating your JSON catches syntax errors in config files, API responses, and data exports before they break your application.</p><h2>How to use this JSON validator</h2><p>Paste your JSON into the input box and click <strong>Format</strong> to beautify it, <strong>Minify</strong> to compress it, or <strong>Validate</strong> to check for errors. The tool runs 100% in your browser — your data never leaves your device.</p><h2>Common JSON use cases</h2><p>Developers use JSON formatting when working with REST APIs, database exports, machine-learning training data, and configuration files. A validated, formatted JSON makes debugging and collaboration much faster.</p><h2>JSON formatting FAQ</h2><p><strong>Why is my JSON not formatting?</strong> Usually a trailing comma or an extra quote. The validator will point to the exact line. <strong>Is my data uploaded?</strong> No — everything runs locally in your browser.</p></div>
+<div id="crypto-donate"></div>
+<script src="donate.js"></script>
+</body>
+</html>
