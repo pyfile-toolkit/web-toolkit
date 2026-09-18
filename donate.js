@@ -22,7 +22,7 @@ window.CRYPTO_DONATIONS = {
       '</div>'+
       '<div style="margin-top:12px;padding:12px 14px;background:#0f1326;border:1px solid #2b3550;border-radius:10px;text-align:center;font-size:.86rem;color:#cbd5e1">'+
       'Need an LLM API for your app? One OpenAI-compatible endpoint, no signup — '+
-      '<a href="https://pyfile-toolkit.github.io/web-toolkit/llm-api.html" onclick="if(window.gtag)gtag('event','cta_llm_api_click',{page:location.pathname});" style="color:#818cf8;font-weight:600">pay per call with Lightning &rarr;</a>'+
+      '<a href="https://pyfile-toolkit.github.io/web-toolkit/llm-api.html" onclick="if(window.gtag)gtag(\'event\',\'cta_llm_api_click\',{page:location.pathname});" style="color:#818cf8;font-weight:600">pay per call with Lightning &rarr;</a>'+
       '</div>';
   }
   window.showDonateAddr = function(k){
