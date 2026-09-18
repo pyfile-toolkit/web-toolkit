@@ -50,6 +50,7 @@ textarea{width:100%;min-height:150px;padding:14px;border-radius:10px;background:
 .case{background:#334155;border-radius:10px;padding:12px;text-align:center;cursor:pointer;border:none;color:#e2e8f0;font-size:.95rem;transition:background .15s}
 .case:hover{background:#4f46e5}
 .case .n{font-weight:700;color:#818cf8;display:block;margin-bottom:2px}
+.case .ex{color:#64748b;font-size:.78rem;font-family:monospace}
 .btns{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
 button{padding:9px 22px;background:#6366f1;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.9rem}
 button:hover{background:#4f46e5}
@@ -114,7 +115,7 @@ const wrap = document.getElementById('cases');
 cases.forEach(c=>{
   const b = document.createElement('button');
   b.className = 'case';
-  b.innerHTML = '<span class="n">'+c.name+'</span>'+c.fn();
+  b.innerHTML = '<span class="n">'+c.name+'</span><span class="ex">'+c.n+'</span>';
   b.onclick = ()=>{
     const n = Math.max(1, Math.min(100, parseInt(inp.value,10) || 1));
     const fn = c.name === 'UUID v7' ? (()=>U.manyV7(n)) : (()=>U.manyV4(n));
