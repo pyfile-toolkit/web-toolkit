@@ -65,6 +65,8 @@ button:hover{background:#4f46e5}
 .content code{background:#1e293b;padding:2px 6px;border-radius:6px;color:#a5b4fc;font-size:.9em}
 @media(max-width:520px){body{padding:12px}.card{padding:18px}.content h2{font-size:1.05rem}}
 </style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is my data private?","acceptedAnswer":{"@type":"Answer","text":"Yes — encoding and decoding run entirely in this tab, nothing is uploaded."}},{"@type":"Question","name":"Why did decoding fail?","acceptedAnswer":{"@type":"Answer","text":"The tool shows an error state when the input contains invalid escapes such as a lone % or truncated %XX."}},{"@type":"Question","name":"UTF-8 or Latin-1?","acceptedAnswer":{"@type":"Answer","text":"Modern percent-encoding is UTF-8; emoji and non-Latin scripts encode to multi-byte sequences, which this tool handles correctly."}}]}</script>
 </head>
 <body>
 <div class="card">

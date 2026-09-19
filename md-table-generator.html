@@ -65,6 +65,8 @@ button:hover{background:#4f46e5}
 .content code{background:#1e293b;padding:2px 6px;border-radius:6px;color:#a5b4fc;font-size:.9em}
 @media(max-width:520px){body{padding:12px}.card{padding:18px}.content h2{font-size:1.05rem}}
 </style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What separators are supported?","acceptedAnswer":{"@type":"Answer","text":"Comma by default, with a pipe-separated mode for copy-pasting from terminal output."}},{"@type":"Question","name":"What about commas inside quoted cells?","acceptedAnswer":{"@type":"Answer","text":"Quoted strings are handled: a cell like \"Dev, QA\" stays one column."}},{"@type":"Question","name":"Do pipes inside cells break the table?","acceptedAnswer":{"@type":"Answer","text":"No — they are escaped as \\| automatically."}},{"@type":"Question","name":"Is the data safe?","acceptedAnswer":{"@type":"Answer","text":"Everything runs locally; nothing is uploaded."}}]}</script>
 </head>
 <body>
 <div class="card">

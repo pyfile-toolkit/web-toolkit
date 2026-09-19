@@ -66,6 +66,8 @@ button:hover{background:#4f46e5}
 .content code{background:#1e293b;padding:2px 6px;border-radius:6px;color:#a5b4fc;font-size:.9em}
 @media(max-width:520px){body{padding:12px}.card{padding:18px}.content h2{font-size:1.05rem}}
 </style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Which version should I use?","acceptedAnswer":{"@type":"Answer","text":"v4 for random tokens, API keys and anything that must be unpredictable; v7 for rows that should sort by creation time (Postgres, MySQL, Mongo all store them fine as strings)."}},{"@type":"Question","name":"Can it run offline?","acceptedAnswer":{"@type":"Answer","text":"Yes — all generation uses the browser's crypto API, with a Math.random fallback; no network is involved."}},{"@type":"Question","name":"Are the IDs unique?","acceptedAnswer":{"@type":"Answer","text":"v4 uses 122 bits of randomness; v7 combines a timestamp with random bits, so collisions are astronomically unlikely for normal workloads."}}]}</script>
 </head>
 <body>
 <div class="card">
