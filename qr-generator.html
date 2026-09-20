@@ -53,6 +53,14 @@ button:hover{filter:brightness(1.1)}
 .info p{margin-bottom:10px}
 .back a{color:#9db8ff;text-decoration:none}
 </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What can I encode in a QR code?","acceptedAnswer":{"@type":"Answer","text":"Any short text: a website URL, a wifi login (WIFI:T:WPA;S:MyNet;P:secret;;), an email (mailto:hi@example.com), a phone number, an event, or a plain message. Longer text produces a denser QR — keep it under a few hundred characters for reliable scanning."}},
+{"@type":"Question","name":"Why does error correction matter?","acceptedAnswer":{"@type":"Answer","text":"A higher level (Q or H) makes the code scannable even when part of it is covered by a logo or damaged, at the cost of a busier pattern. Use L or M for plain printed codes, H for codes printed on curved or textured surfaces."}},
+{"@type":"Question","name":"How do QR codes actually work?","acceptedAnswer":{"@type":"Answer","text":"QR codes use finder patterns, versions and Reed-Solomon error correction to encode data that scanners can read even when partially obscured."}},
+{"@type":"Question","name":"Is it private?","acceptedAnswer":{"@type":"Answer","text":"Yes. Generation happens entirely in your browser — nothing is uploaded or logged."}}
+]}
+</script>
 </head>
 <body>
 <div class="wrap">
