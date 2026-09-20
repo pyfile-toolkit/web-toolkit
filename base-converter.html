@@ -55,6 +55,13 @@ button:hover{filter:brightness(1.1)}
 code{background:#0c1220;border-radius:4px;padding:1px 5px;font-size:13px}
 .back a{color:#9db8ff;text-decoration:none}
 </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How does the base converter work?","acceptedAnswer":{"@type":"Answer","text":"Every value has multiple equivalent notations. 255 (decimal) is 11111111 in binary, 377 in octal and FF in hexadecimal. This converter parses your input as an integer in the chosen base and re-renders it in all four — using BigInt under the hood, so it also handles enormous numbers like full-length Ethereum addresses and 256-bit hashes."}},
+{"@type":"Question","name":"What are common uses?","acceptedAnswer":{"@type":"Answer","text":"Developers convert between bases constantly: subnet masks and permissions (decimal to octal), colors (decimal to hex), bit flags (binary to hex), and cryptographic material (hex to binary). Paste a value and read all equivalents at once."}},
+{"@type":"Question","name":"Is it private?","acceptedAnswer":{"@type":"Answer","text":"Yes — conversion happens entirely in your browser. Nothing is uploaded, stored or logged."}}
+]}
+</script>
 </head>
 <body>
 <div class="wrap">
