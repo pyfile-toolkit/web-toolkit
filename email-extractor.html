@@ -51,6 +51,15 @@ label{font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center}
 .info p{margin-bottom:10px}
 .back a{color:#9db8ff;text-decoration:none}
 </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How does the email extractor work?","acceptedAnswer":{"@type":"Answer","text":"The tool matches standard email patterns (local@domain with a real top-level domain), removes duplicates, normalizes case and sorts the list alphabetically. By default it also skips addresses that look like image or asset filenames (e.g. logo.png or style.css@cdn false matches); toggle the checkbox to include them."}},
+{"@type":"Question","name":"What is it for?","acceptedAnswer":{"@type":"Answer","text":"Extracting contacts from an exported CSV or HTML page, cleaning a mailing list, auditing logs or documentation for stray addresses, or moving contacts between tools. Everything runs locally — sensitive lists never leave your machine."}},
+{"@type":"Question","name":"Is it private?","acceptedAnswer":{"@type":"Answer","text":"Yes — extraction happens entirely in your browser. Nothing is uploaded, stored or logged."}}
+]}
+</script>
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/site.js" defer></script>
 </head>
 <body>
 <div class="wrap">

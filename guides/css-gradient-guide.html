@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDDV2FW9HY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RDDV2FW9HY');
+</script>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg"><link rel="icon" href="../favicon.ico" sizes="any">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Gradients Explained: linear-gradient, radial-gradient & Angles</title>
+<link rel="canonical" href="https://pyfile-toolkit.github.io/web-toolkit/guides/css-gradient-guide.html">
+<meta name="description" content="CSS gradients explained: linear-gradient and radial-gradient syntax, angles, color stops, repeating gradients, and browser fallbacks. With copy-paste examples.">
+<meta property="og:title" content="CSS Gradients Explained: linear-gradient, radial-gradient & Angles">
+<meta property="og:description" content="How CSS gradients work: syntax, angles, color stops, and copy-paste examples.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"CSS Gradients Explained: linear-gradient, radial-gradient & Angles","description":"How CSS gradients work: syntax, angles, color stops, and copy-paste examples.","datePublished":"2026-09-19","dateModified":"2026-09-19","author":{"@type":"Organization","name":"Web Toolkit"},"publisher":{"@type":"Organization","name":"Web Toolkit"},"mainEntityOfPage":"https://pyfile-toolkit.github.io/web-toolkit/guides/css-gradient-guide.html"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://pyfile-toolkit.github.io/web-toolkit/"},{"@type":"ListItem","position":2,"name":"CSS Gradients","item":"https://pyfile-toolkit.github.io/web-toolkit/guides/css-gradient-guide.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is the difference between linear-gradient and radial-gradient?","acceptedAnswer":{"@type":"Answer","text":"linear-gradient blends colors along a straight line (you set the direction or angle); radial-gradient blends colors outward from a center point in a circle or ellipse. Use linear for banners and buttons, radial for spotlights and vignettes."}},
+{"@type":"Question","name":"How do CSS gradient angles work?","acceptedAnswer":{"@type":"Answer","text":"In linear-gradient the angle is in degrees: 0deg points up, 90deg points right, 180deg points down, 270deg points left. The angle is the direction the gradient line travels, so colors run from the start of that line to the end."}},
+{"@type":"Question","name":"Can I use more than two colors in a gradient?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add as many color stops as you like, separated by commas, e.g. linear-gradient(90deg, red, orange, yellow, green). Each stop can take an optional position such as red 0%, orange 50%."}},
+{"@type":"Question","name":"Are CSS gradients supported in all browsers?","acceptedAnswer":{"@type":"Answer","text":"Yes. Standard linear-gradient and radial-gradient have been supported in every modern browser for years with no vendor prefix needed. Only very old browsers require -webkit- prefixes."}},
+{"@type":"Question","name":"Do CSS gradients affect page performance?","acceptedAnswer":{"@type":"Answer","text":"Gradients are rendered by the browser as images, but they are lightweight compared to bitmap images and need no network request. For simple two-color backgrounds they are typically faster than loading an image file."}}
+]}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px 16px 40px}
+.wrap{max-width:720px;width:100%}
+.crumb{font-size:.75rem;color:#64748b;margin:10px 0 4px}.crumb a{color:#818cf8;text-decoration:none}
+h1{font-size:1.9rem;line-height:1.25;color:#f8fafc;margin:8px 0 10px}
+.meta{font-size:.8rem;color:#64748b;margin-bottom:18px}
+article h2{font-size:1.3rem;color:#22d3ee;margin:28px 0 10px}
+article h3{font-size:1.05rem;color:#e2e8f0;margin:20px 0 8px}
+article p{color:#cbd5e1;font-size:.95rem;line-height:1.75;margin-bottom:14px}
+article ul,article ol{color:#cbd5e1;font-size:.95rem;line-height:1.7;margin:0 0 14px 22px}
+article li{margin-bottom:6px}
+pre{background:#111827;border:1px solid #334155;border-radius:10px;padding:14px;font-family:ui-monospace,Menlo,monospace;font-size:.82rem;line-height:1.6;color:#a5f3fc;overflow:auto;margin:0 0 16px;white-space:pre}
+code{font-family:ui-monospace,Menlo,monospace;background:#1e293b;padding:1px 5px;border-radius:5px;font-size:.85em;color:#fbbf24}
+table{width:100%;border-collapse:collapse;margin:0 0 18px;font-size:.88rem}
+th,td{border:1px solid #334155;padding:9px 11px;text-align:left;color:#cbd5e1}
+th{background:#1e293b;color:#f8fafc}
+.swatch{height:56px;border-radius:10px;border:1px solid #334155;margin:0 0 16px}
+.cta{background:#1e293b;border:1px solid #334155;border-radius:14px;padding:18px;margin:24px 0;text-align:center}
+.cta p{color:#94a3b8;margin-bottom:12px;font-size:.9rem}
+.btn{display:inline-block;padding:11px 22px;border-radius:10px;background:#6366f1;color:#fff;font-weight:800;text-decoration:none;font-size:.9rem}
+.btn:hover{background:#4f46e5}
+.kofi{margin-top:20px;text-align:center;font-size:.85rem}.kofi a{color:#ff5e5b;text-decoration:none}
+.related{margin-top:26px}
+.related a{display:block;color:#818cf8;text-decoration:none;font-size:.9rem;margin-bottom:8px}
+.foot{width:100%;text-align:center;font-size:.8rem;color:#64748b;padding:14px 0 2px}.foot a{color:#818cf8;text-decoration:none;margin:0 5px}
+</style>
+<link rel="stylesheet" href="../assets/styles.css">
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+<div class="wrap">
+<div class="crumb"><a href="../index.html">← Home</a> · <a href="../css-gradient-generator.html">🌈 CSS Gradient Generator</a></div>
+<h1>CSS Gradients Explained: linear-gradient, radial-gradient & Angles</h1>
+<div class="meta">Updated September 19, 2026 · Read time: ~6 min · Part of the Web Toolkit dev guide series</div>
+<article>
+<p>A CSS gradient lets you blend two or more colors without an image file. It's a single line of CSS, renders instantly, needs no network request, and scales to any size without blurring. This guide covers the two gradient functions you'll actually use — <code>linear-gradient()</code> and <code>radial-gradient()</code> — plus angles, color stops, and copy-paste examples.</p>
+
+<h2>The one-line rule</h2>
+<p><strong>Use <code>linear-gradient()</code> for direction (banners, buttons, dividers) and <code>radial-gradient()</code> for a focal point (spotlights, glows, vignettes).</strong> Both take a comma-separated list of colors and optional positions — no vendor prefixes needed in modern browsers.</p>
+
+<h2>1. linear-gradient: blending along a line</h2>
+<p>The simplest gradient just lists two colors:</p>
+<pre>background: linear-gradient(red, blue);</pre>
+<p>By default the line runs top to bottom. Add a direction keyword or an angle to change it:</p>
+<pre>background: linear-gradient(to right, red, blue);   /* left → right */
+background: linear-gradient(90deg, red, blue);      /* same thing */
+background: linear-gradient(to bottom right, red, blue); /* diagonal */</pre>
+<div class="swatch" style="background:linear-gradient(90deg,#ef4444,#3b82f6)"></div>
+
+<h2>2. How angles work</h2>
+<p>An angle in <code>linear-gradient</code> is measured in degrees and describes the direction the gradient line travels. The colors run <em>from</em> the start of that line <em>to</em> the end:</p>
+<table>
+<tr><th>Angle</th><th>Direction</th><th>First color appears</th></tr>
+<tr><td><code>0deg</code></td><td>up</td><td>bottom</td></tr>
+<tr><td><code>90deg</code></td><td>right</td><td>left</td></tr>
+<tr><td><code>180deg</code></td><td>down</td><td>top</td></tr>
+<tr><td><code>270deg</code></td><td>left</td><td>right</td></tr>
+</table>
+<p>This trips people up: <code>0deg</code> points <strong>up</strong>, so with <code>linear-gradient(0deg, red, blue)</code> red is at the bottom and blue at the top. If you want red on top, use <code>180deg</code> or the keyword <code>to bottom</code>.</p>
+
+<h2>3. Color stops and hard edges</h2>
+<p>Each color can carry an optional position — a percentage or length — that says where it sits on the gradient line:</p>
+<pre>background: linear-gradient(90deg, red 0%, yellow 50%, green 100%);</pre>
+<p>Put two stops at the same position for a hard edge instead of a smooth blend:</p>
+<pre>background: linear-gradient(90deg, red 50%, blue 50%);  /* sharp split */</pre>
+<div class="swatch" style="background:linear-gradient(90deg,#ef4444 50%,#3b82f6 50%)"></div>
+<p>This is a common trick for striped patterns: repeat the stop pairs and you get clean bars without an image.</p>
+
+<h2>4. radial-gradient: blending from a center</h2>
+<p><code>radial-gradient()</code> radiates outward from a center point. The default is a centered ellipse:</p>
+<pre>background: radial-gradient(red, blue);</pre>
+<p>You can control the shape (<code>circle</code> or <code>ellipse</code>), the size, and the position:</p>
+<pre>background: radial-gradient(circle at center, #f8fafc 0%, #6366f1 100%);
+background: radial-gradient(circle at top left, red, blue 70%);</pre>
+<div class="swatch" style="background:radial-gradient(circle at center,#f8fafc 0%,#6366f1 100%)"></div>
+
+<h2>5. Repeating gradients</h2>
+<p>Wrap either function in <code>repeating-</code> to tile the pattern:</p>
+<pre>background: repeating-linear-gradient(45deg, #111 0 10px, #222 10px 20px);</pre>
+<p>With a zero-length stop (<code>#111 0 10px</code>) you get crisp stripes — handy for progress bars, placeholders, and diagonal accents.</p>
+
+<h2>6. Practical tips</h2>
+<ul>
+<li><strong>Keep contrast readable.</strong> If text sits on a gradient, check contrast at both ends — the darker stop usually decides legibility. Our <a href="../contrast-checker.html">contrast checker</a> handles the math.</li>
+<li><strong>Use <code>to right</code> over <code>90deg</code></strong> when the direction is obvious; it reads better in code.</li>
+<li><strong>Overlay with rgba for depth:</strong> <code>linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4))</code> over a photo darkens it evenly.</li>
+<li><strong>Animate stops, not colors.</strong> Animating <code>background-position</code> on an oversized gradient is smoother than transitioning between two gradients.</li>
+</ul>
+
+<div class="cta">
+<p>Want to build one visually instead of writing the CSS by hand?</p>
+<a class="btn" href="../css-gradient-generator.html" data-cta="llm_api_click">Open the CSS Gradient Generator →</a>
+</div>
+
+<div class="related">
+<strong style="color:#94a3b8;font-size:.85rem">Related guides & tools</strong>
+<a href="../contrast-checker.html">WCAG Contrast Checker — is your text readable?</a>
+<a href="wcag-contrast-explained.html">WCAG contrast explained</a>
+<a href="../color-palette.html">Color Palette Generator</a>
+<a href="../box-shadow-generator.html">CSS Box Shadow Generator</a>
+</div>
+</article>
+<div class="kofi">☕ <a href="../donate.html">Support the toolkit</a></div>
+<div class="foot"><a href="../index.html">Home</a> · <a href="../about.html">About</a> · <a href="../privacy.html">Privacy</a></div>
+</div>
+<script src="../donate.js"></script>
+</body>
+</html>

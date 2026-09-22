@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+cd /workspaces/PICodingAgent/llm-problemsolver/projects/web-toolkit
+T=$(tr -d '[:space:]' < ../../vault/keys/github.txt)
+git push "https://x-access-token:${T}@github.com/pyfile-toolkit/web-toolkit.git" HEAD:main 2>&1 | tail -4

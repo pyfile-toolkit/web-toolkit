@@ -67,6 +67,8 @@ button:hover{background:#4f46e5}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What counts as \"changed\"?","acceptedAnswer":{"@type":"Answer","text":"Any leaf value that differs (numbers, strings, booleans, null) or a key present in only one side."}},{"@type":"Question","name":"Big JSON files?","acceptedAnswer":{"@type":"Answer","text":"The flattener handles deep nesting and large arrays comfortably — it is a simple in-memory pass."}},{"@type":"Question","name":"Order-insensitive?","acceptedAnswer":{"@type":"Answer","text":"Object keys are sorted before comparison, so reordered keys do not count as changes; arrays, however, are compared by position."}}]}</script>
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/site.js" defer></script>
 </head>
 <body>
 <div class="card">

@@ -48,6 +48,8 @@ textarea{width:100%;height:250px;background:#0b0f1a;border:1px solid #334155;bor
 <meta property="og:image" content="https://pyfile-toolkit.github.io/web-toolkit/og-image.png">
 <meta property="og:url" content="https://pyfile-toolkit.github.io/web-toolkit/html-minifier.html">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is minified HTML still valid?","acceptedAnswer":{"@type":"Answer","text":"Yes — whitespace between markup tags is insignificant to rendering, so removing it doesn't change output (except inside pre/code/textarea, which we preserve)."}},{"@type":"Question","name":"What happens to inline JS and CSS?","acceptedAnswer":{"@type":"Answer","text":"Their content is preserved verbatim and only surrounding whitespace is trimmed."}},{"@type":"Question","name":"Can I undo minification?","acceptedAnswer":{"@type":"Answer","text":"Yes — use our formatter/beautifier to re-indent the compact markup (or keep a copy of the original)."}},{"@type":"Question","name":"Is my code sent anywhere?","acceptedAnswer":{"@type":"Answer","text":"No — everything runs locally in your browser."}}]}</script>
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/site.js" defer></script>
 </head>
 <body>
 <div class="wrap">
