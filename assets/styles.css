@@ -35,8 +35,30 @@ body{margin:0}
 .wdt-cta-band p{margin:0;color:var(--text-dim);font-size:.86rem}
 .wdt-cta-band .btn{background:var(--brand);color:#fff;text-decoration:none;font-weight:700;padding:10px 18px;border-radius:var(--radius-sm);white-space:nowrap}
 .wdt-cta-band .btn:hover{background:var(--brand-hover)}
-/* Tool grid */
-.tools{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))!important;gap:16px!important;align-items:stretch;margin:24px 0!important}
+/* --- Chrome-safe body reset ---------------------------------------------------
+   Many tool pages set `body{display:flex;align-items:center;justify-content:center}`
+   to center their own card. site.js mounts header/breadcrumbs/CTA/footer as direct
+   children of <body>, so on those pages every chrome block became a cramped flex
+   column and the page content was shoved off to the side. When injected chrome is
+   present we neutralise that: block layout, full-width chrome, page padding kept.
+   Pages without site.js are untouched (the `:has()` guard never matches). */
+body:has(> .wdt-header){display:block!important;align-items:initial!important;justify-content:initial!important;flex-direction:column!important}
+body:has(> .wdt-header) > .wdt-header,
+body:has(> .wdt-header) > .wdt-crumbs,
+body:has(> .wdt-header) > .wdt-cta-band,
+body:has(> .wdt-header) > .wdt-footer{width:100%;max-width:100%;flex:0 0 auto;align-self:stretch;margin-left:0;margin-right:0}
+/* Pages that centred their own wrapper via body flex need explicit centring now. */
+body:has(> .wdt-header) > .wrap,
+body:has(> .wdt-header) > .container,
+body:has(> .wdt-header) > .card{margin-left:auto;margin-right:auto}
+
+/* Base look for pages that ship no body rule of their own (e.g. index.html).
+   Kept as low-specificity defaults so per-page inline styles still win. */
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--text);font-family:var(--font,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif);min-height:100vh}
+
+/* Tool grid (scoped to the home grid; not !important so pages can override) */
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;align-items:stretch;margin:24px 0}
 .tools > .tool-card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);padding:18px;transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease}
 .tools > .tool-card:hover{transform:translateY(-3px);border-color:var(--brand);box-shadow:var(--shadow)}
 .tools > .tool-card h3{margin:0 0 6px;color:var(--text);font-size:1.02rem;line-height:1.3}
