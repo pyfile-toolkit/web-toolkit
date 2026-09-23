@@ -1,5 +1,5 @@
 const assert = require('assert');
-const U = require('./uuid-lib.js');
+const U = require('./uuid-gen-lib.js');
 const RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 for (let i=0;i<200;i++) {
   const u = U.v4();

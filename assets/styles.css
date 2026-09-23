@@ -45,3 +45,12 @@ body{margin:0}
 .tools > .tool-card .btn-free{background:var(--brand);color:#fff}
 .tools > .tool-card .btn-free:hover{background:var(--brand-hover)}
 .tools > .tool-card .btn-pro{background:transparent;color:var(--accent-2);border:1px solid var(--border);margin-top:6px}
+/* Content tables (benchmarks, comparisons) */
+.tableWrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:18px 0;border:1px solid var(--border-soft);border-radius:var(--radius);background:var(--surface)}
+.tableWrap table{border-collapse:collapse;width:100%;min-width:520px;font-size:.88rem}
+.tableWrap th,.tableWrap td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--border-soft);vertical-align:top}
+.tableWrap thead th{background:var(--bg-soft);color:var(--text);font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.tableWrap tbody tr:last-child td{border-bottom:0}
+.tableWrap tbody tr:hover{background:var(--bg-soft)}
+.tableWrap td:first-child{white-space:nowrap;color:var(--text)}
+.tableWrap td{color:var(--text-dim)}
