@@ -72,6 +72,30 @@ tr:hover td{background:#16233b}
 <p>HTTP status codes are three-digit responses a server sends after each request. They're grouped into five classes: <strong>1xx</strong> informational, <strong>2xx</strong> success, <strong>3xx</strong> redirection, <strong>4xx</strong> client error, and <strong>5xx</strong> server error. The meanings below follow <code>RFC 9110</code> (standards) with common unofficial extensions noted separately.</p>
 <h2>Most Common Codes Developers Meet</h2>
 <p><strong>200 OK</strong> — the request succeeded. <strong>301 Moved Permanently</strong> — the URL has permanently moved (use in redirects for SEO). <strong>404 Not Found</strong> — the resource doesn't exist. <strong>401 Unauthorized</strong> — authentication required. <strong>403 Forbidden</strong> — no permission. <strong>429 Too Many Requests</strong> — rate-limited. <strong>500 Internal Server Error</strong> — something broke on the server.</p>
+<h2>Quick look-up: uncommon status codes</h2>
+<p>Most searches for a status code are for one specific number. Look it up here first — the full table below has the RFC text.</p>
+<div class="tableWrap"><table>
+<thead><tr><th>Code</th><th>Name</th><th>Standard?</th><th>Typical cause</th></tr></thead>
+<tbody>
+<tr><td><strong>1xx</strong></td><td>Informational class</td><td>RFC 9110</td><td>100 Continue, 101 Switching Protocols, 103 Early Hints — the server is talking before the final response.</td></tr>
+<tr><td><strong>209</strong></td><td>Content Returned</td><td>unofficial</td><td>Legacy IIS code; a 2xx success you will rarely see in modern stacks.</td></tr>
+<tr><td><strong>210</strong></td><td>Content Different</td><td>unofficial</td><td>Legacy IIS code for a variant of the requested resource.</td></tr>
+<tr><td><strong>305</strong></td><td>Use Proxy</td><td>RFC 9110 (deprecated)</td><td>The resource must be accessed through a proxy; removed from practice for security reasons.</td></tr>
+<tr><td><strong>423</strong></td><td>Locked</td><td>RFC 4918 (WebDAV)</td><td>The resource is locked — common in WebDAV/Collabora when another user is editing the file.</td></tr>
+<tr><td><strong>430</strong></td><td>Request Header Fields Too Large (variant)</td><td>unofficial</td><td>Not in RFC 9110; some servers return 430 for oversized headers instead of 431. Treat as a client error.</td></tr>
+<tr><td><strong>512</strong></td><td>Unknown upstream error</td><td>unofficial</td><td>Historical nginx/WebDAV code for a malformed upstream response.</td></tr>
+<tr><td><strong>514</strong></td><td>Upstream error (variant)</td><td>unofficial</td><td>Same family as 512; usually the origin returned something the gateway could not parse.</td></tr>
+<tr><td><strong>561</strong></td><td>Unauthorized</td><td>unofficial</td><td>AWS-specific code for an unauthenticated request.</td></tr>
+</tbody>
+</table></div>
+<h2>Related free tools</h2>
+<ul>
+<li><a href="json-formatter.html">JSON Formatter</a> — pretty-print the API body that came with the error code.</li>
+<li><a href="regex-tester.html">Regex Tester</a> — parse status codes out of access logs.</li>
+<li><a href="jwt-decoder.html">JWT Decoder</a> — inspect the token behind a 401 or 403.</li>
+<li><a href="url-encoder-decoder.html">URL Encoder / Decoder</a> — fix malformed URLs that cause 400-class errors.</li>
+<li><a href="diff-checker.html">Diff Checker</a> — compare two API responses before and after a fix.</li>
+</ul>
 <h2>HTTP Status Codes FAQ</h2>
 <p><strong>What does the first digit tell me?</strong> 1=info, 2=success, 3=redirect, 4=your client's fault, 5=server's fault. <strong>Which is better for redirects: 301 or 302?</strong> 301 is permanent (SEO passes link equity), 302 is temporary. <strong>What's an unofficial code?</strong> Codes like 418 I'm a Teapot are fun extensions that aren't part of the RFC — use them for internal tools, not public APIs.</p>
 <p><strong>What is HTTP 423?</strong> 423 Locked means the resource is locked (WebDAV, e.g. a file being edited by another user). <strong>What is HTTP 430?</strong> 430 is not an official code; some servers return it to mean "Request Header Fields Too Large"-like rejection — treat it as a client error and fix the request. <strong>What are HTTP 512, 513 and 514?</strong> Unofficial server codes historically used by WebDAV/nginx when the origin returns an unknown error; 512/514 usually mean the upstream response was malformed. <strong>What is HTTP 561?</strong> An unofficial AWS code meaning Unauthorized. <strong>What is HTTP 209 or 210?</strong> Unofficial IIS 2xx codes (Content Returned, Content Different) — not part of RFC 9110.</p>
