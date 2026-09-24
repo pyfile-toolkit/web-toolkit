@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agent Readiness of Major APIs: What the Open Data Actually Says (2026)</title>
+<meta name="description" content="I pulled the open agent-readiness dataset (25 API profiles, 5ae5f5ef6ef8) and counted it. 21 of 25 services are 'constrained'. Only one is fully agent-ready. Here is the aggregate nobody publishes.">
+<link rel="canonical" href="https://pyfile-toolkit.github.io/web-toolkit/agent-readiness-report.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Agent Readiness of Major APIs: What the Open Data Actually Says","datePublished":"2026-09-24","dateModified":"2026-09-24","author":{"@type":"Organization","name":"PyFile Toolkit"},"about":"Agent readiness of public APIs, measured against an open registry dataset"}
+</script>
+<style>
+body{font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:860px;margin:0 auto;padding:28px 18px;color:#1c1f23}
+h1{font-size:1.85rem;line-height:1.25;margin:.2em 0 .3em}
+h2{margin-top:1.9em;font-size:1.3rem;border-bottom:1px solid #e6e8eb;padding-bottom:.3em}
+h3{margin-top:1.4em;font-size:1.08rem}
+table{border-collapse:collapse;width:100%;font-size:.92rem;margin:1em 0}
+th,td{border:1px solid #dfe2e6;padding:7px 9px;text-align:left}
+th{background:#f4f6f8}
+code{background:#f2f4f6;padding:1px 5px;border-radius:4px;font-size:.9em;word-break:break-all}
+.box{background:#f7f9fb;border-left:4px solid #3b7ddd;padding:12px 16px;margin:1.2em 0;border-radius:0 6px 6px 0}
+.big{font-size:1.05rem}
+.muted{color:#5b6370;font-size:.9rem}
+ul{padding-left:1.2em}
+a{color:#1a56b8}
+</style>
+</head>
+<body>
+<h1>Agent Readiness of Major APIs: What the Open Data Actually Says</h1>
+<p class="muted">Published 24 September 2026. All figures below are recomputed from a single published dataset release, named at the end so you can check every number yourself.</p>
+
+<div class="box big">
+<p><b>Three findings, up front.</b></p>
+<ul>
+<li><b>21 of 25 API profiles are &ldquo;constrained&rdquo;</b> &mdash; an agent can call the service, but cannot reliably finish its lifecycle unaided.</li>
+<li><b>Exactly one service is fully agent-ready</b> (grade A+, outcome <code>pass</code>), and it is a public DNS resolver, not a commercial platform.</li>
+<li><b>Two carry grade D and outcome <code>fail</code></b> &mdash; the two that agents are most likely to be pointed at for repository and error-tracking work.</li>
+</ul>
+</div>
+
+<h2>Why &ldquo;the API works&rdquo; is the wrong test</h2>
+<p>Most teams judge an API by whether a script can get a 200 back. That test passes almost everywhere and tells you almost nothing. The interesting question is the one an autonomous agent has to answer on its own, with no human in the loop:</p>
+<p class="big">&ldquo;Given only public documentation and my own credentials, can I discover this service, sign up, understand what I will be charged, provision it, and handle its failure modes &mdash; without a human filling a gap?&rdquo;</p>
+<p>That question decomposes into five stages. Each stage is scored on its own, and a service can be excellent at one and blocked at the next. The five stages are:</p>
+<ol>
+<li><b>Evaluate</b> &mdash; can an agent find the exact service and its stable entry points?</li>
+<li><b>Sign up</b> &mdash; is there a stable route to begin obtaining access?</li>
+<li><b>Pay</b> &mdash; is the commercial commitment disclosed <i>before</i> authorization, in machine-readable form?</li>
+<li><b>Provision</b> &mdash; can the agent determine that provisioning actually completed?</li>
+<li><b>Operate</b> &mdash; are the failure modes documented well enough to fail safely?</li>
+</ol>
+<p>The pattern that emerges from the data is specific and worth stating plainly: <b>APIs tend to score well on the first two stages and poorly on the last three.</b> Discovery and sign-up are web problems, and the web solved them years ago. Payment disclosure, completion semantics and failure contracts are <i>protocol</i> problems, and they are largely unsolved.</p>
+
+<h2>The aggregate nobody publishes</h2>
+<p>The registry publishes one profile card per service. That is the right shape for a lookup and the wrong shape for a trend, so here is the whole release counted up. Every grade in the dataset:</p>
+<table>
+<tr><th>Grade</th><th>Profiles</th><th>What it means</th></tr>
+<tr><td><b>A+ / A</b></td><td>4</td><td>All five stages ready</td></tr>
+<tr><td><b>B+ / B</b></td><td>13</td><td>One or two stages limited</td></tr>
+<tr><td><b>C+</b></td><td>5</td><td>Three or more stages limited</td></tr>
+<tr><td><b>D</b></td><td>2</td><td>Core stages blocked</td></tr>
+<tr><td><b>unrated</b></td><td>1</td><td>Not enough public evidence</td></tr>
+</table>
+<p>And the outcome distribution, which is the number that matters most:</p>
+<table>
+<tr><th>Outcome</th><th>Profiles</th><th>Reading</th></tr>
+<tr><td><code>constrained</code></td><td><b>21</b></td><td>Usable, with conditions an agent must notice unaided</td></tr>
+<tr><td><code>fail</code></td><td>2</td><td>A stage a competent agent cannot complete</td></tr>
+<tr><td><code>pass</code></td><td>1</td><td>Clean end to end</td></tr>
+<tr><td><code>unknown</code></td><td>1</td><td>Evidence insufficient to judge</td></tr>
+</table>
+
+<h2>The two failures, and the one clean pass</h2>
+<p>The extremes are more instructive than the middle. The only profile in the entire release that passes every stage is <b>Cloudflare&rsquo;s public 1.1.1.1 DNS resolver</b>. That is not a coincidence and it is not a compliment to Cloudflare&rsquo;s platform team: a DNS resolver has no account, no billing, no quota negotiation and no provisioning step. Four of the five stages do not exist for it. <b>It is agent-ready because there is nothing to be ready for.</b></p>
+<p>The two profiles that fail outright are <b>Sentry&rsquo;s Web API</b> and <b>GitHub Enterprise Server 3.21</b>, both grade D. These are the uncomfortable ones. A repository API and an error-tracking API are exactly what an autonomous agent is most often pointed at &mdash; write code, open a PR, file and triage issues. The dataset says an agent cannot complete the lifecycle on either without a human stepping in at a stage that the task did not budget for.</p>
+<p>The remaining 22 profiles sit in the wide middle, labelled <code>limited</code>. That word is doing a lot of work. It is not a synonym for &ldquo;bad&rdquo;; it means <i>there is a condition attached, and the agent has to detect it by reading documentation rather than by reading a status field.</i> Conditions that live only in prose are the ones agents miss.</p>
+
+<h2>Where the constraints actually cluster</h2>
+<p>Because each profile carries a per-stage finding, the aggregate can be read as a map of <i>which</i> stage tends to break rather than just how many services break. Two signals recur far more than any other across the dataset:</p>
+<ul>
+<li><b>Pricing decidability.</b> The condition is whether an agent can estimate cost, or confirm no-charge status, <i>before</i> it authorizes anything. Free tiers and trial credits are routinely described on a marketing page and absent from any machine-readable surface. An agent cannot read a marketing page and reliably decide whether it is about to spend money.</li>
+<li><b>Provisioning completion.</b> The condition is whether the agent can determine that a resource was actually created. An asynchronous 202 with no terminal state and no reconciliation route leaves the agent unable to tell success from a job still running &mdash; so it either waits forever or proceeds on an assumption.</li>
+</ul>
+<p>Both are the same underlying failure: <b>a fact the service knows, expressed in a channel the agent cannot read.</b> Neither is hard to fix, and neither is fixed, because the humans who can read the marketing page never notice the gap.</p>
+
+<h2>What this means if you are building agents</h2>
+<p>Three practical consequences, in order of how much they cost you:</p>
+<ul>
+<li><b>Budget the human step explicitly.</b> If a target API is <code>constrained</code>, the integration is not &ldquo;call the API&rdquo;. Someone will sign up, accept terms, or unblock a provisioning step. If your plan does not name who, it is not a plan.</li>
+<li><b>Treat pricing as unknown until machine-readable.</b> Do not let an agent infer spend from documentation prose. If the commitment is not in a structured field, the correct behaviour is to stop, not to guess.</li>
+<li><b>Prefer services that expose failure contracts.</b> The difference between a retry loop and a duplicate-charge incident is whether the service tells you what a failed call means. A 5xx with a documented retry-safe semantics is worth more than a prettier SDK.</li>
+</ul>
+
+<h2>Method, and how to check every number here</h2>
+<p>Nothing on this page is estimated. The figures are recomputed from one published dataset release:</p>
+<ul>
+<li><b>Dataset:</b> <code>https://api.sourcey.com/agent-readiness.json</code></li>
+<li><b>Contract:</b> <code>sourcey.agent-readiness-dataset/v1alpha1</code></li>
+<li><b>Release ID:</b> <code>sha256:5ae5f5ef6ef8305892eca5d22d3856f5df53b7d1f0a54e1e59746692db9b36db</code></li>
+<li><b>Artifact digest:</b> <code>sha256:13dca5d946b621600ca6fdb5e62d04158f275f529582a99f36bcbd9b49c8ef95</code></li>
+<li><b>Profiles counted:</b> 25 across 23 distinct services</li>
+</ul>
+<p>Every grade, per-stage outcome and finding is attributed to that exact release, so a later revision does not silently rewrite what is claimed here. To reproduce: fetch the URL above, group the <code>profiles</code> array by <code>grade</code>, <code>public_state</code> and <code>overall_outcome</code>, and compare. If the numbers disagree with a newer release, that is the dataset moving forward &mdash; not a correction of a wrong claim.</p>
+
+<h2>Full table</h2>
+<table>
+<tr><th>Service</th><th>Funnel</th><th>Grade</th><th>Outcome</th><th>State</th></tr>
+      <tr><td>Microsoft Azure</td><td>API resource management</td><td><b>A</b></td><td>constrained</td><td>limited</td></tr>
+      <tr><td>OpenRouter API</td><td>Model access lifecycle</td><td><b>A</b></td><td>constrained</td><td>limited</td></tr>
+      <tr><td>Algolia DocSearch MCP</td><td>Remote MCP access</td><td><b>A</b></td><td>constrained</td><td>limited</td></tr>
+      <tr><td>Cloudflare 1.1.1.1 Public DNS</td><td>DNS over HTTPS query</td><td><b>A+</b></td><td>pass</td><td>ready</td></tr>
+      <tr><td>Anthropic API</td><td>API service lifecycle</td><td><b>B</b></td><td>constrained</td><td>limited</td></tr>
+      <tr><td>DigitalOcean Cloud</td><td>API resource management</td><td><b>B</b></td><td>constrained</td><td>limited</td></tr>
+      <tr><td>HubSpot CRM API</td><td>API integration lifecycle</td><td><b>B</b></td><td>constrained</td><td>limited</td></tr>
+      <tr><td>OpenAI API</td><td>API service lifecycle</td><td><b>B</b></td><td>constrained</td><td>limited</td></tr>
+      <tr><td>Pinecone Database API</td><td>Index lifecycle</td><td><b>B</b></td><td>constrained</td><td>limited</td></tr>
+      <tr><td>Resend Email API</td><td>Email operations</td><td><b>B</b></td><td>constrained</td><td>limited</td></tr>
+      <tr><td>Twilio Messaging API</td><td>Message operations</td><td><b>B</b></td><td>constrained</td><td>limited</td></tr>
+      <tr><td>Vercel REST API</td><td>Deployment operations</td><td><b>B</b></td><td>constrained</td><td>limited</td></tr>
+      <tr><td>Frantic bounty board</td><td>Agent work lifecycle</td><td><b>B</b></td><td>constrained</td><td>limited</td></tr>
+      <tr><td>Google Cloud</td><td>API resource management</td><td><b>B+</b></td><td>constrained</td><td>limited</td></tr>
+      <tr><td>GitHub REST API</td><td>Repository operations</td><td><b>B+</b></td><td>constrained</td><td>limited</td></tr>
+      <tr><td>Notion API</td><td>API integration lifecycle</td><td><b>B+</b></td><td>constrained</td><td>limited</td></tr>
+      <tr><td>Slack Web API</td><td>Workspace app operations</td><td><b>B+</b></td><td>constrained</td><td>limited</td></tr>
+      <tr><td>Cloudflare Developer Platform</td><td>API resource management</td><td><b>C+</b></td><td>constrained</td><td>limited</td></tr>
+      <tr><td>Datadog API</td><td>Monitor operations</td><td><b>C+</b></td><td>constrained</td><td>limited</td></tr>
+      <tr><td>MongoDB Atlas Administration API</td><td>Cluster lifecycle</td><td><b>C+</b></td><td>constrained</td><td>limited</td></tr>
+      <tr><td>Neon API</td><td>Project and database lifecycle</td><td><b>C+</b></td><td>constrained</td><td>limited</td></tr>
+      <tr><td>Stripe Payments API</td><td>API payment lifecycle</td><td><b>C+</b></td><td>constrained</td><td>limited</td></tr>
+      <tr><td>Sentry Web API</td><td>Issue and project operations</td><td><b>D</b></td><td>fail</td><td>blocked</td></tr>
+      <tr><td>GitHub Enterprise Server 3.21</td><td>Repository operations</td><td><b>D</b></td><td>fail</td><td>blocked</td></tr>
+      <tr><td>AWS Cloud</td><td>API resource management</td><td><b>unrated</b></td><td>unknown</td><td>unknown</td></tr>
+</table>
+<p class="muted">This is an independent analysis of open, published data. No service named here reviewed, approved or paid for how it appears. The dataset is republished with its own release identifier so that the analysis above is checkable against the exact revision it was drawn from.</p>
+</body>
+</html>
