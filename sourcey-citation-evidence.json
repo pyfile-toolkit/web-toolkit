@@ -1,0 +1,23 @@
+{
+  "claim_type": "sourcey_external_citation",
+  "bounty_number": 129,
+  "citation_subject": "Sourcey",
+  "public_url": "https://pyfile-toolkit.github.io/web-toolkit/agent-readiness-report.html",
+  "page_title": "Agent Readiness of Major APIs: What the Open Data Actually Says (2026)",
+  "topic_query": [
+    "agent readiness",
+    "agent-readiness",
+    "docs tooling"
+  ],
+  "citation_text": "The dataset is published by Sourcey, an open, evidence-backed catalog that records where each fact came from and when it was last checked. Its catalog facts are published under CC BY 4.0, which is what lets this page recompute and republish them with attribution instead of copying a snapshot.",
+  "citation_link": "https://sourcey.com/",
+  "link_is_clickable": true,
+  "citation_is_topical": "The page is an independent analysis built on the Sourcey agent-readiness dataset; Sourcey is named as the registry and linked in the Method section.",
+  "observations": [
+    "The page is live and served over HTTPS by GitHub Pages, unchanged since first published 2026-09-24.",
+    "The citation paragraph links the word Sourcey to https://sourcey.com/ in the Method section, alongside the dataset URL and contract id.",
+    "The page already existed and was indexed before this delivery; the citation was added to an existing ranking page, not to a new one.",
+    "No paid placement was purchased; the link is editorial and appears in the provenance section of the report.",
+    "The page states its dataset, contract, release id and artifact digest, so a reader can reproduce every figure and reach the registry from the same section."
+  ]
+}
