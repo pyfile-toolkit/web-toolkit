@@ -18,7 +18,7 @@
 <meta property="og:type" content="article">
 <meta name="twitter:card" content="summary">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"Base64 Encoding Explained: How It Works, Why 33% Overhead, and Examples","description":"The 64-char alphabet, byte→character mapping, padding, use cases, and a free encoder.","datePublished":"2026-08-22","dateModified":"2026-08-22","author":{"@type":"Organization","name":"Web Toolkit"},"publisher":{"@type":"Organization","name":"Web Toolkit"},"mainEntityOfPage":"https://pyfile-toolkit.github.io/web-toolkit/guides/base64-explained.html"}
+{"@context":"https://schema.org","@type":"Article","headline":"Base64 Encoding Explained: How It Works, Why 33% Overhead, and Examples","description":"The 64-char alphabet, byte→character mapping, padding, use cases, and a free encoder.","datePublished":"2026-08-22","dateModified":"2026-10-08","author":{"@type":"Organization","name":"Web Toolkit"},"publisher":{"@type":"Organization","name":"Web Toolkit"},"mainEntityOfPage":"https://pyfile-toolkit.github.io/web-toolkit/guides/base64-explained.html"}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://pyfile-toolkit.github.io/web-toolkit/"},{"@type":"ListItem","position":2,"name":"Base64 Explained","item":"https://pyfile-toolkit.github.io/web-toolkit/guides/base64-explained.html"}]}
@@ -56,15 +56,15 @@ th{background:#1e293b;color:#f8fafc}
 <div class="wrap">
 <div class="crumb"><a href="../index.html">← Home</a> · <a href="../base64.html">🔤 Base64 Encoder</a></div>
 <h1>Base64 Encoding Explained: How It Works, Why 33% Overhead, and Examples</h1>
-<div class="meta">Updated August 22, 2026 · Read time: ~5 min · Part of the Web Toolkit dev guide series</div>
+<div class="meta">Updated October 8, 2026 · Read time: ~5 min · Part of the Web Toolkit dev guide series</div>
 <article>
 <p>Base64 is everywhere in web development — in email attachments, <code>data:</code> URIs, JWT tokens, and image uploads — yet most developers have only a fuzzy idea of what it actually does. Here's the complete plain-English explanation: what the encoding is, how the byte math works, and why it makes data <strong>33% bigger</strong>.</p>
 
 <h2>The one-line summary</h2>
-<p><strong>Base64 converts binary data into a safe 64-character text alphabet (A–Z, a–z, 0–9, +, /) so it can travel through text-only channels like JSON, HTML, email, or URLs.</strong> Every 3 bytes of input become 4 text characters; if the input isn't divisible by three, padding <code>=</code> characters make up the difference.</p>
+<p><strong>Base64 converts binary data into a 64-character text alphabet (A–Z, a–z, 0–9, +, /) for transport in formats such as JSON and MIME email.</strong> For URLs, use the base64url alphabet (<code>-</code> and <code>_</code> instead of <code>+</code> and <code>/</code>), or escape the ordinary encoding as the URL context requires. Every 3 bytes of input become 4 text characters; if the input isn't divisible by three, padding <code>=</code> characters make up the difference.</p>
 
 <h2>1. Why 64 characters?</h2>
-<p>A byte is 8 bits and can hold 256 values (0–255). Many of those values are control characters, quotes, newlines, or non-printable — hostile to text protocols. Base64 uses the largest truly safe set: <strong>26 uppercase + 26 lowercase + 10 digits + 2 symbols</strong> = <strong>64 printable characters</strong>, which need only 6 bits each (2⁶ = 64).</p>
+<p>A byte is 8 bits and can hold 256 values (0–255). Many of those values are control characters, quotes, newlines, or non-printable — hostile to text protocols. The standard Base64 alphabet uses: <strong>26 uppercase + 26 lowercase + 10 digits + 2 symbols</strong> = <strong>64 printable characters</strong>, which need only 6 bits each (2⁶ = 64).</p>
 <pre>Alphabet:  ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/
 Index 0-25 = A-Z, 26-51 = a-z, 52-61 = 0-9, 62 = '+', 63 = '/'</pre>
 
@@ -73,11 +73,11 @@ Index 0-25 = A-Z, 26-51 = a-z, 52-61 = 0-9, 62 = '+', 63 = '/'</pre>
 <pre>Input:   Man  →  bytes: 0x4D 0x61 0x6E
 Bits:    010011 010110 000101 101110     (24 bits → 4×6)
 Output:  T      W      F      u          = "TWFu"</pre>
-<p>Because 24 is the least common multiple of 6 and 8, the math fits perfectly on three-byte boundaries — which is why output is always a multiple of 4 characters.</p>
+<p>Because 24 is the least common multiple of 6 and 8, the math fits perfectly on three-byte boundaries — which is why padded output is always a multiple of 4 characters. Formats that explicitly omit padding, such as JWT base64url, need not have that length.</p>
 
 <h2>3. Why 33% overhead, and what about padding?</h2>
 <p>8 bits in → 6 bits out per character. The ratio is 8/6 = 4/3, i.e. every 3 input bytes produce 4 output characters, each storing only 6 bits of real data. That fixed 4/3 ratio is the famous <strong>33.3% size increase</strong> (4/3 − 1).</p>
-<p>When input length isn't a multiple of 3, the encoder pads:</p>
+<p>For <code>n</code> input bytes, padded output has exactly <code>4 × ceil(n / 3)</code> ASCII characters, excluding any line breaks or data-URI prefix. The overhead approaches 33.3% for large inputs; short inputs can have much higher overhead. When input length isn't a multiple of 3, the encoder pads:</p>
 <table>
 <tr><th>Input bytes</th><th>Bits</th><th>Base64 output</th><th>Padding</th></tr>
 <tr><td>3 (e.g. "Man")</td><td>24</td><td><code>TWFu</code></td><td>none</td></tr>
@@ -88,7 +88,7 @@ Output:  T      W      F      u          = "TWFu"</pre>
 
 <h2>4. Real-world use cases</h2>
 <ul>
-<li><strong>Email attachments (MIME)</strong> — the classic use; SMTP is text-only.</li>
+<li><strong>Email attachments (MIME)</strong> — the classic MIME use: Base64 allows binary attachments to travel through mail transports that require a 7-bit representation.</li>
 <li><strong><code>data:</code> URIs in HTML/CSS</strong> — embed small images directly:<br><code>&lt;img src="data:image/png;base64,iVBORw0..."&gt;</code> (no extra request).</li>
 <li><strong>JWT tokens</strong> — the header and payload are base64url-encoded JSON.</li>
 <li><strong>JSON APIs</strong> — binary payloads (images, files) transported inside text JSON.</li>
@@ -102,8 +102,8 @@ Output:  T      W      F      u          = "TWFu"</pre>
 
 <h2>5. Common misconceptions</h2>
 <ol>
-<li><strong>"Base64 is encryption or compression"</strong> — No. It's a reversible <em>encoding</em>, publicly decodable within seconds; it adds 33%, never shrinks.</li>
-<li><strong>"It makes data safer"</strong> — Only safe for text channels, not security. Never base64 for secrets.</li>
+<li><strong>"Base64 is encryption or compression"</strong> — No. It's a reversible <em>encoding</em>, publicly decodable within seconds; padded output approaches 33.3% overhead for large inputs and never compresses the input.</li>
+<li><strong>"It makes data safer"</strong> — Encoding does not provide confidentiality. Secrets still need appropriate encryption and secure transport, even if their encrypted representation is Base64.</li>
 <li><strong>"More base64 = better"</strong> — For big binaries (e.g. 1 MB images), base64 inflates them 33% AND adds CPU cost; prefer real binary uploads.</li>
 <li><strong>"Padding can be dropped freely"</strong> — Decoders usually cope, but keep <code>=</code> for strict RFC 4648 tools.</li>
 </ol>

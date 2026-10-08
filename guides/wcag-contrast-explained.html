@@ -18,7 +18,7 @@
 <meta property="og:type" content="article">
 <meta name="twitter:card" content="summary">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"WCAG Color Contrast Explained: AA/AAA Ratios, Formula, and How to Check","description":"How WCAG contrast ratios work, the math, real examples, and a free instant checker.","datePublished":"2026-08-22","dateModified":"2026-08-22","author":{"@type":"Organization","name":"Web Toolkit"},"publisher":{"@type":"Organization","name":"Web Toolkit"},"mainEntityOfPage":"https://pyfile-toolkit.github.io/web-toolkit/guides/wcag-contrast-explained.html"}
+{"@context":"https://schema.org","@type":"Article","headline":"WCAG Color Contrast Explained: AA/AAA Ratios, Formula, and How to Check","description":"How WCAG contrast ratios work, the math, real examples, and a free instant checker.","datePublished":"2026-08-22","dateModified":"2026-10-08","author":{"@type":"Organization","name":"Web Toolkit"},"publisher":{"@type":"Organization","name":"Web Toolkit"},"mainEntityOfPage":"https://pyfile-toolkit.github.io/web-toolkit/guides/wcag-contrast-explained.html"}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://pyfile-toolkit.github.io/web-toolkit/"},{"@type":"ListItem","position":2,"name":"WCAG Contrast Explained","item":"https://pyfile-toolkit.github.io/web-toolkit/guides/wcag-contrast-explained.html"}]}
@@ -58,12 +58,12 @@ th{background:#1e293b;color:#f8fafc}
 <div class="wrap">
 <div class="crumb"><a href="../index.html">← Home</a> · <a href="../contrast-checker.html">👁️ Contrast Checker</a></div>
 <h1>WCAG Color Contrast Explained: AA/AAA Ratios, Formula, and How to Check</h1>
-<div class="meta">Updated August 22, 2026 · Read time: ~5 min · Part of the Web Toolkit dev guide series</div>
+<div class="meta">Updated October 8, 2026 · Read time: ~5 min · Part of the Web Toolkit dev guide series</div>
 <article>
 <p>“Contrast ratio 4.5:1” — you've seen it in Lighthouse reports, accessibility audits, and every WCAG checklist. But what does the number actually mean, how is it computed, and which pairs pass? This guide explains the WCAG contrast formula (WCAG 2.x), the AA/AAA thresholds, and shows you working examples you can verify yourself in thirty seconds.</p>
 
 <h2>The one-line rule</h2>
-<p><strong>Body text needs at least 4.5:1; large text (18px+ or 14px+ bold) needs 3:1 — and AAA raises both to 7:1 and 4.5:1.</strong> If you remember nothing else, remember those four numbers.</p>
+<p><strong>Body text needs at least 4.5:1; large text (at least 18pt, equivalent to 24 CSS px, or 14pt bold, equivalent to 18⅔ CSS px) needs 3:1 — and AAA raises both to 7:1 and 4.5:1.</strong> If you remember nothing else, remember those four numbers.</p>
 
 <h2>1. What a contrast ratio actually is</h2>
 <p>The ratio compares the <strong>relative luminance</strong> of two colors — how bright they appear to a human eye, not their RGB values. The formula from WCAG 2.x is:</p>
@@ -72,10 +72,11 @@ th{background:#1e293b;color:#f8fafc}
 where L is relative luminance:
   L = 0.2126·R' + 0.7152·G' + 0.0722·B'
 
-and each channel is linearized first:
-  c &lt;= 0.03928 → c/12.92
-  c &gt;  0.03928 → ((c + 0.055)/1.055)^2.4</pre>
-<p>The three coefficients (0.2126 / 0.7152 / 0.0722) mirror human color sensitivity: we are far more sensitive to green than to blue, which is why pure blue is a famously bad text color despite looking “dark.”</p>
+first normalize each 8-bit sRGB channel: c = channel / 255
+then linearize it:
+  c &lt;= 0.04045 → c/12.92
+  c &gt;  0.04045 → ((c + 0.055)/1.055)^2.4</pre>
+<p>The three coefficients (0.2126 / 0.7152 / 0.0722) weight green more heavily than blue. Pure blue has low relative luminance: it contrasts strongly with white, but poorly with black. Always evaluate a foreground/background pair.</p>
 
 <h2>2. The thresholds (memorize this table)</h2>
 <table>
@@ -83,7 +84,7 @@ and each channel is linearized first:
 <tr><td><strong>AA</strong> (minimum)</td><td>4.5 : 1</td><td>3 : 1</td><td>3 : 1</td></tr>
 <tr><td><strong>AAA</strong> (enhanced)</td><td>7 : 1</td><td>4.5 : 1</td><td>—</td></tr>
 </table>
-<p>AA is the legal and practical baseline (Section 508, EN 301 549, ADA case law). AAA is a stretch goal for long-form reading — most sites don't need it for everything.</p>
+<p>These are the contrast thresholds, not a complete accessibility or legal compliance checklist. Whether a law or contract requires a particular WCAG version and level depends on its scope. See <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html">W3C's explanation of SC 1.4.3</a> for text-size definitions and exceptions. Compare unrounded ratios against the threshold: 4.499:1 does not pass 4.5:1.</p>
 
 <h2>3. Real examples, verified</h2>
 <ul>
@@ -93,7 +94,7 @@ and each channel is linearized first:
 <li><span class="swatch" style="background:#c0c0c0"></span>Light grey #C0C0C0 on white: ≈ <strong>1.8 : 1</strong> — <span class="fail">fails everything</span>.</li>
 <li><span class="swatch" style="background:#0000ff"></span>Pure blue #0000FF on white: ≈ <strong>8.6 : 1</strong> — <span class="pass">passes AAA</span> (counterintuitive, but true: low green/red luminance).</li>
 </ul>
-<p>The takeaway: <strong>avoid “design greys”</strong> (any grey text lighter than roughly #767676 on white). Light greys are the #1 contrast failure in real websites.</p>
+<p>The takeaway: <strong>avoid “design greys”</strong> (any grey text lighter than roughly #767676 on white). Light grey text can easily fail contrast requirements.</p>
 
 <h2>4. How to check any pair instantly</h2>
 <p>Instead of doing the math by hand, use our free in-browser contrast checker — pick two colors and see the ratio, the AA/AAA badges, and a live preview in one click. Nothing is uploaded:</p>
@@ -105,7 +106,7 @@ and each channel is linearized first:
 <h2>5. Common mistakes</h2>
 <ol>
 <li><strong>Judging by eye</strong> — human perception is terrible at this; a pair you think looks fine can fail at 3:1.</li>
-<li><strong>Forgetting large-text exceptions</strong> — headers pass at 3:1, but the same color as body text fails at 4.5:1.</li>
+<li><strong>Forgetting large-text exceptions</strong> — a heading qualifies for 3:1 only if it meets the large-text size definition; being a heading alone is not enough.</li>
 <li><strong>Ignoring opacity</strong> — text rendered at 80% opacity blends with the background; test the <em>rendered</em> color, not the declared one.</li>
 <li><strong>Failing disabled states</strong> — disabled buttons/labels are often exempt, but only if genuinely disabled (not just visually grey).</li>
 <li><strong>Assuming black-on-white always works</strong> — it does (21:1), but pure white on light UI rarely does.</li>
@@ -115,7 +116,7 @@ and each channel is linearized first:
 <p><strong>What is the minimum contrast ratio for text?</strong> 4.5:1 for normal text and 3:1 for large text under WCAG AA.</p>
 <p><strong>How do I compute the ratio?</strong> Use the formula above, or any checker — the math is deterministic, so every reliable tool returns identical results for the same two colors.</p>
 <p><strong>Does WCAG 2.2 change the ratios?</strong> No — 2.2 kept the contrast requirements unchanged; it added new success criteria (e.g., focus appearance) but the 4.5:1 / 3:1 numbers remain.</p>
-<p><strong>What about WCAG 3.0 (APCA)?</strong> The next generation proposes a different perceptual model (APCA) with non-linear scores. It's still a draft; design for WCAG 2.x AA today.</p>
+<p><strong>What about APCA and WCAG 3.0?</strong> APCA is a different perceptual contrast model under discussion for future accessibility work; it is not the formula used by WCAG 2.2. Do not substitute its scores for WCAG 2.x contrast ratios.</p>
 <p><strong>Are logos and decorative content exempt?</strong> Yes — text that is part of a logo, brand name, or purely decorative is excluded from contrast requirements.</p>
 
 <div class="related">

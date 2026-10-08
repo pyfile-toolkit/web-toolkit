@@ -18,7 +18,7 @@
 <meta property="og:type" content="article">
 <meta name="twitter:card" content="summary">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"MD5 vs SHA-256: Hashing Explained for Developers","description":"How hashing works, why MD5/SHA-1 are broken, and when to use SHA-256.","datePublished":"2026-08-22","dateModified":"2026-08-22","author":{"@type":"Organization","name":"Web Toolkit"},"publisher":{"@type":"Organization","name":"Web Toolkit"},"mainEntityOfPage":"https://pyfile-toolkit.github.io/web-toolkit/guides/md5-vs-sha256.html"}
+{"@context":"https://schema.org","@type":"Article","headline":"MD5 vs SHA-256: Hashing Explained for Developers","description":"How hashing works, why MD5/SHA-1 are broken, and when to use SHA-256.","datePublished":"2026-08-22","dateModified":"2026-10-08","author":{"@type":"Organization","name":"Web Toolkit"},"publisher":{"@type":"Organization","name":"Web Toolkit"},"mainEntityOfPage":"https://pyfile-toolkit.github.io/web-toolkit/guides/md5-vs-sha256.html"}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://pyfile-toolkit.github.io/web-toolkit/"},{"@type":"ListItem","position":2,"name":"MD5 vs SHA-256","item":"https://pyfile-toolkit.github.io/web-toolkit/guides/md5-vs-sha256.html"}]}
@@ -57,12 +57,12 @@ th{background:#1e293b;color:#f8fafc}
 <div class="wrap">
 <div class="crumb"><a href="../index.html">← Home</a> · <a href="../hash-generator.html">🔑 Hash Generator</a></div>
 <h1>MD5 vs SHA-256: Hashing Explained for Developers</h1>
-<div class="meta">Updated August 22, 2026 · Read time: ~6 min · Part of the Web Toolkit dev guide series</div>
+<div class="meta">Updated October 8, 2026 · Read time: ~6 min · Part of the Web Toolkit dev guide series</div>
 <article>
 <p>You've seen MD5, SHA-1, and SHA-256 in checksum tools, package managers, and database tables — but which one should you actually use in 2026? This guide explains what hashing is, why <strong>MD5 and SHA-1 are cryptographically broken</strong>, and when each algorithm is (or isn't) safe.</p>
 
 <h2>The one-line rule</h2>
-<p><strong>For any security-sensitive use — passwords, integrity checks against tampering, API signatures — use SHA-256 (or stronger), never MD5 or SHA-1.</strong> MD5 and SHA-1 remain only in legacy compatibility and non-security contexts (e.g., accidental-duplicate detection).</p>
+<p><strong>Use SHA-256 rather than MD5 or SHA-1 for new checksums that require collision resistance. For passwords, use a password-hashing scheme such as Argon2id, not plain SHA-256.</strong> A checksum only detects malicious replacement if the expected digest comes from a trusted source. Authenticate API messages with an appropriate MAC, such as HMAC-SHA256, or a digital signature; an unkeyed hash alone does not authenticate a sender.</p>
 
 <h2>1. What a hash actually is</h2>
 <p>A hash function maps any input — a file, a password, a message — to a fixed-size digest:</p>
@@ -80,17 +80,17 @@ SHA-256("hello world") = b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7a
 <table>
 <tr><th>Algorithm</th><th>Digest size</th><th>Broken?</th><th>Status in 2026</th><th>Good for</th></tr>
 <tr><td>MD5</td><td>128-bit (32 hex)</td><td class="bad">Yes — collisions since 2004</td><td class="bad">Never for security</td><td>Caching keys, dedupe</td></tr>
-<tr><td>SHA-1</td><td>160-bit (40 hex)</td><td class="bad">Yes — SHAttered 2017</td><td class="bad">Deprecated everywhere</td><td>Legacy git objects</td></tr>
+<tr><td>SHA-1</td><td>160-bit (40 hex)</td><td class="bad">Yes — SHAttered 2017</td><td class="bad">Avoid for new collision-resistant designs</td><td>Legacy git objects</td></tr>
 <tr><td>SHA-256</td><td>256-bit (64 hex)</td><td class="good">No known practical attack</td><td class="good">Industry default</td><td>Signatures, integrity, TLS</td></tr>
 <tr><td>SHA-512</td><td>512-bit (128 hex)</td><td class="good">No known practical attack</td><td class="good">Stronger sibling</td><td>High-security contexts</td></tr>
 </table>
 
 <h2>3. Why MD5 and SHA-1 are broken</h2>
-<p><strong>Collision</strong> = two different inputs producing the same digest. In 2004, researchers demonstrated MD5 collisions; by 2008 they were producing them in <strong>seconds</strong> on consumer hardware. SHA-1's first real collision ("SHAttered", 2017) took Google roughly 6,500 CPU-years — still feasible for a well-resourced attacker, and the method has only gotten cheaper since.</p>
-<p>Why this matters: if an attacker can craft a file that hashes identically to a <em>legitimate</em> one, they can swap malicious content into a system that trusts hash-based fingerprints — think package downloads, certificates, or code signing. There's also the <strong>birthday paradox</strong>: collisions for an n-bit hash become practical at roughly 2^(n/2) operations — for MD5 that's ~2^64 (fast), for SHA-256 ~2^128 (world was not built for that).</p>
+<p><strong>Collision</strong> means two different inputs producing the same digest. Practical MD5 collision attacks have been known since 2004; the <a href="https://shattered.io/">SHAttered project</a> demonstrated a SHA-1 collision in 2017. These algorithms are unsuitable where an attacker could exploit collisions.</p>
+<p>A collision attack finds a pair of inputs, not necessarily a replacement for any arbitrary existing file. That distinction matters: constructing collisions and finding a second preimage for a specified input are different problems. For an ideal n-bit hash, a generic birthday collision search takes on the order of 2^(n/2) evaluations: about 2^64 for a 128-bit hash and 2^128 for a 256-bit hash. MD5's weaknesses allow attacks substantially cheaper than that ideal bound.</p>
 
 <h2>4. Password hashing — a separate topic</h2>
-<p>Even SHA-256 is the <strong>wrong tool for passwords</strong>. Password hashes need to be <em>slow</em> to resist brute force, which is why the industry uses <strong>bcrypt, scrypt, or Argon2</strong> (and salts everything). Plain SHA-256 for passwords is vulnerable to fast dictionary attacks — use a password-stretching KDF instead. MD5-for-passwords is worst of all: roughly <code>10^10</code> hashes per second are trivial on GPUs.</p>
+<p>Plain SHA-256 is the <strong>wrong tool for password storage</strong>. Use a dedicated password-hashing scheme with a unique salt and appropriate work factors. <a href="https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html">OWASP recommends Argon2id</a>, with scrypt as an alternative and bcrypt for legacy systems. Fast general-purpose hashes make offline password guessing too cheap; adding a salt alone does not make them slow.</p>
 
 <h2>5. What SHA-256 is used for today</h2>
 <ul>
@@ -106,7 +106,10 @@ SHA-256("hello world") = b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7a
 </div>
 
 <h2>6. Frequently asked questions</h2>
-<p><strong>Is MD5 still used?</strong> Yes, but only where integrity-adversary isn't a concern: checksums for accidental corruption, caching keys, deduplication. Never for security. <strong>Is SHA-256 quantum-safe?</strong> Grover's algorithm halves effective strength to 2^128 — still safe in practice for decades. <strong>Can I reverse a hash?</strong> No, but short inputs (passwords, names) can be found via precomputed rainbow tables — which is why salt exists. <strong>Which should I pick for checksums?</strong> SHA-256: universally supported and practical.</p>
+<p><strong>Is MD5 still used?</strong> Yes, in legacy compatibility and non-adversarial checksums or caching. Prefer SHA-256 for new designs, and do not rely on MD5 collision resistance.</p>
+<p><strong>Is SHA-256 quantum-safe?</strong> Idealized Grover search reduces generic preimage query complexity from about 2^256 to 2^128; that is not a forecast of practical hardware capability, nor the same as collision resistance.</p>
+<p><strong>Can I reverse a hash?</strong> There is no general practical inverse for a secure cryptographic hash, but an attacker can guess likely inputs and compare their digests. A salt prevents reuse of precomputed tables across password records; an appropriately costly password-hashing scheme also slows each guess.</p>
+<p><strong>Which should I pick for checksums?</strong> SHA-256 is widely supported. If you need protection against tampering, obtain the expected checksum through a trusted channel or verify a digital signature.</p>
 
 <div class="related">
 <h3 style="margin-top:26px">Related tools &amp; guides</h3>
